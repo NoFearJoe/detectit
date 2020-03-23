@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:DetectIt.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:DetectItCore/DetectItCore.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:Playgrounds"
+      name = "Playgrounds">
+      <FileRef
+         location = "group:AudioTaskCreation.playground">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Documentation"
+      name = "Documentation">
+      <FileRef
+         location = "group:General.playground">
+      </FileRef>
+   </Group>
+</Workspace>
