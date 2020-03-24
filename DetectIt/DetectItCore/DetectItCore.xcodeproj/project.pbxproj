@@ -16,6 +16,7 @@
 		961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965C24274ABA003EC992 /* DecoderTask.swift */; };
 		961B965F24274C79003EC992 /* QuestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965E24274C79003EC992 /* QuestTask.swift */; };
 		961B966124275009003EC992 /* ProfileTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B966024275009003EC992 /* ProfileTask.swift */; };
+		96500E092429DB50005FFC7A /* TasksBundleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E082429DB50005FFC7A /* TasksBundleMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		961B965C24274ABA003EC992 /* DecoderTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTask.swift; sourceTree = "<group>"; };
 		961B965E24274C79003EC992 /* QuestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTask.swift; sourceTree = "<group>"; };
 		961B966024275009003EC992 /* ProfileTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTask.swift; sourceTree = "<group>"; };
+		96500E082429DB50005FFC7A /* TasksBundleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		961B964F24260134003EC992 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				96500E072429DB31005FFC7A /* Constants */,
 				961B96522426013A003EC992 /* Dictionaries */,
 				961B96502426013A003EC992 /* Entities */,
 			);
@@ -134,6 +137,14 @@
 				961B96582426048A003EC992 /* TasksBundle.swift */,
 			);
 			path = Dictionaries;
+			sourceTree = "<group>";
+		};
+		96500E072429DB31005FFC7A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				96500E082429DB50005FFC7A /* TasksBundleMap.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +260,7 @@
 				961B965F24274C79003EC992 /* QuestTask.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
 				961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */,
+				96500E092429DB50005FFC7A /* TasksBundleMap.swift in Sources */,
 				961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */,
 				961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */,
 			);
