@@ -11,11 +11,13 @@
 		961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95E52425EE89003EC992 /* SceneDelegate.swift */; };
 		961B95ED2425EE92003EC992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961B95EC2425EE92003EC992 /* Assets.xcassets */; };
 		961B95F02425EE92003EC992 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961B95EE2425EE92003EC992 /* LaunchScreen.storyboard */; };
-		961B95FB2425EE92003EC992 /* DetectItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95FA2425EE92003EC992 /* DetectItTests.swift */; };
 		961B96062425EE92003EC992 /* DetectItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96052425EE92003EC992 /* DetectItUITests.swift */; };
 		961B964B242600CF003EC992 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961B964A242600CF003EC992 /* DetectItCore.framework */; };
 		961B964C242600CF003EC992 /* DetectItCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 961B964A242600CF003EC992 /* DetectItCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96500E0B2429DF63005FFC7A /* TaskBundles in Resources */ = {isa = PBXBuildFile; fileRef = 96500E0A2429DF63005FFC7A /* TaskBundles */; };
+		96500E10242A117D005FFC7A /* TaskBundles in Resources */ = {isa = PBXBuildFile; fileRef = 96500E0A2429DF63005FFC7A /* TaskBundles */; };
+		96500E11242A117D005FFC7A /* TaskBundles in Resources */ = {isa = PBXBuildFile; fileRef = 96500E0A2429DF63005FFC7A /* TaskBundles */; };
+		96500E13242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E12242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,13 +59,13 @@
 		961B95EF2425EE92003EC992 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		961B95F12425EE92003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B95F62425EE92003EC992 /* DetectItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		961B95FA2425EE92003EC992 /* DetectItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectItTests.swift; sourceTree = "<group>"; };
 		961B95FC2425EE92003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B96012425EE92003EC992 /* DetectItUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectItUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B96052425EE92003EC992 /* DetectItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectItUITests.swift; sourceTree = "<group>"; };
 		961B96072425EE92003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B964A242600CF003EC992 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E0A2429DF63005FFC7A /* TaskBundles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TaskBundles; sourceTree = "<group>"; };
+		96500E12242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskBundlesConsistencyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +128,7 @@
 		961B95F92425EE92003EC992 /* DetectItTests */ = {
 			isa = PBXGroup;
 			children = (
-				961B95FA2425EE92003EC992 /* DetectItTests.swift */,
+				96500E12242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift */,
 				961B95FC2425EE92003EC992 /* Info.plist */,
 			);
 			path = DetectItTests;
@@ -307,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96500E10242A117D005FFC7A /* TaskBundles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96500E11242A117D005FFC7A /* TaskBundles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961B95FB2425EE92003EC992 /* DetectItTests.swift in Sources */,
+				96500E13242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

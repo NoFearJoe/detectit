@@ -1,0 +1,10 @@
+{
+  "id": "1",
+  "title": "Тест",
+  "preposition": "Far far away",
+  "encodedPictureName": "pic1.png",
+  "answer": {
+    "crimeDescription": "Что-то произошло",
+    "decodedMessage": "Путин бомба террорист"
+  }
+}

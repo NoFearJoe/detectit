@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		961B9639242600BB003EC992 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961B962F242600BB003EC992 /* DetectItCore.framework */; };
-		961B963E242600BB003EC992 /* DetectItCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B963D242600BB003EC992 /* DetectItCoreTests.swift */; };
 		961B9640242600BB003EC992 /* DetectItCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 961B9632242600BB003EC992 /* DetectItCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96512426013A003EC992 /* AudioRecordTask.swift */; };
-		961B96592426048A003EC992 /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96582426048A003EC992 /* TasksBundle.swift */; };
+		961B96592426048A003EC992 /* TasksBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96582426048A003EC992 /* TasksBundles.swift */; };
 		961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */; };
 		961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965C24274ABA003EC992 /* DecoderTask.swift */; };
 		961B965F24274C79003EC992 /* QuestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965E24274C79003EC992 /* QuestTask.swift */; };
 		961B966124275009003EC992 /* ProfileTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B966024275009003EC992 /* ProfileTask.swift */; };
 		96500E092429DB50005FFC7A /* TasksBundleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E082429DB50005FFC7A /* TasksBundleMap.swift */; };
+		96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E0E2429FAD8005FFC7A /* TasksBundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,15 +34,15 @@
 		961B9632242600BB003EC992 /* DetectItCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItCore.h; sourceTree = "<group>"; };
 		961B9633242600BB003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B9638242600BB003EC992 /* DetectItCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectItCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		961B963D242600BB003EC992 /* DetectItCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectItCoreTests.swift; sourceTree = "<group>"; };
 		961B963F242600BB003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B96512426013A003EC992 /* AudioRecordTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordTask.swift; sourceTree = "<group>"; };
-		961B96582426048A003EC992 /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
+		961B96582426048A003EC992 /* TasksBundles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundles.swift; sourceTree = "<group>"; };
 		961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraEvidenceTask.swift; sourceTree = "<group>"; };
 		961B965C24274ABA003EC992 /* DecoderTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTask.swift; sourceTree = "<group>"; };
 		961B965E24274C79003EC992 /* QuestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTask.swift; sourceTree = "<group>"; };
 		961B966024275009003EC992 /* ProfileTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTask.swift; sourceTree = "<group>"; };
 		96500E082429DB50005FFC7A /* TasksBundleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleMap.swift; sourceTree = "<group>"; };
+		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,6 @@
 		961B963C242600BB003EC992 /* DetectItCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				961B963D242600BB003EC992 /* DetectItCoreTests.swift */,
 				961B963F242600BB003EC992 /* Info.plist */,
 			);
 			path = DetectItCoreTests;
@@ -127,6 +126,7 @@
 				961B965C24274ABA003EC992 /* DecoderTask.swift */,
 				961B965E24274C79003EC992 /* QuestTask.swift */,
 				961B966024275009003EC992 /* ProfileTask.swift */,
+				96500E0E2429FAD8005FFC7A /* TasksBundle.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -134,7 +134,7 @@
 		961B96522426013A003EC992 /* Dictionaries */ = {
 			isa = PBXGroup;
 			children = (
-				961B96582426048A003EC992 /* TasksBundle.swift */,
+				961B96582426048A003EC992 /* TasksBundles.swift */,
 			);
 			path = Dictionaries;
 			sourceTree = "<group>";
@@ -212,6 +212,7 @@
 					};
 					961B9637242600BB003EC992 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -256,10 +257,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961B96592426048A003EC992 /* TasksBundle.swift in Sources */,
+				961B96592426048A003EC992 /* TasksBundles.swift in Sources */,
 				961B965F24274C79003EC992 /* QuestTask.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
 				961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */,
+				96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */,
 				96500E092429DB50005FFC7A /* TasksBundleMap.swift in Sources */,
 				961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */,
 				961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */,
@@ -270,7 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961B963E242600BB003EC992 /* DetectItCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = DetectItCoreTests/Info.plist;
@@ -467,6 +469,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectItCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -476,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = DetectItCoreTests/Info.plist;

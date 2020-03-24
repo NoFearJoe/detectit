@@ -9,77 +9,68 @@
 import Foundation
 
 /// Предоставляет функционал для получения пути к директориям с заданиями.
-public struct TasksBundleMap {
-    
-    let bundlemap = "bundlemap"
-    
-    let audiorecords = "audiorecords"
-    let ciphers = "ciphers"
-    let extraEvidences = "extraevidences"
-    let profiles = "profiles"
-    let quests = "quests"
-    
-    let directory: String
+struct TasksBundleMap {
+            
+    let audiorecords: [URL]
+    let ciphers: [URL]
+    let extraEvidences: [URL]
+    let profiles: [URL]
+    let quests: [URL]
     
     /// Инициализирует объект с идентификатором набора заданий.
-    public init(bundleID: String) {
-        directory = "\(bundleID).tasksbundle"
+    init(bundleID: String) throws {
+        let bundleDirectory = "\(bundleID).tasksbundle"
+        
+        guard let baseURL = Self.baseURL(bundleDirectory: bundleDirectory) else {
+            throw Error.bundleMapFileIsNotExists
+        }
+        
+        audiorecords = Self.tasksPaths(directory: Static.audiorecords, baseURL: baseURL)
+        ciphers = Self.tasksPaths(directory: Static.ciphers, baseURL: baseURL)
+        extraEvidences = Self.tasksPaths(directory: Static.extraEvidences, baseURL: baseURL)
+        profiles = Self.tasksPaths(directory: Static.extraEvidences, baseURL: baseURL)
+        quests = Self.tasksPaths(directory: Static.quests, baseURL: baseURL)
     }
     
-    // MARK: - Public
+}
+
+extension TasksBundleMap {
     
-    /// Возвращает URL файла bundlemap, в котором хранятся списки заданий.
-    public func bundleMapURL() -> URL {
-        URL(
-            fileURLWithPath: directory,
-            isDirectory: true,
-            relativeTo: baseURL
-        )
-        .appendingPathComponent(bundlemap)
-        .appendingPathExtension("json")
+    enum Error: Swift.Error {
+        case bundleMapFileIsNotExists
     }
     
-    /// Возвращает URL директории с "Аудиозаписью".
-    public func audiorecordURL(id: String) -> URL {
-        taskURL(id: id, directory: audiorecords)
+}
+    
+private extension TasksBundleMap {
+ 
+    static func baseURL(bundleDirectory: String) -> URL? {
+        (URL(string: Static.root)?
+            .appendingPathComponent(bundleDirectory))
+            .flatMap {
+                Bundle.main.url(forResource: $0.path, withExtension: nil)
+            }
     }
     
-    /// Возвращает URL директории с "Шифром".
-    public func cipherURL(id: String) -> URL {
-        taskURL(id: id, directory: ciphers)
+    static func tasksPaths(directory: String, baseURL: URL) -> [URL] {
+        (try? FileManager.default.contentsOfDirectory(
+            at: baseURL.appendingPathComponent(directory),
+            includingPropertiesForKeys: nil
+        )) ?? []
     }
     
-    /// Возвращает URL директории с "Лишней уликой".
-    public func extraEvidenceURL(id: String) -> URL {
-        taskURL(id: id, directory: extraEvidences)
-    }
+}
+
+private extension TasksBundleMap {
     
-    /// Возвращает URL директории с "Профайлом".
-    public func profileURL(id: String) -> URL {
-        taskURL(id: id, directory: profiles)
-    }
-    
-    /// Возвращает URL директории с "Квестом".
-    public func questURL(id: String) -> URL {
-        taskURL(id: id, directory: quests)
-    }
-    
-    // MARK: - Private
-    
-    private var baseURL: URL? {
-        Bundle.main.url(
-            forResource: directory,
-            withExtension: nil
-        )
-    }
-    
-    private func taskURL(id: String, directory: String) -> URL {
-        URL(
-            fileURLWithPath: directory,
-            isDirectory: true,
-            relativeTo: baseURL
-        )
-        .appendingPathComponent(id)
+    private struct Static {
+        static let root = "TaskBundles"
+                
+        static let audiorecords = "audiorecords"
+        static let ciphers = "ciphers"
+        static let extraEvidences = "extraevidences"
+        static let profiles = "profiles"
+        static let quests = "quests"
     }
     
 }

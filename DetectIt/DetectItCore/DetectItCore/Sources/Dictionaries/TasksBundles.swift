@@ -1,5 +1,5 @@
 //
-//  TasksBundle.swift
+//  TasksBundles.swift
 //  DetectItCore
 //
 //  Created by Илья Харабет on 21/03/2020.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum TasksBundle: Int, CaseIterable {
-    case starter = 0
+enum TasksBundles: String, CaseIterable {
+    case starter
 }
 
-extension TasksBundle: CustomStringConvertible {
+extension TasksBundles: CustomStringConvertible {
     
     var description: String {
         switch self {
