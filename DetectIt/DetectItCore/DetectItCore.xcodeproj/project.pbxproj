@@ -17,6 +17,9 @@
 		961B966124275009003EC992 /* ProfileTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B966024275009003EC992 /* ProfileTask.swift */; };
 		96500E092429DB50005FFC7A /* TasksBundleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E082429DB50005FFC7A /* TasksBundleMap.swift */; };
 		96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E0E2429FAD8005FFC7A /* TasksBundle.swift */; };
+		96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E19242BC489005FFC7A /* ProfileTask+Case.swift */; };
+		96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */; };
+		96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E1D242BC4C1005FFC7A /* ProfileTask+Questions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,9 @@
 		961B966024275009003EC992 /* ProfileTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTask.swift; sourceTree = "<group>"; };
 		96500E082429DB50005FFC7A /* TasksBundleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleMap.swift; sourceTree = "<group>"; };
 		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
+		96500E19242BC489005FFC7A /* ProfileTask+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Case.swift"; sourceTree = "<group>"; };
+		96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Attachment.swift"; sourceTree = "<group>"; };
+		96500E1D242BC4C1005FFC7A /* ProfileTask+Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Questions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 		961B964F24260134003EC992 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				96500E14242BB194005FFC7A /* Utils */,
 				96500E072429DB31005FFC7A /* Constants */,
 				961B96522426013A003EC992 /* Dictionaries */,
 				961B96502426013A003EC992 /* Entities */,
@@ -121,11 +128,7 @@
 		961B96502426013A003EC992 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				961B96512426013A003EC992 /* AudioRecordTask.swift */,
-				961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */,
-				961B965C24274ABA003EC992 /* DecoderTask.swift */,
-				961B965E24274C79003EC992 /* QuestTask.swift */,
-				961B966024275009003EC992 /* ProfileTask.swift */,
+				96500E17242BC450005FFC7A /* Tasks */,
 				96500E0E2429FAD8005FFC7A /* TasksBundle.swift */,
 			);
 			path = Entities;
@@ -145,6 +148,36 @@
 				96500E082429DB50005FFC7A /* TasksBundleMap.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		96500E14242BB194005FFC7A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		96500E17242BC450005FFC7A /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				96500E18242BC47C005FFC7A /* ProfileTask */,
+				961B96512426013A003EC992 /* AudioRecordTask.swift */,
+				961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */,
+				961B965C24274ABA003EC992 /* DecoderTask.swift */,
+				961B965E24274C79003EC992 /* QuestTask.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		96500E18242BC47C005FFC7A /* ProfileTask */ = {
+			isa = PBXGroup;
+			children = (
+				961B966024275009003EC992 /* ProfileTask.swift */,
+				96500E19242BC489005FFC7A /* ProfileTask+Case.swift */,
+				96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */,
+				96500E1D242BC4C1005FFC7A /* ProfileTask+Questions.swift */,
+			);
+			path = ProfileTask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +295,10 @@
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
 				961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */,
 				96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */,
+				96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */,
 				96500E092429DB50005FFC7A /* TasksBundleMap.swift in Sources */,
+				96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */,
+				96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */,
 				961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */,
 				961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */,
 			);

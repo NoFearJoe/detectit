@@ -19,7 +19,7 @@ struct TasksBundleMap {
     
     /// Инициализирует объект с идентификатором набора заданий.
     init(bundleID: String) throws {
-        let bundleDirectory = "\(bundleID).tasksbundle"
+        let bundleDirectory = Self.makeBundleDirectory(id: bundleID)
         
         guard let baseURL = Self.baseURL(bundleDirectory: bundleDirectory) else {
             throw Error.bundleMapFileIsNotExists
@@ -41,8 +41,51 @@ extension TasksBundleMap {
     }
     
 }
+
+extension TasksBundleMap {
+    
+    static func bundleURL(bundleID: String) -> URL? {
+        baseURL(bundleDirectory: makeBundleDirectory(id: bundleID))
+    }
+    
+    static func dictionariesDirectoryURL(bundleID: String) -> URL? {
+        bundleURL(bundleID: bundleID)?
+            .appendingPathComponent(Static.dictionaries)
+    }
+    
+    static func audiorecordDirectoryURL(id: String, bundleID: String) -> URL? {
+        taskDirectoryURL(bundleID: bundleID, directory: Static.audiorecords, taskID: id)
+    }
+    
+    static func cipherDirectoryURL(id: String, bundleID: String) -> URL? {
+        taskDirectoryURL(bundleID: bundleID, directory: Static.ciphers, taskID: id)
+    }
+    
+    static func extraEvidenceDirectoryURL(id: String, bundleID: String) -> URL? {
+        taskDirectoryURL(bundleID: bundleID, directory: Static.extraEvidences, taskID: id)
+    }
+    
+    static func profileDirectoryURL(id: String, bundleID: String) -> URL? {
+        taskDirectoryURL(bundleID: bundleID, directory: Static.profiles, taskID: id)
+    }
+    
+    static func questDirectoryURL(id: String, bundleID: String) -> URL? {
+        taskDirectoryURL(bundleID: bundleID, directory: Static.quests, taskID: id)
+    }
+    
+    private static func taskDirectoryURL(bundleID: String, directory: String, taskID: String) -> URL? {
+        bundleURL(bundleID: bundleID)?
+            .appendingPathComponent(directory)
+            .appendingPathComponent(taskID)
+    }
+    
+}
     
 private extension TasksBundleMap {
+    
+    static func makeBundleDirectory(id: String) -> String {
+        "\(id).tasksbundle"
+    }
  
     static func baseURL(bundleDirectory: String) -> URL? {
         (URL(string: Static.root)?
@@ -63,8 +106,10 @@ private extension TasksBundleMap {
 
 private extension TasksBundleMap {
     
-    private struct Static {
+    struct Static {
         static let root = "TaskBundles"
+        
+        static let dictionaries = "dictionaries"
                 
         static let audiorecords = "audiorecords"
         static let ciphers = "ciphers"

@@ -18,7 +18,7 @@ public struct ExtraEvidenceTask: Codable {
     public let title: String
     
     /// Список названий изображений с уликами.
-    public let evidencePictureNames: [String]
+    let evidencePictureNames: [String]
     
     /// Ответ.
     public let answer: Answer
@@ -35,6 +35,20 @@ public extension ExtraEvidenceTask {
         /// Название правильного изображения с уликой.
         let evidencePictureName: String
         
+    }
+    
+}
+
+// MARK: Resource accessiong
+
+public extension ExtraEvidenceTask {
+    
+    func evidencePictureNameURLs(bundleID: String) -> [URL] {
+        evidencePictureNames.compactMap {
+            TasksBundleMap
+                .extraEvidenceDirectoryURL(id: id, bundleID: bundleID)?
+                .appendingPathComponent($0)
+        }
     }
     
 }

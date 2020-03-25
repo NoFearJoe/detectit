@@ -21,7 +21,7 @@ public struct DecoderTask: Codable {
     public let preposition: String
     
     /// Название закодированного изображения.
-    public let encodedPictureName: String
+    let encodedPictureName: String
     
     /// Ответ.
     public let answer: Answer
@@ -38,6 +38,18 @@ public extension DecoderTask {
         /// Расшифрованное сообщение.
         public let decodedMessage: String
         
+    }
+    
+}
+
+// MARK: - Resource accessing
+
+public extension DecoderTask {
+    
+    func encodedPictureURL(bundleID: String) -> URL? {
+        TasksBundleMap
+            .cipherDirectoryURL(id: id, bundleID: bundleID)?
+            .appendingPathComponent(encodedPictureName)
     }
     
 }

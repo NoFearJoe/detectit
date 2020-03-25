@@ -56,7 +56,7 @@ final class TaskBundlesConsistencyTests: XCTestCase {
         }
     }
     
-    func testThatTasksBundleLoadsSuccessfully() {
+    func testThatTaskBundlesLoadsSuccessfully() {
         taskBundles.forEach { bundle in
             guard let bundleMap = try? TasksBundleMap(bundleID: bundle.rawValue) else {
                 return XCTFail("The bundlemap is not exists")
@@ -94,6 +94,117 @@ final class TaskBundlesConsistencyTests: XCTestCase {
             }
             
             waitForExpectations(timeout: 5) { error in
+                XCTAssertNil(error, error?.localizedDescription ?? "The expectation produced an error")
+            }
+        }
+    }
+    
+    func testThatTaskBundlesContainsAllNeededResources() {
+        taskBundles.forEach { bundle in
+            let exp = expectation(description: bundle.rawValue)
+            
+            TasksBundle.load(bundleID: bundle.rawValue) { tasksBundle in
+                guard let tasksBundle = tasksBundle else {
+                    return XCTFail("A tasks bundle \(bundle.rawValue) was not loaded")
+                }
+                
+                // Проверка на то, что для всех аудиозаписей есть файлы
+                tasksBundle.audiorecordTasks.forEach {
+                    
+                    // Проверка наличия словаря с типами преступлений
+                    if let crimeTypesDictionaryURL = $0.crimeTypesDictionaryURL(bundleID: bundle.rawValue) {
+                        XCTAssertTrue(
+                            FileManager.default.fileExists(atPath: crimeTypesDictionaryURL.path),
+                            "The audio file is not exists at \(crimeTypesDictionaryURL.path)"
+                        )
+                    } else {
+                        XCTFail("The crime types dictionary file URL is not exists at \($0.crimeTypesDictionary)")
+                    }
+                    
+                    // Проверка наличия словаря с местами преступлений
+                    if let crimePlacesDictionaryURL = $0.crimePlacesDictionaryURL(bundleID: bundle.rawValue) {
+                        XCTAssertTrue(
+                            FileManager.default.fileExists(atPath: crimePlacesDictionaryURL.path),
+                            "The audio file is not exists at \(crimePlacesDictionaryURL.path)"
+                        )
+                    } else {
+                        XCTFail("The crime places dictionary file URL is not exists at \($0.crimePlacesDictionary)")
+                    }
+                    
+                    // Проверка наличия файла с аудиозаписью
+                    if let url = $0.audioFileURL(bundleID: bundle.rawValue) {
+                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The audio file is not exists at \(url.path)")
+                    } else {
+                        XCTFail("The audio file URL is nil for audio named \($0.audioFileName)")
+                    }
+                    
+                }
+                
+                // Проверка на то, что для всех шифров есть файлы
+                tasksBundle.decoderTasks.forEach {
+                    guard let url = $0.encodedPictureURL(bundleID: bundle.rawValue) else {
+                        return XCTFail("The encoded picture file URL is nil for file named \($0.encodedPictureName)")
+                    }
+                    
+                    XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The encoded picture file is not exists at \(url.path)")
+                }
+                
+                // Проверка на то, что для всех улик есть файлы
+                tasksBundle.extraEvidenceTasks.forEach {
+                    let extraEvidenceURLs = $0.evidencePictureNameURLs(bundleID: bundle.rawValue)
+                    
+                    XCTAssertTrue(
+                        extraEvidenceURLs.count == $0.evidencePictureNames.count,
+                        "Evidence names count (\($0.evidencePictureNames.count)) is not equal to URLs count (\(extraEvidenceURLs.count))"
+                    )
+                    
+                    extraEvidenceURLs.forEach { url in
+                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The evidence picture file is not exists at \(url.path)")
+                    }
+                }
+                
+                // Проверка на то, что для всех профайлов есть файлы
+                tasksBundle.profileTasks.forEach { profileTask in
+                    
+                    // Проверка приложений к профайлу.
+                    profileTask.attachments.forEach {
+                        guard let url = profileTask.attachmentURL(attachment: $0, bundleID: bundle.rawValue) else {
+                            switch $0.kind {
+                            case .audio:
+                                return XCTFail("The attachment file URL is nil for file named \($0.audioFileName!)")
+                            case .picture:
+                                return XCTFail("The attachment file URL is nil for file named \($0.pictureName!)")
+                            }
+                        }
+                        
+                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The attachment file is not exists at \(url.path)")
+                    }
+                    
+                    // Проверка кейсов
+                    profileTask.cases.forEach {
+                        guard let pictureName = $0.pictureName else { return }
+                        guard let url = profileTask.casePictureURL(case: $0, bundleID: bundle.rawValue) else {
+                            return XCTFail("The case picture file URL is nil for file named \(pictureName)")
+                        }
+                        
+                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The case picture file is not exists at \(url.path)")
+                    }
+                    
+                    // Проверка ответов с выбором из словаря
+                    profileTask.questions.compactMap { $0.variantFromDictionary }.forEach {
+                        guard let url = profileTask.variantsDictionaryURL(question: $0, bundleID: bundle.rawValue) else {
+                            return XCTFail("The case picture file URL is nil for file named \($0.dictionaryName)")
+                        }
+                        
+                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The variants dictionary file is not exists at \(url.path)")
+                    }
+                    
+                }
+                
+                exp.fulfill()
+            }
+            
+            waitForExpectations(timeout: 10) { error in
                 XCTAssertNil(error, error?.localizedDescription ?? "The expectation produced an error")
             }
         }

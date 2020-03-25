@@ -18,13 +18,15 @@ public struct AudioRecordTask: Codable {
     public let title: String
     
     /// Название аудиофайла для проигрывания.
-    public let audioFileName: String
+    let audioFileName: String
     
     /// Словарь со списком типов преступлений, подходящих для данной аудиозаписи.
-    public let crimeTypesDictionary: String
+    /// Словарь хранится в бандле, не в директории с заданием.
+    let crimeTypesDictionary: String
     
     /// Словарь со списком мест преступлений, подходящих для данной аудиозаписи.
-    public let crimePlacesDictionary: String
+    /// Словарь хранится в бандле, не в директории с заданием.
+    let crimePlacesDictionary: String
     
     /// Ответ.
     public let answer: Answer
@@ -47,6 +49,30 @@ public extension AudioRecordTask {
         /// Количество участников.
         public let criminalsCount: Int
         
+    }
+    
+}
+
+// MARK: - Resource accessing
+
+public extension AudioRecordTask {
+    
+    func audioFileURL(bundleID: String) -> URL? {
+        TasksBundleMap
+            .audiorecordDirectoryURL(id: id, bundleID: bundleID)?
+            .appendingPathComponent(audioFileName)
+    }
+    
+    func crimeTypesDictionaryURL(bundleID: String) -> URL? {
+        TasksBundleMap
+            .dictionariesDirectoryURL(bundleID: bundleID)?
+            .appendingPathComponent(crimeTypesDictionary)
+    }
+    
+    func crimePlacesDictionaryURL(bundleID: String) -> URL? {
+        TasksBundleMap
+            .dictionariesDirectoryURL(bundleID: bundleID)?
+            .appendingPathComponent(crimePlacesDictionary)
     }
     
 }
