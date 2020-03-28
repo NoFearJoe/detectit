@@ -19,6 +19,9 @@ public extension ProfileTask {
         /// Текст вопроса.
         public let title: String
         
+        /// Количество баллов за правильный ответ.
+        public let score: Int
+        
         // Question details
         
         /// Вопрос на ввод числа.

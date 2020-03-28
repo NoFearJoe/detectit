@@ -17,11 +17,25 @@ public struct ExtraEvidenceTask: Codable {
     /// Название задания.
     public let title: String
     
-    /// Список названий изображений с уликами.
-    let evidencePictureNames: [String]
+    /// Список изображений с уликами.
+    let evidencePictures: [EvidencePicture]
     
     /// Ответ.
     public let answer: Answer
+    
+}
+
+public extension ExtraEvidenceTask {
+    
+    struct EvidencePicture: Codable {
+        
+        /// Подпись к приложению.
+        public let title: String
+        
+        /// Название изображения.
+        let pictureName: String
+        
+    }
     
 }
 
@@ -43,12 +57,10 @@ public extension ExtraEvidenceTask {
 
 public extension ExtraEvidenceTask {
     
-    func evidencePictureNameURLs(bundleID: String) -> [URL] {
-        evidencePictureNames.compactMap {
-            TasksBundleMap
-                .extraEvidenceDirectoryURL(id: id, bundleID: bundleID)?
-                .appendingPathComponent($0)
-        }
+    func evidencePictureURL(picture: EvidencePicture, bundleID: String) -> URL? {
+        TasksBundleMap
+            .extraEvidenceDirectoryURL(id: id, bundleID: bundleID)?
+            .appendingPathComponent(picture.pictureName)
     }
     
 }

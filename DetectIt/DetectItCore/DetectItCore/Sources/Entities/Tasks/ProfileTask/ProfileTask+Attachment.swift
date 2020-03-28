@@ -17,6 +17,9 @@ public extension ProfileTask {
         /// Идентификатор приложения.
         public let id: String
         
+        /// Подпись к приложению.
+        public let title: String
+        
         /// Название изображения.
         let pictureName: String?
         

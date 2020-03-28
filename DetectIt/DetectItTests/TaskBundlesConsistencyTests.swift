@@ -150,12 +150,12 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                 }
                 
                 // Проверка на то, что для всех улик есть файлы
-                tasksBundle.extraEvidenceTasks.forEach {
-                    let extraEvidenceURLs = $0.evidencePictureNameURLs(bundleID: bundle.rawValue)
+                tasksBundle.extraEvidenceTasks.forEach { extraEvidence in
+                    let extraEvidenceURLs = extraEvidence.evidencePictures.compactMap { extraEvidence.evidencePictureURL(picture: $0, bundleID: bundle.rawValue) }
                     
                     XCTAssertTrue(
-                        extraEvidenceURLs.count == $0.evidencePictureNames.count,
-                        "Evidence names count (\($0.evidencePictureNames.count)) is not equal to URLs count (\(extraEvidenceURLs.count))"
+                        extraEvidenceURLs.count == extraEvidence.evidencePictures.count,
+                        "Evidence pictures count (\(extraEvidence.evidencePictures.count)) is not equal to URLs count (\(extraEvidenceURLs.count))"
                     )
                     
                     extraEvidenceURLs.forEach { url in

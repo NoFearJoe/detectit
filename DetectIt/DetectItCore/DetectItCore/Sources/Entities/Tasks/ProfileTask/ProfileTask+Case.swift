@@ -22,8 +22,23 @@ public extension ProfileTask {
         /// Текст случая.
         public let text: String
         
-        /// Картинка для случая (опционально).
-        public let pictureName: String?
+        /// Фото улики (опционально).
+        public let evidencePicture: EvidencePicture?
+        
+    }
+    
+}
+
+public extension ProfileTask.Case {
+    
+    /// Фото улики.
+    struct EvidencePicture: Codable {
+        
+        /// Подпись к приложению.
+        public let title: String
+        
+        /// Название изображения.
+        let pictureName: String
         
     }
     
@@ -34,10 +49,10 @@ public extension ProfileTask {
 public extension ProfileTask {
     
     func casePictureURL(case: Case, bundleID: String) -> URL? {
-        `case`.pictureName.flatMap {
+        `case`.evidencePicture.flatMap {
             TasksBundleMap
                 .profileDirectoryURL(id: id, bundleID: bundleID)?
-                .appendingPathComponent($0)
+                .appendingPathComponent($0.pictureName)
         }
     }
     
