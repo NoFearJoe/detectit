@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 96500E2C242F0F92005FFC7A /* DetectItUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3D242F1151005FFC7A /* PhotoCardView.swift */; };
+		96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */; };
+		96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E41242F1816005FFC7A /* UIFont+AppTheme.swift */; };
+		96500E44242F1AFA005FFC7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96500E43242F1AFA005FFC7A /* Assets.xcassets */; };
+		96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E45242F1C0B005FFC7A /* UIImage+Bundle.swift */; };
+		96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E47242F313D005FFC7A /* UIImage+Filters.swift */; };
+		96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E49242F4F61005FFC7A /* CGFloat+Degrees.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -15,6 +22,13 @@
 		96500E2C242F0F92005FFC7A /* DetectItUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItUI.h; sourceTree = "<group>"; };
 		96500E2D242F0F92005FFC7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96500E3C242F10CC005FFC7A /* DetectItUI.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DetectItUI.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		96500E3D242F1151005FFC7A /* PhotoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCardView.swift; sourceTree = "<group>"; };
+		96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppTheme.swift"; sourceTree = "<group>"; };
+		96500E41242F1816005FFC7A /* UIFont+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AppTheme.swift"; sourceTree = "<group>"; };
+		96500E43242F1AFA005FFC7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96500E45242F1C0B005FFC7A /* UIImage+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Bundle.swift"; sourceTree = "<group>"; };
+		96500E47242F313D005FFC7A /* UIImage+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Filters.swift"; sourceTree = "<group>"; };
+		96500E49242F4F61005FFC7A /* CGFloat+Degrees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Degrees.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +83,7 @@
 			children = (
 				96500E2C242F0F92005FFC7A /* DetectItUI.h */,
 				96500E2D242F0F92005FFC7A /* Info.plist */,
+				96500E43242F1AFA005FFC7A /* Assets.xcassets */,
 			);
 			path = "Support files";
 			sourceTree = "<group>";
@@ -83,6 +98,7 @@
 		96500E3A242F102D005FFC7A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96500E3D242F1151005FFC7A /* PhotoCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -90,6 +106,11 @@
 		96500E3B242F109E005FFC7A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */,
+				96500E41242F1816005FFC7A /* UIFont+AppTheme.swift */,
+				96500E45242F1C0B005FFC7A /* UIImage+Bundle.swift */,
+				96500E47242F313D005FFC7A /* UIImage+Filters.swift */,
+				96500E49242F4F61005FFC7A /* CGFloat+Degrees.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -137,6 +158,7 @@
 				TargetAttributes = {
 					96500E28242F0F92005FFC7A = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -163,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96500E44242F1AFA005FFC7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +196,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
+				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
+				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
+				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
+				96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */,
+				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +331,7 @@
 		96500E32242F0F92005FFC7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 485UNLA592;
@@ -318,6 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectItUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -326,6 +357,7 @@
 		96500E33242F0F92005FFC7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 485UNLA592;

@@ -1,0 +1,88 @@
+//
+//  PhotoCardView.swift
+//  DetectItUI
+//
+//  Created by Илья Харабет on 28/03/2020.
+//  Copyright © 2020 Mesterra. All rights reserved.
+//
+
+import UIKit
+
+public final class PhotoCardView: UIView {
+    
+    // MARK: - Model
+    
+    public var photo: UIImage? {
+        didSet {
+            photoView.image = photo.map(applyOldPhotoFilter)
+        }
+    }
+    
+    public var title: String? {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
+    // MARK: - Subviews
+    
+    private let photoView = UIImageView()
+    private let titleLabel = UILabel()
+    
+    // MARK: - Init
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
+        setupViews()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) { fatalError() }
+    
+    // MARK: - Setup
+    
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        layoutMargins = UIEdgeInsets(top: 12, left: 14, bottom: 13, right: 13)
+        
+        backgroundColor = .photo
+    }
+    
+    private func setupViews() {
+        addSubview(photoView)
+        addSubview(titleLabel)
+        
+        photoView.clipsToBounds = true
+        photoView.contentMode = .scaleAspectFit
+        
+        titleLabel.numberOfLines = 0
+        titleLabel.font = .regular(18)
+        titleLabel.textColor = .mainText
+        
+        photoView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            photoView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            photoView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            photoView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            photoView.heightAnchor.constraint(equalTo: photoView.widthAnchor, multiplier: 10/15)
+        ])
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 12),
+            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+        ])
+    }
+    
+    // MARK: - Utils
+    
+    func applyOldPhotoFilter(to photo: UIImage) -> UIImage {
+        photo.applyingOldPhotoFilter()
+    }
+    
+}
