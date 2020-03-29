@@ -10,16 +10,45 @@ import UIKit
 
 public extension UIFont {
     
-    static func regular(_ size: CGFloat) -> UIFont {
-        .systemFont(ofSize: size, weight: .regular)
+    static func text(_ size: CGFloat) -> UIFont {
+        registerCustomFonts()
+        
+        return UIFont(name: "Arial Curive", size: size)!
     }
     
-    static func semibold(_ size: CGFloat) -> UIFont {
-        .systemFont(ofSize: size, weight: .semibold)
+    static func title(_ size: CGFloat) -> UIFont {
+        registerCustomFonts()
+        
+        return UIFont(name: "XBAND Rough Cyrillic AA", size: size)!
     }
     
-    static func bold(_ size: CGFloat) -> UIFont {
-        .systemFont(ofSize: size, weight: .bold)
+}
+
+private extension UIFont {
+    
+    static var isCustomFontsRegistered = false
+    
+    static func registerCustomFonts() {
+        guard
+            !isCustomFontsRegistered,
+            let roughFontURL = Bundle(for: BundleID.self).url(forResource: "Rough", withExtension: "ttf") as CFURL?,
+            let arialCuriveFontURL = Bundle(for: BundleID.self).url(forResource: "Arial Curive", withExtension: "otf") as CFURL?,
+            let detectiveRegularFontURL = Bundle(for: BundleID.self).url(forResource: "Detective", withExtension: "ttf") as CFURL?,
+            let detectiveBoldFontURL = Bundle(for: BundleID.self).url(forResource: "Detective Bold", withExtension: "ttf") as CFURL?
+        else {
+            return
+        }
+        
+        CTFontManagerRegisterFontsForURL(roughFontURL, .process, nil)
+        CTFontManagerRegisterFontsForURL(arialCuriveFontURL, .process, nil)
+        CTFontManagerRegisterFontsForURL(detectiveRegularFontURL, .process, nil)
+        CTFontManagerRegisterFontsForURL(detectiveBoldFontURL, .process, nil)
+        
+        print(UIFont.familyNames)
+        
+        isCustomFontsRegistered = true
     }
+    
+    final class BundleID {}
     
 }

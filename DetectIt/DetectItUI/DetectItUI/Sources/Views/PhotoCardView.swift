@@ -59,7 +59,7 @@ public final class PhotoCardView: UIView {
         photoView.contentMode = .scaleAspectFit
         
         titleLabel.numberOfLines = 0
-        titleLabel.font = .regular(18)
+        titleLabel.font = .text(15)
         titleLabel.textColor = .mainText
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
