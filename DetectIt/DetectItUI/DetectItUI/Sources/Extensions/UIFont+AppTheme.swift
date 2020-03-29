@@ -43,9 +43,7 @@ private extension UIFont {
         CTFontManagerRegisterFontsForURL(arialCuriveFontURL, .process, nil)
         CTFontManagerRegisterFontsForURL(detectiveRegularFontURL, .process, nil)
         CTFontManagerRegisterFontsForURL(detectiveBoldFontURL, .process, nil)
-        
-        print(UIFont.familyNames)
-        
+                
         isCustomFontsRegistered = true
     }
     

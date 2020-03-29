@@ -20,6 +20,7 @@
 		96500E5C243076DB005FFC7A /* Detective Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96500E58243076D4005FFC7A /* Detective Italic.ttf */; };
 		96500E612430A7C1005FFC7A /* Arial Curive.otf in Resources */ = {isa = PBXBuildFile; fileRef = 96500E5F2430A7C1005FFC7A /* Arial Curive.otf */; };
 		96500E622430A7C1005FFC7A /* Rough.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96500E602430A7C1005FFC7A /* Rough.ttf */; };
+		96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E632430B867005FFC7A /* PaperSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		96500E58243076D4005FFC7A /* Detective Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Detective Italic.ttf"; sourceTree = "<group>"; };
 		96500E5F2430A7C1005FFC7A /* Arial Curive.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arial Curive.otf"; sourceTree = "<group>"; };
 		96500E602430A7C1005FFC7A /* Rough.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rough.ttf; sourceTree = "<group>"; };
+		96500E632430B867005FFC7A /* PaperSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		96500E37242F0FED005FFC7A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				96500E652430BDA2005FFC7A /* Collection layouts */,
 				96500E3A242F102D005FFC7A /* Views */,
 				96500E39242F101D005FFC7A /* Utils */,
 				96500E3B242F109E005FFC7A /* Extensions */,
@@ -110,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				96500E3D242F1151005FFC7A /* PhotoCardView.swift */,
+				96500E632430B867005FFC7A /* PaperSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -136,6 +140,13 @@
 				96500E58243076D4005FFC7A /* Detective Italic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		96500E652430BDA2005FFC7A /* Collection layouts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Collection layouts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +237,7 @@
 			files = (
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
+				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
 				96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */,
