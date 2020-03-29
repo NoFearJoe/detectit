@@ -22,6 +22,9 @@
 		96500E622430A7C1005FFC7A /* Rough.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96500E602430A7C1005FFC7A /* Rough.ttf */; };
 		96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E632430B867005FFC7A /* PaperSheetView.swift */; };
 		96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E662430BE09005FFC7A /* ItemsOnTableLayout.swift */; };
+		96500E6A2430C03B005FFC7A /* EvidenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E692430C03B005FFC7A /* EvidenceCell.swift */; };
+		96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */; };
+		96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E712430C55E005FFC7A /* ProfileCaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		96500E602430A7C1005FFC7A /* Rough.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rough.ttf; sourceTree = "<group>"; };
 		96500E632430B867005FFC7A /* PaperSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSheetView.swift; sourceTree = "<group>"; };
 		96500E662430BE09005FFC7A /* ItemsOnTableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsOnTableLayout.swift; sourceTree = "<group>"; };
+		96500E692430C03B005FFC7A /* EvidenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvidenceCell.swift; sourceTree = "<group>"; };
+		96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		96500E712430C55E005FFC7A /* ProfileCaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCaseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 			children = (
 				96500E652430BDA2005FFC7A /* Collection layouts */,
 				96500E3A242F102D005FFC7A /* Views */,
+				96500E682430C027005FFC7A /* Cells */,
 				96500E39242F101D005FFC7A /* Utils */,
 				96500E3B242F109E005FFC7A /* Extensions */,
 			);
@@ -128,6 +135,7 @@
 				96500E45242F1C0B005FFC7A /* UIImage+Bundle.swift */,
 				96500E47242F313D005FFC7A /* UIImage+Filters.swift */,
 				96500E49242F4F61005FFC7A /* CGFloat+Degrees.swift */,
+				96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -150,6 +158,15 @@
 				96500E662430BE09005FFC7A /* ItemsOnTableLayout.swift */,
 			);
 			path = "Collection layouts";
+			sourceTree = "<group>";
+		};
+		96500E682430C027005FFC7A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				96500E692430C03B005FFC7A /* EvidenceCell.swift */,
+				96500E712430C55E005FFC7A /* ProfileCaseCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +258,12 @@
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
+				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
 				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
+				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
+				96500E6A2430C03B005FFC7A /* EvidenceCell.swift in Sources */,
 				96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,
 			);

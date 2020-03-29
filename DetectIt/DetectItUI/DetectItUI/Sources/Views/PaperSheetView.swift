@@ -12,6 +12,11 @@ public final class PaperSheetView: UIView {
     
     // MARK: - Model
     
+    public struct Model {
+        public let title: String
+        public let text: String
+    }
+    
     var title: String? {
         didSet {
             titleLabel.text = title?.uppercased()
@@ -40,6 +45,13 @@ public final class PaperSheetView: UIView {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
+    
+    // MARK: - Configuration
+    
+    public func configure(model: Model) {
+        title = model.title
+        text = model.text
+    }
     
     // MARK: - Setup
     

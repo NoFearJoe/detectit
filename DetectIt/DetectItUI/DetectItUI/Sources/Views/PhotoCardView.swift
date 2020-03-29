@@ -12,6 +12,11 @@ public final class PhotoCardView: UIView {
     
     // MARK: - Model
     
+    public struct Model {
+        public let photo: UIImage
+        public let title: String
+    }
+    
     public var photo: UIImage? {
         didSet {
             photoView.image = photo.map(applyOldPhotoFilter)
@@ -40,6 +45,13 @@ public final class PhotoCardView: UIView {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
+    
+    // MARK: - Configuration
+    
+    public func configure(model: Model) {
+        photo = model.photo
+        title = model.title
+    }
     
     // MARK: - Setup
     
