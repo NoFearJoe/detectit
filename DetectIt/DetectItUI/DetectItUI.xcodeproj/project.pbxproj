@@ -26,6 +26,11 @@
 		96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */; };
 		96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E712430C55E005FFC7A /* ProfileCaseCell.swift */; };
 		96500E752431D31F005FFC7A /* EvidenceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E742431D31F005FFC7A /* EvidenceListView.swift */; };
+		96500E7724324158005FFC7A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7624324158005FFC7A /* ProfileView.swift */; };
+		96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7824325937005FFC7A /* CGAffineTransform+RandomLayout.swift */; };
+		96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */; };
+		96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */; };
+		96500E7F24327019005FFC7A /* PaperSheetWithPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +56,11 @@
 		96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		96500E712430C55E005FFC7A /* ProfileCaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCaseCell.swift; sourceTree = "<group>"; };
 		96500E742431D31F005FFC7A /* EvidenceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvidenceListView.swift; sourceTree = "<group>"; };
+		96500E7624324158005FFC7A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		96500E7824325937005FFC7A /* CGAffineTransform+RandomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+RandomLayout.swift"; sourceTree = "<group>"; };
+		96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoAttachmentCell.swift; sourceTree = "<group>"; };
+		96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionViewCell.swift; sourceTree = "<group>"; };
+		96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSheetWithPhotoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +136,7 @@
 			children = (
 				96500E3D242F1151005FFC7A /* PhotoCardView.swift */,
 				96500E632430B867005FFC7A /* PaperSheetView.swift */,
+				96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +150,7 @@
 				96500E47242F313D005FFC7A /* UIImage+Filters.swift */,
 				96500E49242F4F61005FFC7A /* CGFloat+Degrees.swift */,
 				96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */,
+				96500E7824325937005FFC7A /* CGAffineTransform+RandomLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -166,8 +178,10 @@
 		96500E682430C027005FFC7A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */,
 				96500E692430C03B005FFC7A /* EvidenceCell.swift */,
 				96500E712430C55E005FFC7A /* ProfileCaseCell.swift */,
+				96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -176,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				96500E742431D31F005FFC7A /* EvidenceListView.swift */,
+				96500E7624324158005FFC7A /* ProfileView.swift */,
 			);
 			path = "Screen views";
 			sourceTree = "<group>";
@@ -267,16 +282,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
+				96500E7724324158005FFC7A /* ProfileView.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
 				96500E752431D31F005FFC7A /* EvidenceListView.swift in Sources */,
+				96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
 				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
 				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
+				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
+				96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */,
 				96500E6A2430C03B005FFC7A /* EvidenceCell.swift in Sources */,
 				96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */,
+				96500E7F24327019005FFC7A /* PaperSheetWithPhotoView.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

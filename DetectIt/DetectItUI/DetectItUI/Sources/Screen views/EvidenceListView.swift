@@ -38,7 +38,7 @@ public final class EvidenceListView: UIView {
     
     // MARK: - Subviews
     
-    private let listLayout = ItemsOnTableLayout()
+    private let listLayout = UICollectionViewFlowLayout()
     
     private lazy var listView = UICollectionView(
         frame: .zero,
@@ -58,6 +58,10 @@ public final class EvidenceListView: UIView {
             )
         }
     }
+    
+    // MARK: - Private variables
+    
+    private let cellTransforms: [CGAffineTransform] = [.randomLayout(), .randomLayout(), .randomLayout(), .randomLayout()]
     
 }
 
@@ -81,6 +85,14 @@ extension EvidenceListView: UICollectionViewDataSource {
         }
         
         return cell
+    }
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
+        cell.transform = cellTransforms[indexPath.item % cellTransforms.count]
     }
     
 }
@@ -140,7 +152,7 @@ final class MockEvidenceListViewDelegate: EvidenceListViewDelegate {
     
     func evidenceModel(at index: Int) -> EvidenceCell.Model? {
         EvidenceCell.Model(
-            photo: UIImage.asset(named: "Test")!,
+            photo: UIImage.asset(named: "Test")!,//.applyingOldPhotoFilter(),
             title: "#\(index) Зацепочка"
         )
     }

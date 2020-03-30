@@ -1,20 +1,20 @@
 //
-//  PaperSheetView.swift
+//  PaperSheetWithPhotoView.swift
 //  DetectItUI
 //
-//  Created by Илья Харабет on 29/03/2020.
+//  Created by Илья Харабет on 30/03/2020.
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
 import UIKit
 
-public final class PaperSheetView: UIView {
+public final class PaperSheetWithPhotoView: UIView {
     
     // MARK: - Model
     
     public struct Model {
         public let title: String
-        public let text: String
+        public let photo: UIImage
     }
     
     var title: String? {
@@ -23,16 +23,16 @@ public final class PaperSheetView: UIView {
         }
     }
     
-    var text: String? {
+    var photo: UIImage? {
         didSet {
-            textView.text = text
+            imageView.image = photo
         }
     }
     
     // MARK: - Subviews
     
     private let titleLabel = UILabel()
-    private let textView = UITextView()
+    private let imageView = UIImageView()
     
     // MARK: - Init
     
@@ -50,7 +50,7 @@ public final class PaperSheetView: UIView {
     
     public func configure(model: Model) {
         title = model.title
-        text = model.text
+        photo = model.photo
     }
     
     // MARK: - Setup
@@ -67,20 +67,13 @@ public final class PaperSheetView: UIView {
     
     func setupViews() {
         addSubview(titleLabel)
-        addSubview(textView)
+        addSubview(imageView)
         
         titleLabel.font = .title(24)
         titleLabel.textColor = .mainText
         titleLabel.numberOfLines = 0
         
-        textView.font = .text(14)
-        textView.textColor = .mainText
-        textView.showsVerticalScrollIndicator = false
-        textView.showsHorizontalScrollIndicator = false
-        textView.isEditable = false
-        textView.isSelectable = false
-        textView.backgroundColor = .paper
-        textView.contentInset = .zero
+        imageView.contentMode = .scaleAspectFit
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -89,12 +82,12 @@ public final class PaperSheetView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
         ])
         
-        textView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 18),
-            textView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            textView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            textView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 18),
+            imageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            imageView.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor)
         ])
     }
     

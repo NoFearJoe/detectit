@@ -4,5 +4,6 @@
         <page name='PhotoCardView'/>
         <page name='PaperSheetView'/>
         <page name='EvidenceListView'/>
+        <page name='ProfileView'/>
     </pages>
 </playground>

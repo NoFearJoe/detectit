@@ -32,7 +32,7 @@ public final class ItemsOnTableLayout: UICollectionViewFlowLayout {
         additionalAttributes = (0..<itemsCount).map {
             let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: $0, section: 0))
             
-            attributes.transform = Self.makeRandomTransform()
+            attributes.transform = CGAffineTransform.randomLayout()
             
             return attributes
         }
@@ -48,17 +48,6 @@ public final class ItemsOnTableLayout: UICollectionViewFlowLayout {
         }
         
         return attributes
-    }
-    
-    private static func makeRandomTransform() -> CGAffineTransform {
-        let angle = CGFloat.random(in: -1...1)
-        let rotation = CGAffineTransform(rotationAngle: angle.radians)
-        
-        let translationX = CGFloat.random(in: -2...2)
-        let translationY = CGFloat.random(in: -2...2)
-        let translation = CGAffineTransform(translationX: translationX, y: translationY)
-        
-        return rotation.concatenating(translation)
     }
     
 }

@@ -9,9 +9,9 @@
 import UIKit
 
 /// Ячейка, отображающая улику для "Выбора лишней улики".
-public final class EvidenceCell: UICollectionViewCell {
+public final class EvidenceCell: AutosizingCollectionViewCell {
     
-    public static let identifier = String(describing: self)
+    public static let identifier = String(describing: EvidenceCell.self)
     
     // MARK: - Subviews
     
@@ -22,6 +22,7 @@ public final class EvidenceCell: UICollectionViewCell {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setup()
         setupViews()
     }
     
@@ -37,6 +38,12 @@ public final class EvidenceCell: UICollectionViewCell {
         photoCardView.title = model.title
     }
     
+    // MARK: - Setup
+    
+    private func setup() {
+        layer.allowsEdgeAntialiasing = true
+    }
+    
     private func setupViews() {
         contentView.addSubview(photoCardView)
         
@@ -50,24 +57,4 @@ public final class EvidenceCell: UICollectionViewCell {
         photoCardView.pin(to: contentView)
     }
     
-    
-    // MARK: - Overrides
-    
-    public override func preferredLayoutAttributesFitting(
-        _ layoutAttributes: UICollectionViewLayoutAttributes
-    ) -> UICollectionViewLayoutAttributes {
-        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        
-        let targetSize = CGSize(width: layoutAttributes.bounds.width, height: 0)
-        
-        let size = contentView.systemLayoutSizeFitting(
-            targetSize,
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .defaultLow
-        )
-        
-        attributes.frame = CGRect(origin: attributes.frame.origin, size: size)
-        
-        return attributes
-    }
 }

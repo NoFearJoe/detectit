@@ -9,9 +9,9 @@
 import UIKit
 
 /// Ячейка, отображающая случай из "Профайла".
-public final class ProfileCaseCell: UICollectionViewCell {
+public final class ProfileCaseCell: AutosizingCollectionViewCell {
     
-    public static let identifier = String(describing: self)
+    public static let identifier = String(describing: ProfileCaseCell.self)
     
     // MARK: - Actions
     
@@ -62,6 +62,8 @@ public final class ProfileCaseCell: UICollectionViewCell {
     
     public override func prepareForReuse() {
         super.prepareForReuse()
+        
+        evidenceViewUnderlayConstraint.constant = 0
     }
     
     // MARK: - Setup

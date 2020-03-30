@@ -56,6 +56,7 @@ public final class PhotoCardView: UIView {
     // MARK: - Setup
     
     private func setupView() {
+        layer.allowsEdgeAntialiasing = true
         translatesAutoresizingMaskIntoConstraints = false
         
         layoutMargins = UIEdgeInsets(top: 12, left: 14, bottom: 13, right: 13)
@@ -69,6 +70,7 @@ public final class PhotoCardView: UIView {
         
         photoView.clipsToBounds = true
         photoView.contentMode = .scaleAspectFit
+        photoView.layer.allowsEdgeAntialiasing = true
         
         titleLabel.numberOfLines = 0
         titleLabel.font = .text(15)
