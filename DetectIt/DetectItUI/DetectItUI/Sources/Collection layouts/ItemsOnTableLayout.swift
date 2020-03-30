@@ -13,6 +13,17 @@ public final class ItemsOnTableLayout: UICollectionViewFlowLayout {
     
     private var additionalAttributes: [UICollectionViewLayoutAttributes] = []
     
+    public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        newBounds.width != collectionView?.bounds.width
+    }
+    
+    public override func shouldInvalidateLayout(
+        forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
+        withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes
+    ) -> Bool {
+        false
+    }
+    
     public override func prepare() {
         super.prepare()
         
@@ -21,27 +32,33 @@ public final class ItemsOnTableLayout: UICollectionViewFlowLayout {
         additionalAttributes = (0..<itemsCount).map {
             let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: $0, section: 0))
             
-            let angle = CGFloat.random(in: -1...1)
-            let rotation = CGAffineTransform(rotationAngle: angle.radians)
-            
-            let translationX = CGFloat.random(in: -2...2)
-            let translationY = CGFloat.random(in: -2...2)
-            let translation = CGAffineTransform(translationX: translationX, y: translationY)
-            
-            attributes.transform = rotation.concatenating(translation)
+            attributes.transform = Self.makeRandomTransform()
             
             return attributes
         }
     }
     
-    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        guard let attributes = super.layoutAttributesForItem(at: indexPath) else { return nil }
+    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
         
-        let additionalAttributes = self.additionalAttributes[indexPath.item]
-        
-        attributes.transform = additionalAttributes.transform
+        attributes.forEach {
+            let additionalAttributes = self.additionalAttributes[$0.indexPath.item]
+            
+            $0.transform = additionalAttributes.transform
+        }
         
         return attributes
+    }
+    
+    private static func makeRandomTransform() -> CGAffineTransform {
+        let angle = CGFloat.random(in: -1...1)
+        let rotation = CGAffineTransform(rotationAngle: angle.radians)
+        
+        let translationX = CGFloat.random(in: -2...2)
+        let translationY = CGFloat.random(in: -2...2)
+        let translation = CGAffineTransform(translationX: translationX, y: translationY)
+        
+        return rotation.concatenating(translation)
     }
     
 }

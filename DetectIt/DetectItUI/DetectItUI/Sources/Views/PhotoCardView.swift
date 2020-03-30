@@ -19,7 +19,7 @@ public final class PhotoCardView: UIView {
     
     public var photo: UIImage? {
         didSet {
-            photoView.image = photo.map(applyOldPhotoFilter)
+            photoView.image = photo
         }
     }
     
@@ -89,12 +89,6 @@ public final class PhotoCardView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
         ])
-    }
-    
-    // MARK: - Utils
-    
-    func applyOldPhotoFilter(to photo: UIImage) -> UIImage {
-        photo.applyingOldPhotoFilter()
     }
     
 }

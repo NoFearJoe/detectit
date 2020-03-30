@@ -25,6 +25,7 @@
 		96500E6A2430C03B005FFC7A /* EvidenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E692430C03B005FFC7A /* EvidenceCell.swift */; };
 		96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */; };
 		96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E712430C55E005FFC7A /* ProfileCaseCell.swift */; };
+		96500E752431D31F005FFC7A /* EvidenceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E742431D31F005FFC7A /* EvidenceListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		96500E692430C03B005FFC7A /* EvidenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvidenceCell.swift; sourceTree = "<group>"; };
 		96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		96500E712430C55E005FFC7A /* ProfileCaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCaseCell.swift; sourceTree = "<group>"; };
+		96500E742431D31F005FFC7A /* EvidenceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvidenceListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		96500E37242F0FED005FFC7A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				96500E732431D2E4005FFC7A /* Screen views */,
 				96500E652430BDA2005FFC7A /* Collection layouts */,
 				96500E3A242F102D005FFC7A /* Views */,
 				96500E682430C027005FFC7A /* Cells */,
@@ -167,6 +170,14 @@
 				96500E712430C55E005FFC7A /* ProfileCaseCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		96500E732431D2E4005FFC7A /* Screen views */ = {
+			isa = PBXGroup;
+			children = (
+				96500E742431D31F005FFC7A /* EvidenceListView.swift */,
+			);
+			path = "Screen views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
+				96500E752431D31F005FFC7A /* EvidenceListView.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
 				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,

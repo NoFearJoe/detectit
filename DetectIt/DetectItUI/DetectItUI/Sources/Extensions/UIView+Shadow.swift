@@ -46,6 +46,8 @@ public extension UIView {
 public extension UIView {
     
     func pin(to view: UIView, insets: UIEdgeInsets = .zero) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: insets.left),
             trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: insets.right),

@@ -3,6 +3,6 @@
     <pages>
         <page name='PhotoCardView'/>
         <page name='PaperSheetView'/>
-        <page name='PhotoCardsCollection'/>
+        <page name='EvidenceListView'/>
     </pages>
 </playground>
