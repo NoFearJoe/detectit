@@ -31,6 +31,7 @@
 		96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */; };
 		96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */; };
 		96500E7F24327019005FFC7A /* PaperSheetWithPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */; };
+		96500E8124330180005FFC7A /* ProfilePrepositionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoAttachmentCell.swift; sourceTree = "<group>"; };
 		96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionViewCell.swift; sourceTree = "<group>"; };
 		96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSheetWithPhotoView.swift; sourceTree = "<group>"; };
+		96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePrepositionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				96500E692430C03B005FFC7A /* EvidenceCell.swift */,
 				96500E712430C55E005FFC7A /* ProfileCaseCell.swift */,
 				96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */,
+				96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96500E8124330180005FFC7A /* ProfilePrepositionCell.swift in Sources */,
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
 				96500E7724324158005FFC7A /* ProfileView.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,

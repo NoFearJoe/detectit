@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol ProfileViewDelegate: AnyObject {
-    func preposition() -> ProfileCaseCell.Model?
+    func preposition() -> ProfilePrepositionCell.Model
     
     func numberOfCases() -> Int
     func `case`(at index: Int) -> ProfileCaseCell.Model?
@@ -78,6 +78,7 @@ public final class ProfileView: UIView {
         listView.contentInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15)
         
         listView.register(ProfileCaseCell.self, forCellWithReuseIdentifier: ProfileCaseCell.identifier)
+        listView.register(ProfilePrepositionCell.self, forCellWithReuseIdentifier: ProfilePrepositionCell.identifier)
         listView.register(ProfilePhotoAttachmentCell.self, forCellWithReuseIdentifier: ProfilePhotoAttachmentCell.identifier)
         
         listView.pin(to: self)
@@ -93,7 +94,7 @@ extension ProfileView: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch Section(rawValue: section) {
-        case .preposition: return 0
+        case .preposition: return 1
         case .cases: return delegate.numberOfCases()
         case .attachments: return delegate.numberOfAttachments()
         case .questions: return 0
@@ -103,7 +104,12 @@ extension ProfileView: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch Section(rawValue: indexPath.section) {
-        case .preposition: return UICollectionViewCell()
+        case .preposition:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfilePrepositionCell.identifier, for: indexPath) as! ProfilePrepositionCell
+            
+            cell.configure(model: delegate.preposition())
+            
+            return cell
         case .cases:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCaseCell.identifier, for: indexPath) as! ProfileCaseCell
             
@@ -172,8 +178,11 @@ private extension ProfileView {
 
 final class MockProfileViewDelegate: ProfileViewDelegate {
     
-    func preposition() -> ProfileCaseCell.Model? {
-        nil
+    func preposition() -> ProfilePrepositionCell.Model {
+        PaperSheetView.Model(
+            title: "Колорадский маньяк",
+            text: "Далеко на юге штата Колорадо орудовал маньяк, которого в будущем полиция прозвала \"Колорадский маньяк\", потому что он убивал своих жертв картошкой. Полиция так и не смогла поймать его, потому что слишком сильно тупила."
+        )
     }
     
     func numberOfCases() -> Int {
