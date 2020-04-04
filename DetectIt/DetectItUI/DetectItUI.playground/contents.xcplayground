@@ -5,5 +5,6 @@
         <page name='PaperSheetView'/>
         <page name='EvidenceListView'/>
         <page name='ProfileView'/>
+        <page name='TasksBundleCell'/>
     </pages>
 </playground>

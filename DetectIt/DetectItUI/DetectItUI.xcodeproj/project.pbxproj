@@ -32,6 +32,18 @@
 		96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */; };
 		96500E7F24327019005FFC7A /* PaperSheetWithPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */; };
 		96500E8124330180005FFC7A /* ProfilePrepositionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */; };
+		96500E892435F1A6005FFC7A /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E882435F1A6005FFC7A /* Screen.swift */; };
+		96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E8D2435F337005FFC7A /* TasksBundleCell.swift */; };
+		96500E902436208E005FFC7A /* UIImage+plain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E8F2436208E005FFC7A /* UIImage+plain.swift */; };
+		965AC79024364D39003A3DC7 /* TasksBundlePurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC78F24364D39003A3DC7 /* TasksBundlePurchaseView.swift */; };
+		965AC79424364E86003A3DC7 /* SolidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79324364E86003A3DC7 /* SolidButton.swift */; };
+		965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79524364F8B003A3DC7 /* TouchAnimatable.swift */; };
+		965AC79824365004003A3DC7 /* TouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */; };
+		965AC79A2436504F003A3DC7 /* UIImageView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7992436504F003A3DC7 /* UIImageView+Gradient.swift */; };
+		965AC79C24365163003A3DC7 /* UIColor+Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79B24365163003A3DC7 /* UIColor+Overlay.swift */; };
+		965AC79E243652C2003A3DC7 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79D243652C2003A3DC7 /* UIImage+Resize.swift */; };
+		965AC7A024385BD4003A3DC7 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79F24385BD4003A3DC7 /* MainScreenView.swift */; };
+		965AC7A524387031003A3DC7 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7A424387031003A3DC7 /* BlurView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +75,18 @@
 		96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionViewCell.swift; sourceTree = "<group>"; };
 		96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSheetWithPhotoView.swift; sourceTree = "<group>"; };
 		96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePrepositionCell.swift; sourceTree = "<group>"; };
+		96500E882435F1A6005FFC7A /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		96500E8D2435F337005FFC7A /* TasksBundleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleCell.swift; sourceTree = "<group>"; };
+		96500E8F2436208E005FFC7A /* UIImage+plain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+plain.swift"; sourceTree = "<group>"; };
+		965AC78F24364D39003A3DC7 /* TasksBundlePurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundlePurchaseView.swift; sourceTree = "<group>"; };
+		965AC79324364E86003A3DC7 /* SolidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidButton.swift; sourceTree = "<group>"; };
+		965AC79524364F8B003A3DC7 /* TouchAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchAnimatable.swift; sourceTree = "<group>"; };
+		965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchGestureRecognizer.swift; sourceTree = "<group>"; };
+		965AC7992436504F003A3DC7 /* UIImageView+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gradient.swift"; sourceTree = "<group>"; };
+		965AC79B24365163003A3DC7 /* UIColor+Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Overlay.swift"; sourceTree = "<group>"; };
+		965AC79D243652C2003A3DC7 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		965AC79F24385BD4003A3DC7 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
+		965AC7A424387031003A3DC7 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +129,7 @@
 		96500E37242F0FED005FFC7A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				96500E872435F194005FFC7A /* Base classes */,
 				96500E732431D2E4005FFC7A /* Screen views */,
 				96500E652430BDA2005FFC7A /* Collection layouts */,
 				96500E3A242F102D005FFC7A /* Views */,
@@ -129,6 +154,8 @@
 		96500E39242F101D005FFC7A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				965AC79524364F8B003A3DC7 /* TouchAnimatable.swift */,
+				965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -136,9 +163,8 @@
 		96500E3A242F102D005FFC7A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				96500E3D242F1151005FFC7A /* PhotoCardView.swift */,
-				96500E632430B867005FFC7A /* PaperSheetView.swift */,
-				96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */,
+				965AC79124364E62003A3DC7 /* Single views */,
+				965AC79224364E69003A3DC7 /* Complex views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,6 +179,10 @@
 				96500E49242F4F61005FFC7A /* CGFloat+Degrees.swift */,
 				96500E6B2430C0F9005FFC7A /* UIView+Shadow.swift */,
 				96500E7824325937005FFC7A /* CGAffineTransform+RandomLayout.swift */,
+				96500E8F2436208E005FFC7A /* UIImage+plain.swift */,
+				965AC7992436504F003A3DC7 /* UIImageView+Gradient.swift */,
+				965AC79B24365163003A3DC7 /* UIColor+Overlay.swift */,
+				965AC79D243652C2003A3DC7 /* UIImage+Resize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -180,11 +210,9 @@
 		96500E682430C027005FFC7A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */,
-				96500E692430C03B005FFC7A /* EvidenceCell.swift */,
-				96500E712430C55E005FFC7A /* ProfileCaseCell.swift */,
-				96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */,
-				96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */,
+				96500E8B2435F2ED005FFC7A /* Base */,
+				96500E8A2435F2D5005FFC7A /* Tasks */,
+				96500E8C2435F2F6005FFC7A /* Bundles */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -192,10 +220,66 @@
 		96500E732431D2E4005FFC7A /* Screen views */ = {
 			isa = PBXGroup;
 			children = (
+				965AC79F24385BD4003A3DC7 /* MainScreenView.swift */,
 				96500E742431D31F005FFC7A /* EvidenceListView.swift */,
 				96500E7624324158005FFC7A /* ProfileView.swift */,
 			);
 			path = "Screen views";
+			sourceTree = "<group>";
+		};
+		96500E872435F194005FFC7A /* Base classes */ = {
+			isa = PBXGroup;
+			children = (
+				96500E882435F1A6005FFC7A /* Screen.swift */,
+			);
+			path = "Base classes";
+			sourceTree = "<group>";
+		};
+		96500E8A2435F2D5005FFC7A /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				96500E692430C03B005FFC7A /* EvidenceCell.swift */,
+				96500E712430C55E005FFC7A /* ProfileCaseCell.swift */,
+				96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */,
+				96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		96500E8B2435F2ED005FFC7A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				96500E7C24326F21005FFC7A /* AutosizingCollectionViewCell.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		96500E8C2435F2F6005FFC7A /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				96500E8D2435F337005FFC7A /* TasksBundleCell.swift */,
+			);
+			path = Bundles;
+			sourceTree = "<group>";
+		};
+		965AC79124364E62003A3DC7 /* Single views */ = {
+			isa = PBXGroup;
+			children = (
+				965AC79324364E86003A3DC7 /* SolidButton.swift */,
+				965AC7A424387031003A3DC7 /* BlurView.swift */,
+			);
+			path = "Single views";
+			sourceTree = "<group>";
+		};
+		965AC79224364E69003A3DC7 /* Complex views */ = {
+			isa = PBXGroup;
+			children = (
+				96500E3D242F1151005FFC7A /* PhotoCardView.swift */,
+				96500E632430B867005FFC7A /* PaperSheetView.swift */,
+				96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */,
+				965AC78F24364D39003A3DC7 /* TasksBundlePurchaseView.swift */,
+			);
+			path = "Complex views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,21 +370,33 @@
 			files = (
 				96500E8124330180005FFC7A /* ProfilePrepositionCell.swift in Sources */,
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
+				96500E902436208E005FFC7A /* UIImage+plain.swift in Sources */,
+				965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */,
+				965AC79824365004003A3DC7 /* TouchGestureRecognizer.swift in Sources */,
 				96500E7724324158005FFC7A /* ProfileView.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
+				96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
 				96500E752431D31F005FFC7A /* EvidenceListView.swift in Sources */,
 				96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */,
+				965AC79424364E86003A3DC7 /* SolidButton.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
+				96500E892435F1A6005FFC7A /* Screen.swift in Sources */,
 				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
+				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
 				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */,
 				96500E6A2430C03B005FFC7A /* EvidenceCell.swift in Sources */,
+				965AC79E243652C2003A3DC7 /* UIImage+Resize.swift in Sources */,
+				965AC79C24365163003A3DC7 /* UIColor+Overlay.swift in Sources */,
 				96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */,
 				96500E7F24327019005FFC7A /* PaperSheetWithPhotoView.swift in Sources */,
+				965AC7A024385BD4003A3DC7 /* MainScreenView.swift in Sources */,
+				965AC79024364D39003A3DC7 /* TasksBundlePurchaseView.swift in Sources */,
+				965AC79A2436504F003A3DC7 /* UIImageView+Gradient.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +536,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItUI/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -466,6 +563,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItUI/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

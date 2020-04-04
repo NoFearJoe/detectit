@@ -22,6 +22,14 @@ public extension UIFont {
         return UIFont(name: "XBAND Rough Cyrillic AA", size: size)!
     }
     
+    static func regular(_ size: CGFloat) -> UIFont {
+        UIFont(name: "AmericanTypewriter", size: size)!
+    }
+    
+    static func bold(_ size: CGFloat) -> UIFont {
+        UIFont(name: "AmericanTypewriter-Bold", size: size)!
+    }
+    
 }
 
 private extension UIFont {

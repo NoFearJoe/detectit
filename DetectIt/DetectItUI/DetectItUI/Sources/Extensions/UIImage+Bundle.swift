@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     
     static func asset(named: String) -> UIImage? {
         return UIImage(named: named, in: Bundle(for: BundleID.self), compatibleWith: nil)

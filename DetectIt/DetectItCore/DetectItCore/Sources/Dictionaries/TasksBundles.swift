@@ -8,16 +8,8 @@
 
 import Foundation
 
-enum TasksBundles: String, CaseIterable {
+public enum TasksBundles: String, CaseIterable {
     case starter
-}
-
-extension TasksBundles: CustomStringConvertible {
-    
-    var description: String {
-        switch self {
-        case .starter: return "Стартовый набор"
-        }
-    }
-    
+    case bundle1
+    case bundle2
 }
