@@ -12,6 +12,10 @@ import DetectItCore
 
 final class MainScreen: Screen {
     
+    // MARK: - State
+    
+    private let taskBundles = TasksBundles.allCases
+    
     // MARK: - Overrides
     
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
@@ -31,11 +35,11 @@ final class MainScreen: Screen {
 extension MainScreen: MainScreenViewDelegate {
     
     func numberOfTaskBundles() -> Int {
-        TasksBundles.allCases.count
+        taskBundles.count
     }
     
     func tasksBundle(at index: Int) -> TasksBundleCell.Model? {
-        let bundle = TasksBundles.allCases[index]
+        let bundle = taskBundles[index]
         
         return TasksBundleCell.Model(
             backgroundImage: bundle.image,
@@ -46,7 +50,13 @@ extension MainScreen: MainScreenViewDelegate {
     }
     
     func didSelectTasksBundle(at index: Int) {
+        let bundle = taskBundles[index]
         
+        let tasksBundleScreen = TasksBundleScreen(tasksBundle: bundle)
+        tasksBundleScreen.modalTransitionStyle = .coverVertical
+        tasksBundleScreen.modalPresentationStyle = .fullScreen
+        
+        present(tasksBundleScreen, animated: true, completion: nil)
     }
     
     func didTapBuyTasksBundleButton(at index: Int) {

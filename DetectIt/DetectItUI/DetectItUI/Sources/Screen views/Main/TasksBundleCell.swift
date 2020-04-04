@@ -147,7 +147,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         descriptionLabel.font = .regular(14)
         descriptionLabel.textColor = Constants.tintColor
-        descriptionLabel.numberOfLines = 0
+        descriptionLabel.numberOfLines = 5
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)

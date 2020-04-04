@@ -91,6 +91,23 @@ public extension SolidButton {
         return button
     }
     
+    static func closeButton() -> SolidButton {
+        let button = SolidButton()
+        
+        button.layer.cornerRadius = 14
+        button.fill = .color(.white)
+        button.tintColor = .darkGray
+        button.setImage(UIImage.asset(named: "close"), for: .normal)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 28),
+            button.heightAnchor.constraint(equalToConstant: 28)
+        ])
+        
+        return button
+    }
+    
 }
 
 // MARK: - Private extensions
