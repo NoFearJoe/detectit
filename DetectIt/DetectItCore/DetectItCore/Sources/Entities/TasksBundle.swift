@@ -10,6 +10,7 @@ import Foundation
 
 public struct TasksBundle {
     
+    public let id: String
     public let audiorecordTasks: [AudioRecordTask]
     public let decoderTasks: [DecoderTask]
     public let extraEvidenceTasks: [ExtraEvidenceTask]
@@ -23,6 +24,7 @@ public struct TasksBundle {
         
         DispatchQueue.global(qos: .utility).async {
             let bundle = TasksBundle(
+                id: bundleID,
                 audiorecordTasks: Self.decode(AudioRecordTask.self, paths: map.audiorecords),
                 decoderTasks: Self.decode(DecoderTask.self, paths: map.ciphers),
                 extraEvidenceTasks: Self.decode(ExtraEvidenceTask.self, paths: map.extraEvidences),

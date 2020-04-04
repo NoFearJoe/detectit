@@ -15,6 +15,11 @@ public final class PhotoCardView: UIView {
     public struct Model {
         public let photo: UIImage
         public let title: String
+        
+        public init(photo: UIImage, title: String) {
+            self.photo = photo
+            self.title = title
+        }
     }
     
     public var photo: UIImage? {

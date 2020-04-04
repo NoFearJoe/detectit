@@ -94,15 +94,15 @@ public extension SolidButton {
     static func closeButton() -> SolidButton {
         let button = SolidButton()
         
-        button.layer.cornerRadius = 14
+        button.layer.cornerRadius = 12
         button.fill = .color(.white)
         button.tintColor = .darkGray
         button.setImage(UIImage.asset(named: "close"), for: .normal)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 28),
-            button.heightAnchor.constraint(equalToConstant: 28)
+            button.widthAnchor.constraint(equalToConstant: 24),
+            button.heightAnchor.constraint(equalToConstant: 24)
         ])
         
         return button
