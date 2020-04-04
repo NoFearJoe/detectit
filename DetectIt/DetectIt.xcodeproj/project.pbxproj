@@ -23,6 +23,12 @@
 		96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E852435A445005FFC7A /* TasksBundleScreen.swift */; };
 		965AC7A324386152003A3DC7 /* TasksBundles+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7A224386152003A3DC7 /* TasksBundles+Info.swift */; };
 		965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7AB24387774003A3DC7 /* MainScreen.swift */; };
+		965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7C82438B945003A3DC7 /* TasksBundleScreen+Section.swift */; };
+		965AC7CD2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7CC2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift */; };
+		965AC7CF2438B9FA003A3DC7 /* ExtraEvidenceTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7CE2438B9FA003A3DC7 /* ExtraEvidenceTaskScreen.swift */; };
+		965AC7D12438BA09003A3DC7 /* DecoderTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */; };
+		965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D22438BA19003A3DC7 /* ProfileTaskScreen.swift */; };
+		965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +82,12 @@
 		96500E852435A445005FFC7A /* TasksBundleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleScreen.swift; sourceTree = "<group>"; };
 		965AC7A224386152003A3DC7 /* TasksBundles+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TasksBundles+Info.swift"; sourceTree = "<group>"; };
 		965AC7AB24387774003A3DC7 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		965AC7C82438B945003A3DC7 /* TasksBundleScreen+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TasksBundleScreen+Section.swift"; sourceTree = "<group>"; };
+		965AC7CC2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordTaskScreen.swift; sourceTree = "<group>"; };
+		965AC7CE2438B9FA003A3DC7 /* ExtraEvidenceTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraEvidenceTaskScreen.swift; sourceTree = "<group>"; };
+		965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskScreen.swift; sourceTree = "<group>"; };
+		965AC7D22438BA19003A3DC7 /* ProfileTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskScreen.swift; sourceTree = "<group>"; };
+		965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTaskScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,8 +223,9 @@
 		96500E822434FD0F005FFC7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				965AC7AB24387774003A3DC7 /* MainScreen.swift */,
-				96500E852435A445005FFC7A /* TasksBundleScreen.swift */,
+				965AC7CA2438B9B1003A3DC7 /* Main */,
+				965AC7C72438B932003A3DC7 /* TasksBundle */,
+				965AC7CB2438B9B7003A3DC7 /* Task screens */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -223,6 +236,35 @@
 				965AC7A224386152003A3DC7 /* TasksBundles+Info.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		965AC7C72438B932003A3DC7 /* TasksBundle */ = {
+			isa = PBXGroup;
+			children = (
+				96500E852435A445005FFC7A /* TasksBundleScreen.swift */,
+				965AC7C82438B945003A3DC7 /* TasksBundleScreen+Section.swift */,
+			);
+			path = TasksBundle;
+			sourceTree = "<group>";
+		};
+		965AC7CA2438B9B1003A3DC7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				965AC7AB24387774003A3DC7 /* MainScreen.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		965AC7CB2438B9B7003A3DC7 /* Task screens */ = {
+			isa = PBXGroup;
+			children = (
+				965AC7CC2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift */,
+				965AC7CE2438B9FA003A3DC7 /* ExtraEvidenceTaskScreen.swift */,
+				965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */,
+				965AC7D22438BA19003A3DC7 /* ProfileTaskScreen.swift */,
+				965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */,
+			);
+			path = "Task screens";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,10 +401,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				965AC7D12438BA09003A3DC7 /* DecoderTaskScreen.swift in Sources */,
 				961B95E42425EE89003EC992 /* AppDelegate.swift in Sources */,
 				96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */,
+				965AC7CF2438B9FA003A3DC7 /* ExtraEvidenceTaskScreen.swift in Sources */,
+				965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */,
 				965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */,
+				965AC7CD2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift in Sources */,
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
+				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
+				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
 				965AC7A324386152003A3DC7 /* TasksBundles+Info.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
