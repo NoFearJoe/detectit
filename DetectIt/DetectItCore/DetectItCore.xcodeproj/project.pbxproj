@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		961B9639242600BB003EC992 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961B962F242600BB003EC992 /* DetectItCore.framework */; };
 		961B9640242600BB003EC992 /* DetectItCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 961B9632242600BB003EC992 /* DetectItCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96512426013A003EC992 /* AudioRecordTask.swift */; };
-		961B96592426048A003EC992 /* TasksBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96582426048A003EC992 /* TasksBundles.swift */; };
 		961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */; };
 		961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965C24274ABA003EC992 /* DecoderTask.swift */; };
 		961B965F24274C79003EC992 /* QuestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965E24274C79003EC992 /* QuestTask.swift */; };
@@ -24,6 +23,9 @@
 		965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F02439A240003A3DC7 /* TaskScore.swift */; };
 		965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */; };
 		965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */; };
+		965AC7FA243A39C4003A3DC7 /* PaidTaskBundlesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F9243A39C4003A3DC7 /* PaidTaskBundlesManager.swift */; };
+		96AAAFED243A3FF900F61443 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */; };
+		96AAAFEF243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +45,6 @@
 		961B9638242600BB003EC992 /* DetectItCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectItCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B963F242600BB003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B96512426013A003EC992 /* AudioRecordTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordTask.swift; sourceTree = "<group>"; };
-		961B96582426048A003EC992 /* TasksBundles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundles.swift; sourceTree = "<group>"; };
 		961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraEvidenceTask.swift; sourceTree = "<group>"; };
 		961B965C24274ABA003EC992 /* DecoderTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTask.swift; sourceTree = "<group>"; };
 		961B965E24274C79003EC992 /* QuestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTask.swift; sourceTree = "<group>"; };
@@ -57,6 +58,8 @@
 		965AC7F02439A240003A3DC7 /* TaskScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScore.swift; sourceTree = "<group>"; };
 		965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoreTests.swift; sourceTree = "<group>"; };
 		965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnswerTests.swift; sourceTree = "<group>"; };
+		965AC7F9243A39C4003A3DC7 /* PaidTaskBundlesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidTaskBundlesManager.swift; sourceTree = "<group>"; };
+		96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidTaskBundlesManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96AAAFED243A3FF900F61443 /* SwiftyStoreKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 				961B963F242600BB003EC992 /* Info.plist */,
 				965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */,
 				965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */,
+				96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */,
 			);
 			path = DetectItCoreTests;
 			sourceTree = "<group>";
@@ -127,9 +132,9 @@
 		961B964F24260134003EC992 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				965AC7F8243A39AD003A3DC7 /* InApp purchases */,
 				96500E14242BB194005FFC7A /* Utils */,
 				96500E072429DB31005FFC7A /* Constants */,
-				961B96522426013A003EC992 /* Dictionaries */,
 				961B96502426013A003EC992 /* Entities */,
 			);
 			path = Sources;
@@ -143,14 +148,6 @@
 				965AC7F02439A240003A3DC7 /* TaskScore.swift */,
 			);
 			path = Entities;
-			sourceTree = "<group>";
-		};
-		961B96522426013A003EC992 /* Dictionaries */ = {
-			isa = PBXGroup;
-			children = (
-				961B96582426048A003EC992 /* TasksBundles.swift */,
-			);
-			path = Dictionaries;
 			sourceTree = "<group>";
 		};
 		96500E072429DB31005FFC7A /* Constants */ = {
@@ -192,6 +189,14 @@
 			path = ProfileTask;
 			sourceTree = "<group>";
 		};
+		965AC7F8243A39AD003A3DC7 /* InApp purchases */ = {
+			isa = PBXGroup;
+			children = (
+				965AC7F9243A39C4003A3DC7 /* PaidTaskBundlesManager.swift */,
+			);
+			path = "InApp purchases";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -220,6 +225,9 @@
 			dependencies = (
 			);
 			name = DetectItCore;
+			packageProductDependencies = (
+				96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */,
+			);
 			productName = DetectItCore;
 			productReference = 961B962F242600BB003EC992 /* DetectItCore.framework */;
 			productType = "com.apple.product-type.framework";
@@ -270,6 +278,9 @@
 				Base,
 			);
 			mainGroup = 961B9625242600BB003EC992;
+			packageReferences = (
+				96AAAFEB243A3FF900F61443 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+			);
 			productRefGroup = 961B9630242600BB003EC992 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -302,7 +313,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961B96592426048A003EC992 /* TasksBundles.swift in Sources */,
 				961B965F24274C79003EC992 /* QuestTask.swift in Sources */,
 				965AC7E12438CAA1003A3DC7 /* ImageLoader.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
@@ -314,6 +324,7 @@
 				96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */,
 				96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */,
 				961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */,
+				965AC7FA243A39C4003A3DC7 /* PaidTaskBundlesManager.swift in Sources */,
 				961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */,
+				96AAAFEF243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift in Sources */,
 				965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,6 +592,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96AAAFEB243A3FF900F61443 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96AAAFEB243A3FF900F61443 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 961B9626242600BB003EC992 /* Project object */;
 }

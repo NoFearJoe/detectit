@@ -18,10 +18,12 @@ final class TasksBundleScreen: Screen {
     
     // MARK: - Init
     
-    private let tasksBundle: TasksBundles
+    private let tasksBundle: TasksBundle.Info
+    private let tasksBundleImage: UIImage
     
-    init(tasksBundle: TasksBundles) {
+    init(tasksBundle: TasksBundle.Info, image: UIImage) {
         self.tasksBundle = tasksBundle
+        self.tasksBundleImage = image
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -55,7 +57,7 @@ final class TasksBundleScreen: Screen {
         
         screenView.configureHeader(
             model: TasksBundleScreenHeaderView.Model(
-                image: tasksBundle.image,
+                image: tasksBundleImage,
                 title: tasksBundle.title,
                 description: tasksBundle.description,
                 price: nil // TODO
@@ -65,7 +67,7 @@ final class TasksBundleScreen: Screen {
         guard bundle == nil else { return }
         
         // TODO: Loader
-        TasksBundle.load(bundleID: tasksBundle.rawValue) { [weak self] bundle in
+        TasksBundle.load(bundleID: tasksBundle.id) { [weak self] bundle in
             guard let self = self else { return }
             
             self.bundle = bundle

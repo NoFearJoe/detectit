@@ -11,6 +11,7 @@ import UIKit
 public protocol MainScreenViewDelegate: AnyObject {
     func numberOfTaskBundles() -> Int
     func tasksBundle(at index: Int) -> TasksBundleCell.Model?
+    func tasksBundleShallowModel(at index: Int) -> TasksBundleCell.ShallowModel?
     func didSelectTasksBundle(at index: Int)
     func didTapBuyTasksBundleButton(at index: Int)
 }
@@ -41,6 +42,22 @@ public final class MainScreenView: UIView {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
+    
+    // MARK: - Configuration
+    
+    public func reloadData() {
+        contentView.reloadData()
+    }
+    
+    public func shallowReloadData() {
+        contentView.visibleCells.forEach { cell in
+            guard let indexPath = contentView.indexPath(for: cell) else { return }
+            guard let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) else { return }
+            guard let cell = cell as? TasksBundleCell else { return }
+            
+            cell.configure(model: shallowModel)
+        }
+    }
     
     // MARK: - Setup
     
@@ -94,6 +111,10 @@ extension MainScreenView: UICollectionViewDataSource {
             cell.configure(model: model)
         }
         
+        if let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) {
+            cell.configure(model: shallowModel)
+        }
+        
         cell.onTapPlayButton = { [unowned self] in
             self.delegate.didSelectTasksBundle(at: indexPath.item)
         }
@@ -142,7 +163,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(
         _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
+        layout collectionViewLayout: UICollectionViewLayout, 
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let width: CGFloat = {
@@ -160,7 +181,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             }
         }()
         
-        let ratio = CGFloat(1.5)
+        let ratio = CGFloat(1.25)
         
         return CGSize(width: width, height: width * ratio)
     }

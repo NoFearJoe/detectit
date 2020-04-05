@@ -28,7 +28,7 @@ final class TaskScoreTests: XCTestCase {
     }
     
     func testThatExtraEvidenceScoreStoresCorrectly() {
-        let score = Float(0.75)
+        let score = true
         let id = "test_extra_evidence"
         
         TaskScore.set(score: score, extraEvidenceTaskID: id)
@@ -38,7 +38,7 @@ final class TaskScoreTests: XCTestCase {
     }
     
     func testThatCipherScoreStoresCorrectly() {
-        let score = Float(0.85)
+        let score = true
         let id = "test_cipher"
         
         TaskScore.set(score: score, decoderTaskID: id)

@@ -9,8 +9,10 @@
 import Foundation
 
 /// Предоставляет функционал для получения пути к директориям с заданиями.
-struct TasksBundleMap {
-            
+public struct TasksBundleMap {
+    
+    let info: URL
+    let imageURL: URL
     let audiorecords: [URL]
     let ciphers: [URL]
     let extraEvidences: [URL]
@@ -22,9 +24,19 @@ struct TasksBundleMap {
         let bundleDirectory = Self.makeBundleDirectory(id: bundleID)
         
         guard let baseURL = Self.baseURL(bundleDirectory: bundleDirectory) else {
-            throw Error.bundleMapFileIsNotExists
+            throw Error.bundleIsNotExists
         }
         
+        guard let info = Self.bundleURL(bundleID: bundleID)?.appendingPathComponent("info.json") else {
+            throw Error.infoFileIsNotExists
+        }
+        
+        guard let imageURL = Self.bundleURL(bundleID: bundleID)?.appendingPathComponent("image.png") else {
+            throw Error.imageFileIsNotExists
+        }
+        
+        self.info = info
+        self.imageURL = imageURL
         audiorecords = Self.tasksPaths(directory: Static.audiorecords, baseURL: baseURL)
         ciphers = Self.tasksPaths(directory: Static.ciphers, baseURL: baseURL)
         extraEvidences = Self.tasksPaths(directory: Static.extraEvidences, baseURL: baseURL)
@@ -32,12 +44,20 @@ struct TasksBundleMap {
         quests = Self.tasksPaths(directory: Static.quests, baseURL: baseURL)
     }
     
+    public static var taskBundlesRootURL: URL? {
+        URL(string: Static.root).flatMap {
+            Bundle.main.url(forResource: $0.path, withExtension: nil)
+        }
+    }
+    
 }
 
 extension TasksBundleMap {
     
     enum Error: Swift.Error {
-        case bundleMapFileIsNotExists
+        case bundleIsNotExists
+        case infoFileIsNotExists
+        case imageFileIsNotExists
     }
     
 }
@@ -84,15 +104,11 @@ extension TasksBundleMap {
 private extension TasksBundleMap {
     
     static func makeBundleDirectory(id: String) -> String {
-        "\(id).tasksbundle"
+        "\(id)"
     }
  
     static func baseURL(bundleDirectory: String) -> URL? {
-        (URL(string: Static.root)?
-            .appendingPathComponent(bundleDirectory))
-            .flatMap {
-                Bundle.main.url(forResource: $0.path, withExtension: nil)
-            }
+        taskBundlesRootURL?.appendingPathComponent(bundleDirectory)
     }
     
     static func tasksPaths(directory: String, baseURL: URL) -> [URL] {

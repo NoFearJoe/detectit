@@ -80,6 +80,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 9/16),
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor)

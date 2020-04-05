@@ -111,7 +111,7 @@ final class DecoderTaskScreen: Screen {
     // MARK: - Utils
     
     private func loadData(completion: @escaping (UIImage?) -> Void) {
-        guard let imageURL = task.encodedPictureURL(bundleID: bundle.id) else {
+        guard let imageURL = task.encodedPictureURL(bundleID: bundle.info.id) else {
             return completion(nil)
         }
         

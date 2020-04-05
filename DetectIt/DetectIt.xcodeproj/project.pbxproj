@@ -21,7 +21,6 @@
 		96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; };
 		96500E36242F0FDD005FFC7A /* DetectItUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E852435A445005FFC7A /* TasksBundleScreen.swift */; };
-		965AC7A324386152003A3DC7 /* TasksBundles+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7A224386152003A3DC7 /* TasksBundles+Info.swift */; };
 		965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7AB24387774003A3DC7 /* MainScreen.swift */; };
 		965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7C82438B945003A3DC7 /* TasksBundleScreen+Section.swift */; };
 		965AC7CD2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7CC2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift */; };
@@ -29,6 +28,7 @@
 		965AC7D12438BA09003A3DC7 /* DecoderTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */; };
 		965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D22438BA19003A3DC7 /* ProfileTaskScreen.swift */; };
 		965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */; };
+		965AC7F7243A103B003A3DC7 /* MainScreenDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +80,6 @@
 		96500E12242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskBundlesConsistencyTests.swift; sourceTree = "<group>"; };
 		96500E34242F0FDD005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E852435A445005FFC7A /* TasksBundleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleScreen.swift; sourceTree = "<group>"; };
-		965AC7A224386152003A3DC7 /* TasksBundles+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TasksBundles+Info.swift"; sourceTree = "<group>"; };
 		965AC7AB24387774003A3DC7 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		965AC7C82438B945003A3DC7 /* TasksBundleScreen+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TasksBundleScreen+Section.swift"; sourceTree = "<group>"; };
 		965AC7CC2438B9D7003A3DC7 /* AudioRecordTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordTaskScreen.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskScreen.swift; sourceTree = "<group>"; };
 		965AC7D22438BA19003A3DC7 /* ProfileTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskScreen.swift; sourceTree = "<group>"; };
 		965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTaskScreen.swift; sourceTree = "<group>"; };
+		965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				96500E822434FD0F005FFC7A /* Screens */,
-				965AC7A12438612A003A3DC7 /* Extensions */,
 			);
 			path = "Presentation layer";
 			sourceTree = "<group>";
@@ -230,14 +229,6 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		965AC7A12438612A003A3DC7 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				965AC7A224386152003A3DC7 /* TasksBundles+Info.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		965AC7C72438B932003A3DC7 /* TasksBundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				965AC7AB24387774003A3DC7 /* MainScreen.swift */,
+				965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -406,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7D12438BA09003A3DC7 /* DecoderTaskScreen.swift in Sources */,
+				965AC7F7243A103B003A3DC7 /* MainScreenDataLoader.swift in Sources */,
 				961B95E42425EE89003EC992 /* AppDelegate.swift in Sources */,
 				96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */,
 				965AC7CF2438B9FA003A3DC7 /* ExtraEvidenceTaskScreen.swift in Sources */,
@@ -415,7 +408,6 @@
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
 				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
-				965AC7A324386152003A3DC7 /* TasksBundles+Info.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

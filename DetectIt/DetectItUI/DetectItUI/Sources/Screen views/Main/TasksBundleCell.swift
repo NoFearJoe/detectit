@@ -45,24 +45,32 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
     public struct Model {
         
+        public let backgroundImage: UIImage
+        public let title: String
+        public let description: String
+        
+        
+        public init(backgroundImage: UIImage,
+                    title: String,
+                    description: String) {
+            self.backgroundImage = backgroundImage
+            self.title = title
+            self.description = description
+        }
+        
+    }
+    
+    public struct ShallowModel {
+        
         public enum PlayState {
             case playable
             case paid(price: String)
             case loading
         }
         
-        public let backgroundImage: UIImage
-        public let title: String
-        public let description: String
         public let playState: PlayState
         
-        public init(backgroundImage: UIImage,
-                    title: String,
-                    description: String,
-                    playState: PlayState) {
-            self.backgroundImage = backgroundImage
-            self.title = title
-            self.description = description
+        public init(playState: PlayState) {
             self.playState = playState
         }
         
@@ -72,7 +80,9 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         backgroundImageView.image = model.backgroundImage
         titleLabel.text = model.title
         descriptionLabel.text = model.description
-        
+    }
+    
+    func configure(model: ShallowModel) {
         switch model.playState {
         case .playable:
             playButton.isHidden = false
@@ -152,10 +162,10 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
-        let descriptionLabelBottomConstraint = descriptionLabel.bottomAnchor.constraint(equalTo: bottomContainerView.bottomAnchor, constant: -12)
+        let descriptionLabelBottomConstraint = descriptionLabel.bottomAnchor.constraint(equalTo: bottomContainerView.bottomAnchor, constant: -16)
         descriptionLabelBottomConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: bottomContainerView.topAnchor, constant: 12),
+            descriptionLabel.topAnchor.constraint(equalTo: bottomContainerView.topAnchor, constant: 16),
             descriptionLabel.leadingAnchor.constraint(equalTo: bottomContainerView.leadingAnchor, constant: Constants.hInset),
             descriptionLabelBottomConstraint
         ])
@@ -167,10 +177,10 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         playStateViewsContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playStateViewsContainer.topAnchor.constraint(greaterThanOrEqualTo: bottomContainerView.topAnchor, constant: 8),
+            playStateViewsContainer.topAnchor.constraint(greaterThanOrEqualTo: bottomContainerView.topAnchor, constant: 12),
             playStateViewsContainer.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 12),
             playStateViewsContainer.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
-            playStateViewsContainer.bottomAnchor.constraint(lessThanOrEqualTo: bottomContainerView.bottomAnchor, constant: -8),
+            playStateViewsContainer.bottomAnchor.constraint(lessThanOrEqualTo: bottomContainerView.bottomAnchor, constant: -12),
             playStateViewsContainer.centerYAnchor.constraint(equalTo: descriptionLabel.centerYAnchor)
         ])
         
