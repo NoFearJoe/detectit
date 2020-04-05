@@ -108,6 +108,20 @@ public extension SolidButton {
         return button
     }
     
+    static func primaryButton() -> SolidButton {
+        let button = SolidButton()
+        
+        button.layer.cornerRadius = 8
+        button.fill = .color(.yellow)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .regular(18)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        
+        return button
+    }
+    
 }
 
 // MARK: - Private extensions

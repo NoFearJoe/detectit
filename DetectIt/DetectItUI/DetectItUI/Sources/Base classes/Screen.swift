@@ -62,9 +62,8 @@ open class Screen: UIViewController {
             let blurView = BlurView(style: .dark)
             blurView.blurRadius = 28
             blurView.colorTint = .black
-            blurView.colorTintAlpha = 0.75
+            blurView.colorTintAlpha = 0.5
             
-            blurView.frame = statusBarFrame
             view.addSubview(blurView)
             
             statusBarBlurView = blurView
@@ -77,7 +76,7 @@ open class Screen: UIViewController {
     private func updateStatusBarBlurView() {
         guard let statusBarBlurView = statusBarBlurView else { return }
         
-        statusBarBlurView.frame = statusBarFrame
+        statusBarBlurView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.safeAreaInsets.top)
         view.bringSubviewToFront(statusBarBlurView)
     }
     

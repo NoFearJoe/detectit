@@ -21,6 +21,11 @@ final class DecoderTaskScreen: Screen {
     private let titleLabel = UILabel()
     private let prepositionLabel = UILabel()
     private let encodedPictureView = UIImageView()
+    private let questionAndAnswerView = QuestionAndAnswerView()
+    private let answerButton = SolidButton.primaryButton()
+    
+    private let keyboardManager = KeyboardManager()
+    private var contentScrollViewOffset: CGFloat?
     
     // MARK: - State
     
@@ -34,14 +39,18 @@ final class DecoderTaskScreen: Screen {
         self.bundle = bundle
         
         super.init(nibName: nil, bundle: nil)
-        
-        addChild(contentContainer)
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
     
+    deinit {
+        keyboardManager.unsubscribe()
+    }
+    
     // MARK: - Overrides
+    
+    override var prefersStatusBarHidden: Bool { true }
     
     override func loadView() {
         super.loadView()
@@ -50,12 +59,15 @@ final class DecoderTaskScreen: Screen {
         
         setupViews()
         setupContentView()
+        setupKeyboardManager()
+        
+        isStatusBarBlurred = true
     }
     
     override func prepare() {
         super.prepare()
         
-        displayContent(encodedPicture: UIImage.asset(named: "Test")!)
+        displayContent(encodedPicture: UIImage.asset(named: "Test")!) // TODO
         
         // Show loader (skeleton)
         loadData { [weak self] image in
@@ -78,6 +90,19 @@ final class DecoderTaskScreen: Screen {
         // TODO: Show image viewer
     }
     
+    @objc private func didTapAnswerButton() {
+        let answer = questionAndAnswerView.answer
+        let rightAnswer = task.answer.decodedMessage
+        
+        let isCorrectAnswer = answer == rightAnswer
+        
+        print(isCorrectAnswer)
+    }
+    
+    @objc private func onTapBackground() {
+        view.endEditing(true)
+    }
+    
     // MARK: - Utils
     
     private func loadData(completion: @escaping (UIImage?) -> Void) {
@@ -96,6 +121,9 @@ final class DecoderTaskScreen: Screen {
         titleLabel.text = task.title
         prepositionLabel.text = task.preposition
         encodedPictureView.image = encodedPicture
+        questionAndAnswerView.configure(
+            model: QuestionAndAnswerView.Model(question: "Ответ:") // TODO
+        )
     }
     
     // MARK: - Setup
@@ -113,7 +141,19 @@ final class DecoderTaskScreen: Screen {
         contentContainer.appendChild(prepositionLabel)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(encodedPictureView)
+        contentContainer.appendSpacing(40)
+        contentContainer.appendChild(questionAndAnswerView)
+        contentContainer.appendSpacing(40)
+        contentContainer.appendChild(answerButton)
         contentContainer.setBottomSpacing(20)
+        
+        let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
+        backgroundTapRecognizer.delegate = self
+        contentContainer.scrollView.addGestureRecognizer(backgroundTapRecognizer)
+        
+        let backgroundTapRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
+        backgroundTapRecognizer1.delegate = self
+        contentContainer.stackView.addGestureRecognizer(backgroundTapRecognizer1)
     }
     
     private func setupViews() {
@@ -130,7 +170,7 @@ final class DecoderTaskScreen: Screen {
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         
-        prepositionLabel.font = .regular(14)
+        prepositionLabel.font = .regular(15)
         prepositionLabel.textColor = .white
         prepositionLabel.numberOfLines = 0
         
@@ -145,6 +185,66 @@ final class DecoderTaskScreen: Screen {
         encodedPictureView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(didTapEncodedPicture))
         )
+        
+        questionAndAnswerView.onChangeAnswer = { [unowned self] answer in
+            self.answerButton.isEnabled = !answer.isEmpty
+        }
+        
+        answerButton.isEnabled = false
+        answerButton.setTitle("Отправить ответ", for: .normal) // TODO
+        answerButton.addTarget(self, action: #selector(didTapAnswerButton), for: .touchUpInside)
+    }
+    
+    func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            UIView.animate(withDuration: duration) {
+                if let offset = self.calculateTargetScrollViewYOffset(keyboardFrame: frame) {
+                    self.contentScrollViewOffset = offset
+                    self.contentContainer.scrollView.contentOffset.y += offset
+                } else {
+                    self.contentScrollViewOffset = nil
+                }
+                self.contentContainer.scrollView.contentInset.bottom = frame.height
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            UIView.animate(withDuration: duration) {
+                if let contentScrollViewOffset = self.contentScrollViewOffset {
+                    self.contentContainer.scrollView.contentOffset.y -= contentScrollViewOffset
+                    self.contentScrollViewOffset = nil
+                }
+                self.contentContainer.scrollView.contentInset.bottom = 0
+            }
+        }
+    }
+    
+    // MARK: - Utils
+    
+    func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat? {
+        guard var focusedView = contentContainer.stackView.currentFirstResponder() as? UIView else { return nil }
+        
+        focusedView = questionAndAnswerView
+        
+        let convertedFocusedViewFrame = focusedView.convert(focusedView.bounds, to: view)
+        
+        let visibleContentHeight = view.bounds.height - keyboardFrame.height
+        
+        let focusedViewMaxY = convertedFocusedViewFrame.maxY
+        
+        if visibleContentHeight > focusedViewMaxY {
+            return nil
+        } else {
+            return max(0, focusedViewMaxY - visibleContentHeight)
+        }
+    }
+    
+}
+
+extension DecoderTaskScreen: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        touch.view === gestureRecognizer.view
     }
     
 }

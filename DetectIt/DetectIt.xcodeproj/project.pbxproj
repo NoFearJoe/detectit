@@ -284,6 +284,8 @@
 			dependencies = (
 			);
 			name = DetectIt;
+			packageProductDependencies = (
+			);
 			productName = DetectIt;
 			productReference = 961B95E02425EE89003EC992 /* DetectIt.app */;
 			productType = "com.apple.product-type.application";
@@ -356,6 +358,8 @@
 				Base,
 			);
 			mainGroup = 961B95D72425EE89003EC992;
+			packageReferences = (
+			);
 			productRefGroup = 961B95E12425EE89003EC992 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

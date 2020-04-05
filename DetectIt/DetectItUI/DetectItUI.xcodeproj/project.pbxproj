@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -53,6 +53,11 @@
 		965AC7DD2438C704003A3DC7 /* WrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D92438C704003A3DC7 /* WrapperViewController.swift */; };
 		965AC7DE2438C704003A3DC7 /* StackViewControllerChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7DA2438C704003A3DC7 /* StackViewControllerChild.swift */; };
 		965AC7DF2438C704003A3DC7 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7DB2438C704003A3DC7 /* StackViewController.swift */; };
+		965AC7E42438E3FF003A3DC7 /* NextGrowingTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 965AC7E32438E3FF003A3DC7 /* NextGrowingTextView */; };
+		965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7E52438E431003A3DC7 /* AnswerField.swift */; };
+		965AC7E82438E611003A3DC7 /* QuestionAndAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */; };
+		965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */; };
+		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +110,10 @@
 		965AC7D92438C704003A3DC7 /* WrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapperViewController.swift; sourceTree = "<group>"; };
 		965AC7DA2438C704003A3DC7 /* StackViewControllerChild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewControllerChild.swift; sourceTree = "<group>"; };
 		965AC7DB2438C704003A3DC7 /* StackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
+		965AC7E52438E431003A3DC7 /* AnswerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerField.swift; sourceTree = "<group>"; };
+		965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAndAnswerView.swift; sourceTree = "<group>"; };
+		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
+		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				965AC7E42438E3FF003A3DC7 /* NextGrowingTextView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +186,7 @@
 				965AC79524364F8B003A3DC7 /* TouchAnimatable.swift */,
 				965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */,
 				965AC7B82438A017003A3DC7 /* FloatingViewVisibilityManager.swift */,
+				965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -203,6 +214,7 @@
 				965AC7992436504F003A3DC7 /* UIImageView+Gradient.swift */,
 				965AC79B24365163003A3DC7 /* UIColor+Overlay.swift */,
 				965AC79D243652C2003A3DC7 /* UIImage+Resize.swift */,
+				965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +292,7 @@
 			children = (
 				965AC79324364E86003A3DC7 /* SolidButton.swift */,
 				965AC7A424387031003A3DC7 /* BlurView.swift */,
+				965AC7E52438E431003A3DC7 /* AnswerField.swift */,
 			);
 			path = "Single views";
 			sourceTree = "<group>";
@@ -291,6 +304,7 @@
 				96500E632430B867005FFC7A /* PaperSheetView.swift */,
 				96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */,
 				965AC78F24364D39003A3DC7 /* TasksBundlePurchaseView.swift */,
+				965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -369,6 +383,9 @@
 			dependencies = (
 			);
 			name = DetectItUI;
+			packageProductDependencies = (
+				965AC7E32438E3FF003A3DC7 /* NextGrowingTextView */,
+			);
 			productName = DetectItUI;
 			productReference = 96500E29242F0F92005FFC7A /* DetectItUI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -397,6 +414,9 @@
 				Base,
 			);
 			mainGroup = 96500E1F242F0F92005FFC7A;
+			packageReferences = (
+				965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */,
+			);
 			productRefGroup = 96500E2A242F0F92005FFC7A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -428,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7B92438A017003A3DC7 /* FloatingViewVisibilityManager.swift in Sources */,
+				965AC7E82438E611003A3DC7 /* QuestionAndAnswerView.swift in Sources */,
 				965AC7B024387921003A3DC7 /* TasksBundleScreenHeaderView.swift in Sources */,
 				96500E8124330180005FFC7A /* ProfilePrepositionCell.swift in Sources */,
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
@@ -435,6 +456,7 @@
 				965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */,
 				965AC79824365004003A3DC7 /* TouchGestureRecognizer.swift in Sources */,
 				96500E7724324158005FFC7A /* ProfileView.swift in Sources */,
+				965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
@@ -443,6 +465,7 @@
 				96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */,
 				965AC7B524388B48003A3DC7 /* ListSectionHeaderView.swift in Sources */,
 				965AC79424364E86003A3DC7 /* SolidButton.swift in Sources */,
+				965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
 				96500E892435F1A6005FFC7A /* Screen.swift in Sources */,
 				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
@@ -451,6 +474,7 @@
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
 				965AC7DC2438C704003A3DC7 /* StackChildControllerProtocols.swift in Sources */,
 				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
+				965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */,
 				965AC7B724388F2A003A3DC7 /* TasksBundleScreenTaskCell.swift in Sources */,
 				965AC7DE2438C704003A3DC7 /* StackViewControllerChild.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
@@ -667,6 +691,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/muukii/NextGrowingTextView";
+			requirement = {
+				kind = exactVersion;
+				version = 1.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		965AC7E32438E3FF003A3DC7 /* NextGrowingTextView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */;
+			productName = NextGrowingTextView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96500E20242F0F92005FFC7A /* Project object */;
 }

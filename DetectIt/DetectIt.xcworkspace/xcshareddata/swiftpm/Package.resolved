@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "NextGrowingTextView",
+        "repositoryURL": "https://github.com/muukii/NextGrowingTextView",
+        "state": {
+          "branch": null,
+          "revision": "56b1d241a0c26d56dd43497632d24ea7173bdc56",
+          "version": "1.6.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
