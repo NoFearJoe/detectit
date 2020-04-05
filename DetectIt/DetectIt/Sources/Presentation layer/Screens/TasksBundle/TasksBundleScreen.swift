@@ -37,6 +37,11 @@ final class TasksBundleScreen: Screen {
     
     // MARK: - Overrides
     
+    override var prefersStatusBarHidden: Bool {
+        true
+    }
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .fade }
+    
     override func loadView() {
         view = TasksBundleScreenView(delegate: self)
     }

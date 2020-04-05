@@ -14,7 +14,7 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
     
     // MARK: - Subviews
     
-    // TODO: Add stack view
+    private let contentContainer = UIStackView()
     private let iconView = UIImageView()
     private let titleLabel = UILabel()
     private let scoreLabel = UILabel()
@@ -34,14 +34,14 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
     // MARK: - Configuration
     
     public struct Model {
-        let icon: UIImage
+        let icon: UIImage?
         let title: String
-        let score: String?
+        let score: (value: String, color: UIColor)?
         let isEnabled: Bool
         
-        public init(icon: UIImage,
+        public init(icon: UIImage? = nil,
                     title: String,
-                    score: String?,
+                    score: (String, UIColor)?,
                     isEnabled: Bool) {
             self.icon = icon
             self.title = title
@@ -52,8 +52,13 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
     
     func configure(model: Model) {
         iconView.image = model.icon
+        iconView.isHidden = model.icon == nil
+        
         titleLabel.text = model.title
-        scoreLabel.text = model.score
+        
+        scoreLabel.text = model.score?.value
+        scoreLabel.textColor = model.score?.color
+        scoreLabel.isHidden = model.score == nil
         
         iconView.alpha = model.isEnabled ? 1 : 0.75
         titleLabel.alpha = model.isEnabled ? 1 : 0.75
@@ -94,43 +99,46 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
     }
     
     func setupViews() {
-        contentView.addSubview(iconView)
+        contentView.addSubview(contentContainer)
+        
+        contentContainer.axis = .horizontal
+        contentContainer.distribution = .fill
+        contentContainer.alignment = .center
+        
+        contentContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentContainer.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            contentContainer.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            contentContainer.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            contentContainer.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
+        ])
+        
+        contentContainer.addArrangedSubview(iconView)
         
         iconView.clipsToBounds = true
         iconView.contentMode = .scaleAspectFit
         
-        iconView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             iconView.widthAnchor.constraint(equalToConstant: 48),
-            iconView.heightAnchor.constraint(equalTo: iconView.widthAnchor),
-            iconView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            iconView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor)
+            iconView.heightAnchor.constraint(equalTo: iconView.widthAnchor)
         ])
         
-        contentView.addSubview(titleLabel)
+        contentContainer.addArrangedSubview(titleLabel)
         
         titleLabel.font = .regular(16)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 12)
-        ])
-        
-        contentView.addSubview(scoreLabel)
+        contentContainer.addArrangedSubview(scoreLabel)
         
         scoreLabel.font = .bold(16)
         scoreLabel.textColor = .green
-        
-        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        scoreLabel.textAlignment = .right
+        scoreLabel.setContentHuggingPriority(.required, for: .horizontal)
         scoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        NSLayoutConstraint.activate([
-            scoreLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            scoreLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: 12),
-            scoreLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
-        ])
+        
+        contentContainer.setCustomSpacing(12, after: iconView)
+        contentContainer.setCustomSpacing(12, after: titleLabel)
     }
     
 }

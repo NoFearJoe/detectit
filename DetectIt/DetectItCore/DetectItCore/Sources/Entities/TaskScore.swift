@@ -18,11 +18,11 @@ public struct TaskScore {
         get(id: id, taskKind: .audiorecord)
     }
     
-    public static func get(extraEvidenceTaskID id: String) -> Float? {
+    public static func get(extraEvidenceTaskID id: String) -> Bool? {
         get(id: id, taskKind: .extraEvidence)
     }
     
-    public static func get(decoderTaskID id: String) -> Float? {
+    public static func get(decoderTaskID id: String) -> Bool? {
         get(id: id, taskKind: .cipher)
     }
     
@@ -34,8 +34,8 @@ public struct TaskScore {
         get(id: id, taskKind: .quest)
     }
     
-    private static func get(id: String, taskKind: TaskKind) -> Float? {
-        storage.object(forKey: makeKey(for: id, taskKind: taskKind)) as? Float
+    private static func get<T>(id: String, taskKind: TaskKind) -> T? {
+        storage.object(forKey: makeKey(for: id, taskKind: taskKind)) as? T
     }
     
     // MARK: - Set score
@@ -44,11 +44,11 @@ public struct TaskScore {
         set(value: score, id: id, taskKind: .audiorecord)
     }
     
-    public static func set(score: Float, extraEvidenceTaskID id: String) {
+    public static func set(score: Bool, extraEvidenceTaskID id: String) {
         set(value: score, id: id, taskKind: .extraEvidence)
     }
     
-    public static func set(score: Float, decoderTaskID id: String) {
+    public static func set(score: Bool, decoderTaskID id: String) {
         set(value: score, id: id, taskKind: .cipher)
     }
     
@@ -60,7 +60,7 @@ public struct TaskScore {
         set(value: score, id: id, taskKind: .quest)
     }
     
-    private static func set(value: Float, id: String, taskKind: TaskKind) {
+    private static func set<T>(value: T, id: String, taskKind: TaskKind) {
         storage.set(value, forKey: makeKey(for: id, taskKind: taskKind))
     }
     

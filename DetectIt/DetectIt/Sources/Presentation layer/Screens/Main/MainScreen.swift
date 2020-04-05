@@ -18,8 +18,6 @@ final class MainScreen: Screen {
     
     // MARK: - Overrides
     
-    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
-    
     override func loadView() {
         view = MainScreenView(delegate: self)
     }

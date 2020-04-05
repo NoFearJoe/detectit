@@ -23,6 +23,8 @@ open class Screen: UIViewController {
     
     // MARK: - Overrides
     
+    open override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    
     @available(*, unavailable)
     open override func viewDidLoad() {
         super.viewDidLoad()

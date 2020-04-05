@@ -42,37 +42,105 @@ extension TasksBundleScreen {
         var sections: [SectionModel] = []
         
         if !bundle.audiorecordTasks.isEmpty {
-            sections.append((.audiorecords, []))
+            sections.append(
+                (.audiorecords, bundle.audiorecordTasks.map(map))
+            )
         }
         
         if !bundle.extraEvidenceTasks.isEmpty {
-            sections.append((.extraEvidences, []))
+            sections.append(
+                (.extraEvidences, bundle.extraEvidenceTasks.map(map))
+            )
         }
         
         if !bundle.decoderTasks.isEmpty {
-            sections.append((.ciphers, [
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 1", score: "100%", isEnabled: true),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 2", score: nil, isEnabled: true),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 1", score: "100%", isEnabled: false),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 2", score: nil, isEnabled: true),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 1", score: "100%", isEnabled: false),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 2", score: nil, isEnabled: true),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 1", score: "100%", isEnabled: false),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 2", score: nil, isEnabled: true),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 1", score: "100%", isEnabled: false),
-                TasksBundleScreenTaskCell.Model(icon: UIImage.asset(named: "Test")!, title: "Тест 2", score: nil, isEnabled: true)
-            ]))
+            sections.append(
+                (.ciphers, bundle.decoderTasks.map(map))
+            )
         }
         
         if !bundle.profileTasks.isEmpty {
-            sections.append((.profiles, []))
+            sections.append(
+                (.profiles, bundle.profileTasks.map(map))
+            )
         }
         
         if !bundle.questTasks.isEmpty {
-            sections.append((.quests, []))
+            sections.append(
+                (.quests, bundle.questTasks.map(map))
+            )
         }
         
         return sections
+    }
+    
+    private func map(task: AudioRecordTask) -> TasksBundleScreenTaskCell.Model {
+        let score = TaskScore.get(audioRecordTaskID: task.id).map(makeScoreString)
+        
+        return TasksBundleScreenTaskCell.Model(
+            title: task.title,
+            score: score,
+            isEnabled: score == nil
+        )
+    }
+    
+    private func map(task: ExtraEvidenceTask) -> TasksBundleScreenTaskCell.Model {
+        let score = TaskScore.get(extraEvidenceTaskID: task.id).map(makeScoreString)
+        
+        return TasksBundleScreenTaskCell.Model(
+            title: task.title,
+            score: score,
+            isEnabled: score == nil
+        )
+    }
+    
+    private func map(task: DecoderTask) -> TasksBundleScreenTaskCell.Model {
+        let score = TaskScore.get(decoderTaskID: task.id).map(makeScoreString)
+        
+        return TasksBundleScreenTaskCell.Model(
+            title: task.title,
+            score: score,
+            isEnabled: score == nil
+        )
+    }
+    
+    private func map(task: ProfileTask) -> TasksBundleScreenTaskCell.Model {
+        let score = TaskScore.get(profileTaskID: task.id).map(makeScoreString)
+        
+        return TasksBundleScreenTaskCell.Model(
+            title: task.title,
+            score: score,
+            isEnabled: score == nil
+        )
+    }
+    
+    private func map(task: QuestTask) -> TasksBundleScreenTaskCell.Model {
+        let score = TaskScore.get(questTaskID: task.id).map(makeScoreString)
+        
+        return TasksBundleScreenTaskCell.Model(
+            title: task.title,
+            score: score,
+            isEnabled: score == nil
+        )
+    }
+    
+    private func makeScoreString(score: Float) -> (String, UIColor) {
+        let color: UIColor = {
+            switch score {
+            case ..<(0.4):
+                return .red
+            case (0.4)..<0.75:
+                return .orange
+            default:
+                return .green
+            }
+        }()
+        
+        return ("\(score * 100)%", color)
+    }
+    
+    private func makeScoreString(score: Bool) -> (String, UIColor) {
+        (score ? "Разгадано" : "Провалено", score ? .green : .red)
     }
     
 }

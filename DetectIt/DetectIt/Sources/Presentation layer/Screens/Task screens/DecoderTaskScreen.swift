@@ -91,12 +91,17 @@ final class DecoderTaskScreen: Screen {
     }
     
     @objc private func didTapAnswerButton() {
+        view.endEditing(true)
+        
         let answer = questionAndAnswerView.answer
         let rightAnswer = task.answer.decodedMessage
         
         let isCorrectAnswer = answer == rightAnswer
         
-        print(isCorrectAnswer)
+        TaskScore.set(score: isCorrectAnswer, decoderTaskID: task.id)
+        TaskAnswer.set(answer: answer, decoderTaskID: task.id)
+        
+        // TODO: Show alert
     }
     
     @objc private func onTapBackground() {
