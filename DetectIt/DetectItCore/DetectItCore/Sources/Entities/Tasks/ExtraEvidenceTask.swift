@@ -67,10 +67,14 @@ public extension ExtraEvidenceTask {
     
 }
 
-public extension ExtraEvidenceTask {
+extension ExtraEvidenceTask: Task {
+    
+    public var kind: TaskKind {
+        .extraEvidence
+    }
     
     /// Сложность задания.
-    var taskDifficulty: TaskDifficulty {
+    public var taskDifficulty: TaskDifficulty {
         TaskDifficulty(rawValue: difficulty)
     }
     

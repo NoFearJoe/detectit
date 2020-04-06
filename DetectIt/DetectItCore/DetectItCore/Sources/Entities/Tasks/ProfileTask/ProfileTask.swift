@@ -33,20 +33,24 @@ public struct ProfileTask: Codable {
     
 }
 
+extension ProfileTask: Task {
+    
+    public var kind: TaskKind {
+        .profile
+    }
+    
+    /// Сложность задания.
+    public var taskDifficulty: TaskDifficulty {
+        TaskDifficulty(rawValue: difficulty)
+    }
+    
+}
+
 extension ProfileTask: TaskScoring {
     
     /// Максимальное возможное количество очков за правильные ответы.
     public var maxScore: Int {
         questions.reduce(0, { $0 + $1.score })
-    }
-    
-}
-
-public extension ProfileTask {
-    
-    /// Сложность задания.
-    var taskDifficulty: TaskDifficulty {
-        TaskDifficulty(rawValue: difficulty)
     }
     
 }

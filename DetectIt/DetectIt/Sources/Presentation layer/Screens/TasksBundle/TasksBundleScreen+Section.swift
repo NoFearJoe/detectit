@@ -43,108 +43,57 @@ extension TasksBundleScreen {
         
         if !bundle.audiorecordTasks.isEmpty {
             sections.append(
-                (.audiorecords, bundle.audiorecordTasks.map(map))
+                (.audiorecords, bundle.audiorecordTasks.map { map(task: $0, bundleID: bundle.info.id) })
             )
         }
         
         if !bundle.extraEvidenceTasks.isEmpty {
             sections.append(
-                (.extraEvidences, bundle.extraEvidenceTasks.map(map))
+                (.extraEvidences, bundle.extraEvidenceTasks.map { map(task: $0, bundleID: bundle.info.id) })
             )
         }
         
         if !bundle.decoderTasks.isEmpty {
             sections.append(
-                (.ciphers, bundle.decoderTasks.map(map))
+                (.ciphers, bundle.decoderTasks.map { map(task: $0, bundleID: bundle.info.id) })
             )
         }
         
         if !bundle.profileTasks.isEmpty {
             sections.append(
-                (.profiles, bundle.profileTasks.map(map))
+                (.profiles, bundle.profileTasks.map { map(task: $0, bundleID: bundle.info.id) })
             )
         }
         
         if !bundle.questTasks.isEmpty {
             sections.append(
-                (.quests, bundle.questTasks.map(map))
+                (.quests, bundle.questTasks.map { map(task: $0, bundleID: bundle.info.id) })
             )
         }
         
         return sections
     }
     
-    private func map(task: AudioRecordTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(audioRecordTaskID: task.id)
+    private func map(task: Task & TaskScoring, bundleID: String) -> TasksBundleScreenTaskCell.Model {
+        let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundleID)
         let scoreString = makeScoreString(score: score, max: task.maxScore)
-        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
         
         return TasksBundleScreenTaskCell.Model(
             title: task.title,
             score: scoreString,
-            difficultyImage: difficultyImage,
+            difficultyImage: task.taskDifficulty.icon,
             isEnabled: score == nil
         )
     }
     
-    private func map(task: ExtraEvidenceTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(extraEvidenceTaskID: task.id)
-        let scoreString = makeScoreString(score: score, max: task.maxScore)
-        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
-        
-        return TasksBundleScreenTaskCell.Model(
-            title: task.title,
-            score: scoreString,
-            difficultyImage: difficultyImage,
-            isEnabled: score == nil
-        )
-    }
-    
-    private func map(task: DecoderTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(decoderTaskID: task.id)
-        let scoreString = makeScoreString(score: score, max: task.maxScore)
-        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
-        
-        return TasksBundleScreenTaskCell.Model(
-            title: task.title,
-            score: scoreString,
-            difficultyImage: difficultyImage,
-            isEnabled: score == nil
-        )
-    }
-    
-    private func map(task: ProfileTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(profileTaskID: task.id)
-        let scoreString = makeScoreString(score: score, max: task.maxScore)
-        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
-        
-        return TasksBundleScreenTaskCell.Model(
-            title: task.title,
-            score: scoreString,
-            difficultyImage: difficultyImage,
-            isEnabled: score == nil
-        )
-    }
-    
-    private func map(task: QuestTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(questTaskID: task.id)
-        let scoreString = makeScoreString(score: score, max: task.maxScore)
-        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
-        
-        return TasksBundleScreenTaskCell.Model(
-            title: task.title,
-            score: scoreString,
-            difficultyImage: difficultyImage,
-            isEnabled: score == nil
-        )
-    }
-    
-    private func makeScoreString(score: Int?, max: Int) -> (String, UIColor)? {
-        guard let score = score else { return nil }
+    private func makeScoreString(score: Int?, max: Int) -> (String, UIColor) {
+        let score = score ?? 0
         
         let color: UIColor = {
             switch Float(score) / Float(max) {
-            case ..<(0.4):
+            case ...0:
+                return .lightGray
+            case (0.0)..<(0.4):
                 return .red
             case (0.4)..<0.75:
                 return .orange
@@ -155,10 +104,6 @@ extension TasksBundleScreen {
         
         return ("\(score)/\(max)", color)
     }
-    
-//    private func makeScoreString(score: Bool) -> (String, UIColor) {
-//        (score ? "Разгадано" : "Провалено", score ? .green : .red)
-//    }
     
 }
 

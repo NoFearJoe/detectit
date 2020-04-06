@@ -89,20 +89,24 @@ public extension QuestTask {
 
 }
 
+extension QuestTask: Task {
+    
+    public var kind: TaskKind {
+        .quest
+    }
+    
+    /// Сложность задания.
+    public var taskDifficulty: TaskDifficulty {
+        TaskDifficulty(rawValue: difficulty)
+    }
+    
+}
+
 extension QuestTask: TaskScoring {
     
     /// Максимальное количество очков, которое возможно набрать, дойдя до лучшей концовки.
     public var maxScore: Int {
         endings.map { $0.score }.max() ?? 0
-    }
-    
-}
-
-public extension QuestTask {
-    
-    /// Сложность задания.
-    var taskDifficulty: TaskDifficulty {
-        TaskDifficulty(rawValue: difficulty)
     }
     
 }

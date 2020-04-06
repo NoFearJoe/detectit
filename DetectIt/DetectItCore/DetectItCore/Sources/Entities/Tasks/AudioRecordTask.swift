@@ -79,10 +79,14 @@ public extension AudioRecordTask {
     
 }
 
-public extension AudioRecordTask {
+extension AudioRecordTask: Task {
+    
+    public var kind: TaskKind {
+        .audiorecord
+    }
     
     /// Сложность задания.
-    var taskDifficulty: TaskDifficulty {
+    public var taskDifficulty: TaskDifficulty {
         TaskDifficulty(rawValue: difficulty)
     }
     

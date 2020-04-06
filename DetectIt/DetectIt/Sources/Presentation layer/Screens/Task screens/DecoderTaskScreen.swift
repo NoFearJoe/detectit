@@ -102,7 +102,7 @@ final class DecoderTaskScreen: Screen {
         let isCorrectAnswer = answer == rightAnswer
         let score = isCorrectAnswer ? task.maxScore : 0
         
-        TaskScore.set(score: score, decoderTaskID: task.id)
+        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
         TaskAnswer.set(answer: answer, decoderTaskID: task.id)
         
         // TODO: Show alert

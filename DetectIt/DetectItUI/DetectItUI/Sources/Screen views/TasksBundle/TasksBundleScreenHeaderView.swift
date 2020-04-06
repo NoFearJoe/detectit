@@ -16,6 +16,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
+    private let totalScoreLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let purchaseView = TasksBundlePurchaseView()
     
@@ -36,15 +37,18 @@ public final class TasksBundleScreenHeaderView: UIView {
     public struct Model {
         let image: UIImage
         let title: String
+        let totalScore: String
         let description: String
         let price: String?
         
         public init(image: UIImage,
                     title: String,
+                    totalScore: String,
                     description: String,
                     price: String?) {
             self.image = image
             self.title = title
+            self.totalScore = totalScore
             self.description = description
             self.price = price
         }
@@ -53,6 +57,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     func configure(model: Model) {
         imageView.image = model.image
         titleLabel.text = model.title
+        totalScoreLabel.attributedText = makeAttributedScoreString(score: model.totalScore)
         descriptionLabel.text = model.description
         purchaseView.setLoading(model.price == nil)
         purchaseView.priceLabel.text = model.price
@@ -106,12 +111,37 @@ public final class TasksBundleScreenHeaderView: UIView {
         descriptionLabel.numberOfLines = 0
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.vOffset),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.hInset),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.hInset),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.vOffset)
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.hInset)
         ])
+        
+        addSubview(totalScoreLabel)
+        
+        totalScoreLabel.font = .bold(20)
+        totalScoreLabel.textColor = .yellow
+        
+        totalScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            totalScoreLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constants.vOffset),
+            totalScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.hInset),
+            totalScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.hInset),
+            totalScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.vOffset)
+        ])
+    }
+    
+    private func makeAttributedScoreString(score: String) -> NSAttributedString {
+        let resultString = NSMutableAttributedString()
+        
+        let prefixString = NSAttributedString(string: "Общий счет  ", attributes: [.font: UIFont.regular(16), .foregroundColor: UIColor.lightGray])
+        let scoreString = NSAttributedString(string: score, attributes: [.font: UIFont.bold(20), .foregroundColor: UIColor.yellow])
+        
+        resultString.append(prefixString)
+        resultString.append(scoreString)
+        
+        return resultString
     }
     
 }

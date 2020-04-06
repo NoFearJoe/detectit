@@ -14,54 +14,33 @@ public struct TaskScore {
     
     // MARK: - Get score
     
-    public static func get(audioRecordTaskID id: String) -> Int? {
-        get(id: id, taskKind: .audiorecord)
+    public static func get(bundleID: String) -> Int? {
+        storage.dictionaryRepresentation()
+            .filter { $0.key.contains(bundleID) }
+            .reduce(0, { $0 + ($1.value as? Int ?? 0) })
     }
     
-    public static func get(extraEvidenceTaskID id: String) -> Int? {
-        get(id: id, taskKind: .extraEvidence)
-    }
-    
-    public static func get(decoderTaskID id: String) -> Int? {
-        get(id: id, taskKind: .cipher)
-    }
-    
-    public static func get(profileTaskID id: String) -> Int? {
-        get(id: id, taskKind: .profile)
-    }
-    
-    public static func get(questTaskID id: String) -> Int? {
-        get(id: id, taskKind: .quest)
-    }
-    
-    private static func get(id: String, taskKind: TaskKind) -> Int? {
-        storage.object(forKey: makeKey(for: id, taskKind: taskKind)) as? Int
+    public static func get(id: String, taskKind: TaskKind, bundleID: String) -> Int? {
+        storage.object(
+            forKey: makeKey(
+                for: id,
+                taskKind: taskKind,
+                bundleID: bundleID
+            )
+        ) as? Int
     }
     
     // MARK: - Set score
     
-    public static func set(score: Int, audioRecordTaskID id: String) {
-        set(value: score, id: id, taskKind: .audiorecord)
-    }
-    
-    public static func set(score: Int, extraEvidenceTaskID id: String) {
-        set(value: score, id: id, taskKind: .extraEvidence)
-    }
-    
-    public static func set(score: Int, decoderTaskID id: String) {
-        set(value: score, id: id, taskKind: .cipher)
-    }
-    
-    public static func set(score: Int, profileTaskID id: String) {
-        set(value: score, id: id, taskKind: .profile)
-    }
-    
-    public static func set(score: Int, questTaskID id: String) {
-        set(value: score, id: id, taskKind: .quest)
-    }
-    
-    private static func set(value: Int, id: String, taskKind: TaskKind) {
-        storage.set(value, forKey: makeKey(for: id, taskKind: taskKind))
+    public static func set(value: Int, id: String, taskKind: TaskKind, bundleID: String) {
+        storage.set(
+            value,
+            forKey: makeKey(
+                for: id,
+                taskKind: taskKind,
+                bundleID: bundleID
+            )
+        )
     }
     
     // MARK: - Utils
@@ -76,8 +55,8 @@ public struct TaskScore {
     
     private static let keyPrefix = "task_score"
     
-    private static func makeKey(for id: String, taskKind: TaskKind) -> String {
-        "\(keyPrefix)_\(taskKind)_\(id)"
+    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String) -> String {
+        "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
     }
     
 }
@@ -213,10 +192,6 @@ public struct TaskAnswer {
         "\(keyPrefix)_\(taskKind)_\(id)"
     }
     
-}
-
-private enum TaskKind: String {
-    case audiorecord, extraEvidence, cipher, profile, quest
 }
 
 private extension UserDefaults {

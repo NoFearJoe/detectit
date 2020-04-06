@@ -59,15 +59,6 @@ final class TasksBundleScreen: Screen {
     override func refresh() {
         super.refresh()
         
-        screenView.configureHeader(
-            model: TasksBundleScreenHeaderView.Model(
-                image: tasksBundleImage,
-                title: tasksBundle.title,
-                description: tasksBundle.description,
-                price: nil // TODO
-            )
-        )
-        
         guard bundle == nil else { return }
         
         placeholderView.setVisible(true, animated: false)
@@ -78,6 +69,19 @@ final class TasksBundleScreen: Screen {
             self.bundle = bundle
             
             if let bundle = bundle {
+                let score = TaskScore.get(bundleID: bundle.info.id) ?? 0
+                let totalScore = "\(score)/\(bundle.maxScore)"
+                
+                self.screenView.configureHeader(
+                    model: TasksBundleScreenHeaderView.Model(
+                        image: self.tasksBundleImage,
+                        title: self.tasksBundle.title,
+                        totalScore: totalScore,
+                        description: self.tasksBundle.description,
+                        price: nil // TODO
+                    )
+                )
+                
                 self.sections = self.makeSections(bundle: bundle)
                 self.screenView.reloadContent()
                 
@@ -159,13 +163,7 @@ private extension TasksBundleScreen {
     
     func setupPlaceholder() {
         view.addSubview(placeholderView)
-        
-        NSLayoutConstraint.activate([
-            placeholderView.topAnchor.constraint(equalTo: screenView.headerView.bottomAnchor),
-            placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            placeholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        placeholderView.pin(to: view)
     }
     
 }

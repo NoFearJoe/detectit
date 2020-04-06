@@ -59,10 +59,14 @@ public extension DecoderTask {
     
 }
 
-public extension DecoderTask {
+extension DecoderTask: Task {
+    
+    public var kind: TaskKind {
+        .cipher
+    }
     
     /// Сложность задания.
-    var taskDifficulty: TaskDifficulty {
+    public var taskDifficulty: TaskDifficulty {
         TaskDifficulty(rawValue: difficulty)
     }
     

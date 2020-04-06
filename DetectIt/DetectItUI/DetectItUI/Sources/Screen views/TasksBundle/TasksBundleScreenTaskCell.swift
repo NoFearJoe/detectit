@@ -136,16 +136,9 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         
-        contentContainer.addArrangedSubview(scoreLabel)
-        
-        scoreLabel.font = .bold(16)
-        scoreLabel.textColor = .green
-        scoreLabel.textAlignment = .right
-        scoreLabel.setContentHuggingPriority(.required, for: .horizontal)
-        scoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
         contentContainer.addArrangedSubview(difficultyView)
         
+        difficultyView.tintColor = .yellow
         difficultyView.contentMode = .center
         
         difficultyView.translatesAutoresizingMaskIntoConstraints = false
@@ -155,8 +148,17 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
             difficultyView.heightAnchor.constraint(equalToConstant: 20)
         ])
         
+        contentContainer.addArrangedSubview(scoreLabel)
+        
+        scoreLabel.font = .bold(16)
+        scoreLabel.textColor = .green
+        scoreLabel.textAlignment = .right
+        scoreLabel.setContentHuggingPriority(.required, for: .horizontal)
+        scoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        
         contentContainer.setCustomSpacing(12, after: iconView)
-        contentContainer.setCustomSpacing(12, after: titleLabel)
+        contentContainer.setCustomSpacing(8, after: titleLabel)
+        contentContainer.setCustomSpacing(12, after: difficultyView)
     }
     
 }

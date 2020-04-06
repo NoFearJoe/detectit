@@ -28,6 +28,8 @@
 		96AAAFEF243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */; };
 		96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF2243B174600F61443 /* TaskDifficulty.swift */; };
 		96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF5243B19CB00F61443 /* TaskScoring.swift */; };
+		96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF9243B5ACE00F61443 /* TaskKind.swift */; };
+		96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFFB243B5B5B00F61443 /* Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidTaskBundlesManagerTests.swift; sourceTree = "<group>"; };
 		96AAAFF2243B174600F61443 /* TaskDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDifficulty.swift; sourceTree = "<group>"; };
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
+		96AAAFF9243B5ACE00F61443 /* TaskKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskKind.swift; sourceTree = "<group>"; };
+		96AAAFFB243B5B5B00F61443 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 				96500E17242BC450005FFC7A /* Tasks */,
 				96500E0E2429FAD8005FFC7A /* TasksBundle.swift */,
 				965AC7F02439A240003A3DC7 /* TaskScore.swift */,
+				96AAAFF9243B5ACE00F61443 /* TaskKind.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				96AAAFF5243B19CB00F61443 /* TaskScoring.swift */,
+				96AAAFFB243B5B5B00F61443 /* Task.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 			files = (
 				961B965F24274C79003EC992 /* QuestTask.swift in Sources */,
 				96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */,
+				96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */,
 				96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */,
 				965AC7E12438CAA1003A3DC7 /* ImageLoader.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
@@ -341,6 +348,7 @@
 				96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */,
 				961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */,
 				965AC7FA243A39C4003A3DC7 /* PaidTaskBundlesManager.swift in Sources */,
+				96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */,
 				961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
