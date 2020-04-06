@@ -21,9 +21,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 1
         let id = "test_audio_record"
         
-        TaskScore.set(score: score, audioRecordTaskID: id)
+        TaskScore.set(value: score, id: id, taskKind: .audiorecord, bundleID: "test")
         
-        let savedScore = TaskScore.get(audioRecordTaskID: id)
+        let savedScore = TaskScore.get(id: id, taskKind: .audiorecord, bundleID: "test")
         XCTAssertEqual(score, savedScore)
     }
     
@@ -31,9 +31,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 2
         let id = "test_extra_evidence"
         
-        TaskScore.set(score: score, extraEvidenceTaskID: id)
+        TaskScore.set(value: score, id: id, taskKind: .extraEvidence, bundleID: "test")
         
-        let savedScore = TaskScore.get(extraEvidenceTaskID: id)
+        let savedScore = TaskScore.get(id: id, taskKind: .extraEvidence, bundleID: "test")
         XCTAssertEqual(score, savedScore)
     }
     
@@ -41,9 +41,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 3
         let id = "test_cipher"
         
-        TaskScore.set(score: score, decoderTaskID: id)
+        TaskScore.set(value: score, id: id, taskKind: .cipher, bundleID: "test")
         
-        let savedScore = TaskScore.get(decoderTaskID: id)
+        let savedScore = TaskScore.get(id: id, taskKind: .cipher, bundleID: "test")
         XCTAssertEqual(score, savedScore)
     }
     
@@ -51,9 +51,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 4
         let id = "test_profile"
         
-        TaskScore.set(score: score, profileTaskID: id)
+        TaskScore.set(value: score, id: id, taskKind: .profile, bundleID: "test")
         
-        let savedScore = TaskScore.get(profileTaskID: id)
+        let savedScore = TaskScore.get(id: id, taskKind: .profile, bundleID: "test")
         XCTAssertEqual(score, savedScore)
     }
     
@@ -61,9 +61,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 5
         let id = "test_quest"
         
-        TaskScore.set(score: score, questTaskID: id)
+        TaskScore.set(value: score, id: id, taskKind: .quest, bundleID: "test")
         
-        let savedScore = TaskScore.get(questTaskID: id)
+        let savedScore = TaskScore.get(id: id, taskKind: .quest, bundleID: "test")
         XCTAssertEqual(score, savedScore)
     }
     
