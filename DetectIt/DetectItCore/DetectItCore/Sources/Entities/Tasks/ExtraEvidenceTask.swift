@@ -17,6 +17,8 @@ public struct ExtraEvidenceTask: Codable {
     /// Название задания.
     public let title: String
     
+    let difficulty: Int
+    
     /// Список изображений с уликами.
     let evidencePictures: [EvidencePicture]
     
@@ -61,6 +63,24 @@ public extension ExtraEvidenceTask {
         TasksBundleMap
             .extraEvidenceDirectoryURL(id: id, bundleID: bundleID)?
             .appendingPathComponent(picture.pictureName)
+    }
+    
+}
+
+public extension ExtraEvidenceTask {
+    
+    /// Сложность задания.
+    var taskDifficulty: TaskDifficulty {
+        TaskDifficulty(rawValue: difficulty)
+    }
+    
+}
+
+extension ExtraEvidenceTask: TaskScoring {
+    
+    /// Количество очков за правильный ответ.
+    public var maxScore: Int {
+        difficulty
     }
     
 }

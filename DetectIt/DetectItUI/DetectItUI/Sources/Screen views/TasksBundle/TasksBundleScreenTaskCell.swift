@@ -18,6 +18,7 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
     private let iconView = UIImageView()
     private let titleLabel = UILabel()
     private let scoreLabel = UILabel()
+    private let difficultyView = UIImageView()
     
     // MARK: - Init
     
@@ -37,15 +38,18 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         let icon: UIImage?
         let title: String
         let score: (value: String, color: UIColor)?
+        let difficultyImage: UIImage?
         let isEnabled: Bool
         
         public init(icon: UIImage? = nil,
                     title: String,
                     score: (String, UIColor)?,
+                    difficultyImage: UIImage?,
                     isEnabled: Bool) {
             self.icon = icon
             self.title = title
             self.score = score
+            self.difficultyImage = difficultyImage
             self.isEnabled = isEnabled
         }
     }
@@ -59,6 +63,9 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         scoreLabel.text = model.score?.value
         scoreLabel.textColor = model.score?.color
         scoreLabel.isHidden = model.score == nil
+        
+        difficultyView.image = model.difficultyImage
+        difficultyView.isHidden = model.difficultyImage == nil
         
         iconView.alpha = model.isEnabled ? 1 : 0.75
         titleLabel.alpha = model.isEnabled ? 1 : 0.75
@@ -136,6 +143,17 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         scoreLabel.textAlignment = .right
         scoreLabel.setContentHuggingPriority(.required, for: .horizontal)
         scoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        
+        contentContainer.addArrangedSubview(difficultyView)
+        
+        difficultyView.contentMode = .center
+        
+        difficultyView.translatesAutoresizingMaskIntoConstraints = false
+        difficultyView.setContentHuggingPriority(.required, for: .horizontal)
+        difficultyView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        NSLayoutConstraint.activate([
+            difficultyView.heightAnchor.constraint(equalToConstant: 20)
+        ])
         
         contentContainer.setCustomSpacing(12, after: iconView)
         contentContainer.setCustomSpacing(12, after: titleLabel)

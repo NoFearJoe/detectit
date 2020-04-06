@@ -20,6 +20,11 @@ public struct DecoderTask: Codable {
     /// Вводные данные.
     public let preposition: String
     
+    let difficulty: Int
+    
+    /// Количество очков за правильный ответ (1-5).
+    let score: Int
+    
     /// Название закодированного изображения.
     let encodedPictureName: String
     
@@ -50,6 +55,24 @@ public extension DecoderTask {
         TasksBundleMap
             .cipherDirectoryURL(id: id, bundleID: bundleID)?
             .appendingPathComponent(encodedPictureName)
+    }
+    
+}
+
+public extension DecoderTask {
+    
+    /// Сложность задания.
+    var taskDifficulty: TaskDifficulty {
+        TaskDifficulty(rawValue: difficulty)
+    }
+    
+}
+
+extension DecoderTask: TaskScoring {
+    
+    /// Максимальное количество очков, которое можно получить за правильный ответ.
+    public var maxScore: Int {
+        score
     }
     
 }

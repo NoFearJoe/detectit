@@ -85,3 +85,20 @@ public struct TasksBundle {
     }
     
 }
+
+public extension TasksBundle {
+    
+    /// Максимальное количество очков, которое можно получить за правильное решение всех заданий.
+    var maxScore: Int {
+        [
+            audiorecordTasks as [TaskScoring],
+            extraEvidenceTasks,
+            decoderTasks,
+            profileTasks,
+            questTasks
+        ].reduce(0, {
+            $0 + $1.reduce(0, { $0 + $1.maxScore })
+        })
+    }
+    
+}

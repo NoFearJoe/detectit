@@ -59,6 +59,7 @@
 		965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */; };
 		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
 		96AAAFF1243B093600F61443 /* ScreenPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */; };
+		96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
 		96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPlaceholderView.swift; sourceTree = "<group>"; };
+		96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskDifficulty+Icon.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				965AC79B24365163003A3DC7 /* UIColor+Overlay.swift */,
 				965AC79D243652C2003A3DC7 /* UIImage+Resize.swift */,
 				965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */,
+				96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */,
 				965AC7B724388F2A003A3DC7 /* TasksBundleScreenTaskCell.swift in Sources */,
 				965AC7DE2438C704003A3DC7 /* StackViewControllerChild.swift in Sources */,
+				96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */,
 				96500E6A2430C03B005FFC7A /* EvidenceCell.swift in Sources */,

@@ -23,6 +23,11 @@ public struct QuestTask: Codable {
     /// Главы квеста.
     public let chapters: [Chapter]
     
+    /// Концовки квеста.
+    public let endings: [Ending]
+    
+    let difficulty: Int
+    
 }
 
 public extension QuestTask {
@@ -66,7 +71,7 @@ public extension QuestTask.Chapter {
     
 }
 
-public extension QuestTask.Chapter {
+public extension QuestTask {
 
     /// Концовка квеста.
     struct Ending: Codable {
@@ -77,9 +82,27 @@ public extension QuestTask.Chapter {
         /// Текст концовки.
         public let text: String
         
-        /// Счет в процентах, который набрал игрок (0-100).
+        /// Количество очков за достижение этой концовки.
         public let score: Int
         
     }
 
+}
+
+extension QuestTask: TaskScoring {
+    
+    /// Максимальное количество очков, которое возможно набрать, дойдя до лучшей концовки.
+    public var maxScore: Int {
+        endings.map { $0.score }.max() ?? 0
+    }
+    
+}
+
+public extension QuestTask {
+    
+    /// Сложность задания.
+    var taskDifficulty: TaskDifficulty {
+        TaskDifficulty(rawValue: difficulty)
+    }
+    
 }

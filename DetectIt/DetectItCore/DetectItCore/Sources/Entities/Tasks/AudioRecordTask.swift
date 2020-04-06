@@ -17,6 +17,8 @@ public struct AudioRecordTask: Codable {
     /// Название задания.
     public let title: String
     
+    let difficulty: Int
+    
     /// Название аудиофайла для проигрывания.
     let audioFileName: String
     
@@ -73,6 +75,28 @@ public extension AudioRecordTask {
         TasksBundleMap
             .dictionariesDirectoryURL(bundleID: bundleID)?
             .appendingPathComponent(crimePlacesDictionary)
+    }
+    
+}
+
+public extension AudioRecordTask {
+    
+    /// Сложность задания.
+    var taskDifficulty: TaskDifficulty {
+        TaskDifficulty(rawValue: difficulty)
+    }
+    
+}
+
+extension AudioRecordTask: TaskScoring {
+    
+    public var scoreForCrimeType: Int { 1 }
+    public var scoreForCrimePlace: Int { 1 }
+    public var scoreForCriminalsCount: Int { 1 }
+    
+    /// Максимальное количество очков за верные ответы.
+    public var maxScore: Int {
+        scoreForCrimeType + scoreForCrimePlace + scoreForCriminalsCount
     }
     
 }

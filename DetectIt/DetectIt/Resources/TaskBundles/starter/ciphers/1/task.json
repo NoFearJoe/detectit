@@ -2,6 +2,8 @@
   "id": "1",
   "title": "Тест",
   "preposition": "Far far away",
+  "difficulty": 1,
+  "score": 1,
   "encodedPictureName": "pic1.png",
   "answer": {
     "crimeDescription": "Что-то произошло",

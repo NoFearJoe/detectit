@@ -14,53 +14,53 @@ public struct TaskScore {
     
     // MARK: - Get score
     
-    public static func get(audioRecordTaskID id: String) -> Float? {
+    public static func get(audioRecordTaskID id: String) -> Int? {
         get(id: id, taskKind: .audiorecord)
     }
     
-    public static func get(extraEvidenceTaskID id: String) -> Bool? {
+    public static func get(extraEvidenceTaskID id: String) -> Int? {
         get(id: id, taskKind: .extraEvidence)
     }
     
-    public static func get(decoderTaskID id: String) -> Bool? {
+    public static func get(decoderTaskID id: String) -> Int? {
         get(id: id, taskKind: .cipher)
     }
     
-    public static func get(profileTaskID id: String) -> Float? {
+    public static func get(profileTaskID id: String) -> Int? {
         get(id: id, taskKind: .profile)
     }
     
-    public static func get(questTaskID id: String) -> Float? {
+    public static func get(questTaskID id: String) -> Int? {
         get(id: id, taskKind: .quest)
     }
     
-    private static func get<T>(id: String, taskKind: TaskKind) -> T? {
-        storage.object(forKey: makeKey(for: id, taskKind: taskKind)) as? T
+    private static func get(id: String, taskKind: TaskKind) -> Int? {
+        storage.object(forKey: makeKey(for: id, taskKind: taskKind)) as? Int
     }
     
     // MARK: - Set score
     
-    public static func set(score: Float, audioRecordTaskID id: String) {
+    public static func set(score: Int, audioRecordTaskID id: String) {
         set(value: score, id: id, taskKind: .audiorecord)
     }
     
-    public static func set(score: Bool, extraEvidenceTaskID id: String) {
+    public static func set(score: Int, extraEvidenceTaskID id: String) {
         set(value: score, id: id, taskKind: .extraEvidence)
     }
     
-    public static func set(score: Bool, decoderTaskID id: String) {
+    public static func set(score: Int, decoderTaskID id: String) {
         set(value: score, id: id, taskKind: .cipher)
     }
     
-    public static func set(score: Float, profileTaskID id: String) {
+    public static func set(score: Int, profileTaskID id: String) {
         set(value: score, id: id, taskKind: .profile)
     }
     
-    public static func set(score: Float, questTaskID id: String) {
+    public static func set(score: Int, questTaskID id: String) {
         set(value: score, id: id, taskKind: .quest)
     }
     
-    private static func set<T>(value: T, id: String, taskKind: TaskKind) {
+    private static func set(value: Int, id: String, taskKind: TaskKind) {
         storage.set(value, forKey: makeKey(for: id, taskKind: taskKind))
     }
     

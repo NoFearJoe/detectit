@@ -18,7 +18,7 @@ final class TaskScoreTests: XCTestCase {
     }
     
     func testThatAudioRecordScoreStoresCorrectly() {
-        let score = Float(0.5)
+        let score = 1
         let id = "test_audio_record"
         
         TaskScore.set(score: score, audioRecordTaskID: id)
@@ -28,7 +28,7 @@ final class TaskScoreTests: XCTestCase {
     }
     
     func testThatExtraEvidenceScoreStoresCorrectly() {
-        let score = true
+        let score = 2
         let id = "test_extra_evidence"
         
         TaskScore.set(score: score, extraEvidenceTaskID: id)
@@ -38,7 +38,7 @@ final class TaskScoreTests: XCTestCase {
     }
     
     func testThatCipherScoreStoresCorrectly() {
-        let score = true
+        let score = 3
         let id = "test_cipher"
         
         TaskScore.set(score: score, decoderTaskID: id)
@@ -48,7 +48,7 @@ final class TaskScoreTests: XCTestCase {
     }
     
     func testThatProfileScoreStoresCorrectly() {
-        let score = Float(0.95)
+        let score = 4
         let id = "test_profile"
         
         TaskScore.set(score: score, profileTaskID: id)
@@ -58,7 +58,7 @@ final class TaskScoreTests: XCTestCase {
     }
     
     func testThatQuestScoreStoresCorrectly() {
-        let score = Float(0.25)
+        let score = 5
         let id = "test_quest"
         
         TaskScore.set(score: score, questTaskID: id)

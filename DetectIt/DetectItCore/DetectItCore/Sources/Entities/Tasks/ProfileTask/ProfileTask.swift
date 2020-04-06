@@ -29,4 +29,24 @@ public struct ProfileTask: Codable {
     /// Список вопросов.
     public let questions: [Question]
     
+    let difficulty: Int
+    
+}
+
+extension ProfileTask: TaskScoring {
+    
+    /// Максимальное возможное количество очков за правильные ответы.
+    public var maxScore: Int {
+        questions.reduce(0, { $0 + $1.score })
+    }
+    
+}
+
+public extension ProfileTask {
+    
+    /// Сложность задания.
+    var taskDifficulty: TaskDifficulty {
+        TaskDifficulty(rawValue: difficulty)
+    }
+    
 }

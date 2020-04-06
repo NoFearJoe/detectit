@@ -75,58 +75,75 @@ extension TasksBundleScreen {
     }
     
     private func map(task: AudioRecordTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(audioRecordTaskID: task.id).map(makeScoreString)
+        let score = TaskScore.get(audioRecordTaskID: task.id)
+        let scoreString = makeScoreString(score: score, max: task.maxScore)
+        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
         
         return TasksBundleScreenTaskCell.Model(
             title: task.title,
-            score: score,
+            score: scoreString,
+            difficultyImage: difficultyImage,
             isEnabled: score == nil
         )
     }
     
     private func map(task: ExtraEvidenceTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(extraEvidenceTaskID: task.id).map(makeScoreString)
+        let score = TaskScore.get(extraEvidenceTaskID: task.id)
+        let scoreString = makeScoreString(score: score, max: task.maxScore)
+        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
         
         return TasksBundleScreenTaskCell.Model(
             title: task.title,
-            score: score,
+            score: scoreString,
+            difficultyImage: difficultyImage,
             isEnabled: score == nil
         )
     }
     
     private func map(task: DecoderTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(decoderTaskID: task.id).map(makeScoreString)
+        let score = TaskScore.get(decoderTaskID: task.id)
+        let scoreString = makeScoreString(score: score, max: task.maxScore)
+        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
         
         return TasksBundleScreenTaskCell.Model(
             title: task.title,
-            score: score,
+            score: scoreString,
+            difficultyImage: difficultyImage,
             isEnabled: score == nil
         )
     }
     
     private func map(task: ProfileTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(profileTaskID: task.id).map(makeScoreString)
+        let score = TaskScore.get(profileTaskID: task.id)
+        let scoreString = makeScoreString(score: score, max: task.maxScore)
+        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
         
         return TasksBundleScreenTaskCell.Model(
             title: task.title,
-            score: score,
+            score: scoreString,
+            difficultyImage: difficultyImage,
             isEnabled: score == nil
         )
     }
     
     private func map(task: QuestTask) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(questTaskID: task.id).map(makeScoreString)
+        let score = TaskScore.get(questTaskID: task.id)
+        let scoreString = makeScoreString(score: score, max: task.maxScore)
+        let difficultyImage = score == nil ? task.taskDifficulty.icon : nil
         
         return TasksBundleScreenTaskCell.Model(
             title: task.title,
-            score: score,
+            score: scoreString,
+            difficultyImage: difficultyImage,
             isEnabled: score == nil
         )
     }
     
-    private func makeScoreString(score: Float) -> (String, UIColor) {
+    private func makeScoreString(score: Int?, max: Int) -> (String, UIColor)? {
+        guard let score = score else { return nil }
+        
         let color: UIColor = {
-            switch score {
+            switch Float(score) / Float(max) {
             case ..<(0.4):
                 return .red
             case (0.4)..<0.75:
@@ -136,12 +153,12 @@ extension TasksBundleScreen {
             }
         }()
         
-        return ("\(score * 100)%", color)
+        return ("\(score)/\(max)", color)
     }
     
-    private func makeScoreString(score: Bool) -> (String, UIColor) {
-        (score ? "Разгадано" : "Провалено", score ? .green : .red)
-    }
+//    private func makeScoreString(score: Bool) -> (String, UIColor) {
+//        (score ? "Разгадано" : "Провалено", score ? .green : .red)
+//    }
     
 }
 

@@ -11,11 +11,11 @@ import XCTest
 
 final class TaskBundlesConsistencyTests: XCTestCase {
     
-    private let taskBundles = TasksBundles.allCases
-
+    private let taskBundles = ["starter"]
+    
     func testThatAllTaskBundleDirectoriesIsExists() {
         taskBundles.forEach {
-            guard let bundleMap = try? TasksBundleMap(bundleID: $0.rawValue) else {
+            guard let bundleMap = try? TasksBundleMap(bundleID: $0) else {
                 return XCTFail("The bundlemap is not exists")
             }
             
@@ -58,15 +58,15 @@ final class TaskBundlesConsistencyTests: XCTestCase {
     
     func testThatTaskBundlesLoadsSuccessfully() {
         taskBundles.forEach { bundle in
-            guard let bundleMap = try? TasksBundleMap(bundleID: bundle.rawValue) else {
+            guard let bundleMap = try? TasksBundleMap(bundleID: bundle) else {
                 return XCTFail("The bundlemap is not exists")
             }
             
-            let exp = expectation(description: bundle.rawValue)
+            let exp = expectation(description: bundle)
             
-            TasksBundle.load(bundleID: bundle.rawValue) { tasksBundle in
+            TasksBundle.load(bundleID: bundle) { tasksBundle in
                 guard let tasksBundle = tasksBundle else {
-                    return XCTFail("A tasks bundle \(bundle.rawValue) was not loaded")
+                    return XCTFail("A tasks bundle \(bundle) was not loaded")
                 }
                 
                 XCTAssertTrue(
@@ -101,18 +101,18 @@ final class TaskBundlesConsistencyTests: XCTestCase {
     
     func testThatTaskBundlesContainsAllNeededResources() {
         taskBundles.forEach { bundle in
-            let exp = expectation(description: bundle.rawValue)
+            let exp = expectation(description: bundle)
             
-            TasksBundle.load(bundleID: bundle.rawValue) { tasksBundle in
+            TasksBundle.load(bundleID: bundle) { tasksBundle in
                 guard let tasksBundle = tasksBundle else {
-                    return XCTFail("A tasks bundle \(bundle.rawValue) was not loaded")
+                    return XCTFail("A tasks bundle \(bundle) was not loaded")
                 }
                 
                 // Проверка на то, что для всех аудиозаписей есть файлы
                 tasksBundle.audiorecordTasks.forEach {
                     
                     // Проверка наличия словаря с типами преступлений
-                    if let crimeTypesDictionaryURL = $0.crimeTypesDictionaryURL(bundleID: bundle.rawValue) {
+                    if let crimeTypesDictionaryURL = $0.crimeTypesDictionaryURL(bundleID: bundle) {
                         XCTAssertTrue(
                             FileManager.default.fileExists(atPath: crimeTypesDictionaryURL.path),
                             "The audio file is not exists at \(crimeTypesDictionaryURL.path)"
@@ -122,7 +122,7 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     }
                     
                     // Проверка наличия словаря с местами преступлений
-                    if let crimePlacesDictionaryURL = $0.crimePlacesDictionaryURL(bundleID: bundle.rawValue) {
+                    if let crimePlacesDictionaryURL = $0.crimePlacesDictionaryURL(bundleID: bundle) {
                         XCTAssertTrue(
                             FileManager.default.fileExists(atPath: crimePlacesDictionaryURL.path),
                             "The audio file is not exists at \(crimePlacesDictionaryURL.path)"
@@ -132,7 +132,7 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     }
                     
                     // Проверка наличия файла с аудиозаписью
-                    if let url = $0.audioFileURL(bundleID: bundle.rawValue) {
+                    if let url = $0.audioFileURL(bundleID: bundle) {
                         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The audio file is not exists at \(url.path)")
                     } else {
                         XCTFail("The audio file URL is nil for audio named \($0.audioFileName)")
@@ -142,7 +142,7 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                 
                 // Проверка на то, что для всех шифров есть файлы
                 tasksBundle.decoderTasks.forEach {
-                    guard let url = $0.encodedPictureURL(bundleID: bundle.rawValue) else {
+                    guard let url = $0.encodedPictureURL(bundleID: bundle) else {
                         return XCTFail("The encoded picture file URL is nil for file named \($0.encodedPictureName)")
                     }
                     
@@ -151,7 +151,7 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                 
                 // Проверка на то, что для всех улик есть файлы
                 tasksBundle.extraEvidenceTasks.forEach { extraEvidence in
-                    let extraEvidenceURLs = extraEvidence.evidencePictures.compactMap { extraEvidence.evidencePictureURL(picture: $0, bundleID: bundle.rawValue) }
+                    let extraEvidenceURLs = extraEvidence.evidencePictures.compactMap { extraEvidence.evidencePictureURL(picture: $0, bundleID: bundle) }
                     
                     XCTAssertTrue(
                         extraEvidenceURLs.count == extraEvidence.evidencePictures.count,
@@ -168,7 +168,7 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     
                     // Проверка приложений к профайлу.
                     profileTask.attachments.forEach {
-                        guard let url = profileTask.attachmentURL(attachment: $0, bundleID: bundle.rawValue) else {
+                        guard let url = profileTask.attachmentURL(attachment: $0, bundleID: bundle) else {
                             switch $0.kind {
                             case .audio:
                                 return XCTFail("The attachment file URL is nil for file named \($0.audioFileName!)")
@@ -182,8 +182,8 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     
                     // Проверка кейсов
                     profileTask.cases.forEach {
-                        guard let pictureName = $0.pictureName else { return }
-                        guard let url = profileTask.casePictureURL(case: $0, bundleID: bundle.rawValue) else {
+                        guard let pictureName = $0.evidencePicture?.pictureName else { return }
+                        guard let url = profileTask.casePictureURL(case: $0, bundleID: bundle) else {
                             return XCTFail("The case picture file URL is nil for file named \(pictureName)")
                         }
                         
@@ -192,7 +192,7 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     
                     // Проверка ответов с выбором из словаря
                     profileTask.questions.compactMap { $0.variantFromDictionary }.forEach {
-                        guard let url = profileTask.variantsDictionaryURL(question: $0, bundleID: bundle.rawValue) else {
+                        guard let url = profileTask.variantsDictionaryURL(question: $0, bundleID: bundle) else {
                             return XCTFail("The case picture file URL is nil for file named \($0.dictionaryName)")
                         }
                         
