@@ -23,7 +23,7 @@ public final class TasksBundleScreenView: UIView {
     // MARK: - Subviews
     
     private let closeButton = SolidButton.closeButton()
-    private let headerView = TasksBundleScreenHeaderView()
+    public let headerView = TasksBundleScreenHeaderView()
     private let contentView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()

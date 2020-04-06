@@ -6,5 +6,6 @@
         <page name='EvidenceListView'/>
         <page name='ProfileView'/>
         <page name='TasksBundleCell'/>
+        <page name='ScreenPlaceholderView'/>
     </pages>
 </playground>

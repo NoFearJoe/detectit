@@ -16,6 +16,8 @@ final class MainScreen: Screen {
         view as! MainScreenView
     }
     
+    private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: false)
+    
     // MARK: - State
     
     private var taskBundles: [TasksBundle.Info] = []
@@ -26,6 +28,9 @@ final class MainScreen: Screen {
     
     override func loadView() {
         view = MainScreenView(delegate: self)
+        
+        view.addSubview(placeholderView)
+        placeholderView.pin(to: view)
     }
     
     override func prepare() {
@@ -35,8 +40,11 @@ final class MainScreen: Screen {
         
         PaidTaskBundlesManager.obtainProductsInfo()
         
-        // TODO: Loader
+        placeholderView.setVisible(true, animated: false)
+        
         MainScreenDataLoader.loadData { data in
+            self.placeholderView.setVisible(false, animated: true)
+            
             guard let data = data else {
                 // TODO: Error
                 return

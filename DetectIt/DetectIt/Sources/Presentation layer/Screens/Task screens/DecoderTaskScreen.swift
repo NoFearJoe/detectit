@@ -14,6 +14,8 @@ final class DecoderTaskScreen: Screen {
     
     // MARK: - Subviews
     
+    private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: true)
+    
     private let contentContainer = StackViewController()
     
     private let closeButton = SolidButton.closeButton()
@@ -67,10 +69,11 @@ final class DecoderTaskScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        displayContent(encodedPicture: UIImage.asset(named: "Test")!) // TODO
+        placeholderView.setVisible(true, animated: false)
         
-        // Show loader (skeleton)
         loadData { [weak self] image in
+            self?.placeholderView.setVisible(false, animated: true)
+            
             guard let image = image else {
                 // TODO: Show error placeholder
                 return
@@ -162,6 +165,8 @@ final class DecoderTaskScreen: Screen {
     }
     
     private func setupViews() {
+        setupPlaceholderView()
+        
         view.addSubview(closeButton)
         
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
@@ -198,6 +203,11 @@ final class DecoderTaskScreen: Screen {
         answerButton.isEnabled = false
         answerButton.setTitle("Отправить ответ", for: .normal) // TODO
         answerButton.addTarget(self, action: #selector(didTapAnswerButton), for: .touchUpInside)
+    }
+    
+    func setupPlaceholderView() {
+        view.addSubview(placeholderView)
+        placeholderView.pin(to: view)
     }
     
     func setupKeyboardManager() {

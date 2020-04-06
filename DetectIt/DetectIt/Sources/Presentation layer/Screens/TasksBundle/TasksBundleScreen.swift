@@ -16,6 +16,8 @@ final class TasksBundleScreen: Screen {
         view as! TasksBundleScreenView
     }
     
+    private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: true)
+    
     // MARK: - Init
     
     private let tasksBundle: TasksBundle.Info
@@ -46,6 +48,8 @@ final class TasksBundleScreen: Screen {
     
     override func loadView() {
         view = TasksBundleScreenView(delegate: self)
+        
+        setupPlaceholder()
     }
     
     override func prepare() {
@@ -66,7 +70,8 @@ final class TasksBundleScreen: Screen {
         
         guard bundle == nil else { return }
         
-        // TODO: Loader
+        placeholderView.setVisible(true, animated: false)
+        
         TasksBundle.load(bundleID: tasksBundle.id) { [weak self] bundle in
             guard let self = self else { return }
             
@@ -75,6 +80,8 @@ final class TasksBundleScreen: Screen {
             if let bundle = bundle {
                 self.sections = self.makeSections(bundle: bundle)
                 self.screenView.reloadContent()
+                
+                self.placeholderView.setVisible(false, animated: true)
             }
         }
     }
@@ -144,6 +151,21 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         screen.modalTransitionStyle = .crossDissolve
         
         present(screen, animated: true, completion: nil)
+    }
+    
+}
+
+private extension TasksBundleScreen {
+    
+    func setupPlaceholder() {
+        view.addSubview(placeholderView)
+        
+        NSLayoutConstraint.activate([
+            placeholderView.topAnchor.constraint(equalTo: screenView.headerView.bottomAnchor),
+            placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            placeholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
 }

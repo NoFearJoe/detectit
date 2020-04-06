@@ -58,6 +58,7 @@
 		965AC7E82438E611003A3DC7 /* QuestionAndAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */; };
 		965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */; };
 		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
+		96AAAFF1243B093600F61443 /* ScreenPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAndAnswerView.swift; sourceTree = "<group>"; };
 		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
+		96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPlaceholderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +307,7 @@
 				96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */,
 				965AC78F24364D39003A3DC7 /* TasksBundlePurchaseView.swift */,
 				965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */,
+				96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */,
+				96AAAFF1243B093600F61443 /* ScreenPlaceholderView.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
 				96500E752431D31F005FFC7A /* EvidenceListView.swift in Sources */,
 				965AC7DF2438C704003A3DC7 /* StackViewController.swift in Sources */,
