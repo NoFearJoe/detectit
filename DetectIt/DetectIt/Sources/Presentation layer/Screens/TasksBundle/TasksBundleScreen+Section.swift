@@ -87,13 +87,13 @@ extension TasksBundleScreen {
     }
     
     private func makeScoreString(score: Int?, max: Int) -> (String, UIColor) {
-        let score = score ?? 0
-        
         let color: UIColor = {
-            switch Float(score) / Float(max) {
-            case ...0:
+            guard let score = score else {
                 return .lightGray
-            case (0.0)..<(0.4):
+            }
+            
+            switch Float(score) / Float(max) {
+            case ..<(0.4):
                 return .red
             case (0.4)..<0.75:
                 return .orange
@@ -102,7 +102,7 @@ extension TasksBundleScreen {
             }
         }()
         
-        return ("\(score)/\(max)", color)
+        return ("\(score ?? 0)/\(max)", color)
     }
     
 }

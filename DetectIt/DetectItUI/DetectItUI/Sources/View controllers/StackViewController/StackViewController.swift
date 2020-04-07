@@ -115,18 +115,22 @@ open class StackViewController: UIViewController {
         viewControllers.remove(at: index)
     }
     
-    public final func setChildHidden(_ child: StackViewControllerChild, hidden: Bool, animated: Bool) {
+    public final func setChildHidden(
+        _ child: StackViewControllerChild,
+        hidden: Bool,
+        animated: Bool,
+        animationDuration: TimeInterval = 0.3
+    ) {
         let childViewController = child.asViewController
         
         let hideChild = {
-            childViewController.view.isHidden = hidden
+            childViewController.view.alpha = hidden ? 0 : 1
         }
         
-        if animated {
-            UIView.animate(withDuration: 0.3, animations: hideChild)
-        } else {
-            hideChild()
-        }
+        childViewController.view.alpha = hidden ? 1 : 0
+        childViewController.view.isHidden = hidden
+        
+        UIView.animate(withDuration: animated ? animationDuration : 0, animations: hideChild)
     }
     
 }

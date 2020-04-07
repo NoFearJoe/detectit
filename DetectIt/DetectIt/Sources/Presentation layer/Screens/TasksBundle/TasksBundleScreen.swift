@@ -59,7 +59,12 @@ final class TasksBundleScreen: Screen {
     override func refresh() {
         super.refresh()
         
-        guard bundle == nil else { return }
+        guard bundle == nil else {
+            reloadHeader(bundle: bundle!)
+            reloadContent(bundle: bundle!)
+            
+            return
+        }
         
         placeholderView.setVisible(true, animated: false)
         
@@ -69,21 +74,8 @@ final class TasksBundleScreen: Screen {
             self.bundle = bundle
             
             if let bundle = bundle {
-                let score = TaskScore.get(bundleID: bundle.info.id) ?? 0
-                let totalScore = "\(score)/\(bundle.maxScore)"
-                
-                self.screenView.configureHeader(
-                    model: TasksBundleScreenHeaderView.Model(
-                        image: self.tasksBundleImage,
-                        title: self.tasksBundle.title,
-                        totalScore: totalScore,
-                        description: self.tasksBundle.description,
-                        price: nil // TODO
-                    )
-                )
-                
-                self.sections = self.makeSections(bundle: bundle)
-                self.screenView.reloadContent()
+                self.reloadHeader(bundle: bundle)
+                self.reloadContent(bundle: bundle)
                 
                 self.placeholderView.setVisible(false, animated: true)
             }
@@ -164,6 +156,26 @@ private extension TasksBundleScreen {
     func setupPlaceholder() {
         view.addSubview(placeholderView)
         placeholderView.pin(to: view)
+    }
+    
+    func reloadHeader(bundle: TasksBundle) {
+        let score = TaskScore.get(bundleID: bundle.info.id) ?? 0
+        let totalScore = "\(score)/\(bundle.maxScore)"
+        
+        self.screenView.configureHeader(
+            model: TasksBundleScreenHeaderView.Model(
+                image: self.tasksBundleImage,
+                title: self.tasksBundle.title,
+                totalScore: totalScore,
+                description: self.tasksBundle.description,
+                price: nil // TODO
+            )
+        )
+    }
+    
+    func reloadContent(bundle: TasksBundle) {
+        sections = self.makeSections(bundle: bundle)
+        screenView.reloadContent()
     }
     
 }

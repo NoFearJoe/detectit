@@ -128,7 +128,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         contentView.addSubview(titleLabel)
         
-        titleLabel.font = .bold(32)
+        titleLabel.font = .heading1
         titleLabel.textColor = Constants.tintColor
         titleLabel.numberOfLines = 0
         
@@ -155,7 +155,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         bottomContainerView.addSubview(descriptionLabel)
         
-        descriptionLabel.font = .regular(14)
+        descriptionLabel.font = .text4
         descriptionLabel.textColor = Constants.tintColor
         descriptionLabel.numberOfLines = 5
         

@@ -132,7 +132,7 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         
         contentContainer.addArrangedSubview(titleLabel)
         
-        titleLabel.font = .regular(16)
+        titleLabel.font = .text3
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         
@@ -150,7 +150,7 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         
         contentContainer.addArrangedSubview(scoreLabel)
         
-        scoreLabel.font = .bold(16)
+        scoreLabel.font = .score2
         scoreLabel.textColor = .green
         scoreLabel.textAlignment = .right
         scoreLabel.setContentHuggingPriority(.required, for: .horizontal)

@@ -46,6 +46,10 @@ public final class QuestionAndAnswerView: UIView {
         questionLabel.text = model.question
     }
     
+    public func highlight(isCorrect: Bool, animated: Bool, animationDuration: TimeInterval) {
+        answerField.highlight(isCorrect: isCorrect, animated: animated, animationDuration: animationDuration)
+    }
+    
     // MARK: - Setup
     
     private func setupViews() {
@@ -53,7 +57,7 @@ public final class QuestionAndAnswerView: UIView {
         
         addSubview(questionLabel)
         
-        questionLabel.font = .bold(20)
+        questionLabel.font = .heading4
         questionLabel.textColor = .white
         questionLabel.numberOfLines = 0
         

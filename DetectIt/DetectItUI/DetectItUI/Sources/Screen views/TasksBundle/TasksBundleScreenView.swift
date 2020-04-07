@@ -122,7 +122,7 @@ public final class TasksBundleScreenView: UIView {
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12),
             closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
     }

@@ -60,6 +60,9 @@
 		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
 		96AAAFF1243B093600F61443 /* ScreenPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */; };
 		96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */; };
+		96AAB000243B6F4100F61443 /* DecoderTaskScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFFF243B6F4100F61443 /* DecoderTaskScreenView.swift */; };
+		96AAB004243B89CA00F61443 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB003243B89CA00F61443 /* AlertPresenter.swift */; };
+		96AAB006243B932D00F61443 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB005243B932D00F61443 /* AnswerButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +121,9 @@
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
 		96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPlaceholderView.swift; sourceTree = "<group>"; };
 		96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskDifficulty+Icon.swift"; sourceTree = "<group>"; };
+		96AAAFFF243B6F4100F61443 /* DecoderTaskScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskScreenView.swift; sourceTree = "<group>"; };
+		96AAB003243B89CA00F61443 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		96AAB005243B932D00F61443 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +197,7 @@
 				965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */,
 				965AC7B82438A017003A3DC7 /* FloatingViewVisibilityManager.swift */,
 				965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */,
+				96AAB003243B89CA00F61443 /* AlertPresenter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -257,6 +264,7 @@
 		96500E732431D2E4005FFC7A /* Screen views */ = {
 			isa = PBXGroup;
 			children = (
+				96AAAFFD243B6F2300F61443 /* Tasks */,
 				965AC7B124388AAF003A3DC7 /* Main */,
 				965AC7B224388AD7003A3DC7 /* TasksBundle */,
 				96500E742431D31F005FFC7A /* EvidenceListView.swift */,
@@ -298,6 +306,7 @@
 				965AC79324364E86003A3DC7 /* SolidButton.swift */,
 				965AC7A424387031003A3DC7 /* BlurView.swift */,
 				965AC7E52438E431003A3DC7 /* AnswerField.swift */,
+				96AAB005243B932D00F61443 /* AnswerButton.swift */,
 			);
 			path = "Single views";
 			sourceTree = "<group>";
@@ -359,6 +368,22 @@
 				965AC7DB2438C704003A3DC7 /* StackViewController.swift */,
 			);
 			path = StackViewController;
+			sourceTree = "<group>";
+		};
+		96AAAFFD243B6F2300F61443 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				96AAAFFE243B6F2E00F61443 /* DecoderTask */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		96AAAFFE243B6F2E00F61443 /* DecoderTask */ = {
+			isa = PBXGroup;
+			children = (
+				96AAAFFF243B6F4100F61443 /* DecoderTaskScreenView.swift */,
+			);
+			path = DecoderTask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,6 +500,7 @@
 				965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
 				96500E892435F1A6005FFC7A /* Screen.swift in Sources */,
+				96AAB000243B6F4100F61443 /* DecoderTaskScreenView.swift in Sources */,
 				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
@@ -485,6 +511,7 @@
 				965AC7B724388F2A003A3DC7 /* TasksBundleScreenTaskCell.swift in Sources */,
 				965AC7DE2438C704003A3DC7 /* StackViewControllerChild.swift in Sources */,
 				96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */,
+				96AAB004243B89CA00F61443 /* AlertPresenter.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */,
 				96500E6A2430C03B005FFC7A /* EvidenceCell.swift in Sources */,
@@ -492,6 +519,7 @@
 				965AC79C24365163003A3DC7 /* UIColor+Overlay.swift in Sources */,
 				96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */,
 				96500E7F24327019005FFC7A /* PaperSheetWithPhotoView.swift in Sources */,
+				96AAB006243B932D00F61443 /* AnswerButton.swift in Sources */,
 				965AC7A024385BD4003A3DC7 /* MainScreenView.swift in Sources */,
 				965AC7DD2438C704003A3DC7 /* WrapperViewController.swift in Sources */,
 				965AC79024364D39003A3DC7 /* TasksBundlePurchaseView.swift in Sources */,

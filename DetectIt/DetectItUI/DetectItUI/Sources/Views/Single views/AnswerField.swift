@@ -17,6 +17,12 @@ final class AnswerField: UIView {
         textField.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
+    func highlight(isCorrect: Bool, animated: Bool, animationDuration: TimeInterval) {
+        UIView.animate(withDuration: animated ? animationDuration : 0) {
+            self.bottomLineView.backgroundColor = isCorrect ? .green : .red
+        }
+    }
+    
     // MARK: - Subviews
     
     private let textField = NextGrowingTextView()
@@ -49,7 +55,7 @@ final class AnswerField: UIView {
     private func setup() {
         textField.textView.textColor = .white
         textField.textView.tintColor = .yellow
-        textField.textView.font = .regular(17)
+        textField.textView.font = .text2
         
         NotificationCenter.default.addObserver(
             self,

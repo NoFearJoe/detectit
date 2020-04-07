@@ -93,7 +93,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         addSubview(titleLabel)
         
-        titleLabel.font = .bold(32)
+        titleLabel.font = .heading1
         titleLabel.textColor = Constants.tintColor
         titleLabel.numberOfLines = 0
         
@@ -106,7 +106,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         addSubview(descriptionLabel)
         
-        descriptionLabel.font = .regular(14)
+        descriptionLabel.font = .text4
         descriptionLabel.textColor = Constants.tintColor
         descriptionLabel.numberOfLines = 0
         
@@ -120,7 +120,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         addSubview(totalScoreLabel)
         
-        totalScoreLabel.font = .bold(20)
+        totalScoreLabel.font = .heading4
         totalScoreLabel.textColor = .yellow
         
         totalScoreLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -135,8 +135,8 @@ public final class TasksBundleScreenHeaderView: UIView {
     private func makeAttributedScoreString(score: String) -> NSAttributedString {
         let resultString = NSMutableAttributedString()
         
-        let prefixString = NSAttributedString(string: "Общий счет  ", attributes: [.font: UIFont.regular(16), .foregroundColor: UIColor.lightGray])
-        let scoreString = NSAttributedString(string: score, attributes: [.font: UIFont.bold(20), .foregroundColor: UIColor.yellow])
+        let prefixString = NSAttributedString(string: "Общий счет  ", attributes: [.font: UIFont.text3, .foregroundColor: UIColor.lightGray])
+        let scoreString = NSAttributedString(string: score, attributes: [.font: UIFont.heading4, .foregroundColor: UIColor.yellow])
         
         resultString.append(prefixString)
         resultString.append(scoreString)

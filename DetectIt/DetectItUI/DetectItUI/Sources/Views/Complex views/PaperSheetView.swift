@@ -69,11 +69,11 @@ public final class PaperSheetView: UIView {
         addSubview(titleLabel)
         addSubview(textView)
         
-        titleLabel.font = .title(24)
+        titleLabel.font = .heading2
         titleLabel.textColor = .mainText
         titleLabel.numberOfLines = 0
         
-        textView.font = .text(14)
+        textView.font = .text4
         textView.textColor = .mainText
         textView.showsVerticalScrollIndicator = false
         textView.showsHorizontalScrollIndicator = false

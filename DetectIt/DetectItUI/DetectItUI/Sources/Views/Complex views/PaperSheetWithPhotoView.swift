@@ -69,7 +69,7 @@ public final class PaperSheetWithPhotoView: UIView {
         addSubview(titleLabel)
         addSubview(imageView)
         
-        titleLabel.font = .title(24)
+        titleLabel.font = .heading2
         titleLabel.textColor = .mainText
         titleLabel.numberOfLines = 0
         

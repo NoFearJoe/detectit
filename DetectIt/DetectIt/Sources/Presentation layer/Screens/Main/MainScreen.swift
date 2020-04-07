@@ -36,6 +36,9 @@ final class MainScreen: Screen {
     override func prepare() {
         super.prepare()
         
+        #warning("Remove")
+        TaskScore.clear()
+        
         isStatusBarBlurred = true
         
         PaidTaskBundlesManager.obtainProductsInfo()

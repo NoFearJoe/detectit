@@ -78,7 +78,7 @@ public final class PhotoCardView: UIView {
         photoView.layer.allowsEdgeAntialiasing = true
         
         titleLabel.numberOfLines = 0
-        titleLabel.font = .text(15)
+        titleLabel.font = .text3
         titleLabel.textColor = .mainText
         
         photoView.translatesAutoresizingMaskIntoConstraints = false

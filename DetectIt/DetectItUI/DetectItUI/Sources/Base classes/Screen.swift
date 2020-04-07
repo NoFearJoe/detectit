@@ -47,6 +47,12 @@ open class Screen: UIViewController {
         updateStatusBarBlurView()
     }
     
+    open override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        updateStatusBarBlurView()
+    }
+    
     // MARK: - Status bar blur
     
     public var isStatusBarBlurred: Bool = false {

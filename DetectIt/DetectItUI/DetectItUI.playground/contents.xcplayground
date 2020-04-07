@@ -7,5 +7,6 @@
         <page name='ProfileView'/>
         <page name='TasksBundleCell'/>
         <page name='ScreenPlaceholderView'/>
+        <page name='AnswerButton'/>
     </pages>
 </playground>

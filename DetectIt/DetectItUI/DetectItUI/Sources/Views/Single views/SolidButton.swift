@@ -82,7 +82,7 @@ public extension SolidButton {
         button.clipsToBounds = true
         button.layer.cornerRadius = 14
         button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10)
-        button.titleLabel?.font = .bold(14)
+        button.titleLabel?.font = .score3
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -95,7 +95,7 @@ public extension SolidButton {
         let button = SolidButton()
         
         button.layer.cornerRadius = 12
-        button.fill = .color(.white)
+        button.fill = .color(.lightGray)
         button.tintColor = .darkGray
         button.setImage(UIImage.asset(named: "close"), for: .normal)
         
@@ -114,7 +114,7 @@ public extension SolidButton {
         button.layer.cornerRadius = 8
         button.fill = .color(.yellow)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .regular(18)
+        button.titleLabel?.font = .text2
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 52).isActive = true

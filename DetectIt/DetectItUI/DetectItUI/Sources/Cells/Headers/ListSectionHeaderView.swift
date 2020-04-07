@@ -39,7 +39,7 @@ final class ListSectionHeaderView: UICollectionReusableView {
             titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
         ])
         
-        titleLabel.font = .bold(24)
+        titleLabel.font = .heading3
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
     }

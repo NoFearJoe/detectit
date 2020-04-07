@@ -63,7 +63,7 @@ final class TasksBundlePurchaseView: UIView {
         
         addSubview(priceLabel)
         
-        priceLabel.font = .regular(11)
+        priceLabel.font = .text5
         priceLabel.textColor = .white
         priceLabel.textAlignment = .center
         

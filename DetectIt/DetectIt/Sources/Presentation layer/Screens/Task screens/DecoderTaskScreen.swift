@@ -20,11 +20,7 @@ final class DecoderTaskScreen: Screen {
     
     private let closeButton = SolidButton.closeButton()
     
-    private let titleLabel = UILabel()
-    private let prepositionLabel = UILabel()
-    private let encodedPictureView = UIImageView()
-    private let questionAndAnswerView = QuestionAndAnswerView()
-    private let answerButton = SolidButton.primaryButton()
+    private let screenView = DecoderTaskScreenView()
     
     private let keyboardManager = KeyboardManager()
     private var contentScrollViewOffset: CGFloat?
@@ -33,6 +29,8 @@ final class DecoderTaskScreen: Screen {
     
     private let task: DecoderTask
     private let bundle: TasksBundle
+    
+    private var score: Int?
         
     // MARK: - Init
     
@@ -59,6 +57,7 @@ final class DecoderTaskScreen: Screen {
         
         contentContainer.place(into: self)
         
+        setupPlaceholderView()
         setupViews()
         setupContentView()
         setupKeyboardManager()
@@ -70,6 +69,13 @@ final class DecoderTaskScreen: Screen {
         super.prepare()
         
         placeholderView.setVisible(true, animated: false)
+        
+        score = TaskScore.get(id: task.id, taskKind: .cipher, bundleID: bundle.info.id)
+        
+        #warning("Remove")
+        displayContent(encodedPicture: UIImage())
+        
+        updateContentState(animated: false)
         
         loadData { [weak self] image in
             self?.placeholderView.setVisible(false, animated: true)
@@ -89,14 +95,14 @@ final class DecoderTaskScreen: Screen {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc private func didTapEncodedPicture() {
+    private func didTapEncodedPicture() {
         // TODO: Show image viewer
     }
     
-    @objc private func didTapAnswerButton() {
+    private func didTapAnswerButton() {
         view.endEditing(true)
         
-        let answer = questionAndAnswerView.answer
+        let answer = screenView.questionAndAnswerView.answer
         let rightAnswer = task.answer.decodedMessage
         
         let isCorrectAnswer = answer == rightAnswer
@@ -105,7 +111,9 @@ final class DecoderTaskScreen: Screen {
         TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
         TaskAnswer.set(answer: answer, decoderTaskID: task.id)
         
-        // TODO: Show alert
+        self.score = score
+        
+        updateContentState(animated: true)
     }
     
     @objc private func onTapBackground() {
@@ -127,12 +135,33 @@ final class DecoderTaskScreen: Screen {
     }
     
     private func displayContent(encodedPicture: UIImage) {
-        titleLabel.text = task.title
-        prepositionLabel.text = task.preposition
-        encodedPictureView.image = encodedPicture
-        questionAndAnswerView.configure(
+        screenView.titleLabel.text = task.title
+        screenView.prepositionLabel.text = task.preposition
+        screenView.encodedPictureView.image = encodedPicture
+        screenView.questionAndAnswerView.configure(
             model: QuestionAndAnswerView.Model(question: "Ответ:") // TODO
         )
+        screenView.crimeDescriptionLabel.text = task.answer.crimeDescription
+        screenView.rightAnswerView.answer = task.answer.decodedMessage
+    }
+    
+    private func updateContentState(animated: Bool) {
+        // Если есть счет, значит задание решено
+        let isSolved = score != nil
+        let isSolvedCorrectly = score == task.maxScore
+        
+        contentContainer.setChildHidden(screenView.answerButton, hidden: isSolved, animated: false)
+        contentContainer.setChildHidden(screenView.scoreLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
+        contentContainer.setChildHidden(screenView.crimeDescriptionLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
+        contentContainer.setChildHidden(screenView.rightAnswerView, hidden: !isSolved || isSolvedCorrectly, animated: animated, animationDuration: 2)
+        
+        screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }
+        
+        screenView.questionAndAnswerView.isUserInteractionEnabled = !isSolved
+        
+        guard isSolved else { return }
+        
+        screenView.questionAndAnswerView.highlight(isCorrect: isSolvedCorrectly, animated: animated, animationDuration: 2)
     }
     
     // MARK: - Setup
@@ -145,15 +174,20 @@ final class DecoderTaskScreen: Screen {
         )
         
         contentContainer.setTopSpacing(20)
-        contentContainer.appendChild(titleLabel)
+        contentContainer.appendChild(screenView.titleLabel)
         contentContainer.appendSpacing(20)
-        contentContainer.appendChild(prepositionLabel)
+        contentContainer.appendChild(screenView.prepositionLabel)
         contentContainer.appendSpacing(20)
-        contentContainer.appendChild(encodedPictureView)
+        contentContainer.appendChild(screenView.encodedPictureView)
         contentContainer.appendSpacing(40)
-        contentContainer.appendChild(questionAndAnswerView)
+        contentContainer.appendChild(screenView.questionAndAnswerView)
         contentContainer.appendSpacing(40)
-        contentContainer.appendChild(answerButton)
+        contentContainer.appendChild(screenView.answerButton)
+        contentContainer.appendChild(screenView.scoreLabel)
+        contentContainer.appendSpacing(40)
+        contentContainer.appendChild(screenView.rightAnswerView)
+        contentContainer.appendSpacing(20)
+        contentContainer.appendChild(screenView.crimeDescriptionLabel)
         contentContainer.setBottomSpacing(20)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
@@ -166,44 +200,19 @@ final class DecoderTaskScreen: Screen {
     }
     
     private func setupViews() {
-        setupPlaceholderView()
-        
         view.addSubview(closeButton)
         
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
         
-        titleLabel.font = .bold(28)
-        titleLabel.textColor = .white
-        titleLabel.numberOfLines = 0
+        screenView.setupViews()
         
-        prepositionLabel.font = .regular(15)
-        prepositionLabel.textColor = .white
-        prepositionLabel.numberOfLines = 0
-        
-        encodedPictureView.layer.allowsEdgeAntialiasing = true
-        encodedPictureView.transform = CGAffineTransform
-            .randomLayout()
-            .concatenating(CGAffineTransform(scaleX: 0.9, y: 0.9))
-        
-        encodedPictureView.configureShadow(radius: 20, opacity: 0.2, color: .white, offset: .zero)
-        
-        encodedPictureView.isUserInteractionEnabled = true
-        encodedPictureView.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(didTapEncodedPicture))
-        )
-        
-        questionAndAnswerView.onChangeAnswer = { [unowned self] answer in
-            self.answerButton.isEnabled = !answer.isEmpty
-        }
-        
-        answerButton.isEnabled = false
-        answerButton.setTitle("Отправить ответ", for: .normal) // TODO
-        answerButton.addTarget(self, action: #selector(didTapAnswerButton), for: .touchUpInside)
+        screenView.onTapEncodedPicture = didTapEncodedPicture
+        screenView.onTapAnswerButton = didTapAnswerButton
     }
     
     func setupPlaceholderView() {
@@ -240,7 +249,7 @@ final class DecoderTaskScreen: Screen {
     func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat? {
         guard var focusedView = contentContainer.stackView.currentFirstResponder() as? UIView else { return nil }
         
-        focusedView = questionAndAnswerView
+        focusedView = screenView.questionAndAnswerView
         
         let convertedFocusedViewFrame = focusedView.convert(focusedView.bounds, to: view)
         
