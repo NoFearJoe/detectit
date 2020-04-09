@@ -20,4 +20,19 @@ public extension UIColor {
     
     static let mainText = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
     
+    static func score(value: Int?, max: Int, defaultColor: UIColor = .lightGray) -> UIColor {
+        guard let value = value else {
+            return .lightGray
+        }
+        
+        switch Float(value) / Float(max) {
+        case ..<(0.4):
+            return .red
+        case (0.4)..<0.75:
+            return .orange
+        default:
+            return .green
+        }
+    }
+    
 }

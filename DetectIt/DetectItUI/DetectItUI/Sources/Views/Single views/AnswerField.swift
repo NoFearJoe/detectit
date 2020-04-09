@@ -56,6 +56,9 @@ final class AnswerField: UIView {
         textField.textView.textColor = .white
         textField.textView.tintColor = .yellow
         textField.textView.font = .text2
+        textField.textView.autocorrectionType = .no
+        textField.textView.keyboardAppearance = .dark
+        textField.textView.autocapitalizationType = .none
         
         NotificationCenter.default.addObserver(
             self,

@@ -102,16 +102,7 @@ final class DecoderTaskScreen: Screen {
     private func didTapAnswerButton() {
         view.endEditing(true)
         
-        let answer = screenView.questionAndAnswerView.answer
-        let rightAnswer = task.answer.decodedMessage
-        
-        let isCorrectAnswer = answer == rightAnswer
-        let score = isCorrectAnswer ? task.maxScore : 0
-        
-        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
-        TaskAnswer.set(answer: answer, decoderTaskID: task.id)
-        
-        self.score = score
+        commitAnswer()
         
         updateContentState(animated: true)
     }
@@ -120,7 +111,7 @@ final class DecoderTaskScreen: Screen {
         view.endEditing(true)
     }
     
-    // MARK: - Utils
+    // MARK: - Business logic
     
     private func loadData(completion: @escaping (UIImage?) -> Void) {
         guard let imageURL = task.encodedPictureURL(bundleID: bundle.info.id) else {
@@ -133,6 +124,20 @@ final class DecoderTaskScreen: Screen {
             completion(image)
         }
     }
+    
+    private func commitAnswer() {
+        let answer = screenView.questionAndAnswerView.answer
+        
+        let isCorrectAnswer = task.answer.compare(with: answer)
+        let score = isCorrectAnswer ? task.maxScore : 0
+        
+        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
+        TaskAnswer.set(answer: answer, decoderTaskID: task.id)
+        
+        self.score = score
+    }
+    
+    // MARK: - Utils
     
     private func displayContent(encodedPicture: UIImage) {
         screenView.titleLabel.text = task.title
@@ -156,6 +161,7 @@ final class DecoderTaskScreen: Screen {
         contentContainer.setChildHidden(screenView.rightAnswerView, hidden: !isSolved || isSolvedCorrectly, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }
+        screenView.scoreLabel.textColor = .score(value: score, max: task.maxScore, defaultColor: .white)
         
         screenView.questionAndAnswerView.isUserInteractionEnabled = !isSolved
         

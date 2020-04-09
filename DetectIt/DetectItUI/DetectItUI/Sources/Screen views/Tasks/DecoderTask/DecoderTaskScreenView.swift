@@ -57,7 +57,7 @@ public final class DecoderTaskScreenView {
         }
         
         scoreLabel.font = .score1
-        scoreLabel.textColor = .white // TODO: Взять логику из формирования ячеек для бандла
+        scoreLabel.textColor = .white
         scoreLabel.textAlignment = .center
         
         crimeDescriptionLabel.font = .text3

@@ -43,6 +43,9 @@ public extension DecoderTask {
         /// Расшифрованное сообщение.
         public let decodedMessage: String
         
+        /// Ответы в зачет.
+        public let possibleAnswers: [String]?
+        
     }
     
 }
@@ -77,6 +80,16 @@ extension DecoderTask: TaskScoring {
     /// Максимальное количество очков, которое можно получить за правильный ответ.
     public var maxScore: Int {
         score
+    }
+    
+}
+
+public extension DecoderTask.Answer {
+    
+    func compare(with answer: String) -> Bool {
+        let clearAnswer = answer.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return decodedMessage.lowercased() == clearAnswer || possibleAnswers?.map { $0.lowercased() }.contains(clearAnswer) == true
     }
     
 }
