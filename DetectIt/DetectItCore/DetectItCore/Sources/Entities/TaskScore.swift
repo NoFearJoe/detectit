@@ -102,6 +102,21 @@ public struct TaskAnswer {
         case int(Int)
         case bool(Bool)
         
+        public var string: String? {
+            guard case .string(let string) = self else { return nil }
+            return string
+        }
+        
+        public var int: Int? {
+            guard case .int(let int) = self else { return nil }
+            return int
+        }
+        
+        public var bool: Bool? {
+            guard case .bool(let bool) = self else { return nil }
+            return bool
+        }
+        
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             
@@ -131,8 +146,8 @@ public struct TaskAnswer {
     }
     
     public struct ProfileTaskAnswer: Codable {
-        let questionID: String
-        let answer: ProfileAnswer
+        public let questionID: String
+        public let answer: ProfileAnswer
         
         public init(questingID: String, answer: ProfileAnswer) {
             self.questionID = questingID

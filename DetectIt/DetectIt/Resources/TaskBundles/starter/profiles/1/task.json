@@ -1,0 +1,78 @@
+{
+  "id": "1",
+  "title": "Тест",
+  "preposition": "Фывло фдлыво фдлов дфлыовд флоыдофдлвоа щушкрзпг рфыхващотдчис аыолфйфруыа првшгамлячсотмчстми очриваолыпукаяываприс мрпмф]лквпортифагцпладячшлиля ор рвар лявапро вм валпор ылваоп лвоарп лвп лорвапл вяорап офывла грфвлапгр ывшгарп ышврп ш ыапш рвыапр ываопр ывоарп лывоплоыаплова лпор вылаопр ылваор лывоар плыв аплоыв алпоырв алпоывалпо ывалпоры влаопрылвао плворап лыоврап лыоваплоырв алпорыв алпоырвалп оыалпор вылаопр",
+  "crimeDescription": "asjdkla sldka sldkj alsdkj alksdj lskdj laskjdf lskdj flksjdf lkjsdf lvkjsdf lvkjsdlfk jvslkdfcj vksdc vkjsf kvjsd k",
+  "difficulty": 3,
+  "cases": [
+    {
+      "id": "c1",
+      "title": "Case 1",
+      "text": "Фывло фдлыво фдлов дфлыовд флоыдофдлвоа щушкрзпг рфыхващотдчис аыолфйфруыа првшгамлячсотмчстми очриваолыпукаяываприс мрпмф]лквпортифагцпладячшлиля ор рвар лявапро вм валпор ылваоп лвоарп лвп лорвапл вяорап офывла грфвлапгр ывшгарп ышврп ш ыапш рвыапр ываопр ывоарп лывоплоыаплова лпор вылаопр ылваор лывоар плыв аплоыв алпоырв алпоывалпо ывалпоры влаопрылвао плворап лыоврап лыоваплоырв алпорыв алпоырвалп оыалпор вылаопр",
+      "evidencePicture": {
+        "title": "Черномырдин какой-то",
+        "pictureName": "case1.png"
+      }
+    },
+    {
+      "id": "c2",
+      "title": "Case 2",
+      "text": "Some text 2 xcv,zncx,mvz ,xcmvn z,xcmnv ,zmfn kladjfh ;aksjdfksjdfklvds fgkljsdhfgkljsdhfgl kjsdhfgkl sjdhfgkl sjdfhgls dfhgl kjadfgljk dfkjf eadfkxgjldljgkhe g;dsljkg slrdf bgklsjdbf dlkcv fdgjslkxbjfd sl;djs;gdjreigldfk bvcgjfnlbkxjc bklfxjb klxcjb lkdxfjcvbn dklg;fcjkxf"
+    }
+  ],
+  "attachments": [
+    {
+      "title": "Подсказочка",
+      "pictureName": "attachment1.png"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "title": "Сколько преступлений было спланировано?",
+      "score": 1,
+      "number": {
+        "correctNumber": 1
+      }
+    },
+    {
+      "id": "q2",
+      "title": "Кем было совершено преступление?",
+      "score": 2,
+      "variant": {
+        "variants": [
+          {
+            "id": "v1",
+            "text": "Одним человеком"
+          },
+          {
+            "id": "v2",
+            "text": "Группой людей"
+          },
+          {
+            "id": "v3",
+            "text": "Разными людьми"
+          }
+        ],
+        "correctVariantID": "v1"
+      }
+    },
+    {
+      "id": "q3",
+      "title": "Как зовут преступника?",
+      "score": 3,
+      "exactAnswer": {
+        "answer": "Answer",
+        "possibleAnswers": ["Answe", "Answ", "Ans"]
+      }
+    },
+    {
+      "id": "q4",
+      "title": "Преступление было спланировано?",
+      "score": 4,
+      "boolAnswer": {
+        "answer": true
+      }
+    }
+  ]
+}

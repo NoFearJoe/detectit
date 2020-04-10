@@ -15,6 +15,11 @@ public final class PaperSheetWithPhotoView: UIView {
     public struct Model {
         public let title: String
         public let photo: UIImage
+        
+        public init(title: String, photo: UIImage) {
+            self.title = title
+            self.photo = photo
+        }
     }
     
     var title: String? {

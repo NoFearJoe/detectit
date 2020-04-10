@@ -49,18 +49,7 @@ public extension ProfileTask {
     struct NumberQuestion: Codable {
         
         /// Ответ.
-        public struct Answer: Codable {
-            
-            /// Пояснение ответа.
-            public let description: String
-            
-            /// Правильный ответ.
-            public let correctNumber: Int
-            
-        }
-        
-        /// Ответ.
-        public let answer: Answer
+        public let correctNumber: Int
         
     }
     
@@ -82,22 +71,11 @@ public extension ProfileTask {
             
         }
         
-        /// Ответ.
-        public struct Answer: Codable {
-            
-            /// Пояснение ответа.
-            public let description: String
-            
-            /// Идентификатор верного варианта.
-            public let correctVariantID: String
-            
-        }
-        
         /// Варианты ответа.
         public let variants: [Variant]
         
         /// Ответ.
-        public let answer: Answer
+        public let correctVariantID: String
         
     }
     
@@ -142,6 +120,30 @@ public extension ProfileTask {
         /// Ответ.
         public let answer: Bool
         
+    }
+    
+}
+
+// MARK: - Check answer
+
+public extension ProfileTask.Question {
+    
+    func compare(with answer: TaskAnswer.ProfileAnswer) -> Bool {
+        if let numberQuestion = number, case .int(let number) = answer {
+            return numberQuestion.correctNumber == number
+        } else if let variantsQuestion = variant, case .string(let variantID) = answer {
+            return variantsQuestion.correctVariantID == variantID
+        } else if let variantsFromDistionaryQuestion = variantFromDictionary, case .string(let variant) = answer {
+            return variantsFromDistionaryQuestion.answer == variant
+        } else if let exactAnswerQuestion = exactAnswer, case .string(let answer) = answer {
+            let clearAnswer = answer.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            return exactAnswerQuestion.answer.lowercased() == clearAnswer
+                || exactAnswerQuestion.possibleAnswers.map { $0.lowercased() }.contains(clearAnswer)
+        } else if let boolAnswerQuestion = boolAnswer, case .bool(let answer) = answer {
+            return boolAnswerQuestion.answer == answer
+        } else {
+            return false
+        }
     }
     
 }

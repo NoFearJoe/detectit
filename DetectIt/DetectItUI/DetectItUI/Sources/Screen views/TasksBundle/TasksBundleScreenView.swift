@@ -206,7 +206,7 @@ extension TasksBundleScreenView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
-        CGSize(width: collectionView.bounds.width, height: 48)
+        CGSize(width: collectionView.bounds.width, height: 52)
     }
     
     public func collectionView(

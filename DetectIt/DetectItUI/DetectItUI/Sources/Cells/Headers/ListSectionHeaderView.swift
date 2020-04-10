@@ -12,7 +12,7 @@ final class ListSectionHeaderView: UICollectionReusableView {
     
     static let identifier = String(describing: ListSectionHeaderView.self)
     
-    private let titleLabel = UILabel()
+    let titleLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

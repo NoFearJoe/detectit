@@ -37,7 +37,7 @@ public final class PhotoCardView: UIView {
     // MARK: - Subviews
     
     private let photoView = UIImageView()
-    private let titleLabel = UILabel()
+    let titleLabel = UILabel()
     
     // MARK: - Init
     
@@ -64,7 +64,7 @@ public final class PhotoCardView: UIView {
         layer.allowsEdgeAntialiasing = true
         translatesAutoresizingMaskIntoConstraints = false
         
-        layoutMargins = UIEdgeInsets(top: 12, left: 14, bottom: 13, right: 13)
+        layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         
         backgroundColor = .photo
     }

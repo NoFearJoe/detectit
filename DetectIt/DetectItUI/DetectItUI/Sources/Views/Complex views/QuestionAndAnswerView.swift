@@ -16,9 +16,15 @@ public final class QuestionAndAnswerView: UIView {
         answerField.answer
     }
     
+    public var keyboardType: UIKeyboardType = .default {
+        didSet {
+            answerField.keyboardType = keyboardType
+        }
+    }
+    
     // MARK: - Subviews
     
-    private let questionLabel = UILabel()
+    let questionLabel = UILabel()
     private let answerField = AnswerField()
     
     // MARK: - Init

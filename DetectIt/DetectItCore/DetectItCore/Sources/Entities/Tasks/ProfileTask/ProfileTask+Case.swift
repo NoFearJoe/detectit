@@ -38,7 +38,7 @@ public extension ProfileTask.Case {
         public let title: String
         
         /// Название изображения.
-        let pictureName: String
+        public let pictureName: String
         
     }
     

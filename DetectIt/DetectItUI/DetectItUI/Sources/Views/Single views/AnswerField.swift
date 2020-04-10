@@ -17,6 +17,12 @@ final class AnswerField: UIView {
         textField.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
+    var keyboardType: UIKeyboardType = .default {
+        didSet {
+            textField.textView.keyboardType = keyboardType
+        }
+    }
+    
     func highlight(isCorrect: Bool, animated: Bool, animationDuration: TimeInterval) {
         UIView.animate(withDuration: animated ? animationDuration : 0) {
             self.bottomLineView.backgroundColor = isCorrect ? .green : .red

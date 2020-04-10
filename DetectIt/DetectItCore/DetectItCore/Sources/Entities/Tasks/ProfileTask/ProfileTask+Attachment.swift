@@ -14,17 +14,14 @@ public extension ProfileTask {
     /// Например, фотография карты с местами преступлений или аудиозапись интервью со свидетелем.
     struct Attachment: Codable {
         
-        /// Идентификатор приложения.
-        public let id: String
-        
         /// Подпись к приложению.
         public let title: String
         
         /// Название изображения.
-        let pictureName: String?
+        public let pictureName: String?
         
         /// Название аудиофайла.
-        let audioFileName: String?
+        public let audioFileName: String?
         
     }
     

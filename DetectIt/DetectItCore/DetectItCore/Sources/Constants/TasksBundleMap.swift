@@ -40,7 +40,7 @@ public struct TasksBundleMap {
         audiorecords = Self.tasksPaths(directory: Static.audiorecords, baseURL: baseURL)
         ciphers = Self.tasksPaths(directory: Static.ciphers, baseURL: baseURL)
         extraEvidences = Self.tasksPaths(directory: Static.extraEvidences, baseURL: baseURL)
-        profiles = Self.tasksPaths(directory: Static.extraEvidences, baseURL: baseURL)
+        profiles = Self.tasksPaths(directory: Static.profiles, baseURL: baseURL)
         quests = Self.tasksPaths(directory: Static.quests, baseURL: baseURL)
     }
     

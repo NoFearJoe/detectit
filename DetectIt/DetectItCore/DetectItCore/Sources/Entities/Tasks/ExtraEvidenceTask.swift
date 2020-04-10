@@ -35,7 +35,7 @@ public extension ExtraEvidenceTask {
         public let title: String
         
         /// Название изображения.
-        let pictureName: String
+        public let pictureName: String
         
     }
     

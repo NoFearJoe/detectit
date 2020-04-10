@@ -20,11 +20,14 @@ public struct ProfileTask: Codable {
     /// Вводные данные.
     public let preposition: String
     
+    /// Объяснение преступления (после завершения задания).
+    public let crimeDescription: String
+    
     /// Список случаев.
     public let cases: [Case]
     
     /// Список приложений.
-    public let attachments: [Attachment]
+    public let attachments: [Attachment]?
     
     /// Список вопросов.
     public let questions: [Question]

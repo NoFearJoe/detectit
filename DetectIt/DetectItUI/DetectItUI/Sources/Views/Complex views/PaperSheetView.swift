@@ -15,6 +15,11 @@ public final class PaperSheetView: UIView {
     public struct Model {
         public let title: String
         public let text: String
+        
+        public init(title: String, text: String) {
+            self.title = title
+            self.text = text
+        }
     }
     
     var title: String? {
