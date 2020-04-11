@@ -158,10 +158,6 @@ final class ProfileTaskScreen: Screen {
         dismiss(animated: true, completion: nil)
     }
     
-    private func didTapPicture() {
-        // TODO: Show image viewer
-    }
-    
     @objc private func onTapBackground() {
         view.endEditing(true)
     }
@@ -199,7 +195,13 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
     }
     
     func didSelectEvidence(at index: Int) {
+        guard let picture = task.cases[index].evidencePicture, let image = images[picture.pictureName] else {
+            return
+        }
         
+        let imageViewer = PhotoViewerScreen(image: image, title: picture.title)
+        
+        present(imageViewer, animated: true, completion: nil)
     }
     
     func numberOfAttachments() -> Int {
@@ -222,7 +224,13 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
     }
     
     func didSelectAttachment(at index: Int) {
+        guard let attachment = task.attachments?[index], let picture = attachment.pictureName, let image = images[picture] else {
+            return
+        }
         
+        let imageViewer = PhotoViewerScreen(image: image, title: attachment.title)
+        
+        present(imageViewer, animated: true, completion: nil)
     }
     
     func didTapAnswerButton() {

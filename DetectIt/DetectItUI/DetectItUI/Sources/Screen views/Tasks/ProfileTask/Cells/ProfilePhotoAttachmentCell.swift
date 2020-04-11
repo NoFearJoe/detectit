@@ -39,6 +39,8 @@ public final class ProfilePhotoAttachmentCell: AutosizingCollectionViewCell {
     public func configure(model: Model) {
         titleLabel.text = model.title
         photoView.image = model.photo
+        
+        setupPhotoViewConstraints(image: model.photo)
     }
     
     // MARK: - Setup
@@ -61,6 +63,7 @@ public final class ProfilePhotoAttachmentCell: AutosizingCollectionViewCell {
         
         containerView.addArrangedSubview(photoView)
         
+        photoView.isUserInteractionEnabled = true
         photoView.contentMode = .scaleAspectFit
         photoView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(onTapPhotoView))
@@ -69,6 +72,13 @@ public final class ProfilePhotoAttachmentCell: AutosizingCollectionViewCell {
     
     @objc private func onTapPhotoView() {
         onTapPhoto?()
+    }
+    
+    func setupPhotoViewConstraints(image: UIImage) {
+        let ratio = bounds.size.width / image.size.width
+        let height = image.size.height * ratio
+        
+        photoView.heightAnchor.constraint(equalToConstant: height).isActive = true
     }
     
 }

@@ -141,6 +141,10 @@ extension ProfileView: UICollectionViewDataSource {
                 cell.configure(model: model)
             }
             
+            cell.onTapEvidence = { [unowned delegate] in
+                delegate.didSelectEvidence(at: indexPath.item)
+            }
+            
             return cell
         case .attachments:
             guard let model = delegate.attachment(at: indexPath.item) else { return UICollectionViewCell() }

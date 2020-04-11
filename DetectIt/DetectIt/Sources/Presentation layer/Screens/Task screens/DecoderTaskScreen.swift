@@ -30,6 +30,8 @@ final class DecoderTaskScreen: Screen {
     private let task: DecoderTask
     private let bundle: TasksBundle
     
+    private var encodedImage: UIImage?
+    
     private var score: Int?
         
     // MARK: - Init
@@ -78,6 +80,8 @@ final class DecoderTaskScreen: Screen {
         updateContentState(animated: false)
         
         loadData { [weak self] image in
+            self?.encodedImage = image
+            
             self?.placeholderView.setVisible(false, animated: true)
             
             guard let image = image else {
@@ -96,7 +100,11 @@ final class DecoderTaskScreen: Screen {
     }
     
     private func didTapEncodedPicture() {
-        // TODO: Show image viewer
+        guard let image = encodedImage else { return }
+        
+        let imageViewer = PhotoViewerScreen(image: image, title: nil)
+        
+        present(imageViewer, animated: true, completion: nil)
     }
     
     private func didTapAnswerButton() {
