@@ -149,12 +149,12 @@ final class DecoderTaskScreen: Screen {
     
     private func displayContent(encodedPicture: UIImage) {
         screenView.titleLabel.text = task.title
-        screenView.prepositionLabel.text = task.preposition
+        screenView.prepositionLabel.attributedText = task.preposition.readableAttributedText()
         screenView.encodedPictureView.image = encodedPicture
         screenView.questionAndAnswerView.configure(
             model: QuestionAndAnswerView.Model(question: "Ответ:") // TODO
         )
-        screenView.crimeDescriptionLabel.text = task.answer.crimeDescription
+        screenView.crimeDescriptionLabel.attributedText = task.answer.crimeDescription.readableAttributedText()
         screenView.rightAnswerView.answer = task.answer.decodedMessage
     }
     

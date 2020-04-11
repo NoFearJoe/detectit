@@ -34,7 +34,7 @@ public final class ProfilePrepositionCell: AutosizingCollectionViewCell {
     
     public func configure(model: Model) {
         titleLabel.text = model.title
-        textLabel.attributedText = makeAttributedText(from: model.text)
+        textLabel.attributedText = model.text.readableAttributedText()
     }
     
     // MARK: - Setup
@@ -68,21 +68,6 @@ public final class ProfilePrepositionCell: AutosizingCollectionViewCell {
             textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             textLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-    
-    private func makeAttributedText(from string: String) -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 2
-        paragraphStyle.paragraphSpacing = 4
-        paragraphStyle.hyphenationFactor = 0
-        
-        return NSAttributedString(
-            string: string,
-            attributes: [
-                NSAttributedString.Key.kern: 0.25,
-                NSAttributedString.Key.paragraphStyle: paragraphStyle
-            ]
-        )
     }
     
 }

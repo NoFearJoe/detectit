@@ -14,6 +14,9 @@
 		961EEDF82440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961EEDF72440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift */; };
 		96200CB12441B22300A3C720 /* CGPoint+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB02441B22300A3C720 /* CGPoint+Operators.swift */; };
 		96200CB32441DECA00A3C720 /* AutosizingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB22441DECA00A3C720 /* AutosizingImageView.swift */; };
+		96200CB52441F29000A3C720 /* UICollectionView+EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB42441F29000A3C720 /* UICollectionView+EmptyCell.swift */; };
+		96200CB72442016900A3C720 /* ProfileTaskAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */; };
+		96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB82442084400A3C720 /* String+AttributedString.swift */; };
 		96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 96500E2C242F0F92005FFC7A /* DetectItUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3D242F1151005FFC7A /* PhotoCardView.swift */; };
 		96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */; };
@@ -83,6 +86,9 @@
 		961EEDF72440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskAnyAnswerCell.swift; sourceTree = "<group>"; };
 		96200CB02441B22300A3C720 /* CGPoint+Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Operators.swift"; sourceTree = "<group>"; };
 		96200CB22441DECA00A3C720 /* AutosizingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingImageView.swift; sourceTree = "<group>"; };
+		96200CB42441F29000A3C720 /* UICollectionView+EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+EmptyCell.swift"; sourceTree = "<group>"; };
+		96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskAnswerCell.swift; sourceTree = "<group>"; };
+		96200CB82442084400A3C720 /* String+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AttributedString.swift"; sourceTree = "<group>"; };
 		96500E29242F0F92005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E2C242F0F92005FFC7A /* DetectItUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItUI.h; sourceTree = "<group>"; };
 		96500E2D242F0F92005FFC7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				96162674243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift */,
 				96162678243F73E20097A4EE /* ProfileTaskBoolAnswerQuestionCell.swift */,
 				961EEDF72440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift */,
+				96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -263,6 +270,8 @@
 				965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */,
 				96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */,
 				96200CB02441B22300A3C720 /* CGPoint+Operators.swift */,
+				96200CB42441F29000A3C720 /* UICollectionView+EmptyCell.swift */,
+				96200CB82442084400A3C720 /* String+AttributedString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -538,6 +547,7 @@
 				965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */,
+				96200CB72442016900A3C720 /* ProfileTaskAnswerCell.swift in Sources */,
 				96AAAFF1243B093600F61443 /* ScreenPlaceholderView.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
 				96500E752431D31F005FFC7A /* EvidenceListView.swift in Sources */,
@@ -564,6 +574,7 @@
 				96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */,
 				96162679243F73E20097A4EE /* ProfileTaskBoolAnswerQuestionCell.swift in Sources */,
 				96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */,
+				96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */,
 				96AAB004243B89CA00F61443 /* AlertPresenter.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */,
@@ -579,6 +590,7 @@
 				965AC79024364D39003A3DC7 /* TasksBundlePurchaseView.swift in Sources */,
 				965AC79A2436504F003A3DC7 /* UIImageView+Gradient.swift in Sources */,
 				96AAB010243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift in Sources */,
+				96200CB52441F29000A3C720 /* UICollectionView+EmptyCell.swift in Sources */,
 				961EEDF82440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift in Sources */,
 				965AC7AE243878A6003A3DC7 /* TasksBundleScreenView.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,

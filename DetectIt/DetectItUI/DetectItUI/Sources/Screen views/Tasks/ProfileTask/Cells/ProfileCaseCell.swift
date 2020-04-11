@@ -55,27 +55,12 @@ public final class ProfileCaseCell: AutosizingCollectionViewCell {
     
     public func configure(model: Model) {
         titleLabel.text = model.case.title
-        textLabel.attributedText = makeAttributedText(from: model.case.text)
+        textLabel.attributedText = model.case.text.readableAttributedText()
         
         evidenceContainerView.isHidden = model.evidence == nil
         if let evidence = model.evidence {
             evidenceView.configure(model: evidence)
         }
-    }
-    
-    private func makeAttributedText(from string: String) -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 2
-        paragraphStyle.paragraphSpacing = 4
-        paragraphStyle.hyphenationFactor = 0
-        
-        return NSAttributedString(
-            string: string,
-            attributes: [
-                NSAttributedString.Key.kern: 0.25,
-                NSAttributedString.Key.paragraphStyle: paragraphStyle
-            ]
-        )
     }
     
     // MARK: - Setup
@@ -109,6 +94,7 @@ public final class ProfileCaseCell: AutosizingCollectionViewCell {
         
         evidenceView.backgroundColor = .clear
         evidenceView.titleLabel.textColor = .lightGray
+        evidenceView.titleLabel.textAlignment = .center
         evidenceView.transform = .randomLayout()
 
         evidenceView.addGestureRecognizer(

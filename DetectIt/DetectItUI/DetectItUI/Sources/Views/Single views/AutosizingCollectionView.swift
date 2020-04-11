@@ -29,4 +29,17 @@ open class AutosizingCollectionView: UICollectionView {
         )
     }
     
+    public override var bounds: CGRect {
+        didSet {
+            guard bounds != .zero else { return }
+            guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return }
+            
+            let width = bounds.width - contentInset.left - contentInset.right
+            layout.estimatedItemSize = CGSize(
+                width: max(width, 0),
+                height: 0
+            )
+        }
+    }
+    
 }

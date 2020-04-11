@@ -111,6 +111,8 @@ final class ProfileTaskScreen: Screen {
         commitAnswers()
 
         updateContentState(animated: true)
+        
+        scrollToResults()
     }
     
     func commitAnswers() {
@@ -137,10 +139,11 @@ final class ProfileTaskScreen: Screen {
         contentContainer.setChildHidden(screenView.answerButton, hidden: isSolved, animated: false)
         contentContainer.setChildHidden(screenView.scoreLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.crimeDescriptionLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
+        contentContainer.setChildHidden(screenView.answersView, hidden: !isSolved, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }
         screenView.scoreLabel.textColor = .score(value: score, max: task.maxScore, defaultColor: .white)
-        screenView.crimeDescriptionLabel.text = task.crimeDescription
+        screenView.crimeDescriptionLabel.attributedText = task.crimeDescription.readableAttributedText()
         
         task.questions.enumerated().forEach { index, question in
             let answer = answers.get(questionID: question.id)
@@ -149,6 +152,22 @@ final class ProfileTaskScreen: Screen {
             
             cell?.setEnabled(!isSolved)
             cell?.highlight(isCorrect: isCorrect, animated: animated, animationDuration: 2)
+        }
+    }
+    
+    func scrollToResults() {
+        view.isUserInteractionEnabled = false
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let minY = self.screenView.scoreLabel.frame.minY
+            let maxY = self.screenView.answersView.frame.maxY
+            let targetY = maxY - minY > self.view.bounds.height ? minY : max(0, maxY - self.view.bounds.height)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.contentContainer.scrollView.contentOffset = CGPoint(x: 0, y: targetY)
+            }) { _ in
+                self.view.isUserInteractionEnabled = true
+            }
         }
     }
     
@@ -314,6 +333,29 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         }
     }
     
+    func numberOfAnswers() -> Int {
+        task.questions.count
+    }
+    
+    func answer(at index: Int) -> ProfileTaskAnswerCell.Model? {
+        let question = task.questions[index]
+        let answer: String = {
+            if let number = question.number?.correctNumber {
+                return "\(number)"
+            } else if let string = question.exactAnswer?.answer {
+                return string
+            } else if let variantID = question.variant?.correctVariantID {
+                return question.variant?.variants.first(where: { $0.id == variantID })?.text ?? ""
+            } else if let bool = question.boolAnswer?.answer {
+                return bool ? "Да" : "Нет"
+            } else {
+                return ""
+            }
+        }()
+        
+        return ProfileTaskAnswerCell.Model(question: question.title, answer: answer)
+    }
+    
 }
 
 // MARK: - Setup
@@ -334,6 +376,8 @@ private extension ProfileTaskScreen {
         contentContainer.appendChild(screenView.scoreLabel)
         contentContainer.appendSpacing(40)
         contentContainer.appendChild(screenView.crimeDescriptionLabel)
+        contentContainer.appendSpacing(40)
+        contentContainer.appendChild(screenView.answersView)
         contentContainer.setBottomSpacing(20)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))

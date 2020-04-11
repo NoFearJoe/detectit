@@ -12,9 +12,12 @@ public protocol ProfileTaskScreenViewDelegate: ProfileViewDelegate {
     
     func didTapAnswerButton()
     
+    func numberOfAnswers() -> Int
+    func answer(at index: Int) -> ProfileTaskAnswerCell.Model?
+    
 }
 
-public final class ProfileTaskScreenView {
+public final class ProfileTaskScreenView: NSObject {
     
     public let profileView: ProfileView
     
@@ -23,11 +26,19 @@ public final class ProfileTaskScreenView {
     public let scoreLabel = UILabel()
     public let crimeDescriptionLabel = UILabel()
     
+    private let listLayout = UICollectionViewFlowLayout()
+    public lazy var answersView = AutosizingCollectionView(
+        frame: .zero,
+        collectionViewLayout: listLayout
+    )
+    
     private let delegate: ProfileTaskScreenViewDelegate
     
     public init(delegate: ProfileTaskScreenViewDelegate) {
         self.delegate = delegate
         self.profileView = ProfileView(delegate: delegate)
+        
+        super.init()
     }
     
     public func reloadContent() {
@@ -48,6 +59,50 @@ public final class ProfileTaskScreenView {
         crimeDescriptionLabel.font = .text3
         crimeDescriptionLabel.textColor = .white
         crimeDescriptionLabel.numberOfLines = 0
+        
+        answersView.delegate = self
+        answersView.dataSource = self
+        answersView.showsVerticalScrollIndicator = false
+        answersView.register(ProfileTaskAnswerCell.self, forCellWithReuseIdentifier: ProfileTaskAnswerCell.identifier)
+    }
+    
+}
+
+extension ProfileTaskScreenView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        delegate.numberOfAnswers()
+    }
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: ProfileTaskAnswerCell.identifier,
+            for: indexPath
+        ) as! ProfileTaskAnswerCell
+        
+        if let model = delegate.answer(at: indexPath.item) {
+            cell.configure(model: model)
+        }
+        
+        return cell
+    }
+    
+}
+
+extension ProfileTaskScreenView: UICollectionViewDelegateFlowLayout {
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        12
     }
     
 }

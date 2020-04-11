@@ -51,20 +51,6 @@ public final class ProfileView: UIView {
     
     required init?(coder: NSCoder) { fatalError() }
     
-    // MARK: - Overrides
-    
-    public override var bounds: CGRect {
-        didSet {
-            guard bounds != .zero else { return }
-            
-            let width = bounds.width - listView.contentInset.left - listView.contentInset.right
-            listLayout.estimatedItemSize = CGSize(
-                width: max(width, 0),
-                height: 0
-            )
-        }
-    }
-    
     // MARK: - Public functions
     
     public func reloadData() {
@@ -91,6 +77,7 @@ public final class ProfileView: UIView {
         listView.backgroundColor = nil
         listView.showsVerticalScrollIndicator = false
         
+        listView.registerEmptyCell()
         listView.register(ProfileCaseCell.self, forCellWithReuseIdentifier: ProfileCaseCell.identifier)
         listView.register(ProfilePrepositionCell.self, forCellWithReuseIdentifier: ProfilePrepositionCell.identifier)
         listView.register(ProfilePhotoAttachmentCell.self, forCellWithReuseIdentifier: ProfilePhotoAttachmentCell.identifier)
@@ -147,7 +134,9 @@ extension ProfileView: UICollectionViewDataSource {
             
             return cell
         case .attachments:
-            guard let model = delegate.attachment(at: indexPath.item) else { return UICollectionViewCell() }
+            guard let model = delegate.attachment(at: indexPath.item) else {
+                return collectionView.dequeueEmptyCell(for: indexPath)
+            }
             
             if let photoAttachment = model as? ProfilePhotoAttachmentCell.Model {
                 let cell = collectionView.dequeueReusableCell(
@@ -162,10 +151,12 @@ extension ProfileView: UICollectionViewDataSource {
                 
                 return cell
             } else {
-                return UICollectionViewCell()
+                return collectionView.dequeueEmptyCell(for: indexPath)
             }
         case .questions:
-            guard let model = delegate.question(at: indexPath.item) else { return UICollectionViewCell() }
+            guard let model = delegate.question(at: indexPath.item) else {
+                return collectionView.dequeueEmptyCell(for: indexPath)
+            }
             
             if let numberQuestionModel = model.question as? ProfileTaskNumberQuestionCell.Model {
                 let cell = collectionView.dequeueReusableCell(
@@ -224,9 +215,9 @@ extension ProfileView: UICollectionViewDataSource {
                 
                 return cell
             } else {
-                return UICollectionViewCell()
+                return collectionView.dequeueEmptyCell(for: indexPath)
             }
-        default: return UICollectionViewCell()
+        default: return collectionView.dequeueEmptyCell(for: indexPath)
         }
     }
     
