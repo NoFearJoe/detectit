@@ -30,8 +30,6 @@ public final class ScreenPlaceholderView: UIView {
         if isVisible {
             alpha = 0
             isHidden = false
-            
-            startShimmeringAnimation()
         }
         
         UIView.animate(
@@ -41,9 +39,11 @@ public final class ScreenPlaceholderView: UIView {
             animations: {
                 self.alpha = isVisible ? 1 : 0
             }, completion: { _ in
-                guard !isVisible else { return }
-                
-                self.isHidden = true
+                if !isVisible {
+                    self.isHidden = true
+                } else {
+                    self.startShimmeringAnimation()
+                }
             }
         )
     }
@@ -57,7 +57,7 @@ public final class ScreenPlaceholderView: UIView {
         addSubview(imageView)
         
         imageView.contentMode = .scaleAspectFit
-        imageView.alpha = isInitiallyHidden ? 0 : 1
+        imageView.layer.opacity = isInitiallyHidden ? 0 : 1
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -74,7 +74,7 @@ public final class ScreenPlaceholderView: UIView {
         guard !hasShimmeringAnimationStarted else { return }
         
         let animation = CABasicAnimation(keyPath: "opacity")
-        animation.beginTime = isInitiallyHidden ? CACurrentMediaTime() + 1 : CACurrentMediaTime()
+        animation.beginTime = isInitiallyHidden ? CACurrentMediaTime() + 0.5 : CACurrentMediaTime()
         animation.fromValue = isInitiallyHidden ? 0 : 1
         animation.toValue = isInitiallyHidden ? 1 : 0
         animation.autoreverses = true
