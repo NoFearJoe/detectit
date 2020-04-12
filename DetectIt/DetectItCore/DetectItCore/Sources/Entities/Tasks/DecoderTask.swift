@@ -87,9 +87,14 @@ extension DecoderTask: TaskScoring {
 public extension DecoderTask.Answer {
     
     func compare(with answer: String) -> Bool {
-        let clearAnswer = answer.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        return decodedMessage.lowercased() == clearAnswer || possibleAnswers?.map { $0.lowercased() }.contains(clearAnswer) == true
+        clear(decodedMessage) == clear(answer)
+            || possibleAnswers?.map { clear($0) }.contains(clear(answer)) == true
+    }
+    
+    private func clear(_ answer: String) -> String {
+        answer
+            .filter { !$0.isWhitespace && !$0.isNewline && $0 != "," }
+            .lowercased()
     }
     
 }
