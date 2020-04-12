@@ -15,7 +15,7 @@ public final class DecoderTaskScreenView {
     
     public let titleLabel = UILabel()
     public let prepositionLabel = UILabel()
-    public let encodedPictureView = UIImageView()
+    public let encodedPictureView = AutosizingImageView()
     
     public let questionAndAnswerView = QuestionAndAnswerView()
     
@@ -34,6 +34,7 @@ public final class DecoderTaskScreenView {
         prepositionLabel.textColor = .white
         prepositionLabel.numberOfLines = 0
         
+        encodedPictureView.contentMode = .scaleAspectFit
         encodedPictureView.layer.allowsEdgeAntialiasing = true
         encodedPictureView.transform = CGAffineTransform
             .randomLayout()

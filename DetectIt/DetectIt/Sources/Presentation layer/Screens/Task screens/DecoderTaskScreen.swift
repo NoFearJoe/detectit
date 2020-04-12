@@ -74,9 +74,6 @@ final class DecoderTaskScreen: Screen {
         
         score = TaskScore.get(id: task.id, taskKind: .cipher, bundleID: bundle.info.id)
         
-        #warning("Remove")
-        displayContent(encodedPicture: UIImage())
-        
         updateContentState(animated: false)
         
         loadData { [weak self] image in
@@ -113,6 +110,8 @@ final class DecoderTaskScreen: Screen {
         commitAnswer()
         
         updateContentState(animated: true)
+        
+        scrollToResults()
     }
     
     @objc private func onTapBackground() {
@@ -176,6 +175,22 @@ final class DecoderTaskScreen: Screen {
         guard isSolved else { return }
         
         screenView.questionAndAnswerView.highlight(isCorrect: isSolvedCorrectly, animated: animated, animationDuration: 2)
+    }
+    
+    func scrollToResults() {
+        view.isUserInteractionEnabled = false
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let minY = self.screenView.scoreLabel.frame.minY
+            let maxY = self.screenView.crimeDescriptionLabel.frame.maxY
+            let targetY = maxY - minY > self.view.bounds.height ? minY : max(0, maxY - self.view.bounds.height)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.contentContainer.scrollView.contentOffset = CGPoint(x: 0, y: targetY)
+            }) { _ in
+                self.view.isUserInteractionEnabled = true
+            }
+        }
     }
     
     // MARK: - Setup

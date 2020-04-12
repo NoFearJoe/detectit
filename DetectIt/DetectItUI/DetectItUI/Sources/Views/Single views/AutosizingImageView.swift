@@ -27,17 +27,9 @@ public class AutosizingImageView: UIImageView {
             return .zero
         }
         
-        if image.size.width > image.size.height {
-            let ratio = superview.bounds.size.height / image.size.height
-            let scaledWidth = image.size.width * ratio
+        let ratio = superview.bounds.size.width / image.size.width
 
-            return CGSize(width: scaledWidth, height: superview.bounds.size.height)
-        } else {
-            let ratio = superview.bounds.size.width / image.size.width
-            let scaledHeight = image.size.height * ratio
-
-            return CGSize(width: superview.bounds.size.width, height: scaledHeight)
-        }
+        return CGSize(width: image.size.width * ratio, height: image.size.height * ratio)
     }
 
 }

@@ -57,7 +57,7 @@ public final class ImageLoader {
                 return completion(cachedImage)
             }
             
-            let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) }
+            let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) ?? $0 }
             
             self.queue.sync {
                 self.cache[url.path] = image
