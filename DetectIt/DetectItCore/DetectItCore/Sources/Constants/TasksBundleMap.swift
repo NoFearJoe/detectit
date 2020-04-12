@@ -31,7 +31,7 @@ public struct TasksBundleMap {
             throw Error.infoFileIsNotExists
         }
         
-        guard let imageURL = Self.bundleURL(bundleID: bundleID)?.appendingPathComponent("image.png") else {
+        guard let imageURL = Self.bundleURL(bundleID: bundleID)?.appendingPathComponent("image.jpg") else {
             throw Error.imageFileIsNotExists
         }
         
