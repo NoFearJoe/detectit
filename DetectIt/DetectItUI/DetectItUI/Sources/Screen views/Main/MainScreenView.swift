@@ -14,6 +14,10 @@ public protocol MainScreenViewDelegate: AnyObject {
     func tasksBundleShallowModel(at index: Int) -> TasksBundleCell.ShallowModel?
     func didSelectTasksBundle(at index: Int)
     func didTapBuyTasksBundleButton(at index: Int)
+    
+    func numberOfActions() -> Int
+    func action(at index: Int) -> String?
+    func didSelectAction(at index: Int)
 }
 
 public final class MainScreenView: UIView {
@@ -51,7 +55,7 @@ public final class MainScreenView: UIView {
     
     public func shallowReloadData() {
         contentView.visibleCells.forEach { cell in
-            guard let indexPath = contentView.indexPath(for: cell) else { return }
+            guard let indexPath = contentView.indexPath(for: cell), indexPath.section == 0 else { return }
             guard let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) else { return }
             guard let cell = cell as? TasksBundleCell else { return }
             
@@ -83,6 +87,10 @@ public final class MainScreenView: UIView {
             TasksBundleCell.self,
             forCellWithReuseIdentifier: TasksBundleCell.identifier
         )
+        contentView.register(
+            MainScreenActionCell.self,
+            forCellWithReuseIdentifier: MainScreenActionCell.identifier
+        )
     }
     
 }
@@ -91,39 +99,60 @@ public final class MainScreenView: UIView {
 
 extension MainScreenView: UICollectionViewDataSource {
     
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
     public func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        delegate.numberOfTaskBundles()
+        if section == 0 {
+            return delegate.numberOfTaskBundles()
+        } else {
+            return delegate.numberOfActions()
+        }
     }
     
     public func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: TasksBundleCell.identifier,
-            for: indexPath
-        ) as! TasksBundleCell
-        
-        if let model = delegate.tasksBundle(at: indexPath.item) {
-            cell.configure(model: model)
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TasksBundleCell.identifier,
+                for: indexPath
+            ) as! TasksBundleCell
+            
+            if let model = delegate.tasksBundle(at: indexPath.item) {
+                cell.configure(model: model)
+            }
+            
+            if let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) {
+                cell.configure(model: shallowModel)
+            }
+            
+            cell.onTapPlayButton = { [unowned self] in
+                self.delegate.didSelectTasksBundle(at: indexPath.item)
+            }
+            
+            cell.onTapBuyButton = {
+                self.delegate.didTapBuyTasksBundleButton(at: indexPath.item)
+            }
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MainScreenActionCell.identifier,
+                for: indexPath
+            ) as! MainScreenActionCell
+            
+            if let model = delegate.action(at: indexPath.item) {
+                cell.configure(title: model)
+            }
+            
+            return cell
         }
-        
-        if let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) {
-            cell.configure(model: shallowModel)
-        }
-        
-        cell.onTapPlayButton = { [unowned self] in
-            self.delegate.didSelectTasksBundle(at: indexPath.item)
-        }
-        
-        cell.onTapBuyButton = {
-            self.delegate.didTapBuyTasksBundleButton(at: indexPath.item)
-        }
-        
-        return cell
     }
     
 }
@@ -136,7 +165,11 @@ extension MainScreenView: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        delegate.didSelectTasksBundle(at: indexPath.item)
+        if indexPath.section == 0 {
+            delegate.didSelectTasksBundle(at: indexPath.item)
+        } else {
+            delegate.didSelectAction(at: indexPath.item)
+        }
     }
     
 }
@@ -150,7 +183,11 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        20
+        if section == 0 {
+            return 20
+        } else {
+            return 8
+        }
     }
     
     public func collectionView(
@@ -159,6 +196,18 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
         20
+    }
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        if section == 0 {
+            return .zero
+        } else {
+            return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        }
     }
     
     public func collectionView(
@@ -181,9 +230,13 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             }
         }()
         
-        let ratio = CGFloat(1.25)
+        if indexPath.section == 0 {
+            let ratio = CGFloat(1.25)
         
-        return CGSize(width: width, height: width * ratio)
+            return CGSize(width: width, height: width * ratio)
+        } else {
+            return CGSize(width: width, height: 40)
+        }
     }
     
 }

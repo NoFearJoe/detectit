@@ -17,6 +17,7 @@
 		96200CB52441F29000A3C720 /* UICollectionView+EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB42441F29000A3C720 /* UICollectionView+EmptyCell.swift */; };
 		96200CB72442016900A3C720 /* ProfileTaskAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */; };
 		96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB82442084400A3C720 /* String+AttributedString.swift */; };
+		96200CBF24435F3800A3C720 /* MainScreenActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */; };
 		96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 96500E2C242F0F92005FFC7A /* DetectItUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3D242F1151005FFC7A /* PhotoCardView.swift */; };
 		96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */; };
@@ -89,6 +90,7 @@
 		96200CB42441F29000A3C720 /* UICollectionView+EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+EmptyCell.swift"; sourceTree = "<group>"; };
 		96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskAnswerCell.swift; sourceTree = "<group>"; };
 		96200CB82442084400A3C720 /* String+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AttributedString.swift"; sourceTree = "<group>"; };
+		96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenActionCell.swift; sourceTree = "<group>"; };
 		96500E29242F0F92005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E2C242F0F92005FFC7A /* DetectItUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItUI.h; sourceTree = "<group>"; };
 		96500E2D242F0F92005FFC7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			children = (
 				965AC79F24385BD4003A3DC7 /* MainScreenView.swift */,
 				96500E8D2435F337005FFC7A /* TasksBundleCell.swift */,
+				96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				96200CB52441F29000A3C720 /* UICollectionView+EmptyCell.swift in Sources */,
 				961EEDF82440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift in Sources */,
 				965AC7AE243878A6003A3DC7 /* TasksBundleScreenView.swift in Sources */,
+				96200CBF24435F3800A3C720 /* MainScreenActionCell.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

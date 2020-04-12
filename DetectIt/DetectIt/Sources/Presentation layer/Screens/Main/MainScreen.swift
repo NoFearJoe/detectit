@@ -24,6 +24,8 @@ final class MainScreen: Screen {
     private var taskBundleImages: [String: UIImage] = [:]
     private var taskBundlesPurchaseStates: [String: TasksBundlePurchaseState] = [:]
     
+    private let actions = Action.allCases
+    
     // MARK: - Overrides
     
     override func loadView() {
@@ -121,6 +123,26 @@ extension MainScreen: MainScreenViewDelegate {
         didSelectTasksBundle(at: index)
     }
     
+    func numberOfActions() -> Int {
+        actions.count
+    }
+    
+    func action(at index: Int) -> String? {
+        actions[index].title
+    }
+    
+    // TODO
+    func didSelectAction(at index: Int) {
+        switch actions[index] {
+        case .reportProblem:
+            return
+        case .restorePurchases:
+            return
+        case .authors:
+            return
+        }
+    }
+    
 }
 
 private extension MainScreen {
@@ -139,6 +161,28 @@ private extension MainScreen {
     
     func showTasksBundlePurchse(bundle: TasksBundle.Info, price: String) {
         // TODO
+    }
+    
+}
+
+private extension MainScreen {
+    
+    enum Action: CaseIterable {
+        case reportProblem
+        case restorePurchases
+        case authors
+        
+        // TODO
+        var title: String {
+            switch self {
+            case .reportProblem:
+                return "Сообщить о проблеме"
+            case .restorePurchases:
+                return "Восстановить покупки"
+            case .authors:
+                return "Авторы"
+            }
+        }
     }
     
 }
