@@ -353,7 +353,10 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
             }
         }()
         
-        return ProfileTaskAnswerCell.Model(question: question.title, answer: answer)
+        return ProfileTaskAnswerCell.Model(
+            question: "\(question.title) (\(Plurals.score(question.score)))",
+            answer: answer
+        )
     }
     
 }

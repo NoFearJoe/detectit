@@ -67,7 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		961B95E02425EE89003EC992 /* DetectIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DetectIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		961B95E02425EE89003EC992 /* Detect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Detect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B95E32425EE89003EC992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		961B95E52425EE89003EC992 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		961B95EC2425EE92003EC992 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		961B95E12425EE89003EC992 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				961B95E02425EE89003EC992 /* DetectIt.app */,
+				961B95E02425EE89003EC992 /* Detect.app */,
 				961B95F62425EE92003EC992 /* DetectItTests.xctest */,
 				961B96012425EE92003EC992 /* DetectItUITests.xctest */,
 			);
@@ -304,7 +304,7 @@
 			packageProductDependencies = (
 			);
 			productName = DetectIt;
-			productReference = 961B95E02425EE89003EC992 /* DetectIt.app */;
+			productReference = 961B95E02425EE89003EC992 /* Detect.app */;
 			productType = "com.apple.product-type.application";
 		};
 		961B95F52425EE92003EC992 /* DetectItTests */ = {
@@ -608,8 +608,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectIt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
+				PRODUCT_NAME = Detect;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -627,8 +627,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectIt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
+				PRODUCT_NAME = Detect;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

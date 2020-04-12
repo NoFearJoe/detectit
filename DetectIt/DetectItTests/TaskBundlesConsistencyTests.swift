@@ -163,11 +163,11 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     }
                 }
                 
-                // Проверка на то, что для всех профайлов есть файлы
+                // Проверка на то, что для всех расследований есть файлы
                 tasksBundle.profileTasks.forEach { profileTask in
                     
-                    // Проверка приложений к профайлу.
-                    profileTask.attachments.forEach {
+                    // Проверка приложений к расследованию.
+                    profileTask.attachments?.forEach {
                         guard let url = profileTask.attachmentURL(attachment: $0, bundleID: bundle) else {
                             switch $0.kind {
                             case .audio:

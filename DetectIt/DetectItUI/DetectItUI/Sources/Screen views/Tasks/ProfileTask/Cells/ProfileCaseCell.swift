@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Ячейка, отображающая случай из "Профайла".
+/// Ячейка, отображающая случай из "Расследования".
 public final class ProfileCaseCell: AutosizingCollectionViewCell {
     
     public static let identifier = String(describing: ProfileCaseCell.self)

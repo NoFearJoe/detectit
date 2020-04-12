@@ -28,7 +28,7 @@ extension TasksBundleScreen {
             case .ciphers:
                 return "Шифры"
             case .profiles:
-                return "Профайлы"
+                return "Расследования"
             case .quests:
                 return "Квесты"
             }

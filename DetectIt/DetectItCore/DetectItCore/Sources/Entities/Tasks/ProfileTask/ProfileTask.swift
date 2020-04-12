@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Задание "Профайл".
+/// Задание "Расследование".
 public struct ProfileTask: Codable {
     
     /// Идентификатор задания.

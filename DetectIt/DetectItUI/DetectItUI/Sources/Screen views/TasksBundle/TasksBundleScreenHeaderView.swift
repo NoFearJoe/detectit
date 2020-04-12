@@ -115,7 +115,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.vOffset),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.hInset),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.hInset)
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.hInset)
         ])
         
         addSubview(totalScoreLabel)
@@ -127,7 +127,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         NSLayoutConstraint.activate([
             totalScoreLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constants.vOffset),
             totalScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.hInset),
-            totalScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.hInset),
+            totalScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.hInset),
             totalScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.vOffset)
         ])
     }
