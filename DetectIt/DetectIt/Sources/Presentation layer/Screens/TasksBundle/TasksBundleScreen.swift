@@ -115,11 +115,6 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         
         let screen: Screen = {
             switch section {
-            case .audiorecords:
-                return AudioRecordTaskScreen(
-                    task: bundle.audiorecordTasks[index],
-                    bundle: bundle
-                )
             case .extraEvidences:
                 return ExtraEvidenceTaskScreen(
                     task: bundle.extraEvidenceTasks[index],

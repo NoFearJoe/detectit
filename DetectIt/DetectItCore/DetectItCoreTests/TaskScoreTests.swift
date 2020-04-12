@@ -17,16 +17,6 @@ final class TaskScoreTests: XCTestCase {
         TaskScore.clear()
     }
     
-    func testThatAudioRecordScoreStoresCorrectly() {
-        let score = 1
-        let id = "test_audio_record"
-        
-        TaskScore.set(value: score, id: id, taskKind: .audiorecord, bundleID: "test")
-        
-        let savedScore = TaskScore.get(id: id, taskKind: .audiorecord, bundleID: "test")
-        XCTAssertEqual(score, savedScore)
-    }
-    
     func testThatExtraEvidenceScoreStoresCorrectly() {
         let score = 2
         let id = "test_extra_evidence"

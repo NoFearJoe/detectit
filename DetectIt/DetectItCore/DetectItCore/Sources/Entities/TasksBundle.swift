@@ -18,7 +18,6 @@ public struct TasksBundle {
     }
     
     public let info: Info
-    public let audiorecordTasks: [AudioRecordTask]
     public let decoderTasks: [DecoderTask]
     public let extraEvidenceTasks: [ExtraEvidenceTask]
     public let profileTasks: [ProfileTask]
@@ -58,7 +57,6 @@ public struct TasksBundle {
         
             let bundle = TasksBundle(
                 info: info,
-                audiorecordTasks: Self.decode(AudioRecordTask.self, paths: map.audiorecords),
                 decoderTasks: Self.decode(DecoderTask.self, paths: map.ciphers),
                 extraEvidenceTasks: Self.decode(ExtraEvidenceTask.self, paths: map.extraEvidences),
                 profileTasks: Self.decode(ProfileTask.self, paths: map.profiles),
@@ -91,8 +89,7 @@ public extension TasksBundle {
     /// Максимальное количество очков, которое можно получить за правильное решение всех заданий.
     var maxScore: Int {
         [
-            audiorecordTasks as [TaskScoring],
-            extraEvidenceTasks,
+            extraEvidenceTasks as [TaskScoring],
             decoderTasks,
             profileTasks,
             questTasks

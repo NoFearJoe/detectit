@@ -65,16 +65,6 @@ public struct TaskAnswer {
     
     private static let storage = UserDefaults.standard
     
-    // MARK: Audio record
-        
-    public static func get(audioRecordTaskID id: String) -> AudioRecordTask.Answer? {
-        get(id: id, taskKind: .audiorecord)
-    }
-    
-    public static func set(answer: AudioRecordTask.Answer, audioRecordTaskID id: String) {
-        set(value: answer, id: id, taskKind: .audiorecord)
-    }
-    
     // MARK: Extra evidence
         
     public static func get(extraEvidenceTaskID id: String) -> String? {

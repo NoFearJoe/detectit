@@ -29,10 +29,7 @@ public extension ProfileTask {
         
         /// Вопрос на выбор из нескольких вариантов.
         public let variant: VariantsQuestion?
-        
-        /// Вопрос на ввод ответа из словаря.
-        public let variantFromDictionary: VariantsFromDictionaryQuestion?
-        
+                
         /// Вопрос на ввод точного ответа.
         public let exactAnswer: ExactAnswerQuestion?
         
@@ -83,22 +80,6 @@ public extension ProfileTask {
 
 public extension ProfileTask {
     
-    /// Вопрос на ввод ответа из словаря. Например, "Назовите профессию преступника", "Назовите место преступления".
-    struct VariantsFromDictionaryQuestion: Codable {
-        
-        /// Название словаря с вариантоами.
-        /// Словарь хранится в бандле, не в директории с заданием.
-        let dictionaryName: String
-        
-        /// Ответ.
-        public let answer: String
-        
-    }
-    
-}
-
-public extension ProfileTask {
-    
     /// Вопрос на ввод точного ответа. Например, "Как зовут преступника", "Назовите город, в котором произошло преступление".
     struct ExactAnswerQuestion: Codable {
         
@@ -133,8 +114,6 @@ public extension ProfileTask.Question {
             return numberQuestion.correctNumber == number
         } else if let variantsQuestion = variant, case .string(let variantID) = answer {
             return variantsQuestion.correctVariantID == variantID
-        } else if let variantsFromDistionaryQuestion = variantFromDictionary, case .string(let variant) = answer {
-            return variantsFromDistionaryQuestion.answer == variant
         } else if let exactAnswerQuestion = exactAnswer, case .string(let answer) = answer {
             let clearAnswer = answer.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
             return exactAnswerQuestion.answer.lowercased() == clearAnswer
@@ -144,18 +123,6 @@ public extension ProfileTask.Question {
         } else {
             return false
         }
-    }
-    
-}
-
-// MARK: - Resource accessing
-
-public extension ProfileTask {
-    
-    func variantsDictionaryURL(question: VariantsFromDictionaryQuestion, bundleID: String) -> URL? {
-        TasksBundleMap
-            .dictionariesDirectoryURL(bundleID: bundleID)?
-            .appendingPathComponent(question.dictionaryName)
     }
     
 }

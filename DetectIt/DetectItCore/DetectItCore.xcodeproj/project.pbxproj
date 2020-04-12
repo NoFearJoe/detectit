@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		961B9639242600BB003EC992 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961B962F242600BB003EC992 /* DetectItCore.framework */; };
 		961B9640242600BB003EC992 /* DetectItCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 961B9632242600BB003EC992 /* DetectItCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96512426013A003EC992 /* AudioRecordTask.swift */; };
 		961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */; };
 		961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965C24274ABA003EC992 /* DecoderTask.swift */; };
 		961B965F24274C79003EC992 /* QuestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965E24274C79003EC992 /* QuestTask.swift */; };
@@ -50,7 +49,6 @@
 		961B9633242600BB003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B9638242600BB003EC992 /* DetectItCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetectItCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B963F242600BB003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		961B96512426013A003EC992 /* AudioRecordTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecordTask.swift; sourceTree = "<group>"; };
 		961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraEvidenceTask.swift; sourceTree = "<group>"; };
 		961B965C24274ABA003EC992 /* DecoderTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTask.swift; sourceTree = "<group>"; };
 		961B965E24274C79003EC992 /* QuestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTask.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				96AAAFF4243B19B100F61443 /* Protocols */,
 				96AAAFF2243B174600F61443 /* TaskDifficulty.swift */,
 				96500E18242BC47C005FFC7A /* ProfileTask */,
-				961B96512426013A003EC992 /* AudioRecordTask.swift */,
 				961B965A242748AE003EC992 /* ExtraEvidenceTask.swift */,
 				961B965C24274ABA003EC992 /* DecoderTask.swift */,
 				961B965E24274C79003EC992 /* QuestTask.swift */,
@@ -356,7 +353,6 @@
 				961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */,
 				965AC7FA243A39C4003A3DC7 /* PaidTaskBundlesManager.swift in Sources */,
 				96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */,
-				961B96552426013A003EC992 /* AudioRecordTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

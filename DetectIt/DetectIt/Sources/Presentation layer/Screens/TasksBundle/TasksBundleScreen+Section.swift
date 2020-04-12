@@ -13,7 +13,6 @@ import DetectItCore
 extension TasksBundleScreen {
     
     enum Section {
-        case audiorecords
         case extraEvidences
         case ciphers
         case profiles
@@ -21,8 +20,6 @@ extension TasksBundleScreen {
         
         var title: String {
             switch self {
-            case .audiorecords:
-                return "Аудиофайлы"
             case .extraEvidences:
                 return "Улики"
             case .ciphers:
@@ -40,12 +37,6 @@ extension TasksBundleScreen {
     
     func makeSections(bundle: TasksBundle) -> [SectionModel] {
         var sections: [SectionModel] = []
-        
-        if !bundle.audiorecordTasks.isEmpty {
-            sections.append(
-                (.audiorecords, bundle.audiorecordTasks.map { map(task: $0, bundleID: bundle.info.id) })
-            )
-        }
         
         if !bundle.extraEvidenceTasks.isEmpty {
             sections.append(

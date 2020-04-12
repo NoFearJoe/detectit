@@ -70,16 +70,12 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                 }
                 
                 XCTAssertTrue(
-                    bundleMap.audiorecords.count == tasksBundle.audiorecordTasks.count,
-                    "Audiorecords count (\(tasksBundle.audiorecordTasks.count)) is not the same with bundle map's count (\(tasksBundle.audiorecordTasks.count))"
-                )
-                XCTAssertTrue(
                     bundleMap.ciphers.count == tasksBundle.decoderTasks.count,
                     "Ciphers count (\(tasksBundle.decoderTasks.count)) is not the same with bundle map's count (\(bundleMap.ciphers.count))"
                 )
                 XCTAssertTrue(
                     bundleMap.extraEvidences.count == tasksBundle.extraEvidenceTasks.count,
-                    "Extra evidences count (\(tasksBundle.extraEvidenceTasks.count)) is not the same with bundle map's count (\(tasksBundle.audiorecordTasks.count))"
+                    "Extra evidences count (\(tasksBundle.extraEvidenceTasks.count)) is not the same with bundle map's count (\(tasksBundle.extraEvidenceTasks.count))"
                 )
                 XCTAssertTrue(
                     bundleMap.profiles.count == tasksBundle.profileTasks.count,
@@ -106,38 +102,6 @@ final class TaskBundlesConsistencyTests: XCTestCase {
             TasksBundle.load(bundleID: bundle) { tasksBundle in
                 guard let tasksBundle = tasksBundle else {
                     return XCTFail("A tasks bundle \(bundle) was not loaded")
-                }
-                
-                // Проверка на то, что для всех аудиозаписей есть файлы
-                tasksBundle.audiorecordTasks.forEach {
-                    
-                    // Проверка наличия словаря с типами преступлений
-                    if let crimeTypesDictionaryURL = $0.crimeTypesDictionaryURL(bundleID: bundle) {
-                        XCTAssertTrue(
-                            FileManager.default.fileExists(atPath: crimeTypesDictionaryURL.path),
-                            "The audio file is not exists at \(crimeTypesDictionaryURL.path)"
-                        )
-                    } else {
-                        XCTFail("The crime types dictionary file URL is not exists at \($0.crimeTypesDictionary)")
-                    }
-                    
-                    // Проверка наличия словаря с местами преступлений
-                    if let crimePlacesDictionaryURL = $0.crimePlacesDictionaryURL(bundleID: bundle) {
-                        XCTAssertTrue(
-                            FileManager.default.fileExists(atPath: crimePlacesDictionaryURL.path),
-                            "The audio file is not exists at \(crimePlacesDictionaryURL.path)"
-                        )
-                    } else {
-                        XCTFail("The crime places dictionary file URL is not exists at \($0.crimePlacesDictionary)")
-                    }
-                    
-                    // Проверка наличия файла с аудиозаписью
-                    if let url = $0.audioFileURL(bundleID: bundle) {
-                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The audio file is not exists at \(url.path)")
-                    } else {
-                        XCTFail("The audio file URL is nil for audio named \($0.audioFileName)")
-                    }
-                    
                 }
                 
                 // Проверка на то, что для всех шифров есть файлы
@@ -188,15 +152,6 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                         }
                         
                         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The case picture file is not exists at \(url.path)")
-                    }
-                    
-                    // Проверка ответов с выбором из словаря
-                    profileTask.questions.compactMap { $0.variantFromDictionary }.forEach {
-                        guard let url = profileTask.variantsDictionaryURL(question: $0, bundleID: bundle) else {
-                            return XCTFail("The case picture file URL is nil for file named \($0.dictionaryName)")
-                        }
-                        
-                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The variants dictionary file is not exists at \(url.path)")
                     }
                     
                 }

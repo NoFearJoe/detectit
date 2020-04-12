@@ -17,18 +17,6 @@ final class TaskAnswerTests: XCTestCase {
         TaskAnswer.clear()
     }
     
-    func testThatAudioRecordAnswerStoresCorrectly() {
-        let id = "test_audio_record"
-        let answer = AudioRecordTask.Answer(crimeDescription: "", crimeType: "1", crimePlace: "2", criminalsCount: 3)
-        
-        TaskAnswer.set(answer: answer, audioRecordTaskID: id)
-        
-        let savedAnswer = TaskAnswer.get(audioRecordTaskID: id)
-        XCTAssertEqual(answer.crimeType, savedAnswer?.crimeType)
-        XCTAssertEqual(answer.crimePlace, savedAnswer?.crimePlace)
-        XCTAssertEqual(answer.criminalsCount, savedAnswer?.criminalsCount)
-    }
-    
     func testThatExtraEvidenceAnswerStoresCorrectly() {
         let id = "test_extra_evidence"
         let answer = "picture_1"
