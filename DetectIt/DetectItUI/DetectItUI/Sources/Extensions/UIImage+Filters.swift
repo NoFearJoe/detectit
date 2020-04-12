@@ -13,7 +13,7 @@ public extension UIImage {
     func applyingOldPhotoFilter() -> UIImage {
         applying(filters: [
 //            ("CICrop", ["inputRectangle": CIVector(cgRect: cropRect(ratio: CGSize(width: 15, height: 10)))]),
-            ("CIColorPosterize", ["inputLevels": NSNumber(value: 20)]),
+//            ("CIColorPosterize", ["inputLevels": NSNumber(value: 20)]),
             ("CIPhotoEffectMono", [:]),
             ("CIVignette", ["inputIntensity": NSNumber(value: 2)])
         ])
