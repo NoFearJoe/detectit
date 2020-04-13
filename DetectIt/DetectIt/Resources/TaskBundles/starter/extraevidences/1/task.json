@@ -1,0 +1,23 @@
+{
+  "id": "1",
+  "title": "Test",
+  "difficulty": 1,
+  "evidencePictures": [
+    {
+      "title": "Test 1",
+      "pictureName": "p1.jpg"
+    },
+    {
+      "title": "Test 2",
+      "pictureName": "p1.jpg"
+    },
+    {
+      "title": "Test 3",
+      "pictureName": "p1.jpg"
+    }
+  ],
+  "answer": {
+    "crimeDescription": "Test",
+    "evidencePictureName": "p1.jpg"
+  }
+}

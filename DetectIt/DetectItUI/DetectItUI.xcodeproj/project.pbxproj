@@ -182,6 +182,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		96200CC024438CEF00A3C720 /* ExtraEvidenceTask */ = {
+			isa = PBXGroup;
+			children = (
+				96500E742431D31F005FFC7A /* EvidenceListView.swift */,
+				96500E692430C03B005FFC7A /* EvidenceCell.swift */,
+			);
+			path = ExtraEvidenceTask;
+			sourceTree = "<group>";
+		};
 		96500E1F242F0F92005FFC7A = {
 			isa = PBXGroup;
 			children = (
@@ -314,7 +323,6 @@
 				96AAAFFD243B6F2300F61443 /* Tasks */,
 				965AC7B124388AAF003A3DC7 /* Main */,
 				965AC7B224388AD7003A3DC7 /* TasksBundle */,
-				96500E742431D31F005FFC7A /* EvidenceListView.swift */,
 			);
 			path = "Screen views";
 			sourceTree = "<group>";
@@ -330,7 +338,6 @@
 		96500E8A2435F2D5005FFC7A /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				96500E692430C03B005FFC7A /* EvidenceCell.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -420,6 +427,7 @@
 		96AAAFFD243B6F2300F61443 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				96200CC024438CEF00A3C720 /* ExtraEvidenceTask */,
 				96AAB007243F369100F61443 /* ProfileTask */,
 				96AAAFFE243B6F2E00F61443 /* DecoderTask */,
 			);

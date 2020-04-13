@@ -28,14 +28,18 @@ public final class MainScreenActionCell: UICollectionViewCell {
         
         titleLabel.pin(to: contentView)
         
-        contentView.addGestureRecognizer(TouchGestureRecognizer(action: { [unowned self] recognizer in
+        let recognizer = TouchGestureRecognizer(action: { [unowned self] recognizer in
             switch recognizer.state {
             case .began, .changed:
                 self.contentView.backgroundColor = .lightGray
             default:
                 self.contentView.backgroundColor = .darkGray
             }
-        }))
+        })
+        
+        recognizer.cancelsTouchesInView = false
+        
+        contentView.addGestureRecognizer(recognizer)
     }
     
     required init?(coder: NSCoder) { fatalError() }

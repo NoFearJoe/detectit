@@ -15,6 +15,7 @@ public protocol EvidenceListViewDelegate: AnyObject {
     func evidenceModel(at index: Int) -> EvidenceCell.Model?
     
     func didSelectEvidence(at index: Int)
+    func didLongTapEvidence(at index: Int)
     
 }
 
@@ -36,11 +37,15 @@ public final class EvidenceListView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
     
+    public func reloadData() {
+        listView.reloadData()
+    }
+    
     // MARK: - Subviews
     
     private let listLayout = UICollectionViewFlowLayout()
     
-    private lazy var listView = UICollectionView(
+    private lazy var listView = AutosizingCollectionView(
         frame: .zero,
         collectionViewLayout: listLayout
     )
@@ -84,6 +89,10 @@ extension EvidenceListView: UICollectionViewDataSource {
             cell.configure(model: model)
         }
         
+        cell.onLongTapPhoto = { [unowned self] in
+            self.delegate.didLongTapEvidence(at: indexPath.item)
+        }
+        
         return cell
     }
     
@@ -115,7 +124,7 @@ extension EvidenceListView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        20
+        32
     }
     
 }
@@ -153,10 +162,13 @@ final class MockEvidenceListViewDelegate: EvidenceListViewDelegate {
     func evidenceModel(at index: Int) -> EvidenceCell.Model? {
         EvidenceCell.Model(
             photo: UIImage.asset(named: "Test")!,//.applyingOldPhotoFilter(),
-            title: "#\(index) Зацепочка"
+            title: "#\(index) Зацепочка",
+            isSelected: false
         )
     }
     
     func didSelectEvidence(at index: Int) {}
+    
+    func didLongTapEvidence(at index: Int) {}
     
 }

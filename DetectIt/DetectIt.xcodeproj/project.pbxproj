@@ -31,6 +31,7 @@
 		965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */; };
 		965AC7F7243A103B003A3DC7 /* MainScreenDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */; };
 		96AAB00C243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00B243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift */; };
+		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTaskScreen.swift; sourceTree = "<group>"; };
 		965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenDataLoader.swift; sourceTree = "<group>"; };
 		96AAB00B243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskScreenDataLoader.swift; sourceTree = "<group>"; };
+		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				965AC7C72438B932003A3DC7 /* TasksBundle */,
 				965AC7CB2438B9B7003A3DC7 /* Task screens */,
 				96200CAD244195C700A3C720 /* PhotoViewerScreen */,
+				96F054732444AAFA000742E4 /* DebugMenu */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -279,6 +282,14 @@
 				961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		96F054732444AAFA000742E4 /* DebugMenu */ = {
+			isa = PBXGroup;
+			children = (
+				96F054742444AB0C000742E4 /* DebugMenuScreen.swift */,
+			);
+			path = DebugMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +440,7 @@
 				965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */,
 				961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */,
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
+				96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */,
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
 				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
 				96AAB00C243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift in Sources */,

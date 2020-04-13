@@ -36,11 +36,17 @@ final class ProfileTaskScreen: Screen {
     
     private var answers = Answers() {
         didSet {
+            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id)
+            
             updateAnswerButtonState()
         }
     }
     
     private var score: Int?
+    
+    private var isSolved: Bool {
+        score != nil
+    }
     
     // MARK: - Init
     
@@ -77,9 +83,6 @@ final class ProfileTaskScreen: Screen {
     
     override func prepare() {
         super.prepare()
-        
-        #warning("Remove")
-        TaskAnswer.clear()
         
         answers.load(taskID: task.id)
         score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
@@ -134,8 +137,6 @@ final class ProfileTaskScreen: Screen {
     }
     
     func updateContentState(animated: Bool) {
-        let isSolved = score != nil
-        
         contentContainer.setChildHidden(screenView.answerButton, hidden: isSolved, animated: false)
         contentContainer.setChildHidden(screenView.scoreLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.crimeDescriptionLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
@@ -144,6 +145,8 @@ final class ProfileTaskScreen: Screen {
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }
         screenView.scoreLabel.textColor = .score(value: score, max: task.maxScore, defaultColor: .white)
         screenView.crimeDescriptionLabel.attributedText = task.crimeDescription.readableAttributedText()
+        
+        guard isSolved else { return }
         
         task.questions.enumerated().forEach { index, question in
             let answer = answers.get(questionID: question.id)
@@ -277,12 +280,15 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
                     }
                 }
             )
-            let isCorrect = answers.get(questionID: question.id).map { question.compare(with: $0.answer) }
+            let isCorrect = isSolved ? answers.get(questionID: question.id).map { question.compare(with: $0.answer) } : nil
             
             return (model, isCorrect)
         } else if question.exactAnswer != nil {
+            let userAnswer = answers.get(questionID: question.id)
+            
             let model = ProfileTaskExactAnswerQuestionCell.Model(
                 question: question.title,
+                answer: userAnswer?.answer.string,
                 onChangeAnswer: { [unowned self] answer in
                     if !answer.isEmpty {
                         self.answers.set(
@@ -294,7 +300,7 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
                     }
                 }
             )
-            let isCorrect = answers.get(questionID: question.id).map { question.compare(with: $0.answer) }
+            let isCorrect = isSolved ? userAnswer.map { question.compare(with: $0.answer) } : nil
             
             return (model, isCorrect)
         } else if let variantsQuestion = question.variant {
@@ -311,7 +317,7 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
                     )
                 }
             )
-            let isCorrect = answers.get(questionID: question.id).map { question.compare(with: $0.answer) }
+            let isCorrect = isSolved ? answers.get(questionID: question.id).map { question.compare(with: $0.answer) } : nil
             
             return (model, isCorrect)
         } else if question.boolAnswer != nil {
@@ -325,7 +331,7 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
                     )
                 }
             )
-            let isCorrect = answers.get(questionID: question.id).map { question.compare(with: $0.answer) }
+            let isCorrect = isSolved ? answers.get(questionID: question.id).map { question.compare(with: $0.answer) } : nil
             
             return (model, isCorrect)
         } else {
@@ -390,6 +396,10 @@ private extension ProfileTaskScreen {
         let backgroundTapRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
         backgroundTapRecognizer1.delegate = self
         contentContainer.stackView.addGestureRecognizer(backgroundTapRecognizer1)
+        
+        let backgroundTapRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
+        backgroundTapRecognizer2.delegate = self
+        screenView.profileView.listView.addGestureRecognizer(backgroundTapRecognizer2)
     }
     
     func setupViews() {

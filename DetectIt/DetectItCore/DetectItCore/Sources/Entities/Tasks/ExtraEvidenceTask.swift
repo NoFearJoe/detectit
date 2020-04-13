@@ -20,7 +20,7 @@ public struct ExtraEvidenceTask: Codable {
     let difficulty: Int
     
     /// Список изображений с уликами.
-    let evidencePictures: [EvidencePicture]
+    public let evidencePictures: [EvidencePicture]
     
     /// Ответ.
     public let answer: Answer
@@ -46,10 +46,10 @@ public extension ExtraEvidenceTask {
     struct Answer: Codable {
         
         /// Описание произошедшего.
-        let crimeDescription: String
+        public let crimeDescription: String
         
         /// Название правильного изображения с уликой.
-        let evidencePictureName: String
+        public let evidencePictureName: String
         
     }
     

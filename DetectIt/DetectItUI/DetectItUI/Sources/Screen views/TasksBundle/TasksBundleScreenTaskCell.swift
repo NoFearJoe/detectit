@@ -67,10 +67,8 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         difficultyView.image = model.difficultyImage
         difficultyView.isHidden = model.difficultyImage == nil
         
-        iconView.alpha = model.isEnabled ? 1 : 0.75
-        titleLabel.alpha = model.isEnabled ? 1 : 0.75
-        
-        isUserInteractionEnabled = model.isEnabled
+        iconView.alpha = model.isEnabled ? 1 : 0.5
+        titleLabel.alpha = model.isEnabled ? 1 : 0.5
     }
     
     // MARK: - Overrides

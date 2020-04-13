@@ -26,7 +26,7 @@ public final class DecoderTaskScreenView {
     public let crimeDescriptionLabel = UILabel()
     
     public func setupViews() {
-        titleLabel.font = .heading2
+        titleLabel.font = .heading1
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         

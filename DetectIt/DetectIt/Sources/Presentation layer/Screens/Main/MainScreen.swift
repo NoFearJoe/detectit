@@ -38,9 +38,6 @@ final class MainScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        #warning("Remove")
-        TaskScore.clear()
-        
         isStatusBarBlurred = true
         
         PaidTaskBundlesManager.obtainProductsInfo()
@@ -140,6 +137,8 @@ extension MainScreen: MainScreenViewDelegate {
             return
         case .authors:
             return
+        case .debugMenu:
+            present(DebugMenuScreen(), animated: true, completion: nil)
         }
     }
     
@@ -171,16 +170,19 @@ private extension MainScreen {
         case reportProblem
         case restorePurchases
         case authors
+        case debugMenu
         
         // TODO
         var title: String {
             switch self {
             case .reportProblem:
-                return "Сообщить о проблеме"
+                return "Сообщить о проблеме (не работает)"
             case .restorePurchases:
-                return "Восстановить покупки"
+                return "Восстановить покупки (не работает)"
             case .authors:
-                return "Авторы"
+                return "Авторы (не работает)"
+            case .debugMenu:
+                return "Дебаг меню"
             }
         }
     }

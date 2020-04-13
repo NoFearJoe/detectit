@@ -59,6 +59,7 @@ public final class ImageLoader {
             
             let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) ?? $0 }
             
+            // TODO: Тут был крэш один раз
             self.queue.sync {
                 self.cache[url.path] = image
             }

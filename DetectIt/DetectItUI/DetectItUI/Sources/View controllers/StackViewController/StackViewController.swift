@@ -178,6 +178,7 @@ private extension StackViewController {
         scrollView.maximumZoomScale = 1
         scrollView.contentInsetAdjustmentBehavior = .always
         scrollView.delaysContentTouches = false
+        scrollView.keyboardDismissMode = .onDrag
     }
     
 }

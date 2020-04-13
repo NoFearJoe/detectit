@@ -14,7 +14,12 @@ final class AnswerField: UIView {
     var onChangeText: ((String) -> Void)?
     
     var answer: String {
-        textField.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        get {
+            textField.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        set {
+            textField.textView.text = newValue
+        }
     }
     
     var keyboardType: UIKeyboardType = .default {
@@ -65,6 +70,10 @@ final class AnswerField: UIView {
         textField.textView.autocorrectionType = .no
         textField.textView.keyboardAppearance = .dark
         textField.textView.autocapitalizationType = .none
+        textField.showsVerticalScrollIndicator = false
+        textField.showsHorizontalScrollIndicator = false
+        textField.textView.showsVerticalScrollIndicator = false
+        textField.textView.showsHorizontalScrollIndicator = false
         
         NotificationCenter.default.addObserver(
             self,

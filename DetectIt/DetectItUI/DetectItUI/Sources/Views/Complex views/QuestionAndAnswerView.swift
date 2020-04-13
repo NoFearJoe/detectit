@@ -13,7 +13,12 @@ public final class QuestionAndAnswerView: UIView {
     public var onChangeAnswer: ((String) -> Void)?
     
     public var answer: String {
-        answerField.answer
+        get {
+            answerField.answer
+        }
+        set {
+            answerField.answer = newValue
+        }
     }
     
     public var keyboardType: UIKeyboardType = .default {

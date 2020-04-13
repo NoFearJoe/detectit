@@ -24,16 +24,19 @@ public final class ProfileTaskExactAnswerQuestionCell: AutosizingCollectionViewC
     
     public struct Model {
         public let question: String
+        public let answer: String?
         public let onChangeAnswer: (String) -> Void
         
-        public init(question: String, onChangeAnswer: @escaping (String) -> Void) {
+        public init(question: String, answer: String?, onChangeAnswer: @escaping (String) -> Void) {
             self.question = question
+            self.answer = answer
             self.onChangeAnswer = onChangeAnswer
         }
     }
     
     func configure(model: Model) {
         questionView.configure(model: .init(question: model.question))
+        questionView.answer = model.answer ?? ""
         questionView.onChangeAnswer = model.onChangeAnswer
     }
     

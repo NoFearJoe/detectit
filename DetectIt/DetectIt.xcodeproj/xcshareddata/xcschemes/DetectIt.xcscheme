@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "961B95DF2425EE89003EC992"
-               BuildableName = "DetectIt.app"
+               BuildableName = "Detect.app"
                BlueprintName = "DetectIt"
                ReferencedContainer = "container:DetectIt.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "961B95DF2425EE89003EC992"
-            BuildableName = "DetectIt.app"
+            BuildableName = "Detect.app"
             BlueprintName = "DetectIt"
             ReferencedContainer = "container:DetectIt.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "961B95DF2425EE89003EC992"
-            BuildableName = "DetectIt.app"
+            BuildableName = "Detect.app"
             BlueprintName = "DetectIt"
             ReferencedContainer = "container:DetectIt.xcodeproj">
          </BuildableReference>

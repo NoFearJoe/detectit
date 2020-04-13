@@ -33,7 +33,7 @@ public final class ProfileView: UIView {
     
     private let listLayout = UICollectionViewFlowLayout()
     
-    private lazy var listView = AutosizingCollectionView(
+    public lazy var listView = AutosizingCollectionView(
         frame: .zero,
         collectionViewLayout: listLayout
     )
