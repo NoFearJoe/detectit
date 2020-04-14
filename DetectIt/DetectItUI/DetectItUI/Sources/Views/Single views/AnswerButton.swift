@@ -12,7 +12,7 @@ public final class AnswerButton: UIControl {
     
     public var onFill: (() -> Void)?
     
-    private let titleLabel = UILabel()
+    public let titleLabel = UILabel()
     private let fillView = UIView()
     
     private var fillViewTrailingConstraint: NSLayoutConstraint!

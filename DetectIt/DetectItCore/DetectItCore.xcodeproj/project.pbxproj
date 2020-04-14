@@ -31,6 +31,7 @@
 		96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF5243B19CB00F61443 /* TaskScoring.swift */; };
 		96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF9243B5ACE00F61443 /* TaskKind.swift */; };
 		96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFFB243B5B5B00F61443 /* Task.swift */; };
+		96F0547E2445EA2E000742E4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0547D2445EA2E000742E4 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
 		96AAAFF9243B5ACE00F61443 /* TaskKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskKind.swift; sourceTree = "<group>"; };
 		96AAAFFB243B5B5B00F61443 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		96F0547D2445EA2E000742E4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				96500E0E2429FAD8005FFC7A /* TasksBundle.swift */,
 				965AC7F02439A240003A3DC7 /* TaskScore.swift */,
 				96AAAFF9243B5ACE00F61443 /* TaskKind.swift */,
+				96F0547D2445EA2E000742E4 /* User.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				96500E092429DB50005FFC7A /* TasksBundleMap.swift in Sources */,
 				96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */,
 				96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */,
+				96F0547E2445EA2E000742E4 /* User.swift in Sources */,
 				961B965B242748AE003EC992 /* ExtraEvidenceTask.swift in Sources */,
 				965AC7FA243A39C4003A3DC7 /* PaidTaskBundlesManager.swift in Sources */,
 				96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */,

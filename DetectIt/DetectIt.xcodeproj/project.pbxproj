@@ -32,6 +32,9 @@
 		965AC7F7243A103B003A3DC7 /* MainScreenDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */; };
 		96AAB00C243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00B243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
+		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
+		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
+		96F0547C2444D2EC000742E4 /* OnboardingEnterNamePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0547B2444D2EC000742E4 /* OnboardingEnterNamePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,9 @@
 		965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenDataLoader.swift; sourceTree = "<group>"; };
 		96AAB00B243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskScreenDataLoader.swift; sourceTree = "<group>"; };
 		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
+		96F054772444C60E000742E4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		96F054792444CD77000742E4 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
+		96F0547B2444D2EC000742E4 /* OnboardingEnterNamePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingEnterNamePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +242,7 @@
 		96500E822434FD0F005FFC7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				96F054762444C374000742E4 /* Onboarding */,
 				965AC7CA2438B9B1003A3DC7 /* Main */,
 				965AC7C72438B932003A3DC7 /* TasksBundle */,
 				965AC7CB2438B9B7003A3DC7 /* Task screens */,
@@ -290,6 +297,16 @@
 				96F054742444AB0C000742E4 /* DebugMenuScreen.swift */,
 			);
 			path = DebugMenu;
+			sourceTree = "<group>";
+		};
+		96F054762444C374000742E4 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				96F054772444C60E000742E4 /* OnboardingScreen.swift */,
+				96F054792444CD77000742E4 /* OnboardingPage.swift */,
+				96F0547B2444D2EC000742E4 /* OnboardingEnterNamePage.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,6 +452,7 @@
 				961B95E42425EE89003EC992 /* AppDelegate.swift in Sources */,
 				96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */,
 				96200CAF244195ED00A3C720 /* PhotoViewerScreen.swift in Sources */,
+				96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */,
 				965AC7CF2438B9FA003A3DC7 /* ExtraEvidenceTaskScreen.swift in Sources */,
 				965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */,
 				965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */,
@@ -444,6 +462,8 @@
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
 				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
 				96AAB00C243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift in Sources */,
+				96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */,
+				96F0547C2444D2EC000742E4 /* OnboardingEnterNamePage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
