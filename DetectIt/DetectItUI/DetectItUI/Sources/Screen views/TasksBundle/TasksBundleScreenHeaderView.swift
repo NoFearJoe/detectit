@@ -84,8 +84,9 @@ public final class TasksBundleScreenHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        let heightMultiplier: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 9/16 : 5/16
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 9/16),
+            imageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: heightMultiplier),
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
@@ -135,7 +136,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     private func makeAttributedScoreString(score: String) -> NSAttributedString {
         let resultString = NSMutableAttributedString()
         
-        let prefixString = NSAttributedString(string: "Общий счет  ", attributes: [.font: UIFont.text3, .foregroundColor: UIColor.lightGray])
+        let prefixString = NSAttributedString(string: "Общий счет ", attributes: [.font: UIFont.text3, .foregroundColor: UIColor.lightGray])
         let scoreString = NSAttributedString(string: score, attributes: [.font: UIFont.heading4, .foregroundColor: UIColor.yellow])
         
         resultString.append(prefixString)
