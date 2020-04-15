@@ -12,7 +12,7 @@ import UIKit
 open class BlurView: UIVisualEffectView {
     
     /// Returns the instance of UIBlurEffect.
-    private let blurEffect = (NSClassFromString("_UICustomBlurEffect") as! UIBlurEffect.Type).init()
+    private let blurEffect = (NSClassFromString("_UICustomBlurEffect") as? UIBlurEffect.Type)?.init() ?? UIBlurEffect(style: .dark)
     
     /**
      Tint color.
@@ -30,7 +30,7 @@ open class BlurView: UIVisualEffectView {
      The default value is 0.0.
      */
     open var colorTintAlpha: CGFloat {
-        get { return _value(forKey: "colorTintAlpha") as! CGFloat }
+        get { return _value(forKey: "colorTintAlpha") as? CGFloat ?? 0 }
         set { _setValue(newValue, forKey: "colorTintAlpha") }
     }
     
@@ -40,7 +40,7 @@ open class BlurView: UIVisualEffectView {
      The default value is 0.0.
      */
     open var blurRadius: CGFloat {
-        get { return _value(forKey: "blurRadius") as! CGFloat }
+        get { return _value(forKey: "blurRadius") as? CGFloat ?? 0 }
         set { _setValue(newValue, forKey: "blurRadius") }
     }
     
@@ -52,7 +52,7 @@ open class BlurView: UIVisualEffectView {
      The default value is 1.0.
      */
     open var scale: CGFloat {
-        get { return _value(forKey: "scale") as! CGFloat }
+        get { return _value(forKey: "scale") as? CGFloat ?? 1 }
         set { _setValue(newValue, forKey: "scale") }
     }
     

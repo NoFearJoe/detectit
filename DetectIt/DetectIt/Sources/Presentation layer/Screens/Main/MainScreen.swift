@@ -12,8 +12,8 @@ import DetectItCore
 
 final class MainScreen: Screen {
     
-    private var screenView: MainScreenView {
-        view as! MainScreenView
+    private var screenView: MainScreenView? {
+        view as? MainScreenView
     }
     
     private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: false)
@@ -56,30 +56,30 @@ final class MainScreen: Screen {
             self.taskBundleImages = data.taskBundleImages
             self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: data.taskBundles.map { $0.id })
             
-            self.screenView.reloadData()
-            self.screenView.shallowReloadData()
+            self.screenView?.reloadData()
+            self.screenView?.shallowReloadData()
         }
         
         PaidTaskBundlesManager.onLoadProductsInfo = {
             self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
-            self.screenView.shallowReloadData()
+            self.screenView?.shallowReloadData()
         }
     }
     
     override func refresh() {
         super.refresh()
         
-        screenView.reloadHeader()
+        screenView?.reloadHeader()
         
         taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
-        screenView.shallowReloadData()
+        screenView?.shallowReloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
         coordinator.animate(alongsideTransition: { _ in
-            self.screenView.reloadData()
+            self.screenView?.reloadData()
         })
     }
     
