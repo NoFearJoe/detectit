@@ -41,6 +41,8 @@ public struct TaskScore {
                 bundleID: bundleID
             )
         )
+        
+        User.shared.totalScore += value
     }
     
     // MARK: - Utils
@@ -51,6 +53,8 @@ public struct TaskScore {
             
             storage.removeObject(forKey: key)
         }
+        
+        User.shared.totalScore = 0
     }
     
     private static let keyPrefix = "task_score"

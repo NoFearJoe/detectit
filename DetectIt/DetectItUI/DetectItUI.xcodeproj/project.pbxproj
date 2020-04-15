@@ -76,6 +76,7 @@
 		96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */; };
 		96AAB010243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00F243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift */; };
 		96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F85C122445FCF000F5CD22 /* DetectItCore.framework */; };
+		96F85C152447119800F5CD22 /* MainScreenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F85C142447119800F5CD22 /* MainScreenHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionView.swift; sourceTree = "<group>"; };
 		96AAB00F243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskNumberQuestionCell.swift; sourceTree = "<group>"; };
 		96F85C122445FCF000F5CD22 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96F85C142447119800F5CD22 /* MainScreenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 				965AC79F24385BD4003A3DC7 /* MainScreenView.swift */,
 				96500E8D2435F337005FFC7A /* TasksBundleCell.swift */,
 				96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */,
+				96F85C142447119800F5CD22 /* MainScreenHeaderView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
 				96500E892435F1A6005FFC7A /* Screen.swift in Sources */,
 				96AAB000243B6F4100F61443 /* DecoderTaskScreenView.swift in Sources */,
+				96F85C152447119800F5CD22 /* MainScreenHeaderView.swift in Sources */,
 				96500E642430B867005FFC7A /* PaperSheetView.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,

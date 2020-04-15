@@ -66,9 +66,25 @@ final class MainScreen: Screen {
         }
     }
     
+    override func refresh() {
+        super.refresh()
+        
+        screenView.reloadHeader()
+        
+        taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
+        screenView.shallowReloadData()
+    }
+    
 }
 
 extension MainScreen: MainScreenViewDelegate {
+    
+    func header() -> MainScreenHeaderView.Model {
+        .init(
+            alias: User.shared.alias ?? "",
+            rank: User.shared.rank.title
+        )
+    }
     
     func numberOfTaskBundles() -> Int {
         taskBundles.count

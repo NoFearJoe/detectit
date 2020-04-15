@@ -9,6 +9,8 @@
 import UIKit
 
 public protocol MainScreenViewDelegate: AnyObject {
+    func header() -> MainScreenHeaderView.Model
+    
     func numberOfTaskBundles() -> Int
     func tasksBundle(at index: Int) -> TasksBundleCell.Model?
     func tasksBundleShallowModel(at index: Int) -> TasksBundleCell.ShallowModel?
@@ -63,6 +65,17 @@ public final class MainScreenView: UIView {
         }
     }
     
+    public func reloadHeader() {
+        guard
+            let header = contentView.supplementaryView(
+                forElementKind: UICollectionView.elementKindSectionHeader,
+                at: IndexPath(item: 0, section: 0)
+            ) as? MainScreenHeaderView
+        else { return }
+        
+        header.configure(model: delegate.header())
+    }
+    
     // MARK: - Setup
     
     private func setup() {
@@ -80,7 +93,7 @@ public final class MainScreenView: UIView {
         contentView.delaysContentTouches = false
         contentView.showsVerticalScrollIndicator = false
         contentView.contentInset = UIEdgeInsets(
-            top: 20, left: 20, bottom: 20, right: 20
+            top: 48, left: 20, bottom: 20, right: 20
         )
         
         contentView.register(
@@ -90,6 +103,11 @@ public final class MainScreenView: UIView {
         contentView.register(
             MainScreenActionCell.self,
             forCellWithReuseIdentifier: MainScreenActionCell.identifier
+        )
+        contentView.register(
+            MainScreenHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: MainScreenHeaderView.identifier
         )
     }
     
@@ -155,6 +173,22 @@ extension MainScreenView: UICollectionViewDataSource {
         }
     }
     
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: MainScreenHeaderView.identifier,
+            for: indexPath
+        ) as! MainScreenHeaderView
+        
+        header.configure(model: delegate.header())
+        
+        return header
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate
@@ -204,7 +238,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
         if section == 0 {
-            return .zero
+            return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
         } else {
             return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
         }
@@ -236,6 +270,33 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             return CGSize(width: width, height: width * ratio)
         } else {
             return CGSize(width: width, height: 40)
+        }
+    }
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
+        if section == 0 {
+            let width: CGFloat = {
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    let width = collectionView.bounds.width
+                        - collectionView.contentInset.left
+                        - collectionView.contentInset.right
+                        - 20
+                    
+                    return width * 0.5
+                } else {
+                    return collectionView.bounds.width
+                        - collectionView.contentInset.left
+                        - collectionView.contentInset.right
+                }
+            }()
+            
+            return MainScreenHeaderView.prototype.size(model: delegate.header(), width: width)
+        } else {
+            return .zero
         }
     }
     

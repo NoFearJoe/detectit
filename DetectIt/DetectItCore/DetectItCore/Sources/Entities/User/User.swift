@@ -21,4 +21,18 @@ public final class User {
         }
     }
     
+    public var rank: UserRank {
+        UserRank(score: totalScore)
+    }
+    
+    private var totalScoreKey: String { "\(alias ?? "")_total_score" }
+    public var totalScore: Int {
+        get {
+            UserDefaults.standard.integer(forKey: totalScoreKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: totalScoreKey)
+        }
+    }
+    
 }

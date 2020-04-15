@@ -49,11 +49,9 @@ final class TasksBundleScreen: Screen {
     override func loadView() {
         view = TasksBundleScreenView(delegate: self)
         
+        view.clipsToBounds = true
+        
         setupPlaceholder()
-    }
-    
-    override func prepare() {
-        super.prepare()
     }
     
     override func refresh() {
