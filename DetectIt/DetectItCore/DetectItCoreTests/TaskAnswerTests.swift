@@ -17,16 +17,6 @@ final class TaskAnswerTests: XCTestCase {
         TaskAnswer.clear()
     }
     
-    func testThatExtraEvidenceAnswerStoresCorrectly() {
-        let id = "test_extra_evidence"
-        let answer = "picture_1"
-        
-        TaskAnswer.set(answer: answer, extraEvidenceTaskID: id)
-        
-        let savedAnswer = TaskAnswer.get(extraEvidenceTaskID: id)
-        XCTAssertEqual(answer, savedAnswer)
-    }
-    
     func testThatCipherAnswerStoresCorrectly() {
         let id = "test_cipher"
         let answer = "decoded_message"

@@ -13,15 +13,12 @@ import DetectItCore
 extension TasksBundleScreen {
     
     enum Section {
-        case extraEvidences
         case ciphers
         case profiles
         case quests
         
         var title: String {
             switch self {
-            case .extraEvidences:
-                return "Улики"
             case .ciphers:
                 return "Шифры"
             case .profiles:
@@ -37,12 +34,6 @@ extension TasksBundleScreen {
     
     func makeSections(bundle: TasksBundle) -> [SectionModel] {
         var sections: [SectionModel] = []
-        
-        if !bundle.extraEvidenceTasks.isEmpty {
-            sections.append(
-                (.extraEvidences, bundle.extraEvidenceTasks.map { map(task: $0, bundleID: bundle.info.id) })
-            )
-        }
         
         if !bundle.decoderTasks.isEmpty {
             sections.append(

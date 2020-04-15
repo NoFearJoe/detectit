@@ -140,11 +140,13 @@ public struct PaidTaskBundlesManager {
 private extension PaidTaskBundlesManager {
     
     static let productIDs: [String: String] = [
-        "test": IDs.test.rawValue
+        "test": IDs.test.rawValue,
+        "ww2": IDs.ww2.rawValue
     ]
     
     enum IDs: String, CaseIterable {
         case test = "com.mesterra.detectit.test"
+        case ww2 = "com.mesterra.detectit.ww2"
     }
     
 }

@@ -115,11 +115,6 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         
         let screen: Screen = {
             switch section {
-            case .extraEvidences:
-                return ExtraEvidenceTaskScreen(
-                    task: bundle.extraEvidenceTasks[index],
-                    bundle: bundle
-                )
             case .ciphers:
                 return DecoderTaskScreen(
                     task: bundle.decoderTasks[index],

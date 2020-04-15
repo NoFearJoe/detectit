@@ -13,9 +13,7 @@ public struct TasksBundleMap {
     
     let info: URL
     let imageURL: URL
-    let audiorecords: [URL]
     let ciphers: [URL]
-    let extraEvidences: [URL]
     let profiles: [URL]
     let quests: [URL]
     
@@ -37,9 +35,7 @@ public struct TasksBundleMap {
         
         self.info = info
         self.imageURL = imageURL
-        audiorecords = Self.tasksPaths(directory: Static.audiorecords, baseURL: baseURL)
         ciphers = Self.tasksPaths(directory: Static.ciphers, baseURL: baseURL)
-        extraEvidences = Self.tasksPaths(directory: Static.extraEvidences, baseURL: baseURL)
         profiles = Self.tasksPaths(directory: Static.profiles, baseURL: baseURL)
         quests = Self.tasksPaths(directory: Static.quests, baseURL: baseURL)
     }
@@ -73,16 +69,8 @@ extension TasksBundleMap {
             .appendingPathComponent(Static.dictionaries)
     }
     
-    static func audiorecordDirectoryURL(id: String, bundleID: String) -> URL? {
-        taskDirectoryURL(bundleID: bundleID, directory: Static.audiorecords, taskID: id)
-    }
-    
     static func cipherDirectoryURL(id: String, bundleID: String) -> URL? {
         taskDirectoryURL(bundleID: bundleID, directory: Static.ciphers, taskID: id)
-    }
-    
-    static func extraEvidenceDirectoryURL(id: String, bundleID: String) -> URL? {
-        taskDirectoryURL(bundleID: bundleID, directory: Static.extraEvidences, taskID: id)
     }
     
     static func profileDirectoryURL(id: String, bundleID: String) -> URL? {
@@ -127,9 +115,7 @@ private extension TasksBundleMap {
         
         static let dictionaries = "dictionaries"
                 
-        static let audiorecords = "audiorecords"
         static let ciphers = "ciphers"
-        static let extraEvidences = "extraevidences"
         static let profiles = "profiles"
         static let quests = "quests"
     }

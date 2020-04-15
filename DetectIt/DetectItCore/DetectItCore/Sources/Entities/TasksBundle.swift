@@ -14,12 +14,12 @@ public struct TasksBundle {
         public let id: String
         public let title: String
         public let description: String
+        public let position: Int
         public var imageURL: URL?
     }
     
     public let info: Info
     public let decoderTasks: [DecoderTask]
-    public let extraEvidenceTasks: [ExtraEvidenceTask]
     public let profileTasks: [ProfileTask]
     public let questTasks: [QuestTask]
     
@@ -58,7 +58,6 @@ public struct TasksBundle {
             let bundle = TasksBundle(
                 info: info,
                 decoderTasks: Self.decode(DecoderTask.self, paths: map.ciphers),
-                extraEvidenceTasks: Self.decode(ExtraEvidenceTask.self, paths: map.extraEvidences),
                 profileTasks: Self.decode(ProfileTask.self, paths: map.profiles),
                 questTasks: Self.decode(QuestTask.self, paths: map.quests)
             )
@@ -89,8 +88,7 @@ public extension TasksBundle {
     /// Максимальное количество очков, которое можно получить за правильное решение всех заданий.
     var maxScore: Int {
         [
-            extraEvidenceTasks as [TaskScoring],
-            decoderTasks,
+            decoderTasks as [TaskScoring],
             profileTasks,
             questTasks
         ].reduce(0, {

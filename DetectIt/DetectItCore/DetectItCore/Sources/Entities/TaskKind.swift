@@ -7,5 +7,5 @@
 //
 
 public enum TaskKind: String {
-    case extraEvidence, cipher, profile, quest
+    case cipher, profile, quest
 }

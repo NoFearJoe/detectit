@@ -65,16 +65,6 @@ public struct TaskAnswer {
     
     private static let storage = UserDefaults.standard
     
-    // MARK: Extra evidence
-        
-    public static func get(extraEvidenceTaskID id: String) -> String? {
-        storage.object(forKey: makeKey(for: id, taskKind: .extraEvidence)) as? String
-    }
-    
-    public static func set(answer: String, extraEvidenceTaskID id: String) {
-        storage.set(answer, forKey: makeKey(for: id, taskKind: .extraEvidence))
-    }
-    
     // MARK: Cipher
         
     public static func get(decoderTaskID id: String) -> String? {

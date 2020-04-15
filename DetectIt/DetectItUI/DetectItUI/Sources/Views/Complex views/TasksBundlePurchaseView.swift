@@ -51,8 +51,8 @@ final class TasksBundlePurchaseView: UIView {
         addSubview(buyButton)
         
         buyButton.setTitle("Купить", for: .normal) // TODO
-        buyButton.setTitleColor(.white, for: .normal)
-        buyButton.fill = .color(.systemYellow)
+        buyButton.setTitleColor(.black, for: .normal)
+        buyButton.fill = .color(.yellow)
         buyButton.addTarget(self, action: #selector(didTapBuyButton), for: .touchUpInside)
         
         NSLayoutConstraint.activate([

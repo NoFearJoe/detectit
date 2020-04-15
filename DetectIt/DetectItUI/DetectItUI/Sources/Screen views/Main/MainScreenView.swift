@@ -184,7 +184,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
         if section == 0 {
-            return 20
+            return 32
         } else {
             return 8
         }

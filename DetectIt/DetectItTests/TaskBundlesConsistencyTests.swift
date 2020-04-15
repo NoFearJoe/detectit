@@ -19,24 +19,10 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                 return XCTFail("The bundlemap is not exists")
             }
             
-            bundleMap.audiorecords.forEach {
-                XCTAssertTrue(
-                    FileManager.default.fileExists(atPath: $0.path),
-                    "The audiorecord is not exists at: \($0.path)"
-                )
-            }
-            
             bundleMap.ciphers.forEach {
                 XCTAssertTrue(
                     FileManager.default.fileExists(atPath: $0.path),
                     "The cipher is not exists at: \($0.path)"
-                )
-            }
-            
-            bundleMap.extraEvidences.forEach {
-                XCTAssertTrue(
-                    FileManager.default.fileExists(atPath: $0.path),
-                    "The extra evidence is not exists at: \($0.path)"
                 )
             }
             
@@ -74,10 +60,6 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     "Ciphers count (\(tasksBundle.decoderTasks.count)) is not the same with bundle map's count (\(bundleMap.ciphers.count))"
                 )
                 XCTAssertTrue(
-                    bundleMap.extraEvidences.count == tasksBundle.extraEvidenceTasks.count,
-                    "Extra evidences count (\(tasksBundle.extraEvidenceTasks.count)) is not the same with bundle map's count (\(tasksBundle.extraEvidenceTasks.count))"
-                )
-                XCTAssertTrue(
                     bundleMap.profiles.count == tasksBundle.profileTasks.count,
                     "Profiles count (\(tasksBundle.profileTasks.count)) is not the same with bundle map's count (\(bundleMap.profiles.count))"
                 )
@@ -111,20 +93,6 @@ final class TaskBundlesConsistencyTests: XCTestCase {
                     }
                     
                     XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The encoded picture file is not exists at \(url.path)")
-                }
-                
-                // Проверка на то, что для всех улик есть файлы
-                tasksBundle.extraEvidenceTasks.forEach { extraEvidence in
-                    let extraEvidenceURLs = extraEvidence.evidencePictures.compactMap { extraEvidence.evidencePictureURL(picture: $0, bundleID: bundle) }
-                    
-                    XCTAssertTrue(
-                        extraEvidenceURLs.count == extraEvidence.evidencePictures.count,
-                        "Evidence pictures count (\(extraEvidence.evidencePictures.count)) is not equal to URLs count (\(extraEvidenceURLs.count))"
-                    )
-                    
-                    extraEvidenceURLs.forEach { url in
-                        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path), "The evidence picture file is not exists at \(url.path)")
-                    }
                 }
                 
                 // Проверка на то, что для всех расследований есть файлы
