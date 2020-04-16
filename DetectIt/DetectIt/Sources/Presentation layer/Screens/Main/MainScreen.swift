@@ -9,6 +9,7 @@
 import UIKit
 import DetectItUI
 import DetectItCore
+import MessageUI
 
 final class MainScreen: Screen {
     
@@ -24,7 +25,11 @@ final class MainScreen: Screen {
     private var taskBundleImages: [String: UIImage] = [:]
     private var taskBundlesPurchaseStates: [String: TasksBundlePurchaseState] = [:]
     
-    private let actions = Action.allCases
+    private let actions = Action.allCases.filter {
+        guard $0 == .reportProblem else { return true }
+        
+        return MFMailComposeViewController.canSendMail()
+    }
     
     // MARK: - Overrides
     
@@ -156,11 +161,14 @@ extension MainScreen: MainScreenViewDelegate {
     func didSelectAction(at index: Int) {
         switch actions[index] {
         case .reportProblem:
-            return
+            showReportProblem()
         case .restorePurchases:
-            return
-        case .authors:
-            return
+            showLoadingHUD(title: "Восстановление покупок...")
+            
+            PaidTaskBundlesManager.restorePurchases { [unowned self] success in
+                success ? self.showSuccessHUD() : self.showErrorHUD(title: "Что-то пошло не так")
+                self.hideHUD(after: 1)
+            }
         case .debugMenu:
             present(DebugMenuScreen(), animated: true, completion: nil)
         }
@@ -186,25 +194,43 @@ private extension MainScreen {
         // TODO
     }
     
+    func showReportProblem() {
+        guard MFMailComposeViewController.canSendMail() else { return }
+        
+        let viewController = MFMailComposeViewController()
+        viewController.setPreferredSendingEmailAddress("mesterra.co@gmail.com")
+        viewController.setToRecipients(["mesterra.co@gmail.com"])
+        viewController.setSubject("Проблема в Detect")
+        viewController.mailComposeDelegate = self
+        
+        present(viewController, animated: true, completion: nil)
+    }
+    
 }
+
+extension MainScreen: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
 
 private extension MainScreen {
     
     enum Action: CaseIterable {
         case reportProblem
         case restorePurchases
-        case authors
         case debugMenu
         
         // TODO
         var title: String {
             switch self {
             case .reportProblem:
-                return "Сообщить о проблеме (не работает)"
+                return "Сообщить о проблеме"
             case .restorePurchases:
-                return "Восстановить покупки (не работает)"
-            case .authors:
-                return "Авторы (не работает)"
+                return "Восстановить покупки"
             case .debugMenu:
                 return "Дебаг меню"
             }

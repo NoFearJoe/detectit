@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 /// Базовый класс для любого экрана приложения.
 open class Screen: UIViewController {
@@ -86,6 +87,39 @@ open class Screen: UIViewController {
         
         statusBarBlurView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.safeAreaInsets.top)
         view.bringSubviewToFront(statusBarBlurView)
+    }
+    
+    // HUD
+    
+    private var hud: JGProgressHUD?
+    
+    public func showLoadingHUD(title: String?) {
+        hud = JGProgressHUD(style: .dark)
+        hud?.textLabel.text = title
+        hud?.show(in: view)
+    }
+    
+    public func showSuccessHUD() {
+        if hud == nil {
+            showLoadingHUD(title: nil)
+        }
+        
+        hud?.textLabel.text = nil
+        hud?.indicatorView = JGProgressHUDSuccessIndicatorView()
+    }
+    
+    public func showErrorHUD(title: String) {
+        if hud == nil {
+            showLoadingHUD(title: nil)
+        }
+        
+        hud?.textLabel.text = title
+        hud?.indicatorView = JGProgressHUDErrorIndicatorView()
+    }
+    
+    public func hideHUD(after delay: TimeInterval) {
+        hud?.dismiss(afterDelay: delay)
+        hud = nil
     }
     
 }

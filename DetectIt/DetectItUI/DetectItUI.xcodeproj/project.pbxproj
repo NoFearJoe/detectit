@@ -75,6 +75,7 @@
 		96AAB009243F369D00F61443 /* ProfileTaskScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB008243F369D00F61443 /* ProfileTaskScreenView.swift */; };
 		96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */; };
 		96AAB010243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00F243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift */; };
+		96AF70252448C80500B6B848 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 96AF70242448C80500B6B848 /* JGProgressHUD */; };
 		96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F85C122445FCF000F5CD22 /* DetectItCore.framework */; };
 		96F85C152447119800F5CD22 /* MainScreenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F85C142447119800F5CD22 /* MainScreenHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -160,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7E42438E3FF003A3DC7 /* NextGrowingTextView in Frameworks */,
+				96AF70252448C80500B6B848 /* JGProgressHUD in Frameworks */,
 				96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +485,7 @@
 			name = DetectItUI;
 			packageProductDependencies = (
 				965AC7E32438E3FF003A3DC7 /* NextGrowingTextView */,
+				96AF70242448C80500B6B848 /* JGProgressHUD */,
 			);
 			productName = DetectItUI;
 			productReference = 96500E29242F0F92005FFC7A /* DetectItUI.framework */;
@@ -514,6 +517,7 @@
 			mainGroup = 96500E1F242F0F92005FFC7A;
 			packageReferences = (
 				965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */,
+				96AF70232448C80500B6B848 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 96500E2A242F0F92005FFC7A /* Products */;
 			projectDirPath = "";
@@ -817,6 +821,14 @@
 				version = 1.6.0;
 			};
 		};
+		96AF70232448C80500B6B848 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -824,6 +836,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */;
 			productName = NextGrowingTextView;
+		};
+		96AF70242448C80500B6B848 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96AF70232448C80500B6B848 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

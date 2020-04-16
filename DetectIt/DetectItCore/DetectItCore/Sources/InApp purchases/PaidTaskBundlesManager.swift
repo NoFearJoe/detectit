@@ -94,9 +94,9 @@ public struct PaidTaskBundlesManager {
         }
     }
     
-    public static func restorePurchases(completion: (() -> Void)?) {
+    public static func restorePurchases(completion: ((Bool) -> Void)?) {
         SwiftyStoreKit.restorePurchases { results in
-            completion?()
+            completion?(results.restoreFailedPurchases.isEmpty)
         }
     }
     
