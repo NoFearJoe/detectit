@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ListSectionHeaderView: UICollectionReusableView {
+public final class ListSectionHeaderView: UICollectionReusableView {
     
     static let identifier = String(describing: ListSectionHeaderView.self)
     

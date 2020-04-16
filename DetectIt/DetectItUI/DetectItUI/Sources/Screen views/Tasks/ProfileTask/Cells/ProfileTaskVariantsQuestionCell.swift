@@ -8,10 +8,8 @@
 
 import UIKit
 
-public final class ProfileTaskVariantsQuestionCell: AutosizingCollectionViewCell {
-    
-    static let identifier = String(describing: ProfileTaskVariantsQuestionCell.self)
-    
+public final class ProfileTaskVariantsQuestionCell: UIView {
+        
     private let titleLabel = UILabel()
     private let variantsContainer = UIStackView()
     
@@ -70,7 +68,7 @@ public final class ProfileTaskVariantsQuestionCell: AutosizingCollectionViewCell
     }
     
     private func setupViews() {
-        contentView.addSubview(titleLabel)
+        addSubview(titleLabel)
         
         titleLabel.font = .heading4
         titleLabel.textColor = .white
@@ -78,12 +76,12 @@ public final class ProfileTaskVariantsQuestionCell: AutosizingCollectionViewCell
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         
-        contentView.addSubview(variantsContainer)
+        addSubview(variantsContainer)
         
         variantsContainer.axis = .vertical
         variantsContainer.distribution = .fill
@@ -92,9 +90,9 @@ public final class ProfileTaskVariantsQuestionCell: AutosizingCollectionViewCell
         variantsContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             variantsContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            variantsContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            variantsContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            variantsContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            variantsContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
+            variantsContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
+            variantsContainer.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

@@ -8,10 +8,8 @@
 
 import UIKit
 
-public final class ProfileTaskExactAnswerQuestionCell: AutosizingCollectionViewCell {
-    
-    static let identifier = String(describing: ProfileTaskExactAnswerQuestionCell.self)
-    
+public final class ProfileTaskExactAnswerQuestionCell: UIView {
+        
     let questionView = QuestionAndAnswerView()
     
     public override init(frame: CGRect) {
@@ -41,11 +39,11 @@ public final class ProfileTaskExactAnswerQuestionCell: AutosizingCollectionViewC
     }
     
     private func setupViews() {
-        contentView.addSubview(questionView)
+        addSubview(questionView)
         
         questionView.questionLabel.textColor = .white
         
-        questionView.pin(to: contentView)
+        questionView.pin(to: self)
     }
     
 }

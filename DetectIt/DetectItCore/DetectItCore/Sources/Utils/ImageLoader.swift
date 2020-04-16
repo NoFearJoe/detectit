@@ -26,6 +26,8 @@ public final class ImageLoader {
         attributes: .concurrent
     )
     
+    private let cacheQueue = DispatchQueue.main
+    
     public func load(
         _ source: ImageSource,
         postprocessing: ((UIImage) -> UIImage)? = nil,
@@ -53,14 +55,13 @@ public final class ImageLoader {
         completion: @escaping (UIImage?) -> Void
     ) {
         queue.async {
-            if let cachedImage = self.queue.sync(execute: { self.cache[url.path] }) {
+            if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
                 return completion(cachedImage)
             }
             
             let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) ?? $0 }
             
-            // TODO: Тут был крэш один раз
-            self.queue.sync {
+            self.cacheQueue.sync {
                 self.cache[url.path] = image
             }
             

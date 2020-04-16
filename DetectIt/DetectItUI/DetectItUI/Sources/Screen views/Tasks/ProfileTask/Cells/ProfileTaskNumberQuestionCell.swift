@@ -8,10 +8,8 @@
 
 import UIKit
 
-public final class ProfileTaskNumberQuestionCell: AutosizingCollectionViewCell {
-    
-    static let identifier = String(describing: ProfileTaskNumberQuestionCell.self)
-    
+public final class ProfileTaskNumberQuestionCell: UIView {
+        
     let questionView = QuestionAndAnswerView()
     
     public override init(frame: CGRect) {
@@ -40,12 +38,12 @@ public final class ProfileTaskNumberQuestionCell: AutosizingCollectionViewCell {
     }
     
     private func setupViews() {
-        contentView.addSubview(questionView)
+        addSubview(questionView)
         
         questionView.keyboardType = .numberPad
         questionView.questionLabel.textColor = .white
         
-        questionView.pin(to: contentView)
+        questionView.pin(to: self)
     }
     
 }

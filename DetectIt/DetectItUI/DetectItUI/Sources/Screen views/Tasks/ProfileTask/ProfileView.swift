@@ -18,9 +18,6 @@ public protocol ProfileViewDelegate: AnyObject {
     func numberOfAttachments() -> Int
     func attachment(at index: Int) -> Any?
     func didSelectAttachment(at index: Int)
-    
-    func numberOfQuestions() -> Int
-    func question(at index: Int) -> (question: Any, isCorrect: Bool?)?
 }
 
 public final class ProfileView: UIView {
@@ -57,12 +54,6 @@ public final class ProfileView: UIView {
         listView.reloadData()
     }
     
-    public func getAnswerCell(at index: Int) -> ProfileTaskAnyAnswerCell? {
-        listView.cellForItem(
-            at: IndexPath(item: index, section: Section.questions.rawValue)
-        ) as? ProfileTaskAnyAnswerCell
-    }
-    
     // MARK: - Setup
     
     func setup() {
@@ -81,10 +72,6 @@ public final class ProfileView: UIView {
         listView.register(ProfileCaseCell.self, forCellWithReuseIdentifier: ProfileCaseCell.identifier)
         listView.register(ProfilePrepositionCell.self, forCellWithReuseIdentifier: ProfilePrepositionCell.identifier)
         listView.register(ProfilePhotoAttachmentCell.self, forCellWithReuseIdentifier: ProfilePhotoAttachmentCell.identifier)
-        listView.register(ProfileTaskNumberQuestionCell.self, forCellWithReuseIdentifier: ProfileTaskNumberQuestionCell.identifier)
-        listView.register(ProfileTaskExactAnswerQuestionCell.self, forCellWithReuseIdentifier: ProfileTaskExactAnswerQuestionCell.identifier)
-        listView.register(ProfileTaskVariantsQuestionCell.self, forCellWithReuseIdentifier: ProfileTaskVariantsQuestionCell.identifier)
-        listView.register(ProfileTaskBoolAnswerQuestionCell.self, forCellWithReuseIdentifier: ProfileTaskBoolAnswerQuestionCell.identifier)
         
         listView.register(
             ListSectionHeaderView.self,
@@ -108,7 +95,6 @@ extension ProfileView: UICollectionViewDataSource {
         case .preposition: return 1
         case .cases: return delegate.numberOfCases()
         case .attachments: return delegate.numberOfAttachments()
-        case .questions: return delegate.numberOfQuestions()
         default: return 0
         }
     }
@@ -147,70 +133,6 @@ extension ProfileView: UICollectionViewDataSource {
                 cell.configure(model: photoAttachment)
                 cell.onTapPhoto = { [unowned self] in
                     self.delegate.didSelectAttachment(at: indexPath.item)
-                }
-                
-                return cell
-            } else {
-                return collectionView.dequeueEmptyCell(for: indexPath)
-            }
-        case .questions:
-            guard let model = delegate.question(at: indexPath.item) else {
-                return collectionView.dequeueEmptyCell(for: indexPath)
-            }
-            
-            if let numberQuestionModel = model.question as? ProfileTaskNumberQuestionCell.Model {
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: ProfileTaskNumberQuestionCell.identifier,
-                    for: indexPath
-                ) as! ProfileTaskNumberQuestionCell
-                
-                cell.configure(model: numberQuestionModel)
-                cell.setEnabled(model.isCorrect == nil)
-                
-                if let isCorrect = model.isCorrect {
-                    cell.highlight(isCorrect: isCorrect, animated: false, animationDuration: 0)
-                }
-                
-                return cell
-            } else if let exactAnswerQuestionModel = model.question as? ProfileTaskExactAnswerQuestionCell.Model {
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: ProfileTaskExactAnswerQuestionCell.identifier,
-                    for: indexPath
-                ) as! ProfileTaskExactAnswerQuestionCell
-                
-                cell.configure(model: exactAnswerQuestionModel)
-                cell.setEnabled(model.isCorrect == nil)
-                
-                if let isCorrect = model.isCorrect {
-                    cell.highlight(isCorrect: isCorrect, animated: false, animationDuration: 0)
-                }
-                
-                return cell
-            } else if let variantsQuestionModel = model.question as? ProfileTaskVariantsQuestionCell.Model {
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: ProfileTaskVariantsQuestionCell.identifier,
-                    for: indexPath
-                ) as! ProfileTaskVariantsQuestionCell
-                
-                cell.configure(model: variantsQuestionModel)
-                cell.setEnabled(model.isCorrect == nil)
-                
-                if let isCorrect = model.isCorrect {
-                    cell.highlight(isCorrect: isCorrect, animated: false, animationDuration: 0)
-                }
-                
-                return cell
-            } else if let boolAnswerQuestionModel = model.question as? ProfileTaskBoolAnswerQuestionCell.Model {
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: ProfileTaskBoolAnswerQuestionCell.identifier,
-                    for: indexPath
-                ) as! ProfileTaskBoolAnswerQuestionCell
-                
-                cell.configure(model: boolAnswerQuestionModel)
-                cell.setEnabled(model.isCorrect == nil)
-                
-                if let isCorrect = model.isCorrect {
-                    cell.highlight(isCorrect: isCorrect, animated: false, animationDuration: 0)
                 }
                 
                 return cell
@@ -258,12 +180,7 @@ extension ProfileView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        switch Section(rawValue: section) {
-        case .questions:
-            return 40
-        default:
-            return 20
-        }
+        return 20
     }
     
     public func collectionView(
@@ -294,7 +211,7 @@ extension ProfileView: UICollectionViewDelegateFlowLayout {
 private extension ProfileView {
     
     enum Section: Int {
-        case preposition = 0, cases, attachments, questions
+        case preposition = 0, cases, attachments
         
         var title: String? {
             switch self {
@@ -302,8 +219,6 @@ private extension ProfileView {
                 return nil
             case .attachments:
                 return "Дополнения"
-            case .questions:
-                return "Отчет"
             }
         }
     }

@@ -64,6 +64,7 @@ final class AnswerField: UIView {
     // MARK: - Setup
     
     private func setup() {
+        textField.maxNumberOfLines = 10
         textField.textView.textColor = .white
         textField.textView.tintColor = .yellow
         textField.textView.font = .text2

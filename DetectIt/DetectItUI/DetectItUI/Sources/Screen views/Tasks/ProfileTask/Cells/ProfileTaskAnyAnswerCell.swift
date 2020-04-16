@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol ProfileTaskAnyAnswerCell: UICollectionViewCell {
+public protocol ProfileTaskAnyAnswerCell: UIView {
     
     func setEnabled(_ isEnabled: Bool)
     

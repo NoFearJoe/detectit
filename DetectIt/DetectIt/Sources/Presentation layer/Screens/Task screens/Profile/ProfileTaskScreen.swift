@@ -151,7 +151,7 @@ final class ProfileTaskScreen: Screen {
         task.questions.enumerated().forEach { index, question in
             let answer = answers.get(questionID: question.id)
             let isCorrect = answer.map { question.compare(with: $0.answer) } ?? false
-            let cell = screenView.profileView.getAnswerCell(at: index)
+            let cell = screenView.reportView.getAnswerCell(at: index)
             
             cell?.setEnabled(!isSolved)
             cell?.highlight(isCorrect: isCorrect, animated: animated, animationDuration: 2)
@@ -380,6 +380,10 @@ private extension ProfileTaskScreen {
         
         contentContainer.setTopSpacing(20)
         contentContainer.appendChild(screenView.profileView)
+        contentContainer.appendSpacing(40)
+        contentContainer.appendChild(screenView.reportTitleView)
+        contentContainer.appendSpacing(20)
+        contentContainer.appendChild(screenView.reportView)
         contentContainer.appendSpacing(40)
         contentContainer.appendChild(screenView.answerButton)
         contentContainer.appendChild(screenView.scoreLabel)

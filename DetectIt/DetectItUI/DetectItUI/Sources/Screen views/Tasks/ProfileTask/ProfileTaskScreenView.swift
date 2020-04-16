@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol ProfileTaskScreenViewDelegate: ProfileViewDelegate {
+public protocol ProfileTaskScreenViewDelegate: ProfileViewDelegate, ProfileReportViewDelegate {
     
     func didTapAnswerButton()
     
@@ -20,6 +20,9 @@ public protocol ProfileTaskScreenViewDelegate: ProfileViewDelegate {
 public final class ProfileTaskScreenView: NSObject {
     
     public let profileView: ProfileView
+    
+    public let reportTitleView = ListSectionHeaderView()
+    public let reportView: ProfileReportView
     
     public let answerButton = AnswerButton()
     
@@ -37,15 +40,23 @@ public final class ProfileTaskScreenView: NSObject {
     public init(delegate: ProfileTaskScreenViewDelegate) {
         self.delegate = delegate
         self.profileView = ProfileView(delegate: delegate)
+        self.reportView = ProfileReportView(delegate: delegate)
         
         super.init()
     }
     
     public func reloadContent() {
         profileView.reloadData()
+        reportView.reloadData()
     }
     
     public func setupViews() {
+        reportTitleView.titleLabel.textAlignment = .center
+        reportTitleView.configure(title: "Отчет") // TODO
+        NSLayoutConstraint.activate([
+            reportTitleView.heightAnchor.constraint(equalToConstant: 52)
+        ])
+        
         answerButton.isEnabled = false
         //        answerButton.setTitle("Отправить ответ", for: .normal) // TODO
         answerButton.onFill = { [unowned self] in
