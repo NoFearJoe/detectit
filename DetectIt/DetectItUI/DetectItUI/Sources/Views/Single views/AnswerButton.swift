@@ -132,12 +132,16 @@ public final class AnswerButton: UIControl {
     // MARK: - Utils
     
     private func runFillAnimator() {
-        animator = UIViewPropertyAnimator(duration: 1, curve: .easeOut) {
+        animator = UIViewPropertyAnimator(duration: 1, curve: .easeOut) { [weak self] in
+            guard let self = self else { return }
+            
             self.fillViewTrailingConstraint.constant = self.bounds.width
             self.layoutIfNeeded()
         }
         
-        animator?.addCompletion { position in
+        animator?.addCompletion { [weak self] position in
+            guard let self = self else { return }
+            
             self.animator = nil
             
             switch position {
@@ -162,13 +166,13 @@ public final class AnswerButton: UIControl {
     }
     
     private func runRollbackAnimator() {
-        rollbackAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeOut) {
-            self.fillViewTrailingConstraint.constant = 0
-            self.layoutIfNeeded()
+        rollbackAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeOut) { [weak self] in
+            self?.fillViewTrailingConstraint.constant = 0
+            self?.layoutIfNeeded()
         }
         
-        rollbackAnimator?.addCompletion { _ in
-            self.rollbackAnimator = nil
+        rollbackAnimator?.addCompletion { [weak self] _ in
+            self?.rollbackAnimator = nil
         }
         
         rollbackAnimator?.startAnimation()
