@@ -36,7 +36,7 @@ final class ProfileTaskScreen: Screen {
     
     private var answers = Answers() {
         didSet {
-            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id)
+            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle.info.id)
             
             updateAnswerButtonState()
         }
@@ -84,7 +84,7 @@ final class ProfileTaskScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        answers.load(taskID: task.id)
+        answers.load(taskID: task.id, bundleID: bundle.info.id)
         score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
         
         placeholderView.setVisible(true, animated: false)
@@ -131,7 +131,7 @@ final class ProfileTaskScreen: Screen {
         }
         
         TaskScore.set(value: totalScore, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
-        TaskAnswer.set(answers: answers.answers, profileTaskID: task.id)
+        TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle.info.id)
         
         score = totalScore
     }
@@ -269,6 +269,7 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         if question.number != nil {
             let model = ProfileTaskNumberQuestionCell.Model(
                 question: question.title,
+                answer: answers.get(questionID: question.id)?.answer.int,
                 onChangeAnswer: { [unowned self] answer in
                     if let answer = answer {
                         self.answers.set(

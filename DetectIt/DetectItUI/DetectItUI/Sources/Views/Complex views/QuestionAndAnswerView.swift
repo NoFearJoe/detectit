@@ -47,14 +47,17 @@ public final class QuestionAndAnswerView: UIView {
     
     public struct Model {
         public let question: String
+        public let answer: String?
         
-        public init(question: String) {
+        public init(question: String, answer: String?) {
             self.question = question
+            self.answer = answer
         }
     }
     
     public func configure(model: Model) {
         questionLabel.text = model.question
+        answerField.answer = model.answer ?? ""
     }
     
     public func highlight(isCorrect: Bool, animated: Bool, animationDuration: TimeInterval) {

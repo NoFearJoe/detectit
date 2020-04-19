@@ -22,16 +22,18 @@ public final class ProfileTaskNumberQuestionCell: UIView {
     
     public struct Model {
         public let question: String
+        public let answer: Int?
         public let onChangeAnswer: (Int?) -> Void
         
-        public init(question: String, onChangeAnswer: @escaping (Int?) -> Void) {
+        public init(question: String, answer: Int?, onChangeAnswer: @escaping (Int?) -> Void) {
             self.question = question
+            self.answer = answer
             self.onChangeAnswer = onChangeAnswer
         }
     }
     
     func configure(model: Model) {
-        questionView.configure(model: .init(question: model.question))
+        questionView.configure(model: .init(question: model.question, answer: model.answer.map { "\($0)" }))
         questionView.onChangeAnswer = {
             model.onChangeAnswer(Int($0))
         }

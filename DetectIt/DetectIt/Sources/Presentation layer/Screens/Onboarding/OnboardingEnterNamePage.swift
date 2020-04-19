@@ -42,7 +42,7 @@ final class OnboardingEnterNamePage: Screen {
         containerView.addArrangedSubview(nameField)
         containerView.addArrangedSubview(subtitleLabel)
         
-        nameField.configure(model: .init(question: "А вот и твой первый вопрос - какой у тебя оперативный псевдоним?"))
+        nameField.configure(model: .init(question: "А вот и твой первый вопрос - какой у тебя оперативный псевдоним?", answer: nil))
         nameField.onChangeAnswer = { [unowned self] answer in
             self.continueButton.isEnabled = !answer.isEmpty
         }

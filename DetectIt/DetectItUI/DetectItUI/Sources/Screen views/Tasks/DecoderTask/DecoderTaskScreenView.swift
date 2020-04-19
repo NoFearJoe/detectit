@@ -105,7 +105,7 @@ public final class DecoderTaskRightAnswerView: UIView {
         
         answerLabel.font = .heading3
         answerLabel.textColor = .green
-        answerLabel.adjustsFontSizeToFitWidth = true
+        answerLabel.numberOfLines = 0
         
         answerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

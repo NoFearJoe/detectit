@@ -139,7 +139,8 @@ extension MainScreen: MainScreenViewDelegate {
         case .free, .bought:
             showTasksBundle(bundle: bundle)
         case let .paid(price):
-            showTasksBundlePurchse(bundle: bundle, price: price)
+            showTasksBundle(bundle: bundle) // TODO
+//            showTasksBundlePurchse(bundle: bundle, price: price)
         default:
             return
         }

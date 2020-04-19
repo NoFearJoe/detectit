@@ -33,8 +33,7 @@ public final class ProfileTaskExactAnswerQuestionCell: UIView {
     }
     
     func configure(model: Model) {
-        questionView.configure(model: .init(question: model.question))
-        questionView.answer = model.answer ?? ""
+        questionView.configure(model: .init(question: model.question, answer: model.answer))
         questionView.onChangeAnswer = model.onChangeAnswer
     }
     

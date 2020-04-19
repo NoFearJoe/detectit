@@ -139,7 +139,7 @@ final class DecoderTaskScreen: Screen {
         let score = isCorrectAnswer ? task.maxScore : 0
         
         TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
-        TaskAnswer.set(answer: answer, decoderTaskID: task.id)
+        TaskAnswer.set(answer: answer, decoderTaskID: task.id, bundleID: bundle.info.id)
         
         self.score = score
     }
@@ -151,7 +151,10 @@ final class DecoderTaskScreen: Screen {
         screenView.prepositionLabel.attributedText = task.preposition.readableAttributedText()
         screenView.encodedPictureView.image = encodedPicture
         screenView.questionAndAnswerView.configure(
-            model: QuestionAndAnswerView.Model(question: "Ответ:") // TODO
+            model: QuestionAndAnswerView.Model(
+                question: "Ответ:", // TODO
+                answer: TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle.info.id)
+            )
         )
         screenView.crimeDescriptionLabel.attributedText = task.answer.crimeDescription.readableAttributedText()
         screenView.rightAnswerView.answer = task.answer.decodedMessage

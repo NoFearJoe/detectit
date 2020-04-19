@@ -71,12 +71,12 @@ public struct TaskAnswer {
     
     // MARK: Cipher
         
-    public static func get(decoderTaskID id: String) -> String? {
-        storage.object(forKey: makeKey(for: id, taskKind: .cipher)) as? String
+    public static func get(decoderTaskID id: String, bundleID: String) -> String? {
+        storage.object(forKey: makeKey(for: id, taskKind: .cipher, bundleID: bundleID)) as? String
     }
     
-    public static func set(answer: String, decoderTaskID id: String) {
-        storage.set(answer, forKey: makeKey(for: id, taskKind: .cipher))
+    public static func set(answer: String, decoderTaskID id: String, bundleID: String) {
+        storage.set(answer, forKey: makeKey(for: id, taskKind: .cipher, bundleID: bundleID))
     }
     
     // MARK: Profile
@@ -139,12 +139,12 @@ public struct TaskAnswer {
         }
     }
     
-    public static func get(profileTaskID id: String) -> [ProfileTaskAnswer]? {
-        get(id: id, taskKind: .profile)
+    public static func get(profileTaskID id: String, bundleID: String) -> [ProfileTaskAnswer]? {
+        get(id: id, taskKind: .profile, bundleID: bundleID)
     }
     
-    public static func set(answers: [ProfileTaskAnswer], profileTaskID id: String) {
-        set(value: answers, id: id, taskKind: .profile)
+    public static func set(answers: [ProfileTaskAnswer], profileTaskID id: String, bundleID: String) {
+        set(value: answers, id: id, taskKind: .profile, bundleID: bundleID)
     }
     
     // MARK: Quest
@@ -159,12 +159,12 @@ public struct TaskAnswer {
         }
     }
     
-    public static func get(questTaskID id: String) -> QuestTaskAnswer? {
-        get(id: id, taskKind: .quest)
+    public static func get(questTaskID id: String, bundleID: String) -> QuestTaskAnswer? {
+        get(id: id, taskKind: .quest, bundleID: bundleID)
     }
     
-    public static func set(answer: QuestTaskAnswer, questTaskID id: String) {
-        set(value: answer, id: id, taskKind: .quest)
+    public static func set(answer: QuestTaskAnswer, questTaskID id: String, bundleID: String) {
+        set(value: answer, id: id, taskKind: .quest, bundleID: bundleID)
     }
     
     // MARK: Utils
@@ -177,18 +177,18 @@ public struct TaskAnswer {
         }
     }
     
-    private static func get<T: Decodable>(id: String, taskKind: TaskKind) -> T? {
-        storage.decodable(forKey: makeKey(for: id, taskKind: taskKind))
+    private static func get<T: Decodable>(id: String, taskKind: TaskKind, bundleID: String) -> T? {
+        storage.decodable(forKey: makeKey(for: id, taskKind: taskKind, bundleID: bundleID))
     }
     
-    private static func set<T: Encodable>(value: T, id: String, taskKind: TaskKind) {
-        storage.setEncodable(value, forKey: makeKey(for: id, taskKind: taskKind))
+    private static func set<T: Encodable>(value: T, id: String, taskKind: TaskKind, bundleID: String) {
+        storage.setEncodable(value, forKey: makeKey(for: id, taskKind: taskKind, bundleID: bundleID))
     }
     
     private static let keyPrefix = "task_answer"
     
-    private static func makeKey(for id: String, taskKind: TaskKind) -> String {
-        "\(keyPrefix)_\(taskKind)_\(id)"
+    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String) -> String {
+        "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
     }
     
 }
