@@ -93,7 +93,7 @@ public extension DecoderTask.Answer {
     
     private func clear(_ answer: String) -> String {
         answer
-            .filter { !$0.isWhitespace && !$0.isNewline && $0 != "," }
+            .filter { !$0.isWhitespace && !$0.isNewline && ![",", "\"", "'", "«", "»"].contains($0) }
             .lowercased()
     }
     
