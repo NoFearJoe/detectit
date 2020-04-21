@@ -36,9 +36,6 @@ public final class DecoderTaskScreenView {
         
         encodedPictureView.contentMode = .scaleAspectFit
         encodedPictureView.layer.allowsEdgeAntialiasing = true
-        encodedPictureView.transform = CGAffineTransform
-            .randomLayout()
-            .concatenating(CGAffineTransform(scaleX: 0.9, y: 0.9))
         
         encodedPictureView.configureShadow(radius: 20, opacity: 0.2, color: .white, offset: .zero)
         
