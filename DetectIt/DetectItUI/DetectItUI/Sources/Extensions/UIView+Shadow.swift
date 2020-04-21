@@ -17,6 +17,9 @@ public extension UIView {
         layer.shadowOffset = offset
         layer.shadowOpacity = opacity
         layer.shadowRadius = radius
+        
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
 }

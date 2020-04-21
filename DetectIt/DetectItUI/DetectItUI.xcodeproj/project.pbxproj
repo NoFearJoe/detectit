@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		96054329244F25B60083C217 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054328244F25B60083C217 /* GradientView.swift */; };
+		9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605432A244F33EE0083C217 /* UIView+frameLayout.swift */; };
 		96162672243F67CC0097A4EE /* ProfileTaskExactAnswerQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96162671243F67CC0097A4EE /* ProfileTaskExactAnswerQuestionCell.swift */; };
 		96162675243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96162674243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift */; };
 		96162677243F73700097A4EE /* AnswerVariantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96162676243F73700097A4EE /* AnswerVariantView.swift */; };
@@ -84,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		96054328244F25B60083C217 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		9605432A244F33EE0083C217 /* UIView+frameLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+frameLayout.swift"; sourceTree = "<group>"; };
 		96162671243F67CC0097A4EE /* ProfileTaskExactAnswerQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskExactAnswerQuestionCell.swift; sourceTree = "<group>"; };
 		96162674243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskVariantsQuestionCell.swift; sourceTree = "<group>"; };
 		96162676243F73700097A4EE /* AnswerVariantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerVariantView.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				96200CB02441B22300A3C720 /* CGPoint+Operators.swift */,
 				96200CB42441F29000A3C720 /* UICollectionView+EmptyCell.swift */,
 				96200CB82442084400A3C720 /* String+AttributedString.swift */,
+				9605432A244F33EE0083C217 /* UIView+frameLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
+				9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */,
 				965AC7DC2438C704003A3DC7 /* StackChildControllerProtocols.swift in Sources */,
 				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
 				965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */,

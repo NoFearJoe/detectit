@@ -26,7 +26,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
     private let descriptionLabel = UILabel()
     
-    private let playStateViewsContainer = UIStackView()
+    private let playStateViewsContainer = UIView()
     private let playButton = SolidButton.makePushButton()
     private let purchaseView = TasksBundlePurchaseView()
     
@@ -112,8 +112,6 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         contentView.layer.cornerRadius = Constants.cornerRadius
         contentView.clipsToBounds = true
         
-        configureShadow(radius: 24, opacity: 0.1, color: .black, offset: .zero)
-        
         enableTouchAnimation()
     }
     
@@ -124,7 +122,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         backgroundImageView.layer.cornerRadius = Constants.cornerRadius
         backgroundImageView.clipsToBounds = true
         
-        backgroundImageView.pin(to: contentView)
+        backgroundImageView.calculateFrame(container: contentView) { $0 }
         
         contentView.addSubview(titleLabel)
         
@@ -151,7 +149,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         bottomContainerView.addSubview(bottomBlurView)
         
-        bottomBlurView.pin(to: bottomContainerView)
+        bottomBlurView.calculateFrame(container: bottomContainerView) { $0 }
         
         bottomContainerView.addSubview(descriptionLabel)
         
@@ -172,11 +170,9 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         bottomContainerView.addSubview(playStateViewsContainer)
         
-        playStateViewsContainer.axis = .vertical
-        playStateViewsContainer.distribution = .fill
-        
         playStateViewsContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            playStateViewsContainer.widthAnchor.constraint(equalToConstant: 96),
             playStateViewsContainer.topAnchor.constraint(greaterThanOrEqualTo: bottomContainerView.topAnchor, constant: 12),
             playStateViewsContainer.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 12),
             playStateViewsContainer.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
@@ -184,18 +180,25 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
             playStateViewsContainer.centerYAnchor.constraint(equalTo: descriptionLabel.centerYAnchor)
         ])
         
-        playStateViewsContainer.addArrangedSubview(playButton)
+        playStateViewsContainer.addSubview(playButton)
         
         playButton.setTitle("Играть", for: .normal) // TODO
         playButton.setTitleColor(.white, for: .normal)
         playButton.fill = .color(.systemBlue)
         playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
         
-        playStateViewsContainer.addArrangedSubview(purchaseView)
+        playButton.calculateFrame(container: playStateViewsContainer) { bounds -> CGRect in
+            CGRect.centered(in: bounds, size: CGSize(width: bounds.width, height: 28))
+        }
         
-        purchaseView.translatesAutoresizingMaskIntoConstraints = false
+        playStateViewsContainer.addSubview(purchaseView)
+        
         purchaseView.onTapBuyButton = { [unowned self] in
             self.onTapBuyButton?()
+        }
+        
+        purchaseView.calculateFrame(container: playStateViewsContainer) { bounds -> CGRect in
+            CGRect.centered(in: bounds, size: CGSize(width: bounds.width, height: 44))
         }
     }
     

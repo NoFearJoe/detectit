@@ -35,9 +35,9 @@ public extension TouchAnimatable where Self: UIView {
         addTouchGestureRecognizer { [unowned self] recognizer in
             switch recognizer.state {
             case .began:
-                self.animateTouchDown(scale: 0.95, duration: 0.1)
+                self.animateTouchDown(scale: 0.975, duration: 0.1)
             case .ended, .cancelled, .failed:
-                self.animateTouchUp(scale: 0.95, duration: 0.1)
+                self.animateTouchUp(scale: 0.975, duration: 0.1)
             default: return
             }
         }
