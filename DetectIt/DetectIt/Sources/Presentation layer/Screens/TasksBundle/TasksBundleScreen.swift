@@ -18,10 +18,20 @@ final class TasksBundleScreen: Screen {
     
     private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: true)
     
-    // MARK: - Init
+    // MARK: - State
     
     private let tasksBundle: TasksBundle.Info
     private let tasksBundleImage: UIImage
+    
+    private var bundle: TasksBundle?
+    
+    private var sections: [SectionModel] = []
+    
+    var purchaseState: TasksBundlePurchaseState {
+        PaidTaskBundlesManager.tasksBundlePurchaseState(id: tasksBundle.id)
+    }
+    
+    // MARK: - Init
     
     init(tasksBundle: TasksBundle.Info, image: UIImage) {
         self.tasksBundle = tasksBundle
@@ -32,12 +42,6 @@ final class TasksBundleScreen: Screen {
     
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
-    
-    // MARK: - State
-    
-    private var bundle: TasksBundle?
-    
-    private var sections: [SectionModel] = []
     
     // MARK: - Overrides
     
@@ -52,6 +56,14 @@ final class TasksBundleScreen: Screen {
         view.clipsToBounds = true
         
         setupPlaceholder()
+    }
+    
+    override func prepare() {
+        super.prepare()
+        
+        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
+            self.refresh()
+        }
     }
     
     override func refresh() {
@@ -137,6 +149,22 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         present(screen, animated: true, completion: nil)
     }
     
+    func didTapBuyButton() {
+        showLoadingHUD(title: nil)
+        
+        PaidTaskBundlesManager.purchase(bundleID: tasksBundle.id) { [weak self] error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                self.showErrorHUD(title: error.localizedDescription)
+                self.hideHUD(after: 2)
+            } else {
+                self.showSuccessHUD()
+                self.hideHUD(after: 1)
+            }
+        }
+    }
+    
 }
 
 private extension TasksBundleScreen {
@@ -150,13 +178,14 @@ private extension TasksBundleScreen {
         let score = TaskScore.get(bundleID: bundle.info.id) ?? 0
         let totalScore = "\(score)/\(bundle.maxScore)"
         
-        self.screenView.configureHeader(
+        screenView.configureHeader(
             model: TasksBundleScreenHeaderView.Model(
-                image: self.tasksBundleImage,
-                title: self.tasksBundle.title,
+                image: tasksBundleImage,
+                title: tasksBundle.title,
                 totalScore: totalScore,
-                description: self.tasksBundle.description,
-                price: nil // TODO
+                description: tasksBundle.description,
+                isPaid: !purchaseState.isAvailable,
+                price: PaidTaskBundlesManager.price(bundleID: tasksBundle.id)
             )
         )
     }

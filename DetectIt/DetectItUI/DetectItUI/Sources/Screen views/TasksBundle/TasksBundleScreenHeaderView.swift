@@ -11,14 +11,20 @@ import UIKit
 public final class TasksBundleScreenHeaderView: UIView {
     
     var onChangeHeight: ((CGFloat) -> Void)?
+    var onTapBuyButton: (() -> Void)?
     
     // MARK: - Subviews
     
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
-    private let totalScoreLabel = UILabel()
+    
+    private let bottomViewsContainer = UIStackView()
+    
+    private let descriptionAndPurchaseViewsContainer = UIStackView()
     private let descriptionLabel = UILabel()
     private let purchaseView = TasksBundlePurchaseView()
+    
+    private let totalScoreLabel = UILabel()
     
     // MARK: - Init
     
@@ -39,17 +45,21 @@ public final class TasksBundleScreenHeaderView: UIView {
         let title: String
         let totalScore: String
         let description: String
+        
+        let isPaid: Bool
         let price: String?
         
         public init(image: UIImage,
                     title: String,
                     totalScore: String,
                     description: String,
+                    isPaid: Bool,
                     price: String?) {
             self.image = image
             self.title = title
             self.totalScore = totalScore
             self.description = description
+            self.isPaid = isPaid
             self.price = price
         }
     }
@@ -57,10 +67,15 @@ public final class TasksBundleScreenHeaderView: UIView {
     func configure(model: Model) {
         imageView.image = model.image
         titleLabel.text = model.title
-        totalScoreLabel.attributedText = makeAttributedScoreString(score: model.totalScore)
+        
         descriptionLabel.text = model.description
+        
+        purchaseView.isHidden = !model.isPaid
         purchaseView.setLoading(model.price == nil)
         purchaseView.priceLabel.text = model.price
+        
+        totalScoreLabel.isHidden = model.isPaid
+        totalScoreLabel.attributedText = makeAttributedScoreString(score: model.totalScore)
     }
     
     // MARK: - Overrides
@@ -105,32 +120,49 @@ public final class TasksBundleScreenHeaderView: UIView {
             titleLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -Constants.vOffset)
         ])
         
-        addSubview(descriptionLabel)
+        addSubview(bottomViewsContainer)
+        
+        bottomViewsContainer.axis = .vertical
+        bottomViewsContainer.distribution = .fillProportionally
+        bottomViewsContainer.alignment = .fill
+        bottomViewsContainer.spacing = Constants.vOffset
+        
+        bottomViewsContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bottomViewsContainer.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.vOffset),
+            bottomViewsContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.hInset),
+            bottomViewsContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.hInset),
+            bottomViewsContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.vOffset)
+        ])
+        
+        bottomViewsContainer.addArrangedSubview(descriptionAndPurchaseViewsContainer)
+        
+        descriptionAndPurchaseViewsContainer.axis = .horizontal
+        descriptionAndPurchaseViewsContainer.distribution = .fill
+        descriptionAndPurchaseViewsContainer.alignment = .top
+        descriptionAndPurchaseViewsContainer.spacing = 8
+        
+        descriptionAndPurchaseViewsContainer.addArrangedSubview(descriptionLabel)
         
         descriptionLabel.font = .text4
         descriptionLabel.textColor = Constants.tintColor
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        descriptionLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionAndPurchaseViewsContainer.addArrangedSubview(purchaseView)
         
-        NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Constants.vOffset),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.hInset),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.hInset)
-        ])
+        purchaseView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        purchaseView.onTapBuyButton = { [unowned self] in
+            self.onTapBuyButton?()
+        }
         
-        addSubview(totalScoreLabel)
+        purchaseView.widthAnchor.constraint(equalToConstant: 96).isActive = true
+        
+        bottomViewsContainer.addArrangedSubview(totalScoreLabel)
         
         totalScoreLabel.font = .heading4
         totalScoreLabel.textColor = .yellow
-        
-        totalScoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            totalScoreLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constants.vOffset),
-            totalScoreLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.hInset),
-            totalScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.hInset),
-            totalScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.vOffset)
-        ])
     }
     
     private func makeAttributedScoreString(score: String) -> NSAttributedString {

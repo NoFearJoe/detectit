@@ -40,17 +40,20 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         let score: (value: String, color: UIColor)?
         let difficultyImage: UIImage?
         let isEnabled: Bool
+        let isDone: Bool
         
         public init(icon: UIImage? = nil,
                     title: String,
                     score: (String, UIColor)?,
                     difficultyImage: UIImage?,
-                    isEnabled: Bool) {
+                    isEnabled: Bool,
+                    isDone: Bool) {
             self.icon = icon
             self.title = title
             self.score = score
             self.difficultyImage = difficultyImage
             self.isEnabled = isEnabled
+            self.isDone = isDone
         }
     }
     
@@ -67,8 +70,10 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         difficultyView.image = model.difficultyImage
         difficultyView.isHidden = model.difficultyImage == nil
         
-        iconView.alpha = model.isEnabled ? 1 : 0.5
-        titleLabel.alpha = model.isEnabled ? 1 : 0.5
+        iconView.alpha = model.isDone ? 0.5 : 1
+        titleLabel.alpha = model.isDone ? 0.5 : 1
+        
+        isUserInteractionEnabled = model.isEnabled
     }
     
     // MARK: - Overrides

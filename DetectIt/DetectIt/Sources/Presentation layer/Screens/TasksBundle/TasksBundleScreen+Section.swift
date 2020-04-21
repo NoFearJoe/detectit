@@ -64,7 +64,8 @@ extension TasksBundleScreen {
             title: task.title,
             score: scoreString,
             difficultyImage: task.taskDifficulty.icon,
-            isEnabled: score == nil
+            isEnabled: purchaseState.isAvailable,
+            isDone: score != nil || !purchaseState.isAvailable
         )
     }
     

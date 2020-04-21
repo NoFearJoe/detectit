@@ -65,7 +65,7 @@ final class MainScreen: Screen {
             self.screenView?.shallowReloadData()
         }
         
-        PaidTaskBundlesManager.onLoadProductsInfo = {
+        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
             self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
             self.screenView?.shallowReloadData()
         }
@@ -131,23 +131,25 @@ extension MainScreen: MainScreenViewDelegate {
     }
     
     func didSelectTasksBundle(at index: Int) {
-        let bundle = taskBundles[index]
-        
-        guard let purchaseState = taskBundlesPurchaseStates[bundle.id] else { return }
-        
-        switch purchaseState {
-        case .free, .bought:
-            showTasksBundle(bundle: bundle)
-        case let .paid(price):
-            showTasksBundle(bundle: bundle) // TODO
-//            showTasksBundlePurchse(bundle: bundle, price: price)
-        default:
-            return
-        }
+        showTasksBundle(bundle: taskBundles[index])
     }
     
     func didTapBuyTasksBundleButton(at index: Int) {
-        didSelectTasksBundle(at: index)
+        let bundle = taskBundles[index]
+        
+        showLoadingHUD(title: nil)
+        
+        PaidTaskBundlesManager.purchase(bundleID: bundle.id) { [weak self] error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                self.showErrorHUD(title: error.localizedDescription)
+                self.hideHUD(after: 2)
+            } else {
+                self.showSuccessHUD()
+                self.hideHUD(after: 1)
+            }
+        }
     }
     
     func numberOfActions() -> Int {

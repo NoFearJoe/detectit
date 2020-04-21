@@ -16,11 +16,27 @@ public enum TasksBundlePurchaseState {
     case paid(price: String)
     case paidLoading
     case paidLocked
+    
+    public var isAvailable: Bool {
+        switch self {
+        case .free, .bought:
+            return true
+        default:
+            return false
+        }
+    }
+    
 }
 
 public struct PaidTaskBundlesManager {
     
-    public static var onLoadProductsInfo: (() -> Void)?
+    public typealias LoadingCompletion = () -> Void
+    
+    private static var subscribers = NSMapTable<AnyObject, NSObjectWrapper<LoadingCompletion>>.weakToStrongObjects()
+    
+    public static func subscribeToProductsInfoLoading(_ subscriber: AnyObject, action: @escaping LoadingCompletion) {
+        subscribers.setObject(NSObjectWrapper<LoadingCompletion>(action), forKey: subscriber)
+    }
     
     // MARK: - State
     
@@ -59,6 +75,17 @@ public struct PaidTaskBundlesManager {
         return .paid(price: price)
     }
     
+    public static func price(bundleID: String) -> String? {
+        guard
+            let productID = productIDs[bundleID],
+            let product = products.first(where: { $0.productIdentifier == productID })
+        else {
+            return nil
+        }
+        
+        return product.localizedPrice
+    }
+    
     // MARK: - Products managing
     
     public static func completeTransactions() {
@@ -90,13 +117,34 @@ public struct PaidTaskBundlesManager {
             
             Self.isLoadingProductsInfo = false
             
-            Self.onLoadProductsInfo?()
+            Self.subscribers.objectEnumerator()?.allObjects.forEach { ($0 as? NSObjectWrapper<LoadingCompletion>)?.object() }
         }
     }
     
     public static func restorePurchases(completion: ((Bool) -> Void)?) {
         SwiftyStoreKit.restorePurchases { results in
             completion?(results.restoreFailedPurchases.isEmpty)
+        }
+    }
+    
+    public static func purchase(bundleID: String, completion: @escaping (Error?) -> Void) {
+        guard
+            canBuyBundle(id: bundleID),
+            let productID = productIDs[bundleID],
+            let product = products.first(where: { $0.productIdentifier == productID })
+        else {
+            return
+        }
+        
+        SwiftyStoreKit.purchaseProduct(product) { result in
+            switch result {
+            case let .success(purchase):
+                unlockInAppPurchase(id: purchase.productId)
+                
+                completion(nil)
+            case let .error(error):
+                completion(error)
+            }
         }
     }
     

@@ -48,6 +48,8 @@ final class TasksBundlePurchaseView: UIView {
     // MARK: - Setup
     
     func setupViews() {
+        heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
         addSubview(buyButton)
         
         buyButton.setTitle("Купить", for: .normal) // TODO
