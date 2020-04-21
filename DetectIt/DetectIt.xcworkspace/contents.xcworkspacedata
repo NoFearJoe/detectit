@@ -14,7 +14,10 @@
       location = "group:Playgrounds"
       name = "Playgrounds">
       <FileRef
-         location = "group:/Users/ilyakharabet/Documents/GitHub/detectit/DetectIt/Playgrounds/ProfileTaskCreation.playground">
+         location = "group:DecoderTaskCreation.playground">
+      </FileRef>
+      <FileRef
+         location = "group:ProfileTaskCreation.playground">
       </FileRef>
    </Group>
    <Group
