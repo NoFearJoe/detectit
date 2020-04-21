@@ -16,6 +16,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     // MARK: - Subviews
     
     private let imageView = UIImageView()
+    private let imageGradientView = GradientView()
     private let titleLabel = UILabel()
     
     private let bottomViewsContainer = UIStackView()
@@ -105,6 +106,19 @@ public final class TasksBundleScreenHeaderView: UIView {
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+        
+        addSubview(imageGradientView)
+        
+        imageGradientView.startColor = UIColor.black.withAlphaComponent(0)
+        imageGradientView.endColor = .black
+        
+        imageGradientView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageGradientView.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.5),
+            imageGradientView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            imageGradientView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            imageGradientView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor)
         ])
         
         addSubview(titleLabel)
