@@ -19,6 +19,7 @@ final class DecoderTaskScreen: Screen {
     private let contentContainer = StackViewController()
     
     private let closeButton = SolidButton.closeButton()
+    private let helpButton = SolidButton.helpButton()
     
     private let screenView = DecoderTaskScreenView()
     
@@ -94,6 +95,14 @@ final class DecoderTaskScreen: Screen {
     
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func didTapHelpButton() {
+        User.shared.isDecoderHelpShown = true
+        
+        helpButton.isHidden = true
+        
+        present(HelpScreen(taskKind: task.kind), animated: true, completion: nil)
     }
     
     private func didTapEncodedPicture() {
@@ -202,10 +211,9 @@ final class DecoderTaskScreen: Screen {
         contentContainer.view.backgroundColor = .black
         
         contentContainer.stackView.layoutMargins = UIEdgeInsets(
-            top: 0, left: 20, bottom: 0, right: 20
+            top: 52, left: 20, bottom: 20, right: 20
         )
         
-        contentContainer.setTopSpacing(20)
         contentContainer.appendChild(screenView.titleLabel)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.prepositionLabel)
@@ -220,7 +228,6 @@ final class DecoderTaskScreen: Screen {
         contentContainer.appendChild(screenView.rightAnswerView)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.crimeDescriptionLabel)
-        contentContainer.setBottomSpacing(20)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
         backgroundTapRecognizer.delegate = self
@@ -240,6 +247,17 @@ final class DecoderTaskScreen: Screen {
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
+        
+        if !User.shared.isDecoderHelpShown {
+            view.addSubview(helpButton)
+            
+            helpButton.addTarget(self, action: #selector(didTapHelpButton), for: .touchUpInside)
+            
+            NSLayoutConstraint.activate([
+                helpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+                helpButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+            ])
+        }
         
         screenView.setupViews()
         

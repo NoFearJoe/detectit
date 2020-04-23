@@ -35,4 +35,22 @@ public final class User {
         }
     }
     
+    public var isDecoderHelpShown: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "is_decoder_help_shown")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "is_decoder_help_shown")
+        }
+    }
+    
+    public var isProfileHelpShown: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "is_profile_help_shown")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "is_profile_help_shown")
+        }
+    }
+    
 }

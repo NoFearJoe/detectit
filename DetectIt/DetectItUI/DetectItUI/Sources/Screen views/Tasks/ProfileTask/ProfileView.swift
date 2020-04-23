@@ -190,7 +190,7 @@ extension ProfileView: UICollectionViewDelegateFlowLayout {
     ) -> UIEdgeInsets {
         guard self.collectionView(collectionView, numberOfItemsInSection: section) > 0 else { return .zero }
         
-        return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        return UIEdgeInsets(top: section == 0 ? 0 : 20, left: 0, bottom: 20, right: 0)
     }
     
     public func collectionView(
