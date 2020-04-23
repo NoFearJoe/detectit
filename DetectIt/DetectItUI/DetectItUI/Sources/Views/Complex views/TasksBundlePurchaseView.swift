@@ -79,6 +79,8 @@ final class TasksBundlePurchaseView: UIView {
         
         addSubview(activityIndicator)
         
+        activityIndicator.color = .lightGray
+        
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),

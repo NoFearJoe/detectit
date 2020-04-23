@@ -58,7 +58,9 @@ final class DecoderTaskScreen: Screen {
     override func loadView() {
         super.loadView()
         
-        contentContainer.place(into: self)
+        contentContainer.place(into: self) {
+            $0.pin(to: self.view, insets: UIEdgeInsets(top: 0, left: .hInset, bottom: 0, right: -.hInset))
+        }
         
         setupPlaceholderView()
         setupViews()
@@ -209,16 +211,15 @@ final class DecoderTaskScreen: Screen {
     
     private func setupContentView() {
         contentContainer.view.backgroundColor = .black
+                
+        contentContainer.scrollView.clipsToBounds = false
         
-        contentContainer.stackView.layoutMargins = UIEdgeInsets(
-            top: 52, left: 20, bottom: 20, right: 20
-        )
-        
+        contentContainer.setTopSpacing(52)
         contentContainer.appendChild(screenView.titleLabel)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.prepositionLabel)
         contentContainer.appendSpacing(20)
-        contentContainer.appendChild(screenView.encodedPictureView)
+        contentContainer.appendChild(screenView.encodedPictureContainer)
         contentContainer.appendSpacing(40)
         contentContainer.appendChild(screenView.questionAndAnswerView)
         contentContainer.appendSpacing(40)
@@ -228,6 +229,7 @@ final class DecoderTaskScreen: Screen {
         contentContainer.appendChild(screenView.rightAnswerView)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.crimeDescriptionLabel)
+        contentContainer.setBottomSpacing(20)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
         backgroundTapRecognizer.delegate = self

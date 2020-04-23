@@ -67,7 +67,7 @@ final class HelpScreen: Screen {
         contentContainer.place(into: self)
         
         contentContainer.stackView.layoutMargins = UIEdgeInsets(
-            top: 52, left: 20, bottom: 20, right: 20
+            top: 52, left: .hInset, bottom: 20, right: .hInset
         )
         
         contentContainer.appendChild(titleLabel)

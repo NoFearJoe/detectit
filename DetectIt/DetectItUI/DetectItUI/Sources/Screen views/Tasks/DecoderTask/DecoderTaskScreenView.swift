@@ -15,6 +15,9 @@ public final class DecoderTaskScreenView {
     
     public let titleLabel = UILabel()
     public let prepositionLabel = UILabel()
+    
+    public let encodedPictureContainer = UIView()
+    private let encodedPictureSizingContainer = UIView()
     public let encodedPictureView = AutosizingImageView()
     
     public let questionAndAnswerView = QuestionAndAnswerView()
@@ -34,6 +37,20 @@ public final class DecoderTaskScreenView {
         prepositionLabel.textColor = .white
         prepositionLabel.numberOfLines = 0
         
+        encodedPictureContainer.addSubview(encodedPictureSizingContainer)
+        
+        encodedPictureSizingContainer.translatesAutoresizingMaskIntoConstraints = false
+        encodedPictureSizingContainer.topAnchor.constraint(equalTo: encodedPictureContainer.topAnchor).isActive = true
+        encodedPictureSizingContainer.bottomAnchor.constraint(equalTo: encodedPictureContainer.bottomAnchor).isActive = true
+        encodedPictureSizingContainer.centerXAnchor.constraint(equalTo: encodedPictureContainer.centerXAnchor).isActive = true
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            encodedPictureSizingContainer.widthAnchor.constraint(equalTo: encodedPictureContainer.widthAnchor, multiplier: 0.5).isActive = true
+        } else {
+            encodedPictureSizingContainer.leadingAnchor.constraint(equalTo: encodedPictureContainer.leadingAnchor).isActive = true
+        }
+        
+        encodedPictureSizingContainer.addSubview(encodedPictureView)
+        
         encodedPictureView.contentMode = .scaleAspectFit
         encodedPictureView.layer.allowsEdgeAntialiasing = true
         
@@ -43,6 +60,8 @@ public final class DecoderTaskScreenView {
         encodedPictureView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(didTapEncodedPicture))
         )
+        
+        encodedPictureView.pin(to: encodedPictureSizingContainer)
         
         questionAndAnswerView.onChangeAnswer = { [unowned self] answer in
             self.answerButton.isEnabled = !answer.isEmpty

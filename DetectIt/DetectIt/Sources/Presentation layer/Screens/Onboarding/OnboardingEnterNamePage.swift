@@ -36,7 +36,7 @@ final class OnboardingEnterNamePage: Screen {
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset)
         ])
         
         containerView.addArrangedSubview(nameField)
@@ -61,8 +61,8 @@ final class OnboardingEnterNamePage: Screen {
         }
         
         NSLayoutConstraint.activate([
-            continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
+            continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
             continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
         
