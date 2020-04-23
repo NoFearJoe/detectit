@@ -26,9 +26,20 @@ final class MainScreen: Screen {
     private var taskBundlesPurchaseStates: [String: TasksBundlePurchaseState] = [:]
     
     private let actions = Action.allCases.filter {
-        guard $0 == .reportProblem else { return true }
-        
-        return MFMailComposeViewController.canSendMail()
+        switch $0 {
+        case .reportProblem:
+            return MFMailComposeViewController.canSendMail()
+        case .restorePurchases:
+            return true
+        case .debugMenu:
+            #warning("Uncomment before release")
+            return true
+//            #if DEBUG
+//            return true
+//            #else
+//            return false
+//            #endif
+        }
     }
     
     // MARK: - Overrides

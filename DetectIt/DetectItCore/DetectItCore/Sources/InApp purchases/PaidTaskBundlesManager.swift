@@ -113,13 +113,11 @@ public struct PaidTaskBundlesManager {
         let ids = Set(IDs.allCases.map { $0.rawValue })
         
         SwiftyStoreKit.retrieveProductsInfo(ids) { results in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             Self.products = results.retrievedProducts
             
             Self.isLoadingProductsInfo = false
             
             Self.subscribers.objectEnumerator()?.allObjects.forEach { ($0 as? NSObjectWrapper<LoadingCompletion>)?.object() }
-            }
         }
     }
     
