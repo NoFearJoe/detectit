@@ -17,10 +17,13 @@ public final class AnswerButton: UIControl {
     
     private var fillViewTrailingConstraint: NSLayoutConstraint!
     
-    private var animator: UIViewPropertyAnimator?
-    
-    private var rollbackAnimator: UIViewPropertyAnimator?
-    
+    private lazy var fillAnimator = UIViewPropertyAnimator(duration: 0.75, curve: .easeOut) { [weak self] in
+        guard let self = self else { return }
+        
+        self.fillViewTrailingConstraint.constant = self.bounds.width
+        self.layoutIfNeeded()
+    }
+        
     private var hasBeenFilled = false
     
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
@@ -67,9 +70,15 @@ public final class AnswerButton: UIControl {
         setupViews()
         
         feedbackGenerator.prepare()
+        
+        fillAnimator.pausesOnCompletion = true
     }
     
     required init?(coder: NSCoder) { fatalError() }
+    
+    deinit {
+        fillAnimator.stopAnimation(true)
+    }
     
     // MARK: - Overrides
     
@@ -82,8 +91,7 @@ public final class AnswerButton: UIControl {
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        rollbackAnimator?.stopAnimation(true)
-        rollbackAnimator = nil
+        fillAnimator.isReversed = false
         
         runFillAnimator()
     }
@@ -97,19 +105,18 @@ public final class AnswerButton: UIControl {
             
             hasBeenFilled = false
             
-            if animator != nil {
-                cancelFillAnimator()
-            } else {
-                runRollbackAnimator()
-            }
+            cancelFillAnimator()
         }
     }
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        if let animator = animator, animator.fractionComplete < 1 {
+        if fillAnimator.isReversed || fillAnimator.fractionComplete < 1 {
             cancelFillAnimator()
+        } else {
+            hasBeenFilled = true
+            feedbackGenerator.impactOccurred()
         }
         
         guard hasBeenFilled else { return }
@@ -122,60 +129,23 @@ public final class AnswerButton: UIControl {
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         
-        if animator != nil {
-            cancelFillAnimator()
-        } else {
-            runRollbackAnimator()
-        }
+        cancelFillAnimator()
     }
     
     // MARK: - Utils
     
     private func runFillAnimator() {
-        animator = UIViewPropertyAnimator(duration: 1, curve: .easeOut) { [weak self] in
-            guard let self = self else { return }
-            
-            self.fillViewTrailingConstraint.constant = self.bounds.width
-            self.layoutIfNeeded()
-        }
-        
-        animator?.addCompletion { [weak self] position in
-            guard let self = self else { return }
-            
-            self.animator = nil
-            
-            switch position {
-            case .current:
-                self.runRollbackAnimator()
-            case .end:
-                self.hasBeenFilled = true
-                self.feedbackGenerator.impactOccurred()
-            case .start:
-                return
-            @unknown default:
-                return
-            }
-        }
-        
-        animator?.startAnimation()
+        fillAnimator.startAnimation()
+        fillAnimator.pauseAnimation()
+        fillAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 1)
     }
     
     private func cancelFillAnimator() {
-        animator?.stopAnimation(false)
-        animator?.finishAnimation(at: .current)
-    }
-    
-    private func runRollbackAnimator() {
-        rollbackAnimator = UIViewPropertyAnimator(duration: 0.25, curve: .easeOut) { [weak self] in
-            self?.fillViewTrailingConstraint.constant = 0
-            self?.layoutIfNeeded()
-        }
+        guard !fillAnimator.isReversed else { return }
         
-        rollbackAnimator?.addCompletion { [weak self] _ in
-            self?.rollbackAnimator = nil
-        }
-        
-        rollbackAnimator?.startAnimation()
+        fillAnimator.isReversed = true
+        fillAnimator.pauseAnimation()
+        fillAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0.5)
     }
     
 }
