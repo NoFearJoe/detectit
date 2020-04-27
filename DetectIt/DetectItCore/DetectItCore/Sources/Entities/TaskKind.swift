@@ -8,4 +8,16 @@
 
 public enum TaskKind: String {
     case cipher, profile, quest
+    
+    public var title: String {
+        switch self {
+        case .cipher:
+            return "Шифр"
+        case .profile:
+            return "Расследование"
+        case .quest:
+            return "Квест"
+        }
+    }
+    
 }

@@ -24,4 +24,14 @@ public extension String {
         )
     }
     
+    func strikethroughAttributedString(color: UIColor) -> NSAttributedString {
+        NSAttributedString(
+            string: self,
+            attributes: [
+                NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                NSAttributedString.Key.strikethroughColor: color
+            ]
+        )
+    }
+    
 }

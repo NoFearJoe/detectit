@@ -9,6 +9,7 @@
 import UIKit
 import DetectItUI
 import DetectItCore
+import DetectItAPI
 import MessageUI
 
 final class MainScreen: Screen {
@@ -19,10 +20,11 @@ final class MainScreen: Screen {
     
     private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: false)
     
+    private let api = DetectItAPI()
+    
     // MARK: - State
     
-    private var taskBundles: [TasksBundle.Info] = []
-    private var taskBundleImages: [String: UIImage] = [:]
+    private var feed: Feed?
     private var taskBundlesPurchaseStates: [String: TasksBundlePurchaseState] = [:]
     
     private let actions = Action.allCases.filter {
@@ -60,25 +62,23 @@ final class MainScreen: Screen {
         
         placeholderView.setVisible(true, animated: false)
         
-        MainScreenDataLoader.loadData { data in
+//        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
+//            self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
+//            self.screenView?.shallowReloadData()
+//        }
+        
+        api.request(.feed(userID: 1)) { [weak self] result in
+            guard let self = self else { return }
+            
             self.placeholderView.setVisible(false, animated: true)
             
-            guard let data = data else {
-                // TODO: Error
-                return
+            switch result {
+            case let .success(response):
+                self.feed = try? JSONDecoder().decode(Feed.self, from: response.data) // TODO
+                self.screenView?.reloadData()
+            case let .failure(error):
+                print(error) // TODO
             }
-            
-            self.taskBundles = data.taskBundles
-            self.taskBundleImages = data.taskBundleImages
-            self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: data.taskBundles.map { $0.id })
-            
-            self.screenView?.reloadData()
-            self.screenView?.shallowReloadData()
-        }
-        
-        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
-            self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
-            self.screenView?.shallowReloadData()
         }
     }
     
@@ -87,8 +87,8 @@ final class MainScreen: Screen {
         
         screenView?.reloadHeader()
         
-        taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
-        screenView?.shallowReloadData()
+//        taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
+//        screenView?.shallowReloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -110,23 +110,35 @@ extension MainScreen: MainScreenViewDelegate {
         )
     }
     
-    func numberOfTaskBundles() -> Int {
-        taskBundles.count
+    func numberOfFeedItems() -> Int {
+        feed?.items.count ?? 0
     }
     
-    func tasksBundle(at index: Int) -> TasksBundleCell.Model? {
-        let bundle = taskBundles[index]
+    func feedItem(at index: Int) -> Any? {
+        guard let item = feed?.items[index] else { return nil }
         
-        return TasksBundleCell.Model(
-            backgroundImage: taskBundleImages[bundle.id] ?? UIImage(),
-            title: bundle.title,
-            description: bundle.description
-        )
+        switch item.kind {
+        case .profile, .cipher:
+            return MainScreenTaskCell.Model(
+                backgroundImageURL: nil, // TODO
+                kind: TaskKind(rawValue: item.kind.rawValue)?.title ?? "",
+                title: item.title,
+                description: item.subtitle ?? "",
+                difficultyIcon: TaskDifficulty(rawValue: item.difficulty).icon,
+                score: item.score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
+                scoreColor: UIColor.score(value: item.score, max: item.maxScore)
+            )
+        case .bundle:
+            return TasksBundleCell.Model(
+                backgroundImage: UIImage(), // TODO
+                title: item.title,
+                description: item.subtitle ?? ""
+            )
+        }
     }
     
     func tasksBundleShallowModel(at index: Int) -> TasksBundleCell.ShallowModel? {
-        let bundle = taskBundles[index]
-        
+        guard let bundle = feed?.items[index] else { return nil }
         guard let state = taskBundlesPurchaseStates[bundle.id] else { return nil }
         
         switch state {
@@ -141,12 +153,13 @@ extension MainScreen: MainScreenViewDelegate {
         }
     }
     
-    func didSelectTasksBundle(at index: Int) {
-        showTasksBundle(bundle: taskBundles[index])
+    func didSelectFeedItem(at index: Int) {
+        // TODO
+//        showTasksBundle(bundle: taskBundles[index])
     }
     
     func didTapBuyTasksBundleButton(at index: Int) {
-        let bundle = taskBundles[index]
+        guard let bundle = feed?.items[index] else { return }
         
         showLoadingHUD(title: nil)
         
@@ -195,7 +208,7 @@ private extension MainScreen {
     func showTasksBundle(bundle: TasksBundle.Info) {
         let tasksBundleScreen = TasksBundleScreen(
             tasksBundle: bundle,
-            image: taskBundleImages[bundle.id] ?? UIImage()
+            image: UIImage() // TODO
         )
         
         tasksBundleScreen.modalTransitionStyle = .coverVertical

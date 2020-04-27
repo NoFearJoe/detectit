@@ -72,7 +72,7 @@ extension TasksBundleScreen {
     private func makeScoreString(score: Int?, max: Int) -> (String, UIColor) {
         let color = UIColor.score(value: score, max: max)
         
-        return ("\(score ?? 0)/\(max)", color)
+        return (ScoreStringBuilder.makeScoreString(score: score, max: max), color)
     }
     
 }

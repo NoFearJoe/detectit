@@ -11,10 +11,10 @@ import UIKit
 public protocol MainScreenViewDelegate: AnyObject {
     func header() -> MainScreenHeaderView.Model
     
-    func numberOfTaskBundles() -> Int
-    func tasksBundle(at index: Int) -> TasksBundleCell.Model?
+    func numberOfFeedItems() -> Int
+    func feedItem(at index: Int) -> Any?
     func tasksBundleShallowModel(at index: Int) -> TasksBundleCell.ShallowModel?
-    func didSelectTasksBundle(at index: Int)
+    func didSelectFeedItem(at index: Int)
     func didTapBuyTasksBundleButton(at index: Int)
     
     func numberOfActions() -> Int
@@ -30,6 +30,8 @@ public final class MainScreenView: UIView {
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout()
     )
+    
+    private let prototypeTaskCell = MainScreenTaskCell()
     
     // MARK: - External dependencies
     
@@ -96,9 +98,14 @@ public final class MainScreenView: UIView {
             top: 48, left: 20, bottom: 20, right: 20
         )
         
+        contentView.registerEmptyCell()
         contentView.register(
             TasksBundleCell.self,
             forCellWithReuseIdentifier: TasksBundleCell.identifier
+        )
+        contentView.register(
+            MainScreenTaskCell.self,
+            forCellWithReuseIdentifier: MainScreenTaskCell.identifier
         )
         contentView.register(
             MainScreenActionCell.self,
@@ -126,7 +133,7 @@ extension MainScreenView: UICollectionViewDataSource {
         numberOfItemsInSection section: Int
     ) -> Int {
         if section == 0 {
-            return delegate.numberOfTaskBundles()
+            return delegate.numberOfFeedItems()
         } else {
             return delegate.numberOfActions()
         }
@@ -137,28 +144,43 @@ extension MainScreenView: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: TasksBundleCell.identifier,
-                for: indexPath
-            ) as! TasksBundleCell
-            
-            if let model = delegate.tasksBundle(at: indexPath.item) {
-                cell.configure(model: model)
+            guard let item = delegate.feedItem(at: indexPath.item) else {
+                return collectionView.dequeueEmptyCell(for: indexPath)
             }
             
-            if let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) {
-                cell.configure(model: shallowModel)
+            if let tasksBundleModel = item as? TasksBundleCell.Model {
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: TasksBundleCell.identifier,
+                    for: indexPath
+                ) as! TasksBundleCell
+                
+                cell.configure(model: tasksBundleModel)
+                
+                if let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) {
+                    cell.configure(model: shallowModel)
+                }
+                
+                cell.onTapPlayButton = { [unowned self] in
+                    self.delegate.didSelectFeedItem(at: indexPath.item)
+                }
+                
+                cell.onTapBuyButton = {
+                    self.delegate.didTapBuyTasksBundleButton(at: indexPath.item)
+                }
+                
+                return cell
+            } else if let profileTaskModel = item as? MainScreenTaskCell.Model {
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: MainScreenTaskCell.identifier,
+                    for: indexPath
+                ) as! MainScreenTaskCell
+                
+                cell.configure(model: profileTaskModel)
+                
+                return cell
+            } else {
+                return collectionView.dequeueEmptyCell(for: indexPath)
             }
-            
-            cell.onTapPlayButton = { [unowned self] in
-                self.delegate.didSelectTasksBundle(at: indexPath.item)
-            }
-            
-            cell.onTapBuyButton = {
-                self.delegate.didTapBuyTasksBundleButton(at: indexPath.item)
-            }
-            
-            return cell
         } else {
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: MainScreenActionCell.identifier,
@@ -200,7 +222,7 @@ extension MainScreenView: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
         if indexPath.section == 0 {
-            delegate.didSelectTasksBundle(at: indexPath.item)
+            delegate.didSelectFeedItem(at: indexPath.item)
         } else {
             delegate.didSelectAction(at: indexPath.item)
         }
@@ -218,7 +240,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
         if section == 0 {
-            return 32
+            return 20
         } else {
             return 8
         }
@@ -246,7 +268,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(
         _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout, 
+        layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let width: CGFloat = {
@@ -255,7 +277,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                     - collectionView.contentInset.left
                     - collectionView.contentInset.right
                     - 20
-                
+
                 return width * 0.5
             } else {
                 return collectionView.bounds.width
@@ -263,11 +285,17 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                     - collectionView.contentInset.right
             }
         }()
-        
+
         if indexPath.section == 0 {
-            let ratio = CGFloat(1.25)
-        
-            return CGSize(width: width, height: width * ratio)
+            if let taskModel = delegate.feedItem(at: indexPath.item) as? MainScreenTaskCell.Model {
+                if taskModel.backgroundImageURL != nil {
+                    return CGSize(width: width, height: width * 0.75)
+                } else {
+                    return prototypeTaskCell.calculateSize(model: taskModel, width: width)
+                }
+            } else {
+                return CGSize(width: width, height: width * 1.25)
+            }
         } else {
             return CGSize(width: width, height: 40)
         }

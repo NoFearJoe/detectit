@@ -16,6 +16,8 @@ public extension UIColor {
     
     static let photo = UIColor(red: 232/255, green: 232/255, blue: 225/255, alpha: 1)
     
+    static let darkBackground = UIColor(white: 0.1, alpha: 1)
+    
     // MARK: - Text
     
     static let mainText = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)

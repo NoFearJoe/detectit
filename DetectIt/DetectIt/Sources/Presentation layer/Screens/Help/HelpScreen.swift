@@ -47,12 +47,12 @@ final class HelpScreen: Screen {
     override func prepare() {
         super.prepare()
         
+        titleLabel.text = taskKind.title
+        
         switch taskKind {
         case .cipher:
-            titleLabel.text = "Шифр"
             textLabel.attributedText = decoderTaskText.readableAttributedText()
         case .profile:
-            titleLabel.text = "Расследование"
             textLabel.attributedText = profileTaskText.readableAttributedText()
         case .quest:
             return

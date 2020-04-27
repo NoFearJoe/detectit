@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		96054327244F10D20083C217 /* NSObjectWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054326244F10D20083C217 /* NSObjectWrapper.swift */; };
+		96054C05245616950083C217 /* ScoreStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C04245616950083C217 /* ScoreStringBuilder.swift */; };
 		961B9639242600BB003EC992 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961B962F242600BB003EC992 /* DetectItCore.framework */; };
 		961B9640242600BB003EC992 /* DetectItCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 961B9632242600BB003EC992 /* DetectItCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965C24274ABA003EC992 /* DecoderTask.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		96054326244F10D20083C217 /* NSObjectWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectWrapper.swift; sourceTree = "<group>"; };
+		96054C04245616950083C217 /* ScoreStringBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreStringBuilder.swift; sourceTree = "<group>"; };
 		961B962F242600BB003EC992 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B9632242600BB003EC992 /* DetectItCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItCore.h; sourceTree = "<group>"; };
 		961B9633242600BB003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				965AC7E02438CAA1003A3DC7 /* ImageLoader.swift */,
 				96200CBA2443035700A3C720 /* PluralLocalizations.swift */,
 				96054326244F10D20083C217 /* NSObjectWrapper.swift */,
+				96054C04245616950083C217 /* ScoreStringBuilder.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				961B965F24274C79003EC992 /* QuestTask.swift in Sources */,
+				96054C05245616950083C217 /* ScoreStringBuilder.swift in Sources */,
 				96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */,
 				96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */,
 				96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */,
