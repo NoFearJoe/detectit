@@ -29,7 +29,7 @@ final class ProfileTaskScreen: Screen {
     // MARK: - State
     
     private let task: ProfileTask
-    private let bundle: TasksBundle
+    private let bundle: TasksBundle.Info?
     
     private var isDataLoaded = false
     
@@ -37,7 +37,7 @@ final class ProfileTaskScreen: Screen {
     
     private var answers = Answers() {
         didSet {
-            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle.info.id)
+            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle?.id)
             
             updateAnswerButtonState()
         }
@@ -51,7 +51,7 @@ final class ProfileTaskScreen: Screen {
     
     // MARK: - Init
     
-    init(task: ProfileTask, bundle: TasksBundle) {
+    init(task: ProfileTask, bundle: TasksBundle.Info?) {
         self.task = task
         self.bundle = bundle
         
@@ -87,13 +87,13 @@ final class ProfileTaskScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        answers.load(taskID: task.id, bundleID: bundle.info.id)
-        score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
+        answers.load(taskID: task.id, bundleID: bundle?.id)
+        score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle?.id)
         
         placeholderView.setVisible(true, animated: false)
         updateContentState(animated: false)
         
-        ProfileTaskScreenDataLoader.loadData(task: task, bundleID: bundle.info.id) { [weak self] images in
+        ProfileTaskScreenDataLoader.loadData(task: task) { [weak self] images in
             guard let self = self else { return }
             
             self.images = images
@@ -133,8 +133,8 @@ final class ProfileTaskScreen: Screen {
             return result + score
         }
         
-        TaskScore.set(value: totalScore, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
-        TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle.info.id)
+        TaskScore.set(value: totalScore, id: task.id, taskKind: task.kind, bundleID: bundle?.id)
+        TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle?.id)
         
         score = totalScore
     }

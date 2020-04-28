@@ -13,30 +13,11 @@ final class ProfileTaskScreenDataLoader {
     
     static func loadData(
         task: ProfileTask,
-        bundleID: String,
         completion: @escaping ([String: UIImage]) -> Void
     ) {
-        let casePictures: [(String, URL)] = task.cases.compactMap {
-            guard
-                let pictureName = $0.evidencePicture?.pictureName,
-                let pictureURL = task.casePictureURL(case: $0, bundleID: bundleID)
-            else {
-                return nil
-            }
-            
-            return (pictureName, pictureURL)
-        }
+        let casePictures: [String] = task.cases.compactMap { $0.evidencePicture?.pictureName }
         
-        let attachmentPictures: [(String, URL)] = task.attachments?.compactMap {
-            guard
-                let pictureName = $0.pictureName,
-                let pictureURL = task.attachmentURL(attachment: $0, bundleID: bundleID)
-            else {
-                return nil
-            }
-            
-            return (pictureName, pictureURL)
-        } ?? []
+        let attachmentPictures: [String] = task.attachments?.compactMap { $0.pictureName } ?? []
         
         let allPictures = casePictures + attachmentPictures
         
@@ -52,10 +33,10 @@ final class ProfileTaskScreenDataLoader {
             dispatchGroup.enter()
             
             ImageLoader.share.load(
-                .file(picture.1),
+                .staticAPI(picture),
                 postprocessing: { $0.applyingOldPhotoFilter() }
             ) { image in
-                result[picture.0] = image
+                result[picture] = image
                 
                 dispatchGroup.leave()
             }

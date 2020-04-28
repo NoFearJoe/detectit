@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DetectItCore
 
 public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
@@ -45,15 +46,15 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
     public struct Model {
         
-        public let backgroundImage: UIImage
+        public let backgroundImagePath: String?
         public let title: String
         public let description: String
         
         
-        public init(backgroundImage: UIImage,
+        public init(backgroundImagePath: String?,
                     title: String,
                     description: String) {
-            self.backgroundImage = backgroundImage
+            self.backgroundImagePath = backgroundImagePath
             self.title = title
             self.description = description
         }
@@ -77,7 +78,14 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     }
     
     func configure(model: Model) {
-        backgroundImageView.image = model.backgroundImage
+        if let imagePath = model.backgroundImagePath {
+            ImageLoader.share.load(.staticAPI(imagePath)) { [weak self] image in
+                self?.backgroundImageView.image = image
+            }
+        } else {
+            backgroundImageView.image = nil
+        }
+        
         titleLabel.text = model.title
         descriptionLabel.text = model.description
     }

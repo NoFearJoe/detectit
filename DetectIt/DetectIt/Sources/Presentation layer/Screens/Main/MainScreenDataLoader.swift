@@ -43,9 +43,7 @@ final class MainScreenDataLoader {
                 }
             }
             
-            dispatchGroup.notify(queue: .main) {
-                taskBundles.sort(by: { $0.position < $1.position })
-                
+            dispatchGroup.notify(queue: .main) {                
                 completion(
                     (taskBundles, taskBundleImages)
                 )

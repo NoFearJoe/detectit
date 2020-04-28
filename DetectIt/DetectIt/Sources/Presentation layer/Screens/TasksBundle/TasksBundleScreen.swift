@@ -123,30 +123,19 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         
         let section = sections[section].0
         
-        let screen: Screen = {
+        let task: Task = {
             switch section {
             case .ciphers:
-                return DecoderTaskScreen(
-                    task: bundle.decoderTasks[index],
-                    bundle: bundle
-                )
+                return bundle.decoderTasks[index]
             case .profiles:
-                return ProfileTaskScreen(
-                    task: bundle.profileTasks[index],
-                    bundle: bundle
-                )
+                return bundle.profileTasks[index]
             case .quests:
-                return QuestTaskScreen(
-                    task: bundle.questTasks[index],
-                    bundle: bundle
-                )
+                return bundle.questTasks[index]
             }
         }()
         
-        screen.modalPresentationStyle = .fullScreen
-        screen.modalTransitionStyle = .crossDissolve
-        
-        present(screen, animated: true, completion: nil)
+        TaskScreenRoute(root: self).show(task: task, bundle: bundle.info)
+
     }
     
     func didTapBuyButton() {

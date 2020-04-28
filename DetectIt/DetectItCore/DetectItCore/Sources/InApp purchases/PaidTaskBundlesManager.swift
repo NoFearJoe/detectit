@@ -110,7 +110,7 @@ public struct PaidTaskBundlesManager {
     public static func obtainProductsInfo() {
         isLoadingProductsInfo = true
         
-        let ids = Set(IDs.allCases.map { $0.rawValue })
+        let ids = Set(InAppID.allCases.map { $0.rawValue })
         
         SwiftyStoreKit.retrieveProductsInfo(ids) { results in
             Self.products = results.retrievedProducts
@@ -185,14 +185,18 @@ public struct PaidTaskBundlesManager {
     
 }
 
-private extension PaidTaskBundlesManager {
+public extension PaidTaskBundlesManager {
     
-    static let productIDs: [String: String] = [
-        "test": IDs.test.rawValue,
-        "ww2": IDs.ww2.rawValue
+    private static let productIDs: [String: String] = [
+        BundleID.test.rawValue: InAppID.test.rawValue,
+        BundleID.ww2.rawValue: InAppID.ww2.rawValue
     ]
     
-    enum IDs: String, CaseIterable {
+    enum BundleID: String, CaseIterable {
+        case test, ww2
+    }
+    
+    private enum InAppID: String, CaseIterable {
         case test = "com.mesterra.detectit.test"
         case ww2 = "com.mesterra.detectit.ww2"
     }

@@ -15,9 +15,9 @@ final class QuestTaskScreen: Screen {
     // MARK: - Init
     
     private let task: QuestTask
-    private let bundle: TasksBundle
+    private let bundle: TasksBundle.Info?
     
-    init(task: QuestTask, bundle: TasksBundle) {
+    init(task: QuestTask, bundle: TasksBundle.Info?) {
         self.task = task
         self.bundle = bundle
         

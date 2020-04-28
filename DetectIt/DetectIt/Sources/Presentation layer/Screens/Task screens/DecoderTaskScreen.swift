@@ -29,7 +29,7 @@ final class DecoderTaskScreen: Screen {
     // MARK: - State
     
     private let task: DecoderTask
-    private let bundle: TasksBundle
+    private let bundle: TasksBundle.Info?
     
     private var encodedImage: UIImage?
     
@@ -37,7 +37,7 @@ final class DecoderTaskScreen: Screen {
         
     // MARK: - Init
     
-    init(task: DecoderTask, bundle: TasksBundle) {
+    init(task: DecoderTask, bundle: TasksBundle.Info?) {
         self.task = task
         self.bundle = bundle
         
@@ -75,7 +75,7 @@ final class DecoderTaskScreen: Screen {
         
         placeholderView.setVisible(true, animated: false)
         
-        score = TaskScore.get(id: task.id, taskKind: .cipher, bundleID: bundle.info.id)
+        score = TaskScore.get(id: task.id, taskKind: .cipher, bundleID: bundle?.id)
         
         updateContentState(animated: false)
         
@@ -132,12 +132,8 @@ final class DecoderTaskScreen: Screen {
     // MARK: - Business logic
     
     private func loadData(completion: @escaping (UIImage?) -> Void) {
-        guard let imageURL = task.encodedPictureURL(bundleID: bundle.info.id) else {
-            return completion(nil)
-        }
-        
         ImageLoader.share.load(
-            .file(imageURL)
+            .staticAPI(task.encodedPictureName)
         ) { image in
             completion(image)
         }
@@ -149,8 +145,8 @@ final class DecoderTaskScreen: Screen {
         let isCorrectAnswer = task.answer.compare(with: answer)
         let score = isCorrectAnswer ? task.maxScore : 0
         
-        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
-        TaskAnswer.set(answer: answer, decoderTaskID: task.id, bundleID: bundle.info.id)
+        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle?.id)
+        TaskAnswer.set(answer: answer, decoderTaskID: task.id, bundleID: bundle?.id)
         
         self.score = score
     }
@@ -164,7 +160,7 @@ final class DecoderTaskScreen: Screen {
         screenView.questionAndAnswerView.configure(
             model: QuestionAndAnswerView.Model(
                 question: "Ответ:", // TODO
-                answer: TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle.info.id)
+                answer: TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle?.id)
             )
         )
         screenView.crimeDescriptionLabel.attributedText = task.answer.crimeDescription.readableAttributedText()

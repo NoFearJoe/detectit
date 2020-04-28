@@ -14,7 +14,6 @@ public struct TasksBundle {
         public let id: String
         public let title: String
         public let description: String
-        public let position: Int
         public var imageURL: URL?
     }
     

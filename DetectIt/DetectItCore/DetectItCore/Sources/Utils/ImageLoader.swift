@@ -10,7 +10,7 @@ import UIKit
 
 public enum ImageSource {
     case file(URL)
-    case network(URL)
+    case staticAPI(String)
 }
 
 public final class ImageLoader {
@@ -47,11 +47,16 @@ public final class ImageLoader {
                 postprocessing: postprocessing,
                 completion: completionOnMain
             )
-        case let .network(url):
+        case let .staticAPI(path):
+            // TODO
+            guard let url = URL(string: "http://localhost:8080")?.appendingPathComponent(path) else {
+                return completion(nil)
+            }
+            
             loadFromNetwork(
                 url: url,
                 postprocessing: postprocessing,
-                completion: completion
+                completion: completionOnMain
             )
         }
     }
@@ -81,7 +86,7 @@ public final class ImageLoader {
         postprocessing: ((UIImage) -> UIImage)? = nil,
         completion: @escaping (UIImage?) -> Void
     ) {
-        URLSession.shared.dataTask(with: url) { data, _, _ in
+        URLSession.shared.dataTask(with: url) { data, _, error in
             self.queue.async {
                 if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
                     return completion(cachedImage)
@@ -95,7 +100,7 @@ public final class ImageLoader {
                 
                 completion(image)
             }
-        }
+        }.resume()
     }
     
 }

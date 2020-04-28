@@ -62,10 +62,10 @@ final class MainScreen: Screen {
         
         placeholderView.setVisible(true, animated: false)
         
-//        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
-//            self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
-//            self.screenView?.shallowReloadData()
-//        }
+        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
+            self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
+            self.screenView?.shallowReloadData()
+        }
         
         api.request(.feed(userID: 1)) { [weak self] result in
             guard let self = self else { return }
@@ -87,8 +87,8 @@ final class MainScreen: Screen {
         
         screenView?.reloadHeader()
         
-//        taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: self.taskBundles.map { $0.id })
-//        screenView?.shallowReloadData()
+        taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
+        screenView?.shallowReloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -120,7 +120,7 @@ extension MainScreen: MainScreenViewDelegate {
         switch item.kind {
         case .profile, .cipher:
             return MainScreenTaskCell.Model(
-                backgroundImageURL: nil, // TODO
+                backgroundImagePath: item.picture,
                 kind: TaskKind(rawValue: item.kind.rawValue)?.title ?? "",
                 title: item.title,
                 description: item.subtitle ?? "",
@@ -130,7 +130,7 @@ extension MainScreen: MainScreenViewDelegate {
             )
         case .bundle:
             return TasksBundleCell.Model(
-                backgroundImage: UIImage(), // TODO
+                backgroundImagePath: item.picture,
                 title: item.title,
                 description: item.subtitle ?? ""
             )
@@ -154,8 +154,19 @@ extension MainScreen: MainScreenViewDelegate {
     }
     
     func didSelectFeedItem(at index: Int) {
-        // TODO
-//        showTasksBundle(bundle: taskBundles[index])
+        guard let item = feed?.items[index] else { return }
+        
+        switch item.kind {
+        case .cipher:
+            guard let cipher = item.cipher else { return }
+            TaskScreenRoute(root: self).show(task: cipher, bundle: nil)
+        case .profile:
+            guard let profile = item.profile else { return }
+            TaskScreenRoute(root: self).show(task: profile, bundle: nil)
+        case .bundle:
+            guard let tasksBundle = item.bundle else { return }
+            showTasksBundle(bundle: tasksBundle)
+        }
     }
     
     func didTapBuyTasksBundleButton(at index: Int) {

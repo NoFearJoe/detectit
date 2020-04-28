@@ -288,7 +288,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
 
         if indexPath.section == 0 {
             if let taskModel = delegate.feedItem(at: indexPath.item) as? MainScreenTaskCell.Model {
-                if taskModel.backgroundImageURL != nil {
+                if taskModel.backgroundImagePath != nil {
                     return CGSize(width: width, height: width * 0.75)
                 } else {
                     return prototypeTaskCell.calculateSize(model: taskModel, width: width)

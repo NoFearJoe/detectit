@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DetectItCore
 
 public struct Feed: Codable {
     public let items: [Item]
@@ -24,6 +25,9 @@ public extension Feed {
         public let isSolved: Bool
         public let score: Int?
         public let maxScore: Int
+        public let cipher: DecoderTask?
+        public let profile: ProfileTask?
+        public let bundle: TasksBundle.Info?
     }
     
 }

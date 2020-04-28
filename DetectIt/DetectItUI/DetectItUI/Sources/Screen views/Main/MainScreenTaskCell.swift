@@ -46,7 +46,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     
     public struct Model {
         
-        public let backgroundImageURL: URL?
+        public let backgroundImagePath: String?
         public let kind: String
         public let title: String
         public let description: String
@@ -58,14 +58,14 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             score != nil
         }
         
-        public init(backgroundImageURL: URL?,
+        public init(backgroundImagePath: String?,
                     kind: String,
                     title: String,
                     description: String,
                     difficultyIcon: UIImage,
                     score: String?,
                     scoreColor: UIColor) {
-            self.backgroundImageURL = backgroundImageURL
+            self.backgroundImagePath = backgroundImagePath
             self.kind = kind
             self.title = title
             self.description = description
@@ -77,8 +77,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     }
     
     func configure(model: Model) {
-        if let imageURL = model.backgroundImageURL, !model.isSolved {
-            ImageLoader.share.load(.network(imageURL)) { [weak self] image in
+        if let imagePath = model.backgroundImagePath, !model.isSolved {
+            ImageLoader.share.load(.staticAPI(imagePath)) { [weak self] image in
                 self?.backgroundImageView.image = image
             }
         } else {

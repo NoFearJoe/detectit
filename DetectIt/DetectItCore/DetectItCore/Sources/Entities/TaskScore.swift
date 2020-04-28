@@ -20,7 +20,7 @@ public struct TaskScore {
             .reduce(0, { $0 + ($1.value as? Int ?? 0) })
     }
     
-    public static func get(id: String, taskKind: TaskKind, bundleID: String) -> Int? {
+    public static func get(id: String, taskKind: TaskKind, bundleID: String?) -> Int? {
         storage.object(
             forKey: makeKey(
                 for: id,
@@ -32,7 +32,7 @@ public struct TaskScore {
     
     // MARK: - Set score
     
-    public static func set(value: Int, id: String, taskKind: TaskKind, bundleID: String) {
+    public static func set(value: Int, id: String, taskKind: TaskKind, bundleID: String?) {
         storage.set(
             value,
             forKey: makeKey(
@@ -59,8 +59,12 @@ public struct TaskScore {
     
     private static let keyPrefix = "task_score"
     
-    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String) -> String {
-        "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
+    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String?) -> String {
+        if let bundleID = bundleID {
+            return "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
+        } else {
+            return "\(keyPrefix)_\(taskKind)_\(id)"
+        }
     }
     
 }
@@ -71,11 +75,11 @@ public struct TaskAnswer {
     
     // MARK: Cipher
         
-    public static func get(decoderTaskID id: String, bundleID: String) -> String? {
+    public static func get(decoderTaskID id: String, bundleID: String?) -> String? {
         storage.object(forKey: makeKey(for: id, taskKind: .cipher, bundleID: bundleID)) as? String
     }
     
-    public static func set(answer: String, decoderTaskID id: String, bundleID: String) {
+    public static func set(answer: String, decoderTaskID id: String, bundleID: String?) {
         storage.set(answer, forKey: makeKey(for: id, taskKind: .cipher, bundleID: bundleID))
     }
     
@@ -139,11 +143,11 @@ public struct TaskAnswer {
         }
     }
     
-    public static func get(profileTaskID id: String, bundleID: String) -> [ProfileTaskAnswer]? {
+    public static func get(profileTaskID id: String, bundleID: String?) -> [ProfileTaskAnswer]? {
         get(id: id, taskKind: .profile, bundleID: bundleID)
     }
     
-    public static func set(answers: [ProfileTaskAnswer], profileTaskID id: String, bundleID: String) {
+    public static func set(answers: [ProfileTaskAnswer], profileTaskID id: String, bundleID: String?) {
         set(value: answers, id: id, taskKind: .profile, bundleID: bundleID)
     }
     
@@ -159,11 +163,11 @@ public struct TaskAnswer {
         }
     }
     
-    public static func get(questTaskID id: String, bundleID: String) -> QuestTaskAnswer? {
+    public static func get(questTaskID id: String, bundleID: String?) -> QuestTaskAnswer? {
         get(id: id, taskKind: .quest, bundleID: bundleID)
     }
     
-    public static func set(answer: QuestTaskAnswer, questTaskID id: String, bundleID: String) {
+    public static func set(answer: QuestTaskAnswer, questTaskID id: String, bundleID: String?) {
         set(value: answer, id: id, taskKind: .quest, bundleID: bundleID)
     }
     
@@ -177,18 +181,22 @@ public struct TaskAnswer {
         }
     }
     
-    private static func get<T: Decodable>(id: String, taskKind: TaskKind, bundleID: String) -> T? {
+    private static func get<T: Decodable>(id: String, taskKind: TaskKind, bundleID: String?) -> T? {
         storage.decodable(forKey: makeKey(for: id, taskKind: taskKind, bundleID: bundleID))
     }
     
-    private static func set<T: Encodable>(value: T, id: String, taskKind: TaskKind, bundleID: String) {
+    private static func set<T: Encodable>(value: T, id: String, taskKind: TaskKind, bundleID: String?) {
         storage.setEncodable(value, forKey: makeKey(for: id, taskKind: taskKind, bundleID: bundleID))
     }
     
     private static let keyPrefix = "task_answer"
     
-    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String) -> String {
-        "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
+    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String?) -> String {
+        if let bundleID = bundleID {
+            return "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
+        } else {
+            return "\(keyPrefix)_\(taskKind)_\(id)"
+        }
     }
     
 }
