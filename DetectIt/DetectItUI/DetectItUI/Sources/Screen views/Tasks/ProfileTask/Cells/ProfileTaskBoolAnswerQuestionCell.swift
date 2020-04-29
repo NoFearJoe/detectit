@@ -13,8 +13,8 @@ public final class ProfileTaskBoolAnswerQuestionCell: UIView {
     private let titleLabel = UILabel()
     private let variantsContainer = UIStackView()
     
-    private let trueAnswerView = makeVariantView(title: "Да") // TODO
-    private let falseAnswerView = makeVariantView(title: "Нет") // TODO
+    private let trueAnswerView = makeVariantView(title: "profile_task_screen_answer_yes_title".localized)
+    private let falseAnswerView = makeVariantView(title: "profile_task_screen_answer_no_title".localized)
     
     var selectedVariantView: AnswerVariantView? {
         trueAnswerView.isSelected ? trueAnswerView : falseAnswerView.isSelected ? falseAnswerView : nil

@@ -15,7 +15,7 @@ final class OnboardingCreateOrGetUserScreen: Screen {
     
     var onFinish: (() -> Void)?
     
-    private let skeleton = ScreenPlaceholderView(isInitiallyHidden: true)
+    private let skeleton = ScreenLoadingView(isInitiallyHidden: true)
     
     private let api = DetectItAPI()
     
@@ -36,22 +36,38 @@ final class OnboardingCreateOrGetUserScreen: Screen {
         
         skeleton.pin(to: self.view)
         
+        performUserCreation()
+    }
+    
+    private func performUserCreation() {
         skeleton.setVisible(true, animated: false)
+        screenPlaceholderView.setVisible(false, animated: true)
         
         api.request(.createUser(alias: alias)) { [weak self] result in
             switch result {
             case let .success(response):
                 guard let user = try? JSONDecoder().decode(UserEntity.self, from: response.data) else {
-                    print("error")
-                    return // TODO
+                    self?.screenPlaceholderView.setVisible(true, animated: true)
+                    self?.screenPlaceholderView.configure(
+                        title: "unknown_error_title".localized,
+                        message: "unknown_error_message".localized,
+                        onRetry: { [unowned self] in self?.performUserCreation() }
+                    )
+                    
+                    return
                 }
                 
                 User.shared.id = user.id
                 User.shared.alias = user.alias
                 
                 self?.onFinish?()
-            case let .failure(error):
-                print(error) // TODO
+            case .failure:
+                self?.screenPlaceholderView.setVisible(true, animated: true)
+                self?.screenPlaceholderView.configure(
+                    title: "network_error_title".localized, // TODO: Может показать другую надпись? Чтобы было понятнее
+                    message: "netowrk_error_message".localized,
+                    onRetry: { [unowned self] in self?.performUserCreation() }
+                )
             }
         }
     }

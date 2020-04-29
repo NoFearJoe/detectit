@@ -68,7 +68,7 @@ public final class DecoderTaskScreenView {
         }
         
         answerButton.isEnabled = false
-//        answerButton.setTitle("Отправить ответ", for: .normal) // TODO
+        answerButton.titleLabel.text = "decoder_task_screen_send_answer_button_title".localized
         answerButton.onFill = { [unowned self] in
             self.onTapAnswerButton?()
         }
@@ -108,7 +108,7 @@ public final class DecoderTaskRightAnswerView: UIView {
         
         titleLabel.font = .text3
         titleLabel.textColor = .white
-        titleLabel.text = "Правильный ответ:" // TODO
+        titleLabel.text = "decoder_task_screen_right_answer_title".localized
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

@@ -2,7 +2,7 @@
 //  ScreenPlaceholderView.swift
 //  DetectItUI
 //
-//  Created by Илья Харабет on 06/04/2020.
+//  Created by Илья Харабет on 29/04/2020.
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
@@ -10,40 +10,45 @@ import UIKit
 
 public final class ScreenPlaceholderView: UIView {
     
-    private let imageView = UIImageView(image: UIImage.asset(named: "ScreenPlaceholderIcon"))
+    var onRetry: (() -> Void)?
     
-    private let isInitiallyHidden: Bool
+    private let contentView = UIStackView()
+    private let titleLabel = UILabel()
+    private let messageLabel = UILabel()
+    private let retryButton = UIButton()
     
-    public init(isInitiallyHidden: Bool) {
-        self.isInitiallyHidden = isInitiallyHidden
-        
-        super.init(frame: .zero)
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setup()
         setupViews()
     }
     
-    @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
     
+    public func configure(title: String, message: String?, onRetry: (() -> Void)?) {
+        self.onRetry = onRetry
+        
+        titleLabel.text = title
+        messageLabel.text = message
+        messageLabel.isHidden = message == nil
+        retryButton.isHidden = onRetry == nil
+    }
+    
     public func setVisible(_ isVisible: Bool, animated: Bool) {
-        if isVisible {
-            alpha = 0
-            isHidden = false
-        }
+        superview?.bringSubviewToFront(self)
+        
+            alpha = isVisible ? 0 : 1
+//            isHidden = false
         
         UIView.animate(
             withDuration: animated ? 0.5 : 0,
-            delay: 0,
-            options: .curveEaseInOut,
             animations: {
                 self.alpha = isVisible ? 1 : 0
             }, completion: { _ in
-                if !isVisible {
-                    self.isHidden = true
-                } else {
-                    self.startShimmeringAnimation()
-                }
+                guard !isVisible else { return }
+                
+//                self.isHidden = true
             }
         )
     }
@@ -54,35 +59,45 @@ public final class ScreenPlaceholderView: UIView {
     }
     
     private func setupViews() {
-        addSubview(imageView)
+        addSubview(contentView)
         
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.opacity = isInitiallyHidden ? 0 : 1
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 96),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            contentView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            contentView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            contentView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 20)
         ])
+        
+        contentView.axis = .vertical
+        contentView.distribution = .fill
+        contentView.alignment = .center
+        
+        contentView.addArrangedSubview(titleLabel)
+        contentView.addArrangedSubview(messageLabel)
+        contentView.addArrangedSubview(retryButton)
+        
+        contentView.setCustomSpacing(12, after: titleLabel)
+        contentView.setCustomSpacing(40, after: messageLabel)
+        
+        titleLabel.font = .heading4
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        
+        messageLabel.font = .text3
+        messageLabel.textColor = .white
+        messageLabel.textAlignment = .center
+        messageLabel.numberOfLines = 0
+        
+        retryButton.titleLabel?.font = .text2
+        retryButton.setTitleColor(.yellow, for: .normal)
+        retryButton.setTitle("retry_button_title".localized, for: .normal)
+        retryButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        retryButton.addTarget(self, action: #selector(didTapRetryButton), for: .touchUpInside)
     }
     
-    private var hasShimmeringAnimationStarted = false
-    
-    private func startShimmeringAnimation() {
-        guard !hasShimmeringAnimationStarted else { return }
-        
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.beginTime = isInitiallyHidden ? CACurrentMediaTime() + 0.5 : CACurrentMediaTime()
-        animation.fromValue = isInitiallyHidden ? 0 : 1
-        animation.toValue = isInitiallyHidden ? 1 : 0
-        animation.autoreverses = true
-        animation.repeatCount = .infinity
-        animation.duration = 1
-        imageView.layer.add(animation, forKey: "shimmering")
-        
-        hasShimmeringAnimationStarted = true
+    @objc private func didTapRetryButton() {
+        onRetry?()
     }
     
 }

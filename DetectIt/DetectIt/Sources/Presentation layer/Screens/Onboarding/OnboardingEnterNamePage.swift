@@ -42,7 +42,7 @@ final class OnboardingEnterNamePage: Screen {
         containerView.addArrangedSubview(nameField)
         containerView.addArrangedSubview(subtitleLabel)
         
-        nameField.configure(model: .init(question: "А вот и твой первый вопрос - какой у тебя оперативный псевдоним?", answer: nil))
+        nameField.configure(model: .init(question: "onboarding_enter_alias_title".localized, answer: nil))
         nameField.onChangeAnswer = { [unowned self] answer in
             self.continueButton.isEnabled = !answer.isEmpty
         }
@@ -50,12 +50,12 @@ final class OnboardingEnterNamePage: Screen {
         subtitleLabel.font = .text3
         subtitleLabel.textColor = .white
         subtitleLabel.numberOfLines = 0
-        subtitleLabel.text = "Как только введешь псевдоним, тебе предстоит приноровиться к несовсем обычной кнопке, которая служит для фиксации ответа."
+        subtitleLabel.text = "onboarding_enter_alias_subtitle".localized
         
         view.addSubview(continueButton)
         
         continueButton.isEnabled = false
-        continueButton.titleLabel.text = "Приступить к расследованию" // TODO
+        continueButton.titleLabel.text = "onboarding_enter_alias_button_title".localized
         continueButton.onFill = { [unowned self] in
             self.didTapContinueButton()
         }

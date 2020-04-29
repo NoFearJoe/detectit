@@ -59,7 +59,7 @@ public final class AnswerButton: UIControl {
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center
         titleLabel.isUserInteractionEnabled = false
-        titleLabel.text = "Отправить ответ" // TODO
+        titleLabel.text = "answer_button_default_title".localized
         
         titleLabel.pin(to: self)
     }

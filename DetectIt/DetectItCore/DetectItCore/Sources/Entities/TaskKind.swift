@@ -12,11 +12,11 @@ public enum TaskKind: String {
     public var title: String {
         switch self {
         case .cipher:
-            return "Шифр"
+            return "task_kind_cipher".localized
         case .profile:
-            return "Расследование"
+            return "task_kind_profile".localized
         case .quest:
-            return "Квест"
+            return "task_kind_quest".localized
         }
     }
     

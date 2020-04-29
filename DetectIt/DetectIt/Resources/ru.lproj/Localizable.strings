@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  DetectIt
+
+  Created by Илья Харабет on 29/04/2020.
+  Copyright © 2020 Mesterra. All rights reserved.
+*/
+
+// Errors
+
+"network_error_title" = "Проблема с соединением";
+"network_error_message" = "Проверьте ваше интернет-соединение и попробуйте снова";
+"unknown_error_title" = "Ой";
+"unknown_error_message" = "Что-то пошло не по плану";
+"retry_button_title" = "Попробовать снова";
+
+// HUD messages
+
+"purchases_restoring_hud_title" = "Восстановление покупок...";
+"error_hud_title" = "Ошибка";
+
+// User ranks
+
+"user_rank_trainee" = "Стажер";
+"user_rank_junior_detective" = "Младший детектив";
+"user_rank_midle_detective" = "Детектив";
+"user_rank_senior_detective" = "Старший детектив";
+"user_rank_father_brown" = "Отец Браун";
+"user_rank_hercule_poirot" = "Эркюль Пуаро";
+"user_rank_sherlok_holmes" = "Шерлок Холмс";
+
+// Onboarding
+
+"onboarding_first_page_title" = "Добро пожаловать, незнакомец";
+"onboarding_first_page_subtitle" = "Приготовься почувствовать себя настоящим детективом!";
+"onboarding_second_page_title" = "Запомни важную особенность";
+"onboarding_second_page_subtitle" = "В этой игре, как и в жизни, нет второго шанса. Всегда проверяй ответ перед тем, как его отправить на проверку.";
+"onboarding_enter_alias_title" = "А вот и твой первый вопрос - какой у тебя оперативный псевдоним?";
+"onboarding_enter_alias_subtitle" = "Как только введешь псевдоним, тебе предстоит приноровиться к несовсем обычной кнопке, которая служит для фиксации ответа.";
+"onboarding_enter_alias_button_title" = "Приступить к расследованию";
+
+// Main screen
+
+"main_screen_report_problem_action_title" = "Сообщить о проблеме";
+"main_screen_restore_purchases_action_title" = "Восстановить покупки";
+"main_screen_debug_menu_action_title" = "Дебаг меню";
+"main_screen_tasks_bundle_cell_play_button_title" = "Играть";
+
+// Decoder task
+
+"decoder_task_screen_answer_title" = "Ответ:";
+"decoder_task_screen_send_answer_button_title" = "Отправить ответ";
+"decoder_task_screen_right_answer_title" = "Правильный ответ:";
+
+// Profile task
+
+"profile_task_screen_report_title" = "Отчет";
+"profile_task_screen_send_report_button_title" = "Отправить отчет";
+"profile_task_screen_answer_yes_title" = "Да";
+"profile_task_screen_answer_no_title" = "Нет";
+
+// Tasks bundle
+
+"tasks_bundle_screen_ciphers_section_title" = "Шифры";
+"tasks_bundle_screen_profiles_section_title" = "Расследования";
+"tasks_bundle_screen_quests_section_title" = "Квесты";
+
+// Other
+
+"answer_button_default_title" = "Отправить ответ";
+"buy_button_title" = "Купить";
+
+"task_kind_cipher" = "Шифр";
+"task_kind_profile" = "Расследование";
+"task_kind_quest" = "Квест";

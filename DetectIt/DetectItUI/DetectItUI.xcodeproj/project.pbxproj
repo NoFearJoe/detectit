@@ -11,6 +11,7 @@
 		9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605432A244F33EE0083C217 /* UIView+frameLayout.swift */; };
 		960543302451D38C0083C217 /* CGFloat+layoutInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605432F2451D38C0083C217 /* CGFloat+layoutInsets.swift */; };
 		96054C0724573B7D0083C217 /* MainScreenTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C0624573B7D0083C217 /* MainScreenTaskCell.swift */; };
+		96054C1724599E9D0083C217 /* ScreenPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C1624599E9D0083C217 /* ScreenPlaceholderView.swift */; };
 		96162672243F67CC0097A4EE /* ProfileTaskExactAnswerQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96162671243F67CC0097A4EE /* ProfileTaskExactAnswerQuestionCell.swift */; };
 		96162675243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96162674243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift */; };
 		96162677243F73700097A4EE /* AnswerVariantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96162676243F73700097A4EE /* AnswerVariantView.swift */; };
@@ -71,10 +72,9 @@
 		965AC7E82438E611003A3DC7 /* QuestionAndAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */; };
 		965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */; };
 		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
-		96AAAFF1243B093600F61443 /* ScreenPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */; };
+		96AAAFF1243B093600F61443 /* ScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */; };
 		96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */; };
 		96AAB000243B6F4100F61443 /* DecoderTaskScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFFF243B6F4100F61443 /* DecoderTaskScreenView.swift */; };
-		96AAB004243B89CA00F61443 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB003243B89CA00F61443 /* AlertPresenter.swift */; };
 		96AAB006243B932D00F61443 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB005243B932D00F61443 /* AnswerButton.swift */; };
 		96AAB009243F369D00F61443 /* ProfileTaskScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB008243F369D00F61443 /* ProfileTaskScreenView.swift */; };
 		96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */; };
@@ -90,6 +90,7 @@
 		9605432A244F33EE0083C217 /* UIView+frameLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+frameLayout.swift"; sourceTree = "<group>"; };
 		9605432F2451D38C0083C217 /* CGFloat+layoutInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+layoutInsets.swift"; sourceTree = "<group>"; };
 		96054C0624573B7D0083C217 /* MainScreenTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTaskCell.swift; sourceTree = "<group>"; };
+		96054C1624599E9D0083C217 /* ScreenPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPlaceholderView.swift; sourceTree = "<group>"; };
 		96162671243F67CC0097A4EE /* ProfileTaskExactAnswerQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskExactAnswerQuestionCell.swift; sourceTree = "<group>"; };
 		96162674243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskVariantsQuestionCell.swift; sourceTree = "<group>"; };
 		96162676243F73700097A4EE /* AnswerVariantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerVariantView.swift; sourceTree = "<group>"; };
@@ -152,10 +153,9 @@
 		965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAndAnswerView.swift; sourceTree = "<group>"; };
 		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
-		96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPlaceholderView.swift; sourceTree = "<group>"; };
+		96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLoadingView.swift; sourceTree = "<group>"; };
 		96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskDifficulty+Icon.swift"; sourceTree = "<group>"; };
 		96AAAFFF243B6F4100F61443 /* DecoderTaskScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskScreenView.swift; sourceTree = "<group>"; };
-		96AAB003243B89CA00F61443 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		96AAB005243B932D00F61443 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		96AAB008243F369D00F61443 /* ProfileTaskScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskScreenView.swift; sourceTree = "<group>"; };
 		96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionView.swift; sourceTree = "<group>"; };
@@ -255,7 +255,6 @@
 				965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */,
 				965AC7B82438A017003A3DC7 /* FloatingViewVisibilityManager.swift */,
 				965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */,
-				96AAB003243B89CA00F61443 /* AlertPresenter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -379,7 +378,8 @@
 				96500E7E24327019005FFC7A /* PaperSheetWithPhotoView.swift */,
 				965AC78F24364D39003A3DC7 /* TasksBundlePurchaseView.swift */,
 				965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */,
-				96AAAFF0243B093600F61443 /* ScreenPlaceholderView.swift */,
+				96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */,
+				96054C1624599E9D0083C217 /* ScreenPlaceholderView.swift */,
 				96162676243F73700097A4EE /* AnswerVariantView.swift */,
 			);
 			path = "Complex views";
@@ -579,8 +579,9 @@
 				965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */,
+				96054C1724599E9D0083C217 /* ScreenPlaceholderView.swift in Sources */,
 				96200CB72442016900A3C720 /* ProfileTaskAnswerCell.swift in Sources */,
-				96AAAFF1243B093600F61443 /* ScreenPlaceholderView.swift in Sources */,
+				96AAAFF1243B093600F61443 /* ScreenLoadingView.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
 				96054C0724573B7D0083C217 /* MainScreenTaskCell.swift in Sources */,
 				965AC7DF2438C704003A3DC7 /* StackViewController.swift in Sources */,
@@ -610,7 +611,6 @@
 				96162679243F73E20097A4EE /* ProfileTaskBoolAnswerQuestionCell.swift in Sources */,
 				96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */,
 				96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */,
-				96AAB004243B89CA00F61443 /* AlertPresenter.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				96500E7B24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift in Sources */,
 				96AAB009243F369D00F61443 /* ProfileTaskScreenView.swift in Sources */,

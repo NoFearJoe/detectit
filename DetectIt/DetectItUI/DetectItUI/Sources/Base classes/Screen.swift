@@ -18,6 +18,8 @@ open class Screen: UIViewController {
         view.window?.windowScene?.statusBarManager?.statusBarFrame ?? .zero
     }
     
+    public let screenPlaceholderView = ScreenPlaceholderView()
+    
     open func prepare() {}
     
     open func refresh() {}
@@ -29,6 +31,10 @@ open class Screen: UIViewController {
     @available(*, unavailable)
     open override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(screenPlaceholderView)
+        screenPlaceholderView.pin(to: view)
+        screenPlaceholderView.setVisible(false, animated: false)
         
         prepare()
     }

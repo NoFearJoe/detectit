@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  DetectIt
+
+  Created by Илья Харабет on 29/04/2020.
+  Copyright © 2020 Mesterra. All rights reserved.
+*/
+
+// Errors
+
+"network_error_title" = "Error";
+"network_error_message" = "Check your internet connection and try again";
+"unknown_error_title" = "Oops";
+"unknown_error_message" = "Something went wrong";
+"retry_button_title" = "Retry";
+
+// HUD messages
+
+"purchases_restoring_hud_title" = "Restoring purchases...";
+"error_hud_title" = "Error";
+
+// User ranks
+
+"user_rank_trainee" = "Trainee";
+"user_rank_junior_detective" = "Junior detective";
+"user_rank_midle_detective" = "Detective";
+"user_rank_senior_detective" = "Chef";
+"user_rank_father_brown" = "Father Brown";
+"user_rank_hercule_poirot" = "Hercule Poirot";
+"user_rank_sherlok_holmes" = "Sherlok Holmes";
+
+// Onboarding
+
+"onboarding_first_page_title" = "Welcome, stranger";
+"onboarding_first_page_subtitle" = "Get ready to feel like a real detective!";
+"onboarding_second_page_title" = "Remember important thing";
+"onboarding_second_page_subtitle" = "In this game, as in life, there is no second chance. Always check the answer before sending it for verification.";
+"onboarding_enter_alias_title" = "And here is your first question - what is your alias?";
+"onboarding_enter_alias_subtitle" = "As soon as you enter a pseudonym, you have to adapt to the not-so-usual button, which serves to answer.";
+"onboarding_enter_alias_button_title" = "Start an investigation";
+
+// Main screen
+
+"main_screen_report_problem_action_title" = "Report a problem";
+"main_screen_restore_purchases_action_title" = "Restore purchases";
+"main_screen_debug_menu_action_title" = "Debug menu";
+"main_screen_tasks_bundle_cell_play_button_title" = "Play";
+
+// Decoder task
+
+"decoder_task_screen_answer_title" = "Answer:";
+"decoder_task_screen_send_answer_button_title" = "Send the answer";
+"decoder_task_screen_right_answer_title" = "Right answer:";
+
+// Profile task
+
+"profile_task_screen_report_title" = "Report";
+"profile_task_screen_send_report_button_title" = "Send report";
+"profile_task_screen_answer_yes_title" = "Yes";
+"profile_task_screen_answer_no_title" = "No";
+
+// Tasks bundle
+
+"tasks_bundle_screen_ciphers_section_title" = "Ciphers";
+"tasks_bundle_screen_profiles_section_title" = "Profiles";
+"tasks_bundle_screen_quests_section_title" = "Quests";
+
+// Other
+
+"answer_button_default_title" = "Send the answer";
+"buy_button_title" = "Buy";
+
+"task_kind_cipher" = "Cipher";
+"task_kind_profile" = "Profile";
+"task_kind_quest" = "Quest";

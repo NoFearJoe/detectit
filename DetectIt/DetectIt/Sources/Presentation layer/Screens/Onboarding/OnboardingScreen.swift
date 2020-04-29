@@ -83,14 +83,14 @@ private extension OnboardingScreen {
         case .welcome:
             screen.configure(
                 icon: nil,
-                title: "Добро пожаловать, незнакомец",
-                subtitle: "Приготовься почувствовать себя настоящим детективом!"
+                title: "onboarding_first_page_title".localized,
+                subtitle: "onboarding_first_page_subtitle".localized
             )
         case .noChance:
             screen.configure(
                 icon: nil,
-                title: "Запомни важную особенность",
-                subtitle: "В этой игре, как и в жизни, нет второго шанса. Всегда проверяй ответ перед тем, как его отправить на проверку."
+                title: "onboarding_second_page_title".localized,
+                subtitle: "onboarding_second_page_subtitle".localized
             )
         case .enterName:
             let screen = OnboardingEnterNamePage()

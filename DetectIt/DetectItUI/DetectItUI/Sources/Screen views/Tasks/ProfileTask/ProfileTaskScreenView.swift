@@ -52,13 +52,13 @@ public final class ProfileTaskScreenView: NSObject {
     
     public func setupViews() {
         reportTitleView.titleLabel.textAlignment = .center
-        reportTitleView.configure(title: "Отчет") // TODO
+        reportTitleView.configure(title: "profile_task_screen_report_title".localized)
         NSLayoutConstraint.activate([
             reportTitleView.heightAnchor.constraint(equalToConstant: 52)
         ])
         
         answerButton.isEnabled = false
-        //        answerButton.setTitle("Отправить ответ", for: .normal) // TODO
+        answerButton.titleLabel.text = "profile_task_screen_send_report_button_title".localized
         answerButton.onFill = { [unowned self] in
             self.delegate.didTapAnswerButton()
         }

@@ -14,7 +14,7 @@ final class DecoderTaskScreen: Screen {
     
     // MARK: - Subviews
     
-    private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: true)
+    private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: true)
     
     private let contentContainer = StackViewController()
     
@@ -62,7 +62,7 @@ final class DecoderTaskScreen: Screen {
             $0.pin(to: self.view, insets: UIEdgeInsets(top: 0, left: .hInset, bottom: 0, right: -.hInset))
         }
         
-        setupPlaceholderView()
+        setupScreenLoadingView()
         setupViews()
         setupContentView()
         setupKeyboardManager()
@@ -73,24 +73,11 @@ final class DecoderTaskScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        placeholderView.setVisible(true, animated: false)
-        
         score = TaskScore.get(id: task.id, taskKind: .cipher, bundleID: bundle?.id)
         
         updateContentState(animated: false)
         
-        loadData { [weak self] image in
-            self?.encodedImage = image
-            
-            self?.placeholderView.setVisible(false, animated: true)
-            
-            guard let image = image else {
-                // TODO: Show error placeholder
-                return
-            }
-            
-            self?.displayContent(encodedPicture: image)
-        }
+        loadTask()
     }
     
     // MARK: - Actions
@@ -131,6 +118,29 @@ final class DecoderTaskScreen: Screen {
     
     // MARK: - Business logic
     
+    private func loadTask() {
+        screenLoadingView.setVisible(true, animated: false)
+        screenPlaceholderView.setVisible(false, animated: false)
+        
+        loadData { [weak self] image in
+            self?.encodedImage = image
+                        
+            guard let image = image else {
+                self?.screenPlaceholderView.setVisible(true, animated: false)
+                self?.screenLoadingView.setVisible(false, animated: true)
+                self?.screenPlaceholderView.configure(
+                    title: "network_error_title".localized,
+                    message: "network_error_message".localized,
+                    onRetry: { [unowned self] in self?.loadTask() }
+                )
+                return
+            }
+            
+            self?.screenLoadingView.setVisible(false, animated: true)
+            self?.displayContent(encodedPicture: image)
+        }
+    }
+    
     private func loadData(completion: @escaping (UIImage?) -> Void) {
         ImageLoader.share.load(
             .staticAPI(task.encodedPictureName)
@@ -159,7 +169,7 @@ final class DecoderTaskScreen: Screen {
         screenView.encodedPictureView.image = encodedPicture
         screenView.questionAndAnswerView.configure(
             model: QuestionAndAnswerView.Model(
-                question: "Ответ:", // TODO
+                question: "decoder_task_screen_answer_title".localized,
                 answer: TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle?.id)
             )
         )
@@ -263,9 +273,9 @@ final class DecoderTaskScreen: Screen {
         screenView.onTapAnswerButton = didTapAnswerButton
     }
     
-    func setupPlaceholderView() {
-        view.addSubview(placeholderView)
-        placeholderView.pin(to: view)
+    func setupScreenLoadingView() {
+        view.addSubview(screenLoadingView)
+        screenLoadingView.pin(to: view)
     }
     
     func setupKeyboardManager() {

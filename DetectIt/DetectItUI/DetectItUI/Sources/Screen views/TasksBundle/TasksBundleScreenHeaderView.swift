@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DetectItCore
 
 public final class TasksBundleScreenHeaderView: UIView {
     
@@ -42,7 +43,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     // MARK: - Configuration
     
     public struct Model {
-        let image: UIImage
+        let image: String
         let title: String
         let totalScore: String
         let description: String
@@ -50,7 +51,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         let isPaid: Bool
         let price: String?
         
-        public init(image: UIImage,
+        public init(image: String,
                     title: String,
                     totalScore: String,
                     description: String,
@@ -66,7 +67,10 @@ public final class TasksBundleScreenHeaderView: UIView {
     }
     
     func configure(model: Model) {
-        imageView.image = model.image
+        ImageLoader.share.load(.staticAPI(model.image)) { [weak self] image in
+            self?.imageView.image = image
+        }
+        
         titleLabel.text = model.title
         
         descriptionLabel.text = model.description

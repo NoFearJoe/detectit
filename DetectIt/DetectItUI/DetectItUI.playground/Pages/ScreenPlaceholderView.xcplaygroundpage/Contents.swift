@@ -7,7 +7,7 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 let screenView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 756))
 screenView.backgroundColor = .black
 
-let view = ScreenPlaceholderView(isInitiallyHidden: false)
+let view = ScreenLoadingView(isInitiallyHidden: false)
 view.backgroundColor = .darkGray
 
 screenView.addSubview(view)

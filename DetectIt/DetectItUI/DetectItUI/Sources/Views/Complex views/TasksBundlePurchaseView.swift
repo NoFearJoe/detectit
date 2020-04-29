@@ -52,7 +52,7 @@ final class TasksBundlePurchaseView: UIView {
         
         addSubview(buyButton)
         
-        buyButton.setTitle("Купить", for: .normal) // TODO
+        buyButton.setTitle("buy_button_title".localized, for: .normal)
         buyButton.setTitleColor(.black, for: .normal)
         buyButton.fill = .color(.yellow)
         buyButton.addTarget(self, action: #selector(didTapBuyButton), for: .touchUpInside)

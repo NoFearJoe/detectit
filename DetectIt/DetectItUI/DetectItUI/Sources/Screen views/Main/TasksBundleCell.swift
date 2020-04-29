@@ -190,7 +190,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         playStateViewsContainer.addSubview(playButton)
         
-        playButton.setTitle("Играть", for: .normal) // TODO
+        playButton.setTitle("main_screen_tasks_bundle_cell_play_button_title".localized, for: .normal)
         playButton.setTitleColor(.white, for: .normal)
         playButton.fill = .color(.systemBlue)
         playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)

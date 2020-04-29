@@ -14,7 +14,7 @@ final class ProfileTaskScreen: Screen {
     
     // MARK: - Subviews
     
-    private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: true)
+    private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: true)
     
     private let contentContainer = StackViewController()
     
@@ -76,7 +76,7 @@ final class ProfileTaskScreen: Screen {
             $0.pin(to: self.view, insets: UIEdgeInsets(top: 0, left: .hInset, bottom: 0, right: -.hInset))
         }
         
-        setupPlaceholderView()
+        setupScreenLoadingView()
         setupViews()
         setupContentView()
         setupKeyboardManager()
@@ -90,7 +90,7 @@ final class ProfileTaskScreen: Screen {
         answers.load(taskID: task.id, bundleID: bundle?.id)
         score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle?.id)
         
-        placeholderView.setVisible(true, animated: false)
+        screenLoadingView.setVisible(true, animated: false)
         updateContentState(animated: false)
         
         ProfileTaskScreenDataLoader.loadData(task: task) { [weak self] images in
@@ -101,7 +101,7 @@ final class ProfileTaskScreen: Screen {
             
             self.screenView.reloadContent()
             
-            self.placeholderView.setVisible(false, animated: true)
+            self.screenLoadingView.setVisible(false, animated: true)
         }
     }
     
@@ -440,9 +440,9 @@ private extension ProfileTaskScreen {
         screenView.setupViews()
     }
     
-    func setupPlaceholderView() {
-        view.addSubview(placeholderView)
-        placeholderView.pin(to: view)
+    func setupScreenLoadingView() {
+        view.addSubview(screenLoadingView)
+        screenLoadingView.pin(to: view)
     }
     
     func setupKeyboardManager() {

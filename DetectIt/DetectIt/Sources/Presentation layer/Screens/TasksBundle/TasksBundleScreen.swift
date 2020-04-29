@@ -17,14 +17,14 @@ final class TasksBundleScreen: Screen {
         view as! TasksBundleScreenView
     }
     
-    private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: true)
+    private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: true)
     
     private let api = DetectItAPI()
     
     // MARK: - State
     
     private let tasksBundle: TasksBundle.Info
-    private let tasksBundleImage: UIImage
+    private let tasksBundleImageName: String
     
     private var bundle: TasksBundle?
     
@@ -36,9 +36,9 @@ final class TasksBundleScreen: Screen {
     
     // MARK: - Init
     
-    init(tasksBundle: TasksBundle.Info, image: UIImage) {
+    init(tasksBundle: TasksBundle.Info, tasksBundleImageName: String) {
         self.tasksBundle = tasksBundle
-        self.tasksBundleImage = image
+        self.tasksBundleImageName = tasksBundleImageName
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -58,7 +58,7 @@ final class TasksBundleScreen: Screen {
         
         view.clipsToBounds = true
         
-        setupPlaceholder()
+        setupScreenLoadingView()
     }
     
     override func prepare() {
@@ -79,27 +79,7 @@ final class TasksBundleScreen: Screen {
             return
         }
         
-        placeholderView.setVisible(true, animated: false)
-        
-        api.request(.tasksBundle(userID: User.shared.id, bundleID: tasksBundle.id)) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.placeholderView.setVisible(false, animated: true)
-            
-            switch result {
-            case let .success(response):
-                self.bundle = try? JSONDecoder().decode(TasksBundle.self, from: response.data)
-                
-                if let bundle = self.bundle {
-                    self.reloadHeader(bundle: bundle)
-                    self.reloadContent(bundle: bundle)
-                } else {
-                    print("error") // TODO
-                }
-            case let .failure(error):
-                print(error) // TODO
-            }
-        }
+        loadTasksBundle()
     }
     
 }
@@ -168,9 +148,46 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
 
 private extension TasksBundleScreen {
     
-    func setupPlaceholder() {
-        view.addSubview(placeholderView)
-        placeholderView.pin(to: view)
+    func setupScreenLoadingView() {
+        view.addSubview(screenLoadingView)
+        screenLoadingView.pin(to: view)
+    }
+    
+    func loadTasksBundle() {
+        screenLoadingView.setVisible(true, animated: false)
+        screenPlaceholderView.setVisible(false, animated: false)
+        
+        api.request(.tasksBundle(userID: User.shared.id, bundleID: tasksBundle.id)) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case let .success(response):
+                self.bundle = try? JSONDecoder().decode(TasksBundle.self, from: response.data)
+                
+                if let bundle = self.bundle {
+                    self.screenLoadingView.setVisible(false, animated: true)
+                    
+                    self.reloadHeader(bundle: bundle)
+                    self.reloadContent(bundle: bundle)
+                } else {
+                    self.screenPlaceholderView.setVisible(true, animated: false)
+                    self.screenLoadingView.setVisible(false, animated: true)
+                    self.screenPlaceholderView.configure(
+                        title: "unknown_error_title".localized,
+                        message: "unknown_error_message".localized,
+                        onRetry: { [unowned self] in self.loadTasksBundle() }
+                    )
+                }
+            case .failure:
+                self.screenPlaceholderView.setVisible(true, animated: false)
+                self.screenLoadingView.setVisible(false, animated: true)
+                self.screenPlaceholderView.configure(
+                    title: "network_error_title".localized,
+                    message: "network_error_message".localized,
+                    onRetry: { [unowned self] in self.loadTasksBundle() }
+                )
+            }
+        }
     }
     
     func reloadHeader(bundle: TasksBundle) {
@@ -179,7 +196,7 @@ private extension TasksBundleScreen {
         
         screenView.configureHeader(
             model: TasksBundleScreenHeaderView.Model(
-                image: tasksBundleImage,
+                image: tasksBundleImageName,
                 title: tasksBundle.title,
                 totalScore: totalScore,
                 description: tasksBundle.description,

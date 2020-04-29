@@ -18,7 +18,7 @@ final class MainScreen: Screen {
         view as? MainScreenView
     }
     
-    private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: false)
+    private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: false)
     
     private let api = DetectItAPI()
     
@@ -49,8 +49,8 @@ final class MainScreen: Screen {
     override func loadView() {
         view = MainScreenView(delegate: self)
         
-        view.addSubview(placeholderView)
-        placeholderView.pin(to: view)
+        view.addSubview(screenLoadingView)
+        screenLoadingView.pin(to: view)
     }
     
     override func prepare() {
@@ -59,27 +59,13 @@ final class MainScreen: Screen {
         isStatusBarBlurred = true
         
         PaidTaskBundlesManager.obtainProductsInfo()
-        
-        placeholderView.setVisible(true, animated: false)
-        
+                
         PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
             self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
             self.screenView?.shallowReloadData()
         }
         
-        api.request(.feed(userID: User.shared.id)) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.placeholderView.setVisible(false, animated: true)
-            
-            switch result {
-            case let .success(response):
-                self.feed = try? JSONDecoder().decode(Feed.self, from: response.data) // TODO
-                self.screenView?.reloadData()
-            case let .failure(error):
-                print(error) // TODO
-            }
-        }
+        loadFeed()
     }
     
     override func refresh() {
@@ -165,7 +151,7 @@ extension MainScreen: MainScreenViewDelegate {
             TaskScreenRoute(root: self).show(task: profile, bundle: nil)
         case .bundle:
             guard let tasksBundle = item.bundle else { return }
-            showTasksBundle(bundle: tasksBundle)
+            showTasksBundle(bundle: tasksBundle, imageName: item.picture)
         }
     }
     
@@ -195,16 +181,15 @@ extension MainScreen: MainScreenViewDelegate {
         actions[index].title
     }
     
-    // TODO
     func didSelectAction(at index: Int) {
         switch actions[index] {
         case .reportProblem:
             showReportProblem()
         case .restorePurchases:
-            showLoadingHUD(title: "Восстановление покупок...")
+            showLoadingHUD(title: "purchases_restoring_hud_title".localized)
             
             PaidTaskBundlesManager.restorePurchases { [unowned self] success in
-                success ? self.showSuccessHUD() : self.showErrorHUD(title: "Что-то пошло не так")
+                success ? self.showSuccessHUD() : self.showErrorHUD(title: "error_hud_title".localized)
                 self.hideHUD(after: 1)
             }
         case .debugMenu:
@@ -216,20 +201,51 @@ extension MainScreen: MainScreenViewDelegate {
 
 private extension MainScreen {
     
-    func showTasksBundle(bundle: TasksBundle.Info) {
+    func loadFeed() {
+        screenLoadingView.setVisible(true, animated: false)
+        screenPlaceholderView.setVisible(false, animated: false)
+        
+        api.request(.feed(userID: User.shared.id)) { [weak self] result in
+            guard let self = self else { return }
+                                                
+            switch result {
+            case let .success(response):
+                guard let feed = try? JSONDecoder().decode(Feed.self, from: response.data) else {
+                    self.screenPlaceholderView.setVisible(true, animated: false)
+                    self.screenLoadingView.setVisible(false, animated: true)
+                    return self.screenPlaceholderView.configure(
+                        title: "unknown_error_title".localized,
+                        message: "unknown_error_message".localized,
+                        onRetry: { [unowned self] in self.loadFeed() }
+                    )
+                }
+                
+                self.screenLoadingView.setVisible(false, animated: true)
+                
+                self.feed = feed
+                self.screenView?.reloadData()
+            case .failure:
+                self.screenPlaceholderView.setVisible(true, animated: false)
+                self.screenLoadingView.setVisible(false, animated: true)
+                self.screenPlaceholderView.configure(
+                    title: "network_error_title".localized,
+                    message: "network_error_message".localized,
+                    onRetry: { [unowned self] in self.loadFeed() }
+                )
+            }
+        }
+    }
+    
+    func showTasksBundle(bundle: TasksBundle.Info, imageName: String?) {
         let tasksBundleScreen = TasksBundleScreen(
             tasksBundle: bundle,
-            image: UIImage() // TODO
+            tasksBundleImageName: imageName ?? ""
         )
         
         tasksBundleScreen.modalTransitionStyle = .coverVertical
         tasksBundleScreen.modalPresentationStyle = .fullScreen
         
         present(tasksBundleScreen, animated: true, completion: nil)
-    }
-    
-    func showTasksBundlePurchse(bundle: TasksBundle.Info, price: String) {
-        // TODO
     }
     
     func showReportProblem() {
@@ -262,15 +278,14 @@ private extension MainScreen {
         case restorePurchases
         case debugMenu
         
-        // TODO
         var title: String {
             switch self {
             case .reportProblem:
-                return "Сообщить о проблеме"
+                return "main_screen_report_problem_action_title".localized
             case .restorePurchases:
-                return "Восстановить покупки"
+                return "main_screen_restore_purchases_action_title".localized
             case .debugMenu:
-                return "Дебаг меню"
+                return "main_screen_debug_menu_action_title".localized
             }
         }
     }

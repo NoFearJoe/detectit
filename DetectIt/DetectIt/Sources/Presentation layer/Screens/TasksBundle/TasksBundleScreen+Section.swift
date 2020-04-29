@@ -20,11 +20,11 @@ extension TasksBundleScreen {
         var title: String {
             switch self {
             case .ciphers:
-                return "Шифры"
+                return "tasks_bundle_screen_ciphers_section_title".localized
             case .profiles:
-                return "Расследования"
+                return "tasks_bundle_screen_profiles_section_title".localized
             case .quests:
-                return "Квесты"
+                return "tasks_bundle_screen_quests_section_title".localized
             }
         }
         

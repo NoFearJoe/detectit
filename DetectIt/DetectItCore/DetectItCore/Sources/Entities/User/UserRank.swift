@@ -28,23 +28,22 @@ public extension UserRank {
 
 public extension UserRank {
     
-    // TODO
     var title: String {
         switch self {
         case .trainee:
-            return "Стажер"
+            return "user_rank_trainee".localized
         case .juniorDetective:
-            return "Младший детектив"
+            return "user_rank_junior_detective".localized
         case .midleDetective:
-            return "Детектив"
+            return "user_rank_midle_detective".localized
         case .seniorDetective:
-            return "Старший детектив"
+            return "user_rank_senior_detective".localized
         case .fatherBrown:
-            return "Отец Браун"
+            return "user_rank_father_brown".localized
         case .herculePoirot:
-            return "Эркюль Пуаро"
+            return "user_rank_hercule_poirot".localized
         case .sherlokHolmes:
-            return "Шерлок Холмс"
+            return "user_rank_sherlok_holmes".localized
         }
     }
     
