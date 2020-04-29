@@ -11,6 +11,7 @@
 		96054BF32455D2920083C217 /* DetectItAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96054BF22455D2920083C217 /* DetectItAPI.framework */; };
 		96054BF42455D2920083C217 /* DetectItAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96054BF22455D2920083C217 /* DetectItAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96054C112458789A0083C217 /* TaskScreenRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C102458789A0083C217 /* TaskScreenRoute.swift */; };
+		96054C13245897DF0083C217 /* OnboardingCreateOrGetUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C12245897DF0083C217 /* OnboardingCreateOrGetUserScreen.swift */; };
 		961B95E42425EE89003EC992 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95E32425EE89003EC992 /* AppDelegate.swift */; };
 		961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B95E52425EE89003EC992 /* SceneDelegate.swift */; };
 		961B95ED2425EE92003EC992 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961B95EC2425EE92003EC992 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		9605432D244F73580083C217 /* HelpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpScreen.swift; sourceTree = "<group>"; };
 		96054BF22455D2920083C217 /* DetectItAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96054C102458789A0083C217 /* TaskScreenRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScreenRoute.swift; sourceTree = "<group>"; };
+		96054C12245897DF0083C217 /* OnboardingCreateOrGetUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCreateOrGetUserScreen.swift; sourceTree = "<group>"; };
 		961B95E02425EE89003EC992 /* Detect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Detect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B95E32425EE89003EC992 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		961B95E52425EE89003EC992 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				96F054772444C60E000742E4 /* OnboardingScreen.swift */,
 				96F054792444CD77000742E4 /* OnboardingPage.swift */,
 				96F0547B2444D2EC000742E4 /* OnboardingEnterNamePage.swift */,
+				96054C12245897DF0083C217 /* OnboardingCreateOrGetUserScreen.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
 				96AAB00C243F3BC800F61443 /* ProfileTaskScreenDataLoader.swift in Sources */,
 				96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */,
+				96054C13245897DF0083C217 /* OnboardingCreateOrGetUserScreen.swift in Sources */,
 				9605432E244F73580083C217 /* HelpScreen.swift in Sources */,
 				96F0547C2444D2EC000742E4 /* OnboardingEnterNamePage.swift in Sources */,
 			);

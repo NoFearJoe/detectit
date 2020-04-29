@@ -10,7 +10,11 @@ import Moya
 
 public enum DetectItAPITarget {
     
+    case createUser(alias: String)
+    
     case feed(userID: Int)
+    
+    case tasksBundle(userID: Int, bundleID: String)
     
 }
 
@@ -22,13 +26,18 @@ extension DetectItAPITarget: TargetType {
     
     public var path: String {
         switch self {
+        case .createUser: return "user"
         case .feed: return "feed"
+        case .tasksBundle: return "tasksBundle"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .feed: return .get
+        case .createUser:
+            return .post
+        case .feed, .tasksBundle:
+            return .get
         }
     }
     
@@ -36,8 +45,21 @@ extension DetectItAPITarget: TargetType {
     
     public var task: Task {
         switch self {
+        case let .createUser(alias):
+            return .requestParameters(
+                parameters: ["alias": alias],
+                encoding: JSONEncoding.default
+            )
         case let .feed(userID):
-            return .requestParameters(parameters: ["userID": userID], encoding: URLEncoding.default)
+            return .requestParameters(
+                parameters: ["userID": userID],
+                encoding: URLEncoding.default
+            )
+        case let .tasksBundle(userID, bundleID):
+            return .requestParameters(
+                parameters: ["userID": userID, "bundleID": bundleID],
+                encoding: URLEncoding.default
+            )
         }
     }
     

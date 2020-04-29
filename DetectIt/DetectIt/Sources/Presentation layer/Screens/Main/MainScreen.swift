@@ -67,7 +67,7 @@ final class MainScreen: Screen {
             self.screenView?.shallowReloadData()
         }
         
-        api.request(.feed(userID: 1)) { [weak self] result in
+        api.request(.feed(userID: User.shared.id)) { [weak self] result in
             guard let self = self else { return }
             
             self.placeholderView.setVisible(false, animated: true)

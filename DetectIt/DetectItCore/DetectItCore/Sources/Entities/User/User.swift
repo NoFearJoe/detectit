@@ -12,6 +12,15 @@ public final class User {
     
     public static let shared = User()
     
+    public var id: Int! {
+        get {
+            UserDefaults.standard.object(forKey: "user_id") as? Int
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "user_id")
+        }
+    }
+    
     public var alias: String? {
         get {
             UserDefaults.standard.string(forKey: "user_alias")

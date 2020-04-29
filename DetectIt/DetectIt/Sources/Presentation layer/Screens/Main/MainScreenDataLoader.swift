@@ -10,47 +10,7 @@ import UIKit
 import DetectItCore
 
 final class MainScreenDataLoader {
-    
-    typealias Data = (taskBundles: [TasksBundle.Info], taskBundleImages: [String: UIImage])
-    
-    static func loadData(completion: @escaping (Data?) -> Void) {
-        DispatchQueue.global(qos: .utility).async {
-            guard let taskBundlesRootURL = TasksBundleMap.taskBundlesRootURL else {
-                return DispatchQueue.main.sync { completion(nil) }
-            }
-            
-            guard let taskBundleIDs = try? FileManager.default.contentsOfDirectory(atPath: taskBundlesRootURL.path) else {
-                return DispatchQueue.main.sync { completion(nil) }
-            }
-            
-            var taskBundles: [TasksBundle.Info] = []
-            var taskBundleImages: [String: UIImage] = [:]
-            
-            let dispatchGroup = DispatchGroup()
-            
-            taskBundleIDs.forEach {
-                dispatchGroup.enter()
-                
-                TasksBundle.loadInfo(bundleID: $0) { bundle in
-                    if let bundle = bundle {
-                        taskBundles.append(bundle)
-                        taskBundleImages[bundle.id] = bundle.imageURL.flatMap {
-                            UIImage(contentsOfFile: $0.path)
-                        } ?? UIImage()
-                    }
-                    
-                    dispatchGroup.leave()
-                }
-            }
-            
-            dispatchGroup.notify(queue: .main) {                
-                completion(
-                    (taskBundles, taskBundleImages)
-                )
-            }
-        }
-    }
-    
+        
     static func getPurchaseStates(
         bundleIDs: [String]
     ) -> [String: TasksBundlePurchaseState] {

@@ -21,30 +21,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = scene as? UIWindowScene else { return }
         
         let window = UIWindow(windowScene: scene)
-        
+        self.window = window
+
         if isOnboardingCompleted {
-            window.rootViewController = MainScreen()
+            if User.shared.id == nil {
+                showCreateOrGetUserScreen()
+            } else {
+                window.rootViewController = MainScreen()
+            }
         } else {
             let screen = OnboardingScreen()
             
             screen.onFinish = { [unowned self] in
-                self.performTransitionToMainScreen()
+                self.showCreateOrGetUserScreen()
             }
             
             window.rootViewController = screen
         }
         
         window.makeKeyAndVisible()
-        
-        self.window = window
     }
     
-    private func performTransitionToMainScreen() {
+    private func performTransition(to screen: UIViewController) {
         guard let window = window else { return }
         
         window.subviews.forEach { $0.removeFromSuperview() }
         
-        window.rootViewController = MainScreen()
+        window.rootViewController = screen
         window.makeKeyAndVisible()
         
         UIView.transition(
@@ -54,6 +57,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             animations: nil,
             completion: nil
         )
+    }
+    
+    private func showCreateOrGetUserScreen() {
+        guard let alias = User.shared.alias else { return } // TODO
+        
+        let screen = OnboardingCreateOrGetUserScreen(alias: alias)
+        
+        screen.onFinish = { [unowned self] in
+            self.performTransition(to: MainScreen())
+        }
+        
+        performTransition(to: screen)
     }
 
 }

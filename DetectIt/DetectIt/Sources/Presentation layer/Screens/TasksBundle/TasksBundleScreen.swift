@@ -9,6 +9,7 @@
 import UIKit
 import DetectItUI
 import DetectItCore
+import DetectItAPI
 
 final class TasksBundleScreen: Screen {
     
@@ -17,6 +18,8 @@ final class TasksBundleScreen: Screen {
     }
     
     private let placeholderView = ScreenPlaceholderView(isInitiallyHidden: true)
+    
+    private let api = DetectItAPI()
     
     // MARK: - State
     
@@ -78,16 +81,23 @@ final class TasksBundleScreen: Screen {
         
         placeholderView.setVisible(true, animated: false)
         
-        TasksBundle.load(bundleID: tasksBundle.id) { [weak self] bundle in
+        api.request(.tasksBundle(userID: User.shared.id, bundleID: tasksBundle.id)) { [weak self] result in
             guard let self = self else { return }
             
-            self.bundle = bundle
+            self.placeholderView.setVisible(false, animated: true)
             
-            if let bundle = bundle {
-                self.reloadHeader(bundle: bundle)
-                self.reloadContent(bundle: bundle)
+            switch result {
+            case let .success(response):
+                self.bundle = try? JSONDecoder().decode(TasksBundle.self, from: response.data)
                 
-                self.placeholderView.setVisible(false, animated: true)
+                if let bundle = self.bundle {
+                    self.reloadHeader(bundle: bundle)
+                    self.reloadContent(bundle: bundle)
+                } else {
+                    print("error") // TODO
+                }
+            case let .failure(error):
+                print(error) // TODO
             }
         }
     }
