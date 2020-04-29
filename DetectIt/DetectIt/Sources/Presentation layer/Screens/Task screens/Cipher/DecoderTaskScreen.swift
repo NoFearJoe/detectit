@@ -9,6 +9,7 @@
 import UIKit
 import DetectItUI
 import DetectItCore
+import DetectItAPI
 
 final class DecoderTaskScreen: Screen {
     
@@ -26,14 +27,17 @@ final class DecoderTaskScreen: Screen {
     private let keyboardManager = KeyboardManager()
     private var contentScrollViewOffset: CGFloat?
     
+    let api = DetectItAPI()
+    
     // MARK: - State
     
-    private let task: DecoderTask
-    private let bundle: TasksBundle.Info?
+    let task: DecoderTask
+    let bundle: TasksBundle.Info?
     
-    private var encodedImage: UIImage?
+    var encodedImage: UIImage?
     
-    private var score: Int?
+    var score: Int?
+    var answer: String?
         
     // MARK: - Init
     
@@ -72,9 +76,7 @@ final class DecoderTaskScreen: Screen {
     
     override func prepare() {
         super.prepare()
-        
-        score = TaskScore.get(id: task.id, taskKind: .cipher, bundleID: bundle?.id)
-        
+                
         updateContentState(animated: false)
         
         loadTask()
@@ -122,10 +124,8 @@ final class DecoderTaskScreen: Screen {
         screenLoadingView.setVisible(true, animated: false)
         screenPlaceholderView.setVisible(false, animated: false)
         
-        loadData { [weak self] image in
-            self?.encodedImage = image
-                        
-            guard let image = image else {
+        loadData { [weak self] success in
+            guard success, let encodedImage = self?.encodedImage else {
                 self?.screenPlaceholderView.setVisible(true, animated: false)
                 self?.screenLoadingView.setVisible(false, animated: true)
                 self?.screenPlaceholderView.configure(
@@ -137,15 +137,33 @@ final class DecoderTaskScreen: Screen {
             }
             
             self?.screenLoadingView.setVisible(false, animated: true)
-            self?.displayContent(encodedPicture: image)
+            self?.displayContent(encodedPicture: encodedImage)
+            self?.updateContentState(animated: false)
         }
     }
     
-    private func loadData(completion: @escaping (UIImage?) -> Void) {
+    private func loadData(completion: @escaping (Bool) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        
+        var isDataLoaded = true
+        
+        dispatchGroup.enter()
         ImageLoader.share.load(
             .staticAPI(task.encodedPictureName)
-        ) { image in
-            completion(image)
+        ) { [weak self] image in
+            self?.encodedImage = image
+            isDataLoaded = image != nil ? isDataLoaded : false
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        loadScoreAndAnswer { success in
+            isDataLoaded = success ? isDataLoaded : false
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(isDataLoaded)
         }
     }
     
@@ -155,10 +173,13 @@ final class DecoderTaskScreen: Screen {
         let isCorrectAnswer = task.answer.compare(with: answer)
         let score = isCorrectAnswer ? task.maxScore : 0
         
-        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle?.id)
-        TaskAnswer.set(answer: answer, decoderTaskID: task.id, bundleID: bundle?.id)
-        
         self.score = score
+        
+        updateContentState(animated: true)
+        
+        saveScoreAndAnswer(score, answer: answer) { success in
+            print(success)
+        }
     }
     
     // MARK: - Utils
@@ -170,7 +191,7 @@ final class DecoderTaskScreen: Screen {
         screenView.questionAndAnswerView.configure(
             model: QuestionAndAnswerView.Model(
                 question: "decoder_task_screen_answer_title".localized,
-                answer: TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle?.id)
+                answer: answer
             )
         )
         screenView.crimeDescriptionLabel.attributedText = task.answer.crimeDescription.readableAttributedText()

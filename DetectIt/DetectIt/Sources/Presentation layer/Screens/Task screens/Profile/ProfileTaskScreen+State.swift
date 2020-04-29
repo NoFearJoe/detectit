@@ -13,7 +13,7 @@ extension ProfileTaskScreen {
     
     struct Answers {
         
-        private(set) var answers: [TaskAnswer.ProfileTaskAnswer] = []
+        var answers: [TaskAnswer.ProfileTaskAnswer] = []
         
         var count: Int {
             answers.count

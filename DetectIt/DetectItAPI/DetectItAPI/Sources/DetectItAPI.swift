@@ -8,4 +8,10 @@
 
 import Moya
 
-public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {}
+public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {
+    
+    public init() {
+        super.init(plugins: [NetworkLoggerPlugin()])
+    }
+    
+}

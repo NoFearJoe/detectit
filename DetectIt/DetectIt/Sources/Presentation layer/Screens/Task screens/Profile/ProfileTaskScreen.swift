@@ -9,6 +9,7 @@
 import UIKit
 import DetectItUI
 import DetectItCore
+import DetectItAPI
 
 final class ProfileTaskScreen: Screen {
     
@@ -26,16 +27,18 @@ final class ProfileTaskScreen: Screen {
     private let keyboardManager = KeyboardManager()
     private var contentScrollViewOffset: CGFloat?
     
+    var api = DetectItAPI()
+    
     // MARK: - State
     
-    private let task: ProfileTask
-    private let bundle: TasksBundle.Info?
+    let task: ProfileTask
+    let bundle: TasksBundle.Info?
     
     private var isDataLoaded = false
     
-    private var images: [String: UIImage] = [:]
+    var images: [String: UIImage] = [:]
     
-    private var answers = Answers() {
+    var answers = Answers() {
         didSet {
             TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle?.id)
             
@@ -43,7 +46,7 @@ final class ProfileTaskScreen: Screen {
         }
     }
     
-    private var score: Int?
+    var score: Int?
     
     private var isSolved: Bool {
         score != nil
@@ -87,25 +90,35 @@ final class ProfileTaskScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        answers.load(taskID: task.id, bundleID: bundle?.id)
-        score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle?.id)
+        screenPlaceholderView.configure(
+            title: "network_error_title".localized,
+            message: "network_error_message".localized,
+            onRetry: { [unowned self] in
+                self.loadData()
+            }
+        )
         
-        screenLoadingView.setVisible(true, animated: false)
-        updateContentState(animated: false)
-        
-        ProfileTaskScreenDataLoader.loadData(task: task) { [weak self] images in
-            guard let self = self else { return }
-            
-            self.images = images
-            self.isDataLoaded = true
-            
-            self.screenView.reloadContent()
-            
-            self.screenLoadingView.setVisible(false, animated: true)
-        }
+        loadData()
     }
     
     // MARK: - Business logic
+    
+    func loadData() {
+        screenLoadingView.setVisible(true, animated: false)
+        screenPlaceholderView.setVisible(false, animated: false)
+        
+        loadData(task: task) { [weak self] success in
+            guard let self = self else { return }
+            
+            self.isDataLoaded = success
+            
+            self.screenView.reloadContent()
+            self.updateContentState(animated: false)
+            
+            self.screenLoadingView.setVisible(false, animated: true)
+            self.screenPlaceholderView.setVisible(!success, animated: false)
+        }
+    }
     
     func updateAnswerButtonState() {
         screenView.answerButton.isEnabled = answers.count == task.questions.count && score == nil
@@ -133,10 +146,11 @@ final class ProfileTaskScreen: Screen {
             return result + score
         }
         
-        TaskScore.set(value: totalScore, id: task.id, taskKind: task.kind, bundleID: bundle?.id)
-        TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle?.id)
-        
         score = totalScore
+        
+        saveScoreAndAnswer(totalScore, answers: answers.answers) { success in
+            print(success)
+        }
     }
     
     func updateContentState(animated: Bool) {
