@@ -22,7 +22,6 @@ public extension Feed {
         public let subtitle: String?
         public let picture: String?
         public let difficulty: Int
-        public let isSolved: Bool
         public let score: Int?
         public let maxScore: Int
         public let cipher: DecoderTask?

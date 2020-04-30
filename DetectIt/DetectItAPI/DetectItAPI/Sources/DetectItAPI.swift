@@ -7,6 +7,7 @@
 //
 
 import Moya
+import DetectItCore
 
 public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {
     

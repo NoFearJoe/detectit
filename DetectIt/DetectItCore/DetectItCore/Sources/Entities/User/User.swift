@@ -12,24 +12,33 @@ public final class User {
     
     public static let shared = User()
     
-    public var id: Int! {
-        get {
-            UserDefaults.standard.object(forKey: "user_id") as? Int
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "user_id")
-        }
+    public var isAuthorized: Bool {
+        alias != nil && password != nil
     }
     
     public var alias: String? {
         get {
-            UserDefaults.standard.string(forKey: "user_alias")
+            Keychain.read("user_alias")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "user_alias")
+            guard let newValue = newValue else { return }
+            
+            Keychain.save("user_alias", value: newValue)
         }
     }
     
+    public var password: String? {
+        get {
+            Keychain.read("user_password")
+        }
+        set {
+            guard let newValue = newValue else { return }
+            
+            Keychain.save("user_password", value: newValue)
+        }
+    }
+    
+    // TODO: Брать из апи
     public var rank: UserRank {
         UserRank(score: totalScore)
     }
@@ -59,6 +68,15 @@ public final class User {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "is_profile_help_shown")
+        }
+    }
+    
+    public var isOnboardingShown: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "is_onboarding_shown")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "is_onboarding_shown")
         }
     }
     

@@ -157,7 +157,7 @@ private extension TasksBundleScreen {
         screenLoadingView.setVisible(true, animated: false)
         screenPlaceholderView.setVisible(false, animated: false)
         
-        api.request(.tasksBundle(userID: User.shared.id, bundleID: tasksBundle.id)) { [weak self] result in
+        api.request(.tasksBundle(bundleID: tasksBundle.id)) { [weak self] result in
             guard let self = self else { return }
             
             switch result {

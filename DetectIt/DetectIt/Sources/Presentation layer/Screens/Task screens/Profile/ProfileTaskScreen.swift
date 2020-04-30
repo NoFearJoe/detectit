@@ -379,7 +379,7 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
             } else if let variantID = question.variant?.correctVariantID {
                 return question.variant?.variants.first(where: { $0.id == variantID })?.text ?? ""
             } else if let bool = question.boolAnswer?.answer {
-                return bool ? "Да" : "Нет"
+                return bool ? "profile_task_screen_answer_yes_title".localized : "profile_task_screen_answer_no_title".localized
             } else {
                 return ""
             }

@@ -80,6 +80,12 @@ public final class AnswerButton: UIControl {
         fillAnimator.stopAnimation(true)
     }
     
+    public func reset() {
+        hasBeenFilled = false
+        isUserInteractionEnabled = true
+        cancelFillAnimator()
+    }
+    
     // MARK: - Overrides
     
     public override var isEnabled: Bool {

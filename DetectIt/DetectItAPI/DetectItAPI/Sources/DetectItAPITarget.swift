@@ -7,23 +7,24 @@
 //
 
 import Moya
+import DetectItCore
 
 public enum DetectItAPITarget {
     
-    case createUser(alias: String)
+    case auth(alias: String, password: String)
     
-    case feed(userID: Int)
+    case feed
     
-    case tasksBundle(userID: Int, bundleID: String)
+    case tasksBundle(bundleID: String)
         
-    case taskScore(userID: Int, taskID: String, taskKind: String, bundleID: String?)
-    case setTaskScore(userID: Int, taskID: String, taskKind: String, bundleID: String?, score: Int)
+    case taskScore(taskID: String, taskKind: String, bundleID: String?)
+    case setTaskScore(taskID: String, taskKind: String, bundleID: String?, score: Int)
     
-    case cipherAnswer(userID: Int, taskID: String)
-    case setCipherAnswer(userID: Int, taskID: String, answer: String)
+    case cipherAnswer(taskID: String)
+    case setCipherAnswer(taskID: String, answer: String)
     
-    case profileAnswers(userID: Int, taskID: String)
-    case setProfileAnswers(userID: Int, taskID: String, answers: [[String: Any]])
+    case profileAnswers(taskID: String)
+    case setProfileAnswers(taskID: String, answers: [[String: Any]])
     
 }
 
@@ -35,7 +36,7 @@ extension DetectItAPITarget: TargetType {
     
     public var path: String {
         switch self {
-        case .createUser: return "user"
+        case .auth: return "auth"
         case .feed: return "feed"
         case .tasksBundle: return "tasksBundle"
         case .taskScore, .setTaskScore: return "taskScore"
@@ -46,7 +47,7 @@ extension DetectItAPITarget: TargetType {
     
     public var method: Moya.Method {
         switch self {
-        case .createUser, .setTaskScore, .setCipherAnswer, .setProfileAnswers:
+        case .auth, .setTaskScore, .setCipherAnswer, .setProfileAnswers:
             return .post
         case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers:
             return .get
@@ -55,62 +56,70 @@ extension DetectItAPITarget: TargetType {
     
     public var sampleData: Data { Data() }
     
-    public var task: Task {
+    public var task: Moya.Task {
         switch self {
-        case let .createUser(alias):
+        case let .auth(alias, password):
             return .requestParameters(
-                parameters: ["alias": alias],
+                parameters: ["alias": alias, "password": password],
                 encoding: JSONEncoding.default
             )
-        case let .feed(userID):
+        case .feed:
             return .requestParameters(
-                parameters: ["userID": userID],
+                parameters: [:],
                 encoding: URLEncoding.default
             )
-        case let .tasksBundle(userID, bundleID):
+        case let .tasksBundle(bundleID):
             return .requestParameters(
-                parameters: ["userID": userID, "bundleID": bundleID],
+                parameters: ["bundleID": bundleID],
                 encoding: URLEncoding.default
             )
-        case let .taskScore(userID, taskID, taskKind, bundleID):
-            var parameters: [String: Any] = ["userID": userID, "taskID": taskID, "taskKind": taskKind]
+        case let .taskScore(taskID, taskKind, bundleID):
+            var parameters: [String: Any] = ["taskID": taskID, "taskKind": taskKind]
             bundleID.map { parameters["bundleID"] = $0 }
             return .requestParameters(
                 parameters: parameters,
                 encoding: URLEncoding.default
             )
-        case let .setTaskScore(userID, taskID, taskKind, bundleID, score):
-            var parameters: [String: Any] = ["userID": userID, "taskID": taskID, "taskKind": taskKind, "score": score]
+        case let .setTaskScore(taskID, taskKind, bundleID, score):
+            var parameters: [String: Any] = ["taskID": taskID, "taskKind": taskKind, "score": score]
             bundleID.map { parameters["bundleID"] = $0 }
             return .requestParameters(
                 parameters: parameters,
                 encoding: JSONEncoding.default
             )
-        case let .cipherAnswer(userID, taskID):
+        case let .cipherAnswer(taskID):
             return .requestParameters(
-                parameters: ["userID": userID, "taskID": taskID],
+                parameters: ["taskID": taskID],
                 encoding: URLEncoding.default
             )
-        case let .setCipherAnswer(userID, taskID, answer):
+        case let .setCipherAnswer(taskID, answer):
             return .requestParameters(
-                parameters: ["userID": userID, "taskID": taskID, "taskKind": "cipher", "answer": answer],
+                parameters: ["taskID": taskID, "taskKind": "cipher", "answer": answer],
                 encoding: JSONEncoding.default
             )
-        case let .profileAnswers(userID, taskID):
+        case let .profileAnswers(taskID):
             return .requestParameters(
-                parameters: ["userID": userID, "taskID": taskID],
+                parameters: ["taskID": taskID],
                 encoding: URLEncoding.default
             )
-        case let .setProfileAnswers(userID, taskID, answers):
+        case let .setProfileAnswers(taskID, answers):
             return .requestParameters(
-                parameters: ["userID": userID, "taskID": taskID, "taskKind": "profile", "answers": answers],
+                parameters: ["taskID": taskID, "taskKind": "profile", "answers": answers],
                 encoding: JSONEncoding.default
             )
         }
     }
     
     public var headers: [String : String]? {
-        nil
+        switch self {
+        case .auth:
+            return nil
+        default:
+            guard let user = User.shared.alias, let password = User.shared.password else { return nil }
+            guard let token = "\(user):\(password)".data(using: .utf8)?.base64EncodedString() else { return nil }
+            
+            return ["Authorization": "Basic \(token)"]
+        }
     }
     
 }

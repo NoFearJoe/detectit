@@ -26,7 +26,6 @@ extension DecoderTaskScreen {
         dispatchGroup.enter()
         api.request(
             .taskScore(
-                userID: User.shared.id,
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
                 bundleID: bundle?.id
@@ -52,7 +51,7 @@ extension DecoderTaskScreen {
         
         dispatchGroup.enter()
         api.request(
-            .cipherAnswer(userID: User.shared.id, taskID: task.id)
+            .cipherAnswer(taskID: task.id)
         ) { [weak self] result in
             defer { dispatchGroup.leave() }
             
@@ -88,7 +87,6 @@ extension DecoderTaskScreen {
         dispatchGroup.enter()
         api.request(
             .setTaskScore(
-                userID: User.shared.id,
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
                 bundleID: bundle?.id,
@@ -107,7 +105,6 @@ extension DecoderTaskScreen {
         dispatchGroup.enter()
         api.request(
             .setCipherAnswer(
-                userID: User.shared.id,
                 taskID: task.id,
                 answer: answer
             )

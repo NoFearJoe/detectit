@@ -18,6 +18,7 @@
 
 "purchases_restoring_hud_title" = "Восстановление покупок...";
 "error_hud_title" = "Ошибка";
+"auth_401_error_title" = "Детектив с таким псевдонимом уже приступил к расследованию";
 
 // User ranks
 
@@ -35,9 +36,14 @@
 "onboarding_first_page_subtitle" = "Приготовься почувствовать себя настоящим детективом!";
 "onboarding_second_page_title" = "Запомни важную особенность";
 "onboarding_second_page_subtitle" = "В этой игре, как и в жизни, нет второго шанса. Всегда проверяй ответ перед тем, как его отправить на проверку.";
-"onboarding_enter_alias_title" = "А вот и твой первый вопрос - какой у тебя оперативный псевдоним?";
-"onboarding_enter_alias_subtitle" = "Как только введешь псевдоним, тебе предстоит приноровиться к несовсем обычной кнопке, которая служит для фиксации ответа.";
-"onboarding_enter_alias_button_title" = "Приступить к расследованию";
+"onboarding_last_page_title" = "На этом все";
+"onboarding_last_page_subtitle" = "Если ты готов погрузиться в мир загадочных и темных историй, воспользуйся той необычной кнопкой внизу.";
+"onboarding_last_page_button_title" = "Продолжить";
+
+"onboarding_auth_title" = "А вот и твое первой задание - введи свой псевдоним и пароль для доступа к базе данных";
+"onboarding_auth_alias_title" = "Псевдоним";
+"onboarding_auth_password_title" = "Пароль";
+"onboarding_auth_continue_button_title" = "Войти";
 
 // Main screen
 

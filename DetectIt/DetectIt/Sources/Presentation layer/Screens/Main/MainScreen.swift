@@ -205,7 +205,7 @@ private extension MainScreen {
         screenLoadingView.setVisible(true, animated: false)
         screenPlaceholderView.setVisible(false, animated: false)
         
-        api.request(.feed(userID: User.shared.id)) { [weak self] result in
+        api.request(.feed) { [weak self] result in
             guard let self = self else { return }
                                                 
             switch result {

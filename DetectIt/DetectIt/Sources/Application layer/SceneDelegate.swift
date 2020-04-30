@@ -12,10 +12,6 @@ import DetectItCore
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
-    private var isOnboardingCompleted: Bool {
-        User.shared.alias != nil
-    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = scene as? UIWindowScene else { return }
@@ -23,20 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
         self.window = window
 
-        if isOnboardingCompleted {
-            if User.shared.id == nil {
-                showCreateOrGetUserScreen()
-            } else {
-                window.rootViewController = MainScreen()
-            }
+        if User.shared.isAuthorized {
+            window.rootViewController = MainScreen()
+        } else if User.shared.isOnboardingShown {
+            showAuth()
         } else {
-            let screen = OnboardingScreen()
-            
-            screen.onFinish = { [unowned self] in
-                self.showCreateOrGetUserScreen()
-            }
-            
-            window.rootViewController = screen
+            showOnboarding()
         }
         
         window.makeKeyAndVisible()
@@ -45,10 +33,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func performTransition(to screen: UIViewController) {
         guard let window = window else { return }
         
+        let isRootScreen = window.rootViewController == nil
+        
         window.subviews.forEach { $0.removeFromSuperview() }
         
         window.rootViewController = screen
         window.makeKeyAndVisible()
+        
+        guard !isRootScreen else { return }
         
         UIView.transition(
             with: window,
@@ -59,13 +51,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
     }
     
-    private func showCreateOrGetUserScreen() {
-        guard let alias = User.shared.alias else { return } // TODO
-        
-        let screen = OnboardingCreateOrGetUserScreen(alias: alias)
+    private func showAuth() {
+        let screen = OnboardingAuthScreen()
         
         screen.onFinish = { [unowned self] in
             self.performTransition(to: MainScreen())
+        }
+        
+        performTransition(to: screen)
+    }
+    
+    private func showOnboarding() {
+        let screen = OnboardingScreen()
+        
+        screen.onFinish = { [unowned self] in
+            self.showAuth()
         }
         
         performTransition(to: screen)

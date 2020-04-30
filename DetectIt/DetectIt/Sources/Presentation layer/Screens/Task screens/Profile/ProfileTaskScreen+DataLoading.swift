@@ -69,7 +69,6 @@ extension ProfileTaskScreen {
         dispatchGroup.enter()
         api.request(
             .taskScore(
-                userID: User.shared.id,
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
                 bundleID: bundle?.id
@@ -95,7 +94,7 @@ extension ProfileTaskScreen {
         
         dispatchGroup.enter()
         api.request(
-            .profileAnswers(userID: User.shared.id, taskID: task.id)
+            .profileAnswers(taskID: task.id)
         ) { [weak self] result in
             defer { dispatchGroup.leave() }
             
@@ -136,7 +135,6 @@ extension ProfileTaskScreen {
         dispatchGroup.enter()
         api.request(
             .setTaskScore(
-                userID: User.shared.id,
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
                 bundleID: bundle?.id,
@@ -156,7 +154,6 @@ extension ProfileTaskScreen {
             dispatchGroup.enter()
             api.request(
                 .setProfileAnswers(
-                    userID: User.shared.id,
                     taskID: task.id,
                     answers: answersJSON
                 )

@@ -94,6 +94,11 @@ private extension OnboardingScreen {
             )
         case .enterName:
             let screen = OnboardingEnterNamePage()
+            screen.configure(
+                icon: nil,
+                title: "onboarding_last_page_title".localized,
+                subtitle: "onboarding_last_page_subtitle".localized
+            )
             screen.onFinish = { [unowned self] in
                 self.onFinish?()
             }

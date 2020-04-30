@@ -18,6 +18,7 @@
 
 "purchases_restoring_hud_title" = "Restoring purchases...";
 "error_hud_title" = "Error";
+"auth_401_error_title" = "A user with the given alias already exists";
 
 // User ranks
 
@@ -35,9 +36,14 @@
 "onboarding_first_page_subtitle" = "Get ready to feel like a real detective!";
 "onboarding_second_page_title" = "Remember important thing";
 "onboarding_second_page_subtitle" = "In this game, as in life, there is no second chance. Always check the answer before sending it for verification.";
-"onboarding_enter_alias_title" = "And here is your first question - what is your alias?";
-"onboarding_enter_alias_subtitle" = "As soon as you enter a pseudonym, you have to adapt to the not-so-usual button, which serves to answer.";
-"onboarding_enter_alias_button_title" = "Start an investigation";
+"onboarding_last_page_title" = "That's all";
+"onboarding_last_page_subtitle" = "If you ready to start unraveling mysterious stories, try to adapt to the not-so-usual button, which serves to answer.";
+"onboarding_last_page_button_title" = "Continue";
+
+"onboarding_auth_title" = "And here is your first task - enter your pseudonym and password to get access to our database.";
+"onboarding_auth_alias_title" = "Pseudonym";
+"onboarding_auth_password_title" = "Password";
+"onboarding_auth_continue_button_title" = "Enter";
 
 // Main screen
 

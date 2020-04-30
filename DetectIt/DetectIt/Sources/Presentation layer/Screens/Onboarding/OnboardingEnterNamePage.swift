@@ -13,11 +13,20 @@ import DetectItCore
 final class OnboardingEnterNamePage: Screen {
     
     var onFinish: (() -> Void)?
-    
+
     private let containerView = UIStackView()
-    private let nameField = QuestionAndAnswerView()
+    private let iconView = UIImageView()
+    private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     private let continueButton = AnswerButton()
+    
+    func configure(icon: UIImage?, title: String, subtitle: String) {
+        iconView.image = icon
+        iconView.isHidden = icon == nil
+        
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
+    }
     
     override func loadView() {
         super.loadView()
@@ -28,7 +37,7 @@ final class OnboardingEnterNamePage: Screen {
         
         containerView.axis = .vertical
         containerView.distribution = .fill
-        containerView.alignment = .fill
+        containerView.alignment = .center
         containerView.spacing = 12
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,28 +45,30 @@ final class OnboardingEnterNamePage: Screen {
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset)
+            containerView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: .hInset)
         ])
         
-        containerView.addArrangedSubview(nameField)
+        containerView.addArrangedSubview(iconView)
+        containerView.addArrangedSubview(titleLabel)
         containerView.addArrangedSubview(subtitleLabel)
         
-        nameField.configure(model: .init(question: "onboarding_enter_alias_title".localized, answer: nil))
-        nameField.onChangeAnswer = { [unowned self] answer in
-            self.continueButton.isEnabled = !answer.isEmpty
-        }
+        iconView.contentMode = .scaleAspectFit
+        
+        titleLabel.font = .heading2
+        titleLabel.textColor = .white
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .center
         
         subtitleLabel.font = .text3
         subtitleLabel.textColor = .white
         subtitleLabel.numberOfLines = 0
-        subtitleLabel.text = "onboarding_enter_alias_subtitle".localized
+        subtitleLabel.textAlignment = .center
         
         view.addSubview(continueButton)
         
-        continueButton.isEnabled = false
-        continueButton.titleLabel.text = "onboarding_enter_alias_button_title".localized
+        continueButton.titleLabel.text = "onboarding_last_page_button_title".localized
         continueButton.onFill = { [unowned self] in
-            self.didTapContinueButton()
+            self.onFinish?()
         }
         
         NSLayoutConstraint.activate([
@@ -65,19 +76,6 @@ final class OnboardingEnterNamePage: Screen {
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
             continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
-        
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapBackground))
-        view.addGestureRecognizer(tapRecognizer)
-    }
-    
-    private func didTapContinueButton() {
-        User.shared.alias = nameField.answer
-        
-        onFinish?()
-    }
-    
-    @objc private func didTapBackground() {
-        view.endEditing(true)
     }
     
 }
