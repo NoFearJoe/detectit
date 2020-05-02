@@ -109,8 +109,6 @@ final class DecoderTaskScreen: Screen {
         
         commitAnswer()
         
-        updateContentState(animated: true)
-        
         scrollToResults()
     }
     
@@ -222,8 +220,12 @@ final class DecoderTaskScreen: Screen {
         view.isUserInteractionEnabled = false
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            let minY = self.screenView.scoreLabel.frame.minY
-            let maxY = self.screenView.crimeDescriptionLabel.frame.maxY
+            let topInset = self.view.safeAreaInsets.top + Constants.spacingBeforeScore
+            let bottomInset = self.view.safeAreaInsets.bottom + Constants.bottomInset
+            
+            let minY = self.screenView.scoreLabel.frame.minY - topInset
+            let maxY = self.screenView.crimeDescriptionLabel.frame.maxY + bottomInset
+            
             let targetY = maxY - minY > self.view.bounds.height ? minY : max(0, maxY - self.view.bounds.height)
             
             UIView.animate(withDuration: 0.5, animations: {
@@ -249,14 +251,14 @@ final class DecoderTaskScreen: Screen {
         contentContainer.appendChild(screenView.encodedPictureContainer)
         contentContainer.appendSpacing(40)
         contentContainer.appendChild(screenView.questionAndAnswerView)
-        contentContainer.appendSpacing(40)
+        contentContainer.appendSpacing(Constants.spacingBeforeScore)
         contentContainer.appendChild(screenView.answerButton)
         contentContainer.appendChild(screenView.scoreLabel)
         contentContainer.appendSpacing(40)
         contentContainer.appendChild(screenView.rightAnswerView)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.crimeDescriptionLabel)
-        contentContainer.setBottomSpacing(20)
+        contentContainer.setBottomSpacing(Constants.bottomInset)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
         backgroundTapRecognizer.delegate = self
@@ -351,4 +353,9 @@ extension DecoderTaskScreen: UIGestureRecognizerDelegate {
         touch.view === gestureRecognizer.view
     }
     
+}
+
+private struct Constants {
+    static let spacingBeforeScore = CGFloat(40)
+    static let bottomInset = CGFloat(20)
 }
