@@ -40,7 +40,7 @@
 "onboarding_last_page_subtitle" = "Если ты готов погрузиться в мир загадочных и темных историй, воспользуйся той необычной кнопкой внизу.";
 "onboarding_last_page_button_title" = "Продолжить";
 
-"onboarding_auth_title" = "А вот и твое первой задание - введи свой псевдоним и пароль для доступа к базе данных";
+"onboarding_auth_title" = "А вот и твое первое задание - введи свой псевдоним и пароль для доступа к базе данных";
 "onboarding_auth_alias_title" = "Псевдоним";
 "onboarding_auth_password_title" = "Пароль";
 "onboarding_auth_continue_button_title" = "Войти";

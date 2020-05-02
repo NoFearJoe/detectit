@@ -48,8 +48,15 @@ public final class ImageLoader {
                 completion: completionOnMain
             )
         case let .staticAPI(path):
-            // TODO
-            guard let url = URL(string: "http://localhost:8080")?.appendingPathComponent(path) else {
+            let domain: String = {
+                #if DEBUG
+                return "http://localhost:8080"
+                #else
+                return "https://detect-api.herokuapp.com"
+                #endif
+            }()
+            
+            guard let url = URL(string: domain)?.appendingPathComponent(path) else {
                 return completion(nil)
             }
             

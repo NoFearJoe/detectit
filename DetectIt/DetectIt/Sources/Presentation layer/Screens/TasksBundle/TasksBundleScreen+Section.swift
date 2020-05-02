@@ -37,27 +37,27 @@ extension TasksBundleScreen {
         
         if !bundle.decoderTasks.isEmpty {
             sections.append(
-                (.ciphers, bundle.decoderTasks.map { map(task: $0, bundleID: bundle.info.id) })
+                (.ciphers, bundle.decoderTasks.map { map(task: $0, scores: bundle.taskScores, bundleID: bundle.info.id) })
             )
         }
         
         if !bundle.profileTasks.isEmpty {
             sections.append(
-                (.profiles, bundle.profileTasks.map { map(task: $0, bundleID: bundle.info.id) })
+                (.profiles, bundle.profileTasks.map { map(task: $0, scores: bundle.taskScores, bundleID: bundle.info.id) })
             )
         }
         
         if !bundle.questTasks.isEmpty {
             sections.append(
-                (.quests, bundle.questTasks.map { map(task: $0, bundleID: bundle.info.id) })
+                (.quests, bundle.questTasks.map { map(task: $0, scores: bundle.taskScores, bundleID: bundle.info.id) })
             )
         }
         
         return sections
     }
     
-    private func map(task: Task & TaskScoring, bundleID: String) -> TasksBundleScreenTaskCell.Model {
-        let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundleID)
+    private func map(task: Task & TaskScoring, scores: [TasksBundle.TaskScore]?, bundleID: String) -> TasksBundleScreenTaskCell.Model {
+        let score = scores?.first(where: { $0.taskID == task.id })?.score ?? TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundleID)
         let scoreString = makeScoreString(score: score, max: task.maxScore)
         
         return TasksBundleScreenTaskCell.Model(

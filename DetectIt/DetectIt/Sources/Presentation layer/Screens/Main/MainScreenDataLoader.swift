@@ -17,7 +17,8 @@ final class MainScreenDataLoader {
         var result: [String: TasksBundlePurchaseState] = [:]
         
         bundleIDs.forEach {
-            result[$0] = PaidTaskBundlesManager.tasksBundlePurchaseState(id: $0)
+            #warning("Remove before release")
+            result[$0] = .free// PaidTaskBundlesManager.tasksBundlePurchaseState(id: $0)
         }
         
         return result

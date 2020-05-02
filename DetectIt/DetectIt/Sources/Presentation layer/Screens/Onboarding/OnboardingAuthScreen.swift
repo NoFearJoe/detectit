@@ -59,11 +59,14 @@ final class OnboardingAuthScreen: Screen {
                     
                     self?.showErrorHUD(title: "auth_401_error_title".localized)
                     self?.hideHUD(after: 2)
-                } else {
+                } else if response.statusCode == 200 {
                     User.shared.alias = alias
                     User.shared.password = password
                     
                     self?.onFinish?()
+                } else {
+                    self?.showErrorHUD(title: "network_error_title".localized)
+                    self?.hideHUD(after: 2)
                 }
             case .failure:
                 self?.showErrorHUD(title: "network_error_title".localized)

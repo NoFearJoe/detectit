@@ -16,9 +16,16 @@ public struct TasksBundle: Codable {
         public let description: String
     }
     
+    public struct TaskScore: Codable {
+        public let taskID: String
+        public let score: Int?
+    }
+    
     public let info: Info
     private let ciphers: [DecoderTask]?
     private let profiles: [ProfileTask]?
+    
+    public let taskScores: [TaskScore]?
     
     public var decoderTasks: [DecoderTask] {
         ciphers ?? []

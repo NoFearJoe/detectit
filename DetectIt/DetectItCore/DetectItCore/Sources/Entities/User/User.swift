@@ -18,23 +18,23 @@ public final class User {
     
     public var alias: String? {
         get {
-            Keychain.read("user_alias")
+            UserDefaults.standard.object(forKey: "user_alias") as? String
         }
         set {
             guard let newValue = newValue else { return }
             
-            Keychain.save("user_alias", value: newValue)
+            UserDefaults.standard.set(newValue, forKey: "user_alias")
         }
     }
     
     public var password: String? {
         get {
-            Keychain.read("user_password")
+            UserDefaults.standard.object(forKey: "user_password") as? String
         }
         set {
             guard let newValue = newValue else { return }
             
-            Keychain.save("user_password", value: newValue)
+            UserDefaults.standard.set(newValue, forKey: "user_password")
         }
     }
     

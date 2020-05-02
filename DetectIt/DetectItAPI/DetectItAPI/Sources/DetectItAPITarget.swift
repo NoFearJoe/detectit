@@ -31,7 +31,11 @@ public enum DetectItAPITarget {
 extension DetectItAPITarget: TargetType {
     
     public var baseURL: URL {
-        URL(string: "http://localhost:8080")!
+        #if DEBUG
+        return URL(string: "http://localhost:8080")!
+        #else
+        return URL(string: "https://detect-api.herokuapp.com")!
+        #endif
     }
     
     public var path: String {
