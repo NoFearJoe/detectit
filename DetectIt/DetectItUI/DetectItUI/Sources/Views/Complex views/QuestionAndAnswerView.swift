@@ -29,13 +29,15 @@ public final class QuestionAndAnswerView: UIView {
     
     // MARK: - Subviews
     
-    let questionLabel = UILabel()
-    private let answerField = AnswerField()
+    public let questionLabel = UILabel()
+    public let answerField: AnswerField
     
     // MARK: - Init
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+        
+    public init(kind: AnswerField.Kind = .textView) {
+        answerField = AnswerField(kind: kind)
+        
+        super.init(frame: .zero)
         
         setupViews()
     }

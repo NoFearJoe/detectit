@@ -19,8 +19,8 @@ final class OnboardingAuthScreen: Screen {
     
     private let containerView = UIStackView()
     private let titleLabel = UILabel()
-    private let aliasField = QuestionAndAnswerView()
-    private let passwordField = QuestionAndAnswerView()
+    private let aliasField = QuestionAndAnswerView(kind: .textField)
+    private let passwordField = QuestionAndAnswerView(kind: .textField)
     private let continueButton = AnswerButton()
     
     private var continueButtonBottomConstraint: NSLayoutConstraint!
@@ -105,21 +105,25 @@ final class OnboardingAuthScreen: Screen {
         containerView.setCustomSpacing(48, after: titleLabel)
         
         titleLabel.text = "onboarding_auth_title".localized
-        titleLabel.font = .heading3
+        titleLabel.font = .heading4
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         
         aliasField.configure(model: .init(question: "onboarding_auth_alias_title".localized, answer: nil))
+        self.aliasField.highlight(isCorrect: false, animated: false, animationDuration: 0)
         aliasField.onChangeAnswer = { [unowned self] answer in
             self.alias = answer
             self.updateContinueButtonState()
+            self.aliasField.highlight(isCorrect: !answer.isEmpty, animated: false, animationDuration: 0)
         }
         
         passwordField.configure(model: .init(question: "onboarding_auth_password_title".localized, answer: nil))
+        self.passwordField.highlight(isCorrect: false, animated: false, animationDuration: 0)
         passwordField.onChangeAnswer = { [unowned self] answer in
             self.password = answer
             self.updateContinueButtonState()
+            self.passwordField.highlight(isCorrect: answer.count > 5, animated: false, animationDuration: 0)
         }
         
         view.addSubview(continueButton)

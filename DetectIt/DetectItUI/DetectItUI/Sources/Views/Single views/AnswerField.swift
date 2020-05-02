@@ -9,22 +9,41 @@
 import UIKit
 import NextGrowingTextView
 
-final class AnswerField: UIView {
+public final class AnswerField: UIView {
+    
+    public enum Kind {
+        case textView, textField
+    }
     
     var onChangeText: ((String) -> Void)?
     
     var answer: String {
         get {
-            textField.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            switch kind {
+            case .textField:
+                return (textField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            case .textView:
+                return textView.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
         }
         set {
-            textField.textView.text = newValue
+            switch kind {
+            case .textField:
+                textField.text = newValue
+            case .textView:
+                textView.textView.text = newValue
+            }
         }
     }
     
     var keyboardType: UIKeyboardType = .default {
         didSet {
-            textField.textView.keyboardType = keyboardType
+            switch kind {
+            case .textField:
+                textField.keyboardType = keyboardType
+            case .textView:
+                textView.textView.keyboardType = keyboardType
+            }
         }
     }
     
@@ -36,16 +55,21 @@ final class AnswerField: UIView {
     
     // MARK: - Subviews
     
-    private let textField = NextGrowingTextView()
+    public let textView = NextGrowingTextView()
+    public let textField = UITextField()
     private let bottomLineView = UIView()
     
     // MARK: - Init
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let kind: Kind
+    
+    public init(kind: Kind) {
+        self.kind = kind
         
-        setup()
-        setupViews()
+        super.init(frame: .zero)
+        
+        setup(kind: kind)
+        setupViews(kind: kind)
     }
     
     @available(*, unavailable)
@@ -63,34 +87,58 @@ final class AnswerField: UIView {
     
     // MARK: - Setup
     
-    private func setup() {
-        textField.maxNumberOfLines = 10
-        textField.textView.textColor = .white
-        textField.textView.tintColor = .yellow
-        textField.textView.font = .text2
-        textField.textView.autocorrectionType = .no
-        textField.textView.keyboardAppearance = .dark
-        textField.textView.autocapitalizationType = .none
-        textField.showsVerticalScrollIndicator = false
-        textField.showsHorizontalScrollIndicator = false
-        textField.textView.showsVerticalScrollIndicator = false
-        textField.textView.showsHorizontalScrollIndicator = false
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didChangeText),
-            name: UITextView.textDidChangeNotification,
-            object: textField.textView
-        )
+    private func setup(kind: Kind) {
+        switch kind {
+        case .textView:
+            textView.maxNumberOfLines = 10
+            textView.textView.textColor = .white
+            textView.textView.tintColor = .yellow
+            textView.textView.font = .text2
+            textView.textView.autocorrectionType = .no
+            textView.textView.keyboardAppearance = .dark
+            textView.textView.autocapitalizationType = .none
+            textView.showsVerticalScrollIndicator = false
+            textView.showsHorizontalScrollIndicator = false
+            textView.textView.showsVerticalScrollIndicator = false
+            textView.textView.showsHorizontalScrollIndicator = false
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(didChangeText),
+                name: UITextView.textDidChangeNotification,
+                object: textView.textView
+            )
+        case .textField:
+            textField.textColor = .white
+            textField.tintColor = .yellow
+            textField.font = .text2
+            textField.autocorrectionType = .no
+            textField.keyboardAppearance = .dark
+            textField.autocapitalizationType = .none
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(didChangeText),
+                name: UITextField.textDidChangeNotification,
+                object: textField
+            )
+        }
     }
     
-    private func setupViews() {
-        addSubview(textField)
+    private func setupViews(kind: Kind) {
+        let textView = kind == .textField ? self.textField : self.textView
+        let insets: CGFloat = kind == .textField ? 6 : 4
         
-        textField.pin(
+        addSubview(textView)
+        
+        textView.pin(
             to: self,
-            insets: UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
+            insets: UIEdgeInsets(top: insets, left: 0, bottom: -insets, right: 0)
         )
+        
+        if kind == .textField {
+            textView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        }
         
         addSubview(bottomLineView)
         
