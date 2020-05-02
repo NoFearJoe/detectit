@@ -23,10 +23,13 @@ public final class AnswerButton: UIControl {
         self.fillViewTrailingConstraint.constant = self.bounds.width
         self.layoutIfNeeded()
     }
+    
+    private var fillAnimatorIsRunningObservation: NSKeyValueObservation!
         
     private var hasBeenFilled = false
     
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    private var impactOccured = false
     
     private func setupViews() {
         clipsToBounds = true
@@ -72,6 +75,19 @@ public final class AnswerButton: UIControl {
         feedbackGenerator.prepare()
         
         fillAnimator.pausesOnCompletion = true
+        fillAnimatorIsRunningObservation = fillAnimator.observe(\.isRunning, options: .new) { [weak self] animator, change in
+            guard
+                let self = self,
+                let isRunning = change.newValue,
+                !isRunning,
+                !self.impactOccured,
+                animator.fractionComplete >= 1,
+                !animator.isReversed
+            else { return }
+            
+            self.feedbackGenerator.impactOccurred()
+            self.impactOccured = true
+        }
     }
     
     required init?(coder: NSCoder) { fatalError() }
@@ -122,7 +138,6 @@ public final class AnswerButton: UIControl {
             cancelFillAnimator()
         } else {
             hasBeenFilled = true
-            feedbackGenerator.impactOccurred()
         }
         
         guard hasBeenFilled else { return }
@@ -148,10 +163,12 @@ public final class AnswerButton: UIControl {
     
     private func cancelFillAnimator() {
         guard !fillAnimator.isReversed else { return }
-        
+                
         fillAnimator.isReversed = true
         fillAnimator.pauseAnimation()
         fillAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0.5)
+        
+        impactOccured = false
     }
     
 }

@@ -128,6 +128,7 @@ final class OnboardingAuthScreen: Screen {
         continueButton.titleLabel.text = "onboarding_auth_continue_button_title".localized
         continueButton.onFill = { [unowned self] in
             self.auth()
+            self.view.endEditing(true)
         }
         
         continueButtonBottomConstraint = continueButton.bottomAnchor.constraint(
