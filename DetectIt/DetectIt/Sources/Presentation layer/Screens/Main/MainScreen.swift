@@ -61,11 +61,8 @@ final class MainScreen: Screen {
         PaidTaskBundlesManager.obtainProductsInfo()
                 
         PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
-            self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
-            self.screenView?.shallowReloadData()
+            self.reloadPurchaseStates()
         }
-        
-        loadFeed()
     }
     
     override func refresh() {
@@ -73,8 +70,9 @@ final class MainScreen: Screen {
         
         screenView?.reloadHeader()
         
-        taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
-        screenView?.shallowReloadData()
+        loadFeed()
+        
+        reloadPurchaseStates()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -202,8 +200,10 @@ extension MainScreen: MainScreenViewDelegate {
 private extension MainScreen {
     
     func loadFeed() {
-        screenLoadingView.setVisible(true, animated: false)
-        screenPlaceholderView.setVisible(false, animated: false)
+        if feed == nil {
+            screenLoadingView.setVisible(true, animated: false)
+            screenPlaceholderView.setVisible(false, animated: false)
+        }
         
         api.request(.feed) { [weak self] result in
             guard let self = self else { return }
@@ -211,8 +211,10 @@ private extension MainScreen {
             switch result {
             case let .success(response):
                 guard let feed = try? JSONDecoder().decode(Feed.self, from: response.data) else {
-                    self.screenPlaceholderView.setVisible(true, animated: false)
-                    self.screenLoadingView.setVisible(false, animated: true)
+                    if self.feed == nil {
+                        self.screenPlaceholderView.setVisible(true, animated: false)
+                        self.screenLoadingView.setVisible(false, animated: true)
+                    }
                     return self.screenPlaceholderView.configure(
                         title: "unknown_error_title".localized,
                         message: "unknown_error_message".localized,
@@ -221,11 +223,17 @@ private extension MainScreen {
                     )
                 }
                 
-                self.screenLoadingView.setVisible(false, animated: true)
+                if self.feed == nil {
+                    self.screenLoadingView.setVisible(false, animated: true)
+                }
                 
                 self.feed = feed
                 self.screenView?.reloadData()
+                
+                self.reloadPurchaseStates()
             case .failure:
+                guard self.feed == nil else { return }
+                
                 self.screenPlaceholderView.setVisible(true, animated: false)
                 self.screenLoadingView.setVisible(false, animated: true)
                 self.screenPlaceholderView.configure(
@@ -236,6 +244,11 @@ private extension MainScreen {
                 )
             }
         }
+    }
+    
+    func reloadPurchaseStates() {
+        self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
+        self.screenView?.shallowReloadData()
     }
     
     func showTasksBundle(bundle: TasksBundle.Info, imageName: String?) {
