@@ -42,26 +42,3 @@ public extension ProfileTask.Attachment {
     }
     
 }
-
-// MARK: - Resource accessing
-
-public extension ProfileTask {
-    
-    func attachmentURL(attachment: Attachment, bundleID: String) -> URL? {
-        switch attachment.kind {
-        case .audio:
-            return attachment.audioFileName.flatMap {
-                TasksBundleMap
-                    .profileDirectoryURL(id: id, bundleID: bundleID)?
-                    .appendingPathComponent($0)
-            }
-        case .picture:
-            return attachment.pictureName.flatMap {
-                TasksBundleMap
-                    .profileDirectoryURL(id: id, bundleID: bundleID)?
-                    .appendingPathComponent($0)
-            }
-        }
-    }
-    
-}

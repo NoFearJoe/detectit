@@ -43,17 +43,3 @@ public extension ProfileTask.Case {
     }
     
 }
-
-// MARK: - Resource accessing
-
-public extension ProfileTask {
-    
-    func casePictureURL(case: Case, bundleID: String) -> URL? {
-        `case`.evidencePicture.flatMap {
-            TasksBundleMap
-                .profileDirectoryURL(id: id, bundleID: bundleID)?
-                .appendingPathComponent($0.pictureName)
-        }
-    }
-    
-}

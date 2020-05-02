@@ -23,9 +23,6 @@
 		961B964C242600CF003EC992 /* DetectItCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 961B964A242600CF003EC992 /* DetectItCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */; };
 		96200CAF244195ED00A3C720 /* PhotoViewerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */; };
-		96500E0B2429DF63005FFC7A /* TaskBundles in Resources */ = {isa = PBXBuildFile; fileRef = 96500E0A2429DF63005FFC7A /* TaskBundles */; };
-		96500E10242A117D005FFC7A /* TaskBundles in Resources */ = {isa = PBXBuildFile; fileRef = 96500E0A2429DF63005FFC7A /* TaskBundles */; };
-		96500E11242A117D005FFC7A /* TaskBundles in Resources */ = {isa = PBXBuildFile; fileRef = 96500E0A2429DF63005FFC7A /* TaskBundles */; };
 		96500E13242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E12242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift */; };
 		96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; };
 		96500E36242F0FDD005FFC7A /* DetectItUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -98,7 +95,6 @@
 		961B964A242600CF003EC992 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTaskScreen+State.swift"; sourceTree = "<group>"; };
 		96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerScreen.swift; sourceTree = "<group>"; };
-		96500E0A2429DF63005FFC7A /* TaskBundles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TaskBundles; sourceTree = "<group>"; };
 		96500E12242A11B7005FFC7A /* TaskBundlesConsistencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskBundlesConsistencyTests.swift; sourceTree = "<group>"; };
 		96500E34242F0FDD005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E852435A445005FFC7A /* TasksBundleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleScreen.swift; sourceTree = "<group>"; };
@@ -229,7 +225,6 @@
 		961B96142425EED8003EC992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				96500E0A2429DF63005FFC7A /* TaskBundles */,
 				961B95EC2425EE92003EC992 /* Assets.xcassets */,
 				961B95EE2425EE92003EC992 /* LaunchScreen.storyboard */,
 				96054C1C2459A20F0083C217 /* Localizable.strings */,
@@ -462,7 +457,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96500E0B2429DF63005FFC7A /* TaskBundles in Resources */,
 				96054C1A2459A20F0083C217 /* Localizable.strings in Resources */,
 				961B95F02425EE92003EC992 /* LaunchScreen.storyboard in Resources */,
 				961B95ED2425EE92003EC992 /* Assets.xcassets in Resources */,
@@ -473,7 +467,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96500E10242A117D005FFC7A /* TaskBundles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +474,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96500E11242A117D005FFC7A /* TaskBundles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
