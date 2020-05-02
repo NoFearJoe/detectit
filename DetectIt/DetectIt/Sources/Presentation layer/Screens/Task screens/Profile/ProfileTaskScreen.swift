@@ -95,6 +95,9 @@ final class ProfileTaskScreen: Screen {
             message: "network_error_message".localized,
             onRetry: { [unowned self] in
                 self.loadData()
+            },
+            onClose: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
             }
         )
         

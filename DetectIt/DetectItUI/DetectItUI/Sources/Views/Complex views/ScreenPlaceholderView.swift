@@ -11,7 +11,9 @@ import UIKit
 public final class ScreenPlaceholderView: UIView {
     
     var onRetry: (() -> Void)?
+    var onClose: (() -> Void)?
     
+    private let closeButton = SolidButton.closeButton()
     private let contentView = UIStackView()
     private let titleLabel = UILabel()
     private let messageLabel = UILabel()
@@ -26,30 +28,32 @@ public final class ScreenPlaceholderView: UIView {
     
     required init?(coder: NSCoder) { fatalError() }
     
-    public func configure(title: String, message: String?, onRetry: (() -> Void)?) {
+    public func configure(title: String,
+                          message: String?,
+                          onRetry: (() -> Void)?,
+                          onClose: (() -> Void)?) {
         self.onRetry = onRetry
+        self.onClose = onClose
         
         titleLabel.text = title
         messageLabel.text = message
         messageLabel.isHidden = message == nil
         retryButton.isHidden = onRetry == nil
+        
+        closeButton.isHidden = onClose == nil
     }
     
     public func setVisible(_ isVisible: Bool, animated: Bool) {
         superview?.bringSubviewToFront(self)
         
-            alpha = isVisible ? 0 : 1
-//            isHidden = false
+        alpha = isVisible ? 0 : 1
         
         UIView.animate(
             withDuration: animated ? 0.5 : 0,
             animations: {
                 self.alpha = isVisible ? 1 : 0
-            }, completion: { _ in
-                guard !isVisible else { return }
-                
-//                self.isHidden = true
-            }
+            },
+            completion: nil
         )
     }
     
@@ -94,10 +98,23 @@ public final class ScreenPlaceholderView: UIView {
         retryButton.setTitle("retry_button_title".localized, for: .normal)
         retryButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         retryButton.addTarget(self, action: #selector(didTapRetryButton), for: .touchUpInside)
+        
+        addSubview(closeButton)
+        
+        closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12),
+            closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
     }
     
     @objc private func didTapRetryButton() {
         onRetry?()
+    }
+    
+    @objc private func didTapCloseButton() {
+        onClose?()
     }
     
 }

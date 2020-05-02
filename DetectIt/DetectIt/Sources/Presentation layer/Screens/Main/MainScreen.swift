@@ -216,7 +216,8 @@ private extension MainScreen {
                     return self.screenPlaceholderView.configure(
                         title: "unknown_error_title".localized,
                         message: "unknown_error_message".localized,
-                        onRetry: { [unowned self] in self.loadFeed() }
+                        onRetry: { [unowned self] in self.loadFeed() },
+                        onClose: nil
                     )
                 }
                 
@@ -230,7 +231,8 @@ private extension MainScreen {
                 self.screenPlaceholderView.configure(
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
-                    onRetry: { [unowned self] in self.loadFeed() }
+                    onRetry: { [unowned self] in self.loadFeed() },
+                    onClose: nil
                 )
             }
         }

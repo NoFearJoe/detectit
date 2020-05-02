@@ -129,7 +129,8 @@ final class DecoderTaskScreen: Screen {
                 self?.screenPlaceholderView.configure(
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
-                    onRetry: { [unowned self] in self?.loadTask() }
+                    onRetry: { [unowned self] in self?.loadTask() },
+                    onClose: { [unowned self] in self?.dismiss(animated: true, completion: nil) }
                 )
                 return
             }
