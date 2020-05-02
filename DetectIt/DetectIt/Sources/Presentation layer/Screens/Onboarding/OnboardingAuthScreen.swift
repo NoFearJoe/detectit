@@ -23,6 +23,10 @@ final class OnboardingAuthScreen: Screen {
     private let passwordField = QuestionAndAnswerView()
     private let continueButton = AnswerButton()
     
+    private var continueButtonBottomConstraint: NSLayoutConstraint!
+    
+    private let keyboardManager = KeyboardManager()
+    
     private let api = DetectItAPI()
     
     private var alias: String?
@@ -44,6 +48,8 @@ final class OnboardingAuthScreen: Screen {
         skeleton.pin(to: self.view)
         
         setupViews()
+        
+        setupKeyboardManager()
     }
     
     private func auth() {
@@ -124,10 +130,14 @@ final class OnboardingAuthScreen: Screen {
             self.auth()
         }
         
+        continueButtonBottomConstraint = continueButton.bottomAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+            constant: -12
+        )
         NSLayoutConstraint.activate([
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
-            continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
+            continueButtonBottomConstraint
         ])
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapBackground))
@@ -145,4 +155,28 @@ final class OnboardingAuthScreen: Screen {
         view.endEditing(true)
     }
     
+    func setupKeyboardManager() {
+        keyboardManager.keyboardWillAppear = { [unowned self] frame, duration in
+            self.continueButtonBottomConstraint.constant = -frame.height + self.view.safeAreaInsets.bottom - Constants.bottomInset
+            
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardManager.keyboardWillDisappear = { [unowned self] frame, duration in
+            self.continueButtonBottomConstraint.constant = -Constants.bottomInset
+            
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+}
+
+private struct Constants {
+    static let bottomInset = CGFloat(12)
 }
