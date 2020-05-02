@@ -87,11 +87,11 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         taskKindLabel.text = model.kind.uppercased()
         difficultyView.image = model.difficultyIcon
-        
+                
         if model.isSolved {
             titleLabel.attributedText = model.title.strikethroughAttributedString(color: .white)
         } else {
-            titleLabel.text = model.title
+            titleLabel.attributedText = NSAttributedString(string: model.title)
         }
         descriptionLabel.text = model.isSolved ? nil : model.description
         
@@ -104,6 +104,13 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         [titleLabel, taskKindLabel, descriptionLabel, difficultyView].forEach {
             $0.alpha = model.isSolved ? 0.5 : 1
         }
+    }
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        backgroundImageView.image = nil
+        titleLabel.attributedText = nil
     }
     
     func calculateSize(model: Model, width: CGFloat) -> CGSize {
