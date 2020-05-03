@@ -93,21 +93,27 @@ public final class ImageLoader {
         postprocessing: ((UIImage) -> UIImage)? = nil,
         completion: @escaping (UIImage?) -> Void
     ) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            self.queue.async {
-                if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
-                    return completion(cachedImage)
-                }
-                
-                let image = data.flatMap { UIImage(data: $0).flatMap { postprocessing?($0) ?? $0 } }
-                
-                self.cacheQueue.sync {
-                    self.cache[url.path] = image
-                }
-                
-                completion(image)
+        self.queue.async {
+            if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
+                return completion(cachedImage)
             }
-        }.resume()
+            
+            URLSession.shared.dataTask(with: url) { data, _, error in
+                self.queue.async {
+                    if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
+                        return completion(cachedImage)
+                    }
+                    
+                    let image = data.flatMap { UIImage(data: $0).flatMap { postprocessing?($0) ?? $0 } }
+                    
+                    self.cacheQueue.sync {
+                        self.cache[url.path] = image
+                    }
+                    
+                    completion(image)
+                }
+            }.resume()
+        }
     }
     
 }
