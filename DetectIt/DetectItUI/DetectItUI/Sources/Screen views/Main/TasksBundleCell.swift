@@ -20,6 +20,10 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
     private let backgroundImageView = UIImageView()
     
+    /// Надпись "Набор" сверху.
+    private let kindLabel = UILabel()
+    
+    /// Название набора.
     private let titleLabel = UILabel()
     
     private let bottomContainerView = UIView()
@@ -28,8 +32,8 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     private let descriptionLabel = UILabel()
     
     private let playStateViewsContainer = UIView()
-    private let playButton = SolidButton.makePushButton()
-    private let purchaseView = TasksBundlePurchaseView()
+    private let priceOrScoreLabel = UILabel()
+    private let priceLoadingIndicator = UIActivityIndicatorView()
     
     // MARK: - Init
     
@@ -50,7 +54,6 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         public let title: String
         public let description: String
         
-        
         public init(backgroundImagePath: String?,
                     title: String,
                     description: String) {
@@ -64,7 +67,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     public struct ShallowModel {
         
         public enum PlayState {
-            case playable
+            case playable(score: String)
             case paid(price: String)
             case loading
         }
@@ -92,18 +95,19 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
     func configure(model: ShallowModel) {
         switch model.playState {
-        case .playable:
-            playButton.isHidden = false
-            purchaseView.isHidden = true
+        case let .playable(score):
+            priceOrScoreLabel.text = score
+            priceOrScoreLabel.isHidden = false
+            priceLoadingIndicator.isHidden = true
         case let .paid(price):
-            playButton.isHidden = true
-            purchaseView.isHidden = false
-            purchaseView.setLoading(false)
-            purchaseView.priceLabel.text = price
+            priceOrScoreLabel.text = price
+            priceOrScoreLabel.isHidden = false
+            priceLoadingIndicator.stopAnimating()
+            priceLoadingIndicator.isHidden = true
         case .loading:
-            playButton.isHidden = true
-            purchaseView.isHidden = false
-            purchaseView.setLoading(true)
+            priceOrScoreLabel.isHidden = true
+            priceLoadingIndicator.startAnimating()
+            priceLoadingIndicator.isHidden = false
         }
     }
     
@@ -116,7 +120,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     // MARK: - Setup
     
     private func setup() {
-        contentView.backgroundColor = .black
+        contentView.backgroundColor = .darkBackground
         contentView.layer.cornerRadius = Constants.cornerRadius
         contentView.clipsToBounds = true
         
@@ -131,6 +135,20 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         backgroundImageView.clipsToBounds = true
         
         backgroundImageView.calculateFrame(container: contentView) { $0 }
+        
+        contentView.addSubview(kindLabel)
+        
+        kindLabel.text = "main_screen_tasks_bundle_cell_kind_title".localized.uppercased()
+        kindLabel.font = .text4
+        kindLabel.textColor = .lightGray
+        kindLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        kindLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            kindLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.hInset),
+            kindLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.hInset),
+            kindLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12)
+        ])
         
         contentView.addSubview(titleLabel)
         
@@ -180,7 +198,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         playStateViewsContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playStateViewsContainer.widthAnchor.constraint(equalToConstant: 96),
+            playStateViewsContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: 36),
             playStateViewsContainer.topAnchor.constraint(greaterThanOrEqualTo: bottomContainerView.topAnchor, constant: 12),
             playStateViewsContainer.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 12),
             playStateViewsContainer.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
@@ -188,26 +206,30 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
             playStateViewsContainer.centerYAnchor.constraint(equalTo: descriptionLabel.centerYAnchor)
         ])
         
-        playStateViewsContainer.addSubview(playButton)
+        playStateViewsContainer.addSubview(priceOrScoreLabel)
         
-        playButton.setTitle("main_screen_tasks_bundle_cell_play_button_title".localized, for: .normal)
-        playButton.setTitleColor(.white, for: .normal)
-        playButton.fill = .color(.systemBlue)
-        playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
+        priceOrScoreLabel.font = .score2
+        priceOrScoreLabel.textColor = .yellow
+        priceOrScoreLabel.textAlignment = .center
+        priceOrScoreLabel.adjustsFontSizeToFitWidth = true
+        priceOrScoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
-        playButton.calculateFrame(container: playStateViewsContainer) { bounds -> CGRect in
-            CGRect.centered(in: bounds, size: CGSize(width: bounds.width, height: 28))
-        }
+        priceOrScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            priceOrScoreLabel.centerYAnchor.constraint(equalTo: playStateViewsContainer.centerYAnchor),
+            priceOrScoreLabel.leadingAnchor.constraint(equalTo: playStateViewsContainer.leadingAnchor),
+            priceOrScoreLabel.trailingAnchor.constraint(equalTo: playStateViewsContainer.trailingAnchor)
+        ])
         
-        playStateViewsContainer.addSubview(purchaseView)
+        playStateViewsContainer.addSubview(priceLoadingIndicator)
         
-        purchaseView.onTapBuyButton = { [unowned self] in
-            self.onTapBuyButton?()
-        }
+        priceLoadingIndicator.color = .lightGray
         
-        purchaseView.calculateFrame(container: playStateViewsContainer) { bounds -> CGRect in
-            CGRect.centered(in: bounds, size: CGSize(width: bounds.width, height: 44))
-        }
+        priceLoadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            priceLoadingIndicator.centerXAnchor.constraint(equalTo: playStateViewsContainer.centerXAnchor),
+            priceLoadingIndicator.centerYAnchor.constraint(equalTo: playStateViewsContainer.centerYAnchor)
+        ])
     }
     
 }

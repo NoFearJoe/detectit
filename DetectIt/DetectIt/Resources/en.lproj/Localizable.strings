@@ -51,6 +51,7 @@
 "main_screen_restore_purchases_action_title" = "Restore purchases";
 "main_screen_debug_menu_action_title" = "Debug menu";
 "main_screen_tasks_bundle_cell_play_button_title" = "Play";
+"main_screen_tasks_bundle_cell_kind_title" = "Bundle";
 
 // Decoder task
 

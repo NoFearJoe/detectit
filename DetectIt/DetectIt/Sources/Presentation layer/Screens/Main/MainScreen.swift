@@ -127,7 +127,8 @@ extension MainScreen: MainScreenViewDelegate {
         
         switch state {
         case .free, .bought:
-            return TasksBundleCell.ShallowModel(playState: .playable)
+            let score = ScoreStringBuilder.makeScoreString(score: bundle.score, max: bundle.maxScore)
+            return TasksBundleCell.ShallowModel(playState: .playable(score: score))
         case .paidLoading:
             return TasksBundleCell.ShallowModel(playState: .loading)
         case let .paid(price):

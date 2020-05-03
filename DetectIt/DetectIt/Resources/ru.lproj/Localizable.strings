@@ -51,6 +51,7 @@
 "main_screen_restore_purchases_action_title" = "Восстановить покупки";
 "main_screen_debug_menu_action_title" = "Дебаг меню";
 "main_screen_tasks_bundle_cell_play_button_title" = "Играть";
+"main_screen_tasks_bundle_cell_kind_title" = "Набор";
 
 // Decoder task
 
