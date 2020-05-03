@@ -26,6 +26,8 @@ public enum DetectItAPITarget {
     case profileAnswers(taskID: String)
     case setProfileAnswers(taskID: String, answers: [[String: Any]])
     
+    case totalScore
+    
 }
 
 extension DetectItAPITarget: TargetType {
@@ -44,6 +46,7 @@ extension DetectItAPITarget: TargetType {
         case .feed: return "feed"
         case .tasksBundle: return "tasksBundle"
         case .taskScore, .setTaskScore: return "taskScore"
+        case .totalScore: return "totalScore"
         case .cipherAnswer, .setCipherAnswer: return "cipherAnswer"
         case .profileAnswers, .setProfileAnswers: return "profileAnswer"
         }
@@ -53,7 +56,7 @@ extension DetectItAPITarget: TargetType {
         switch self {
         case .auth, .setTaskScore, .setCipherAnswer, .setProfileAnswers:
             return .post
-        case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers:
+        case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers, .totalScore:
             return .get
         }
     }
@@ -77,6 +80,8 @@ extension DetectItAPITarget: TargetType {
                 parameters: ["bundleID": bundleID],
                 encoding: URLEncoding.default
             )
+        case .totalScore:
+            return .requestPlain
         case let .taskScore(taskID, taskKind, bundleID):
             var parameters: [String: Any] = ["taskID": taskID, "taskKind": taskKind]
             bundleID.map { parameters["bundleID"] = $0 }

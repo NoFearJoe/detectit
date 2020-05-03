@@ -34,13 +34,11 @@ final class MainScreen: Screen {
         case .restorePurchases:
             return true
         case .debugMenu:
-            #warning("Uncomment before release")
+            #if DEBUG
             return true
-//            #if DEBUG
-//            return true
-//            #else
-//            return false
-//            #endif
+            #else
+            return false
+            #endif
         }
     }
     
@@ -71,6 +69,7 @@ final class MainScreen: Screen {
         screenView?.reloadHeader()
         
         loadFeed()
+        loadTotalScore()
         
         reloadPurchaseStates()
     }
@@ -250,6 +249,23 @@ private extension MainScreen {
     func reloadPurchaseStates() {
         self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
         self.screenView?.shallowReloadData()
+    }
+    
+    func loadTotalScore() {
+        api.request(.totalScore) { [weak self] result in
+            switch result {
+            case let .success(response):
+                guard let scoreString = try? response.mapString(), let score = Int(scoreString) else {
+                    return
+                }
+                
+                User.shared.totalScore = score
+                
+                self?.screenView?.reloadHeader()
+            case .failure:
+                return
+            }
+        }
     }
     
     func showTasksBundle(bundle: TasksBundle.Info, imageName: String?) {
