@@ -22,7 +22,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     private let difficultyView = UIImageView()
         
     private let bottomContainerView = UIView()
-    private let bottomBlurView = BlurView(style: .dark)
+    private let bottomBlurView = BlurView(style: .systemMaterialDark)
     
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -76,13 +76,19 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
     }
     
-    func configure(model: Model) {
-        if let imagePath = model.backgroundImagePath, !model.isSolved {
-            ImageLoader.share.load(.staticAPI(imagePath)) { [weak self] image in
-                self?.backgroundImageView.image = image
+    func configure(model: Model, forSizeCalculation: Bool = false) {
+        if !forSizeCalculation {
+            if let imagePath = model.backgroundImagePath {
+                backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image in
+                    self?.bottomBlurView.setHidden(image == nil, duration: 0.25)
+                }
+                taskKindLabel.configureShadow(radius: 2, isVisible: true)
+            } else {
+                backgroundImageView.image = nil
+                taskKindLabel.configureShadow(radius: 2, isVisible: false)
             }
-        } else {
-            backgroundImageView.image = nil
+            
+            bottomBlurView.isHidden = backgroundImageView.image == nil
         }
         
         taskKindLabel.text = model.kind.uppercased()
@@ -101,8 +107,10 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         constraintBetweenTitleAndScore.constant = model.score == nil ? 0 : 12
         constraintBetweenTitleAndDescription.constant = model.description.isEmpty || model.isSolved ? 0 : 12
         
-        [titleLabel, taskKindLabel, descriptionLabel, difficultyView].forEach {
-            $0.alpha = model.isSolved ? 0.5 : 1
+        if !forSizeCalculation {
+            [titleLabel, taskKindLabel, descriptionLabel, difficultyView].forEach {
+                $0.alpha = model.isSolved ? 0.5 : 1
+            }
         }
     }
     
@@ -114,7 +122,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     }
     
     func calculateSize(model: Model, width: CGFloat) -> CGSize {
-        configure(model: model)
+        configure(model: model, forSizeCalculation: true)
         
         setNeedsLayout()
         layoutIfNeeded()
@@ -203,8 +211,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         bottomContainerView.addSubview(bottomBlurView)
         
         bottomBlurView.blurRadius = 20
-        bottomBlurView.colorTint = .darkGray
-        bottomBlurView.colorTintAlpha = 0.5
+        bottomBlurView.colorTint = .darkBackground
+        bottomBlurView.colorTintAlpha = 0.8
         
         bottomBlurView.calculateFrame(container: bottomContainerView) { $0 }
         

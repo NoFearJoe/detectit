@@ -10,6 +10,10 @@ import UIKit
 
 public extension String {
     
+    func attributed() -> NSAttributedString {
+        NSAttributedString(string: self)
+    }
+    
     func readableAttributedText() -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2
@@ -30,6 +34,19 @@ public extension String {
             attributes: [
                 NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
                 NSAttributedString.Key.strikethroughColor: color
+            ]
+        )
+    }
+    
+    func attributedTextWithShadow() -> NSAttributedString {
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.black
+        shadow.shadowBlurRadius = 16
+        
+        return NSAttributedString(
+            string: self,
+            attributes: [
+                NSAttributedString.Key.shadow: shadow
             ]
         )
     }

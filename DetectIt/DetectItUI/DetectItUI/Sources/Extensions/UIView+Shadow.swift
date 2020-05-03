@@ -22,6 +22,10 @@ public extension UIView {
         layer.rasterizationScale = UIScreen.main.scale
     }
     
+    func configureShadow(radius: CGFloat, isVisible: Bool) {
+        configureShadow(radius: isVisible ? radius : 0, opacity: isVisible ? 1 : 0)
+    }
+    
 }
 
 // MARK: - Rounded corners

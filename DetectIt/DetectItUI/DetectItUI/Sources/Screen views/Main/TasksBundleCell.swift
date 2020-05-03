@@ -27,7 +27,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     private let titleLabel = UILabel()
     
     private let bottomContainerView = UIView()
-    private let bottomBlurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
+    private let bottomBlurView = BlurView(style: .systemMaterialDark)
     
     private let descriptionLabel = UILabel()
     
@@ -80,14 +80,20 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
     }
     
-    func configure(model: Model) {
+    func configure(model: Model, forSizeCalculation: Bool = false) {
         if let imagePath = model.backgroundImagePath {
-            ImageLoader.share.load(.staticAPI(imagePath)) { [weak self] image in
-                self?.backgroundImageView.image = image
+            backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image in
+                self?.bottomBlurView.setHidden(image == nil, duration: 0.25)
             }
+            kindLabel.configureShadow(radius: 2, isVisible: true)
+            titleLabel.configureShadow(radius: 8, isVisible: true)
         } else {
             backgroundImageView.image = nil
+            kindLabel.configureShadow(radius: 2, isVisible: false)
+            titleLabel.configureShadow(radius: 8, isVisible: false)
         }
+        
+        bottomBlurView.isHidden = backgroundImageView.image == nil
         
         titleLabel.text = model.title
         descriptionLabel.text = model.description
@@ -141,6 +147,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         kindLabel.text = "main_screen_tasks_bundle_cell_kind_title".localized.uppercased()
         kindLabel.font = .text4
         kindLabel.textColor = .lightGray
+        kindLabel.layer.masksToBounds = false
         kindLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         kindLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -174,6 +181,10 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         ])
         
         bottomContainerView.addSubview(bottomBlurView)
+        
+        bottomBlurView.blurRadius = 20
+        bottomBlurView.colorTint = .darkBackground
+        bottomBlurView.colorTintAlpha = 0.8
         
         bottomBlurView.calculateFrame(container: bottomContainerView) { $0 }
         
