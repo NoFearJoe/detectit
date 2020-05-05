@@ -158,28 +158,21 @@ private extension TasksBundleScreen {
         screenLoadingView.setVisible(true, animated: false)
         screenPlaceholderView.setVisible(false, animated: false)
         
-        api.request(.tasksBundle(bundleID: tasksBundle.id)) { [weak self] result in
+        api.obtain(
+            TasksBundle.self,
+            target: .tasksBundle(bundleID: tasksBundle.id),
+            cacheKey: Cache.Key(["tasks_bundle", tasksBundle.id])
+        ) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
-            case let .success(response):
-                self.bundle = try? JSONDecoder().decode(TasksBundle.self, from: response.data)
+            case let .success(bundle):
+                self.bundle = bundle
                 
-                if let bundle = self.bundle {
-                    self.screenLoadingView.setVisible(false, animated: true)
-                    
-                    self.reloadHeader(bundle: bundle)
-                    self.reloadContent(bundle: bundle)
-                } else {
-                    self.screenPlaceholderView.setVisible(true, animated: false)
-                    self.screenLoadingView.setVisible(false, animated: true)
-                    self.screenPlaceholderView.configure(
-                        title: "unknown_error_title".localized,
-                        message: "unknown_error_message".localized,
-                        onRetry: { [unowned self] in self.loadTasksBundle() },
-                        onClose: { [unowned self] in self.dismiss(animated: true, completion: nil) }
-                    )
-                }
+                self.screenLoadingView.setVisible(false, animated: true)
+                
+                self.reloadHeader(bundle: bundle)
+                self.reloadContent(bundle: bundle)
             case .failure:
                 self.screenPlaceholderView.setVisible(true, animated: false)
                 self.screenLoadingView.setVisible(false, animated: true)

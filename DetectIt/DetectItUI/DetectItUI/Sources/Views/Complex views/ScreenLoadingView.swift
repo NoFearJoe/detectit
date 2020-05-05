@@ -28,9 +28,7 @@ public final class ScreenLoadingView: UIView {
     
     public func setVisible(_ isVisible: Bool, animated: Bool) {
         superview?.bringSubviewToFront(self)
-        
-        alpha = isVisible ? 0 : 1
-        
+                
         UIView.animate(
             withDuration: animated ? 0.5 : 0,
             delay: 0,
