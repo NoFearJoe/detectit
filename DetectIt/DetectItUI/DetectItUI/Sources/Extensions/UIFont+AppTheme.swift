@@ -59,30 +59,3 @@ private extension UIFont {
     }
     
 }
-
-private extension UIFont {
-    
-    static var isCustomFontsRegistered = false
-    
-    static func registerCustomFonts() {
-        guard
-            !isCustomFontsRegistered,
-            let roughFontURL = Bundle(for: BundleID.self).url(forResource: "Rough", withExtension: "ttf") as CFURL?,
-            let arialCuriveFontURL = Bundle(for: BundleID.self).url(forResource: "Arial Curive", withExtension: "otf") as CFURL?,
-            let detectiveRegularFontURL = Bundle(for: BundleID.self).url(forResource: "Detective", withExtension: "ttf") as CFURL?,
-            let detectiveBoldFontURL = Bundle(for: BundleID.self).url(forResource: "Detective Bold", withExtension: "ttf") as CFURL?
-        else {
-            return
-        }
-        
-        CTFontManagerRegisterFontsForURL(roughFontURL, .process, nil)
-        CTFontManagerRegisterFontsForURL(arialCuriveFontURL, .process, nil)
-        CTFontManagerRegisterFontsForURL(detectiveRegularFontURL, .process, nil)
-        CTFontManagerRegisterFontsForURL(detectiveBoldFontURL, .process, nil)
-                
-        isCustomFontsRegistered = true
-    }
-    
-    final class BundleID {}
-    
-}
