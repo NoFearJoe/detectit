@@ -205,27 +205,16 @@ private extension MainScreen {
             screenPlaceholderView.setVisible(false, animated: false)
         }
         
-        api.request(.feed) { [weak self] result in
+        api.obtain(
+            Feed.self,
+            target: .feed,
+            cacheKey: Cache.Key("feed")
+        ) { [weak self] result in
             guard let self = self else { return }
                                                 
             switch result {
-            case let .success(response):
-                guard let feed = try? JSONDecoder().decode(Feed.self, from: response.data) else {
-                    if self.feed == nil {
-                        self.screenPlaceholderView.setVisible(true, animated: false)
-                        self.screenLoadingView.setVisible(false, animated: true)
-                    }
-                    return self.screenPlaceholderView.configure(
-                        title: "unknown_error_title".localized,
-                        message: "unknown_error_message".localized,
-                        onRetry: { [unowned self] in self.loadFeed() },
-                        onClose: nil
-                    )
-                }
-                
-                if self.feed == nil {
-                    self.screenLoadingView.setVisible(false, animated: true)
-                }
+            case let .success(feed):
+                self.screenLoadingView.setVisible(false, animated: true)
                 
                 self.feed = feed
                 self.screenView?.reloadData()
