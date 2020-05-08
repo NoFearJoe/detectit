@@ -63,8 +63,8 @@ final class DecoderTaskScreen: Screen {
         super.loadView()
         
         setupScreenLoadingView()
-        setupViews()
         setupContentView()
+        setupViews()
         setupKeyboardManager()
         
         isStatusBarBlurred = true
