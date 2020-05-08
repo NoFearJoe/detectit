@@ -11,6 +11,23 @@ import DetectItCore
 
 extension ProfileTaskScreen {
     
+    func loadTask() {
+        screenLoadingView.setVisible(true, animated: false)
+        screenPlaceholderView.setVisible(false, animated: false)
+        
+        loadData(task: task) { [weak self] success in
+            guard let self = self else { return }
+            
+            self.isDataLoaded = success
+            
+            self.screenView.reloadContent()
+            self.updateContentState(animated: false)
+            
+            self.screenLoadingView.setVisible(false, animated: true)
+            self.screenPlaceholderView.setVisible(!success, animated: false)
+        }
+    }
+    
     func loadData(
         task: ProfileTask,
         completion: @escaping (Bool) -> Void
@@ -33,7 +50,7 @@ extension ProfileTaskScreen {
             ImageLoader.share.load(
                 .staticAPI(picture),
                 postprocessing: { $0.applyingOldPhotoFilter() }
-            ) { image in
+            ) { image, _ in
                 images[picture] = image
                 
                 dispatchGroup.leave()

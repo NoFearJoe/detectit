@@ -32,11 +32,11 @@ public final class ImageLoader {
     public func load(
         _ source: ImageSource,
         postprocessing: ((UIImage) -> UIImage)? = nil,
-        completion: @escaping (UIImage?) -> Void
+        completion: @escaping (UIImage?, _ cached: Bool) -> Void
     ) {
-        let completionOnMain: (UIImage?) -> Void = { image in
+        let completionOnMain: (UIImage?, Bool) -> Void = { image, cached in
             DispatchQueue.main.async {
-                completion(image)
+                completion(image, cached)
             }
         }
         
@@ -57,7 +57,7 @@ public final class ImageLoader {
             }()
             
             guard let url = URL(string: domain)?.appendingPathComponent(path) else {
-                return completion(nil)
+                return completion(nil, false)
             }
             
             loadFromNetwork(
@@ -71,11 +71,11 @@ public final class ImageLoader {
     private func loadFile(
         url: URL,
         postprocessing: ((UIImage) -> UIImage)? = nil,
-        completion: @escaping (UIImage?) -> Void
+        completion: @escaping (UIImage?, Bool) -> Void
     ) {
         queue.async {
             if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
-                return completion(cachedImage)
+                return completion(cachedImage, true)
             }
             
             let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) ?? $0 }
@@ -84,33 +84,29 @@ public final class ImageLoader {
                 self.cache[url.path] = image
             }
             
-            completion(image)
+            completion(image, false)
         }
     }
     
     private func loadFromNetwork(
         url: URL,
         postprocessing: ((UIImage) -> UIImage)? = nil,
-        completion: @escaping (UIImage?) -> Void
+        completion: @escaping (UIImage?, Bool) -> Void
     ) {
         self.queue.async {
             if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
-                return completion(cachedImage)
+                return completion(cachedImage, true)
             }
             
             URLSession.shared.dataTask(with: url) { data, _, error in
                 self.queue.async {
-                    if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
-                        return completion(cachedImage)
-                    }
-                    
                     let image = data.flatMap { UIImage(data: $0).flatMap { postprocessing?($0) ?? $0 } }
                     
                     self.cacheQueue.sync {
                         self.cache[url.path] = image
                     }
                     
-                    completion(image)
+                    completion(image, false)
                 }
             }.resume()
         }

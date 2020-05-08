@@ -67,7 +67,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     }
     
     func configure(model: Model) {
-        ImageLoader.share.load(.staticAPI(model.image)) { [weak self] image in
+        ImageLoader.share.load(.staticAPI(model.image)) { [weak self] image, _ in
             self?.imageView.image = image
         }
         

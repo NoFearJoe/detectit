@@ -79,8 +79,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     func configure(model: Model, forSizeCalculation: Bool = false) {
         if !forSizeCalculation {
             if let imagePath = model.backgroundImagePath {
-                backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image in
-                    self?.bottomBlurView.setHidden(image == nil, duration: 0.25)
+                backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image, cached in
+                    self?.bottomBlurView.setHidden(image == nil, duration: cached ? 0 : 0.25)
                 }
                 taskKindLabel.configureShadow(radius: 2, isVisible: true)
             } else {
@@ -114,13 +114,6 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         }
     }
     
-    public override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        backgroundImageView.image = nil
-        titleLabel.attributedText = nil
-    }
-    
     func calculateSize(model: Model, width: CGFloat) -> CGSize {
         configure(model: model, forSizeCalculation: true)
         
@@ -151,7 +144,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         backgroundImageView.layer.cornerRadius = Constants.cornerRadius
         backgroundImageView.clipsToBounds = true
         
-        backgroundImageView.calculateFrame(container: contentView) { $0 }
+        backgroundImageView.pin(to: contentView)
         
         // MARK: Top container
         

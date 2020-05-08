@@ -11,7 +11,55 @@ import DetectItCore
 
 extension DecoderTaskScreen {
     
-    func loadScoreAndAnswer(completion: @escaping (Bool) -> Void) {
+    func loadTask() {
+        screenLoadingView.setVisible(true, animated: false)
+        screenPlaceholderView.setVisible(false, animated: false)
+        
+        loadData { [weak self] success in
+            guard success, let encodedImage = self?.encodedImage else {
+                self?.screenPlaceholderView.setVisible(true, animated: false)
+                self?.screenLoadingView.setVisible(false, animated: true)
+                self?.screenPlaceholderView.configure(
+                    title: "network_error_title".localized,
+                    message: "network_error_message".localized,
+                    onRetry: { [unowned self] in self?.loadTask() },
+                    onClose: { [unowned self] in self?.dismiss(animated: true, completion: nil) }
+                )
+                return
+            }
+            
+            self?.screenLoadingView.setVisible(false, animated: true)
+            self?.displayContent(encodedPicture: encodedImage)
+            self?.updateContentState(animated: false)
+        }
+    }
+    
+    private func loadData(completion: @escaping (Bool) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        
+        var isDataLoaded = true
+        
+        dispatchGroup.enter()
+        ImageLoader.share.load(
+            .staticAPI(task.encodedPictureName)
+        ) { [weak self] image, _ in
+            self?.encodedImage = image
+            isDataLoaded = image != nil ? isDataLoaded : false
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        loadScoreAndAnswer { success in
+            isDataLoaded = success ? isDataLoaded : false
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(isDataLoaded)
+        }
+    }
+    
+    private func loadScoreAndAnswer(completion: @escaping (Bool) -> Void) {
         if let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle?.id),
            let answer = TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle?.id) {
             self.score = score
