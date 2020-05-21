@@ -17,6 +17,7 @@
 		961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965C24274ABA003EC992 /* DecoderTask.swift */; };
 		961B965F24274C79003EC992 /* QuestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B965E24274C79003EC992 /* QuestTask.swift */; };
 		961B966124275009003EC992 /* ProfileTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B966024275009003EC992 /* ProfileTask.swift */; };
+		961DE26E2476B60300008AAB /* AppRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE26D2476B60300008AAB /* AppRateManager.swift */; };
 		96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBA2443035700A3C720 /* PluralLocalizations.swift */; };
 		96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */; };
 		96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E0E2429FAD8005FFC7A /* TasksBundle.swift */; };
@@ -62,6 +63,7 @@
 		961B965C24274ABA003EC992 /* DecoderTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTask.swift; sourceTree = "<group>"; };
 		961B965E24274C79003EC992 /* QuestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTask.swift; sourceTree = "<group>"; };
 		961B966024275009003EC992 /* ProfileTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTask.swift; sourceTree = "<group>"; };
+		961DE26D2476B60300008AAB /* AppRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRateManager.swift; sourceTree = "<group>"; };
 		96200CBA2443035700A3C720 /* PluralLocalizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalizations.swift; sourceTree = "<group>"; };
 		96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskAnswerComparisionTests.swift; sourceTree = "<group>"; };
 		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				96054C04245616950083C217 /* ScoreStringBuilder.swift */,
 				96054C24245AF0D40083C217 /* Keychain.swift */,
 				9615F95524609E340070E2D3 /* Cache.swift */,
+				961DE26D2476B60300008AAB /* AppRateManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				9615F95624609E340070E2D3 /* Cache.swift in Sources */,
 				96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */,
 				96054C25245AF0D40083C217 /* Keychain.swift in Sources */,
+				961DE26E2476B60300008AAB /* AppRateManager.swift in Sources */,
 				96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */,
 				965AC7E12438CAA1003A3DC7 /* ImageLoader.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,

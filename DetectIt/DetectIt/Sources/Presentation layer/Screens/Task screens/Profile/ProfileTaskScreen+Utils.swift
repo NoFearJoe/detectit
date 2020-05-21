@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DetectItCore
 
 extension ProfileTaskScreen {
     
@@ -22,6 +23,8 @@ extension ProfileTaskScreen {
         updateContentState(animated: true)
         
         scrollToResults()
+        
+        AppRateManager.shared.commitEvent()
     }
     
     func commitAnswers() {

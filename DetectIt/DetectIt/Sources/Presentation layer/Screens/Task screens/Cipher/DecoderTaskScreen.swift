@@ -106,6 +106,8 @@ final class DecoderTaskScreen: Screen {
         commitAnswer()
         
         scrollToResults()
+        
+        AppRateManager.shared.commitEvent()
     }
     
     @objc func onTapBackground() {
