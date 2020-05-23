@@ -22,7 +22,6 @@ final class OnboardingScreen: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: move
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = .darkGray
         pageControl.currentPageIndicatorTintColor = .yellow

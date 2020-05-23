@@ -38,7 +38,6 @@ public final class User {
         }
     }
     
-    // TODO: Брать из апи
     public var rank: UserRank {
         UserRank(score: totalScore)
     }

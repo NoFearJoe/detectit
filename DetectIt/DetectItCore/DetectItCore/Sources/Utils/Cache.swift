@@ -23,7 +23,6 @@ public final class Cache {
         self.queue = DispatchQueue(label: "cache_\(identifier)")
     }
     
-    // TODO: Проверять creationDate фала и сравнивать с lifetime.
     public func load<T: Decodable>(_ type: T.Type, key: Key) -> T? {
         queue.sync {
             let object = self.getObject(type, key: key)

@@ -31,8 +31,7 @@ final class TasksBundleScreen: Screen {
     private var sections: [SectionModel] = []
     
     var purchaseState: TasksBundlePurchaseState {
-        #warning("Remove before release")
-        return .free//PaidTaskBundlesManager.tasksBundlePurchaseState(id: tasksBundle.id)
+        return PaidTaskBundlesManager.tasksBundlePurchaseState(id: tasksBundle.id)
     }
     
     // MARK: - Init
