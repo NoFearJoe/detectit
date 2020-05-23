@@ -21,9 +21,9 @@ final class TaskAnswerTests: XCTestCase {
         let id = "test_cipher"
         let answer = "decoded_message"
         
-        TaskAnswer.set(answer: answer, decoderTaskID: id)
+        TaskAnswer.set(answer: answer, decoderTaskID: id, bundleID: nil)
         
-        let savedAnswer = TaskAnswer.get(decoderTaskID: id)
+        let savedAnswer = TaskAnswer.get(decoderTaskID: id, bundleID: nil)
         XCTAssertEqual(answer, savedAnswer)
     }
     
@@ -35,9 +35,9 @@ final class TaskAnswerTests: XCTestCase {
             TaskAnswer.ProfileTaskAnswer(questingID: "q3", answer: .bool(true))
         ]
         
-        TaskAnswer.set(answers: answers, profileTaskID: id)
+        TaskAnswer.set(answers: answers, profileTaskID: id, bundleID: nil)
         
-        guard let savedAnswers = TaskAnswer.get(profileTaskID: id) else {
+        guard let savedAnswers = TaskAnswer.get(profileTaskID: id, bundleID: nil) else {
             return XCTFail()
         }
         
@@ -51,9 +51,9 @@ final class TaskAnswerTests: XCTestCase {
         let id = "test_quest"
         let answer = TaskAnswer.QuestTaskAnswer(chapterIDs: ["chap1", "chap2"], endingID: "end1")
         
-        TaskAnswer.set(answer: answer, questTaskID: id)
+        TaskAnswer.set(answer: answer, questTaskID: id, bundleID: nil)
         
-        let savedAnswer = TaskAnswer.get(questTaskID: id)
+        let savedAnswer = TaskAnswer.get(questTaskID: id, bundleID: nil)
         XCTAssertEqual(answer.chapterIDs, savedAnswer?.chapterIDs)
         XCTAssertEqual(answer.endingID, savedAnswer?.endingID)
     }
