@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "12FAE975-614F-40DC-B2DC-6FB478445B01",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:DetectItCore.xcodeproj",
+        "identifier" : "961B9637242600BB003EC992",
+        "name" : "DetectItCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

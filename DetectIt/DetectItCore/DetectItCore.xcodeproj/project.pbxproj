@@ -64,6 +64,7 @@
 		961B965E24274C79003EC992 /* QuestTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTask.swift; sourceTree = "<group>"; };
 		961B966024275009003EC992 /* ProfileTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTask.swift; sourceTree = "<group>"; };
 		961DE26D2476B60300008AAB /* AppRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRateManager.swift; sourceTree = "<group>"; };
+		961DE26F24793EAB00008AAB /* DetectItCore.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DetectItCore.xctestplan; sourceTree = "<group>"; };
 		96200CBA2443035700A3C720 /* PluralLocalizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalizations.swift; sourceTree = "<group>"; };
 		96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskAnswerComparisionTests.swift; sourceTree = "<group>"; };
 		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 				965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */,
 				96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */,
 				96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */,
+				961DE26F24793EAB00008AAB /* DetectItCore.xctestplan */,
 			);
 			path = DetectItCoreTests;
 			sourceTree = "<group>";

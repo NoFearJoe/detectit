@@ -27,6 +27,9 @@
 		961B96062425EE92003EC992 /* DetectItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961B96052425EE92003EC992 /* DetectItUITests.swift */; };
 		961B964B242600CF003EC992 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961B964A242600CF003EC992 /* DetectItCore.framework */; };
 		961B964C242600CF003EC992 /* DetectItCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 961B964A242600CF003EC992 /* DetectItCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		961DE271247941DA00008AAB /* MainScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE270247941DA00008AAB /* MainScreenUITests.swift */; };
+		961DE2732479427E00008AAB /* MainScreen+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE2722479427E00008AAB /* MainScreen+Accessibility.swift */; };
+		961DE2772479465600008AAB /* DetectItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE2762479465600008AAB /* DetectItTests.swift */; };
 		961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */; };
 		96200CAF244195ED00A3C720 /* PhotoViewerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */; };
 		96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; };
@@ -104,6 +107,9 @@
 		961B96052425EE92003EC992 /* DetectItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectItUITests.swift; sourceTree = "<group>"; };
 		961B96072425EE92003EC992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961B964A242600CF003EC992 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		961DE270247941DA00008AAB /* MainScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenUITests.swift; sourceTree = "<group>"; };
+		961DE2722479427E00008AAB /* MainScreen+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+Accessibility.swift"; sourceTree = "<group>"; };
+		961DE2762479465600008AAB /* DetectItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectItTests.swift; sourceTree = "<group>"; };
 		961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTaskScreen+State.swift"; sourceTree = "<group>"; };
 		96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerScreen.swift; sourceTree = "<group>"; };
 		96500E34242F0FDD005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +217,7 @@
 		961B95F92425EE92003EC992 /* DetectItTests */ = {
 			isa = PBXGroup;
 			children = (
+				961DE2762479465600008AAB /* DetectItTests.swift */,
 				961B95FC2425EE92003EC992 /* Info.plist */,
 			);
 			path = DetectItTests;
@@ -220,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				961B96052425EE92003EC992 /* DetectItUITests.swift */,
+				961DE270247941DA00008AAB /* MainScreenUITests.swift */,
 				961B96072425EE92003EC992 /* Info.plist */,
 			);
 			path = DetectItUITests;
@@ -316,6 +324,7 @@
 			children = (
 				965AC7AB24387774003A3DC7 /* MainScreen.swift */,
 				965AC7F6243A103B003A3DC7 /* MainScreenDataLoader.swift */,
+				961DE2722479427E00008AAB /* MainScreen+Accessibility.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -436,6 +445,7 @@
 					};
 					961B95F52425EE92003EC992 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = 961B95DF2425EE89003EC992;
 					};
 					961B96002425EE92003EC992 = {
@@ -506,6 +516,7 @@
 				96200CAF244195ED00A3C720 /* PhotoViewerScreen.swift in Sources */,
 				96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */,
 				96054C232459CAAE0083C217 /* DecoderTaskScreen+DataLoading.swift in Sources */,
+				961DE2732479427E00008AAB /* MainScreen+Accessibility.swift in Sources */,
 				9615F95C246309D00070E2D3 /* DecoderTaskScreen+Utils.swift in Sources */,
 				9615F95E24630A930070E2D3 /* ProfileTaskScreen+KeyboardHandler.swift in Sources */,
 				965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */,
@@ -532,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961DE2772479465600008AAB /* DetectItTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961DE271247941DA00008AAB /* MainScreenUITests.swift in Sources */,
 				961B96062425EE92003EC992 /* DetectItUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -740,6 +753,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = DetectItTests/Info.plist;
@@ -751,6 +765,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectItTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Detect.app/Detect";
@@ -762,6 +777,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = DetectItTests/Info.plist;

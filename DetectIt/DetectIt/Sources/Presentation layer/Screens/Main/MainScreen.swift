@@ -14,7 +14,7 @@ import MessageUI
 
 final class MainScreen: Screen {
     
-    private var screenView: MainScreenView? {
+    var screenView: MainScreenView? {
         view as? MainScreenView
     }
     
@@ -49,6 +49,8 @@ final class MainScreen: Screen {
         
         view.addSubview(screenLoadingView)
         screenLoadingView.pin(to: view)
+        
+        setupAccessibilityIDs()
     }
     
     override func prepare() {
