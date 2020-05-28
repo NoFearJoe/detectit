@@ -30,6 +30,7 @@
 		961DE271247941DA00008AAB /* MainScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE270247941DA00008AAB /* MainScreenUITests.swift */; };
 		961DE2732479427E00008AAB /* MainScreen+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE2722479427E00008AAB /* MainScreen+Accessibility.swift */; };
 		961DE2772479465600008AAB /* DetectItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE2762479465600008AAB /* DetectItTests.swift */; };
+		961DE279247D380E00008AAB /* CommandLineArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE278247D380E00008AAB /* CommandLineArguments.swift */; };
 		961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */; };
 		96200CAF244195ED00A3C720 /* PhotoViewerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */; };
 		96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; };
@@ -110,6 +111,7 @@
 		961DE270247941DA00008AAB /* MainScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenUITests.swift; sourceTree = "<group>"; };
 		961DE2722479427E00008AAB /* MainScreen+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+Accessibility.swift"; sourceTree = "<group>"; };
 		961DE2762479465600008AAB /* DetectItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectItTests.swift; sourceTree = "<group>"; };
+		961DE278247D380E00008AAB /* CommandLineArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineArguments.swift; sourceTree = "<group>"; };
 		961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTaskScreen+State.swift"; sourceTree = "<group>"; };
 		96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerScreen.swift; sourceTree = "<group>"; };
 		96500E34242F0FDD005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +267,7 @@
 			children = (
 				961B95E32425EE89003EC992 /* AppDelegate.swift */,
 				961B95E52425EE89003EC992 /* SceneDelegate.swift */,
+				961DE278247D380E00008AAB /* CommandLineArguments.swift */,
 			);
 			path = "Application layer";
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				961DE2732479427E00008AAB /* MainScreen+Accessibility.swift in Sources */,
 				9615F95C246309D00070E2D3 /* DecoderTaskScreen+Utils.swift in Sources */,
 				9615F95E24630A930070E2D3 /* ProfileTaskScreen+KeyboardHandler.swift in Sources */,
+				961DE279247D380E00008AAB /* CommandLineArguments.swift in Sources */,
 				965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */,
 				965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */,
 				961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */,

@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         PaidTaskBundlesManager.completeTransactions()
         
+        handleCommandLineArguments()
+        
         return true
     }
 
@@ -28,3 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+private extension AppDelegate {
+    
+    func handleCommandLineArguments() {
+        #if DEBUG
+        if CommandLineArguments.isOnboardingPassed {
+            User.shared.isOnboardingShown = true
+        }
+        if let userAlias = CommandLineArguments.userAlias {
+            User.shared.alias = userAlias
+        }
+        if let userPassword = CommandLineArguments.userPassword {
+            User.shared.password = userPassword
+        }
+        #endif
+    }
+    
+}

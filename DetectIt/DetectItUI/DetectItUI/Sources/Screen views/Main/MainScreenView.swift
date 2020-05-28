@@ -276,9 +276,8 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                 let width = collectionView.bounds.width
                     - collectionView.contentInset.left
                     - collectionView.contentInset.right
-                    - 20
 
-                return width * 0.5
+                return width * 0.75
             } else {
                 return collectionView.bounds.width
                     - collectionView.contentInset.left
@@ -312,9 +311,8 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                     let width = collectionView.bounds.width
                         - collectionView.contentInset.left
                         - collectionView.contentInset.right
-                        - 20
                     
-                    return width * 0.5
+                    return width * 0.75
                 } else {
                     return collectionView.bounds.width
                         - collectionView.contentInset.left

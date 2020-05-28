@@ -100,6 +100,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             titleLabel.attributedText = NSAttributedString(string: model.title)
         }
         descriptionLabel.text = model.isSolved ? nil : model.description
+        descriptionLabel.numberOfLines = model.backgroundImagePath == nil ? 5 : 3
         
         scoreLabel.text = model.score
         scoreLabel.textColor = model.scoreColor
