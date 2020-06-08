@@ -52,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func showAuth() {
-        let screen = OnboardingAuthScreen()
+        let screen = AuthNavigationScreen()
         
         screen.onFinish = { [unowned self] in
             self.performTransition(to: MainScreen())
@@ -65,6 +65,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let screen = OnboardingScreen()
         
         screen.onFinish = { [unowned self] in
+            User.shared.isOnboardingShown = true
+            
             self.showAuth()
         }
         

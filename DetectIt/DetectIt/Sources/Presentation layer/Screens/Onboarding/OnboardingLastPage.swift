@@ -1,5 +1,5 @@
 //
-//  OnboardingEnterNamePage.swift
+//  OnboardingLastPage.swift
 //  DetectIt
 //
 //  Created by Илья Харабет on 13/04/2020.
@@ -10,7 +10,7 @@ import UIKit
 import DetectItUI
 import DetectItCore
 
-final class OnboardingEnterNamePage: Screen {
+final class OnboardingLastPage: Screen {
     
     var onFinish: (() -> Void)?
 

@@ -21,9 +21,16 @@ public final class User {
             UserDefaults.standard.object(forKey: "user_alias") as? String
         }
         set {
-            guard let newValue = newValue else { return }
-            
             UserDefaults.standard.set(newValue, forKey: "user_alias")
+        }
+    }
+    
+    public var email: String? {
+        get {
+            UserDefaults.standard.object(forKey: "user_email") as? String
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "user_email")
         }
     }
     
@@ -32,8 +39,6 @@ public final class User {
             UserDefaults.standard.object(forKey: "user_password") as? String
         }
         set {
-            guard let newValue = newValue else { return }
-            
             UserDefaults.standard.set(newValue, forKey: "user_password")
         }
     }

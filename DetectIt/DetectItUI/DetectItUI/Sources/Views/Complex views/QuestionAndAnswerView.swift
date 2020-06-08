@@ -45,6 +45,18 @@ public final class QuestionAndAnswerView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
     
+    public override func becomeFirstResponder() -> Bool {
+        answerField.becomeFirstResponder()
+    }
+    
+    public override func resignFirstResponder() -> Bool {
+        answerField.resignFirstResponder()
+    }
+    
+    public override var isFirstResponder: Bool {
+        answerField.isFirstResponder
+    }
+    
     // MARK: - Configuration
     
     public struct Model {
@@ -62,7 +74,7 @@ public final class QuestionAndAnswerView: UIView {
         answerField.answer = model.answer ?? ""
     }
     
-    public func highlight(isCorrect: Bool, animated: Bool, animationDuration: TimeInterval) {
+    public func highlight(isCorrect: Bool?, animated: Bool, animationDuration: TimeInterval) {
         answerField.highlight(isCorrect: isCorrect, animated: animated, animationDuration: animationDuration)
     }
     

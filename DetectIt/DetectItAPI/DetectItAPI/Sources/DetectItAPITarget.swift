@@ -11,7 +11,7 @@ import DetectItCore
 
 public enum DetectItAPITarget {
     
-    case auth(alias: String, password: String)
+    case auth(alias: String, email: String, password: String)
     
     case feed
     
@@ -65,9 +65,9 @@ extension DetectItAPITarget: TargetType {
     
     public var task: Moya.Task {
         switch self {
-        case let .auth(alias, password):
+        case let .auth(alias, email, password):
             return .requestParameters(
-                parameters: ["alias": alias, "password": password],
+                parameters: ["alias": alias, "email": email, "password": password],
                 encoding: JSONEncoding.default
             )
         case .feed:

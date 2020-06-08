@@ -18,7 +18,11 @@
 
 "purchases_restoring_hud_title" = "Восстановление покупок...";
 "error_hud_title" = "Ошибка";
-"auth_401_error_title" = "Детектив с таким псевдонимом уже приступил к расследованию";
+
+"auth_email_busy_error_title" = "Детектив с такой почтой уже приступил к расследованию";
+"auth_alias_busy_error_title" = "Детектив с таким псевдонимом уже приступил к расследованию";
+"auth_wrong_password_error_title" = "Неверный пароль";
+"auth_401_error_title" = "С вашими данными что-то не так. Проверьте, что все введено верно";
 
 // User ranks
 
@@ -40,10 +44,21 @@
 "onboarding_last_page_subtitle" = "Если ты готов погрузиться в мир загадочных и темных историй, воспользуйся той необычной кнопкой внизу.";
 "onboarding_last_page_button_title" = "Продолжить";
 
-"onboarding_auth_title" = "А вот и твое первое задание - введи свой псевдоним и пароль для доступа к базе данных";
-"onboarding_auth_alias_title" = "Псевдоним";
-"onboarding_auth_password_title" = "Пароль";
-"onboarding_auth_continue_button_title" = "Войти";
+// Auth
+
+"auth_prepare_title" = "Настало время первого задания!";
+"auth_prepare_subtitle" = "Для доступа к системе Detect необходимо выполнить вход.\nНе волнуйтесь, мы храним ваши данные безопасно и не передаем третьим лицам.";
+"auth_prepare_privacy_policy_button" = "Политика безопасности";
+"auth_prepare_continue_button_title" = "Продолжить";
+
+"auth_title" = "Задание \"Вход\"";
+"auth_alias_title" = "Псевдоним";
+"auth_alias_hint" = "Нужен чтобы различать детективов";
+"auth_email_title" = "Почта";
+"auth_email_hint" = "Если вы забудете данные для входа - пришлем их на этот адрес (без спама и рассылок)";
+"auth_password_title" = "Пароль";
+"auth_password_hint" = "Минимум 6 символов";
+"auth_continue_button_title" = "Войти";
 
 // Main screen
 

@@ -18,7 +18,11 @@
 
 "purchases_restoring_hud_title" = "Restoring purchases...";
 "error_hud_title" = "Error";
-"auth_401_error_title" = "A user with the given alias already exists";
+
+"auth_email_busy_error_title" = "An user with the given email has already started an investigation";
+"auth_alias_busy_error_title" = "An user with the given alias has already started an investigation";
+"auth_wrong_password_error_title" = "Wrong password";
+"auth_401_error_title" = "There is a problem with your credentials";
 
 // User ranks
 
@@ -40,10 +44,21 @@
 "onboarding_last_page_subtitle" = "If you ready to start unraveling mysterious stories, try to adapt to the not-so-usual button, which serves to answer.";
 "onboarding_last_page_button_title" = "Continue";
 
-"onboarding_auth_title" = "And here is your first task - enter your pseudonym and password to get access to our database.";
-"onboarding_auth_alias_title" = "Pseudonym";
-"onboarding_auth_password_title" = "Password";
-"onboarding_auth_continue_button_title" = "Enter";
+// Auth
+
+"auth_prepare_title" = "It is time for the first task!";
+"auth_prepare_subtitle" = "You must be logged in to access the Detect system.\nDo not worry, we store your data securely and do not share it with third parties.";
+"auth_prepare_privacy_policy_button" = "Privacy policy";
+"auth_prepare_continue_button_title" = "Continue";
+
+"auth_title" = "Mission \"Enter\"";
+"auth_alias_title" = "Pseudonym";
+"auth_alias_hint" = "Needed to distinguish detectives";
+"auth_email_title" = "Email";
+"auth_email_hint" = "If you forget the login details, we will send them to this address (without spam and mailings)";
+"auth_password_title" = "Password";
+"auth_password_hint" = "At least 6 characters";
+"auth_continue_button_title" = "Enter";
 
 // Main screen
 

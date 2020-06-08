@@ -104,6 +104,7 @@ public extension SolidButton {
         button.layer.cornerRadius = 8
         button.fill = .color(.yellow)
         button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.darkGray, for: .highlighted)
         button.titleLabel?.font = .text2
         
         button.translatesAutoresizingMaskIntoConstraints = false

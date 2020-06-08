@@ -92,7 +92,7 @@ private extension OnboardingScreen {
                 subtitle: "onboarding_second_page_subtitle".localized
             )
         case .enterName:
-            let screen = OnboardingEnterNamePage()
+            let screen = OnboardingLastPage()
             screen.configure(
                 icon: nil,
                 title: "onboarding_last_page_title".localized,

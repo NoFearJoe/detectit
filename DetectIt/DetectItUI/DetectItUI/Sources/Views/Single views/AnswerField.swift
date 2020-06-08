@@ -47,9 +47,13 @@ public final class AnswerField: UIView {
         }
     }
     
-    func highlight(isCorrect: Bool, animated: Bool, animationDuration: TimeInterval) {
+    func highlight(isCorrect: Bool?, animated: Bool, animationDuration: TimeInterval) {
         UIView.animate(withDuration: animated ? animationDuration : 0) {
-            self.bottomLineView.backgroundColor = isCorrect ? .green : .red
+            if let isCorrect = isCorrect {
+                self.bottomLineView.backgroundColor = isCorrect ? .green : .red
+            } else {
+                self.bottomLineView.backgroundColor = .lightGray
+            }
         }
     }
     
@@ -77,6 +81,33 @@ public final class AnswerField: UIView {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    public override func becomeFirstResponder() -> Bool {
+        switch kind {
+        case .textField:
+            return textField.becomeFirstResponder()
+        case .textView:
+            return textView.becomeFirstResponder()
+        }
+    }
+    
+    public override func resignFirstResponder() -> Bool {
+        switch kind {
+        case .textField:
+            return textField.resignFirstResponder()
+        case .textView:
+            return textView.resignFirstResponder()
+        }
+    }
+    
+    public override var isFirstResponder: Bool {
+        switch kind {
+        case .textField:
+            return textField.isFirstResponder
+        case .textView:
+            return textView.isFirstResponder
+        }
     }
     
     // MARK: - Actions
