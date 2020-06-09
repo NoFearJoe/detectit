@@ -150,7 +150,15 @@ public final class AnswerButton: UIControl {
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         
-        cancelFillAnimator()
+        if touches.allSatisfy({ self.bounds.contains($0.location(in: self)) }), !fillAnimator.isReversed, fillAnimator.fractionComplete >= 1 {
+            hasBeenFilled = true
+            
+            isUserInteractionEnabled = false
+            
+            onFill?()
+        } else {
+            cancelFillAnimator()
+        }
     }
     
     // MARK: - Utils
