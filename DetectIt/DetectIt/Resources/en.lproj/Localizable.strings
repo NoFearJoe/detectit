@@ -36,12 +36,12 @@
 
 // Onboarding
 
-"onboarding_first_page_title" = "Welcome, stranger";
-"onboarding_first_page_subtitle" = "Get ready to feel like a real detective!";
-"onboarding_second_page_title" = "Remember important thing";
-"onboarding_second_page_subtitle" = "In this game, as in life, there is no second chance. Always check the answer before sending it for verification.";
-"onboarding_last_page_title" = "That's all";
-"onboarding_last_page_subtitle" = "If you ready to start unraveling mysterious stories, try to adapt to the not-so-usual button, which serves to answer.";
+"onboarding_first_page_title" = "Welcome, detective!";
+"onboarding_first_page_subtitle" = "Get ready to plunge into the world of mysterious and terrifying stories";
+"onboarding_second_page_title" = "Investigate wisely";
+"onboarding_second_page_subtitle" = "Use any means to search for truth - deduction, cunning, and even the Internet";
+"onboarding_last_page_title" = "Start simple";
+"onboarding_last_page_subtitle" = "Try to use the button, which is used to send replies";
 "onboarding_last_page_button_title" = "Continue";
 
 // Auth

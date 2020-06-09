@@ -36,12 +36,12 @@
 
 // Onboarding
 
-"onboarding_first_page_title" = "Добро пожаловать, незнакомец";
-"onboarding_first_page_subtitle" = "Приготовься почувствовать себя настоящим детективом!";
-"onboarding_second_page_title" = "Запомни важную особенность";
-"onboarding_second_page_subtitle" = "В этой игре, как и в жизни, нет второго шанса. Всегда проверяй ответ перед тем, как его отправить на проверку.";
-"onboarding_last_page_title" = "На этом все";
-"onboarding_last_page_subtitle" = "Если ты готов погрузиться в мир загадочных и темных историй, воспользуйся той необычной кнопкой внизу.";
+"onboarding_first_page_title" = "Добро пожаловать, детектив!";
+"onboarding_first_page_subtitle" = "Приготовься погрузиться в мир таинственных и ужасающих историй";
+"onboarding_second_page_title" = "Расследуй с умом";
+"onboarding_second_page_subtitle" = "Используй любые средства для поиска истины - дедукцию, хитрость и даже интернет";
+"onboarding_last_page_title" = "Начни с простого";
+"onboarding_last_page_subtitle" = "Попробуй воспользоваться кнопкой, которая служит для отправки ответов";
 "onboarding_last_page_button_title" = "Продолжить";
 
 // Auth
