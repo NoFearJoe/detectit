@@ -16,8 +16,6 @@ public protocol TasksBundleScreenViewDelegate: AnyObject {
     func sectionHeader(for section: Int) -> String?
     func task(at index: Int, in section: Int) -> TasksBundleScreenTaskCell.Model?
     func didSelectTask(at index: Int, in section: Int)
-    
-    func didTapBuyButton()
 }
 
 public final class TasksBundleScreenView: UIView {
@@ -81,7 +79,7 @@ public final class TasksBundleScreenView: UIView {
     // MARK: - Setup
     
     private func setup() {
-        backgroundColor = .black
+        backgroundColor = .systemBackground
     }
     
     private func setupViews() {
@@ -110,9 +108,6 @@ public final class TasksBundleScreenView: UIView {
         
         headerView.onChangeHeight = { [unowned self] height in
             self.contentView.contentInset.top = height
-        }
-        headerView.onTapBuyButton = { [unowned self] in
-            self.delegate.didTapBuyButton()
         }
         
         headerView.translatesAutoresizingMaskIntoConstraints = false

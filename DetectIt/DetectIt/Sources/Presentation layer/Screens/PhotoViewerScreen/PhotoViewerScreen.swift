@@ -99,7 +99,7 @@ final class PhotoViewerScreen: Screen {
     private func setupViews() {
         view.addSubview(backgroundBlurView)
         backgroundBlurView.blurRadius = 20
-        backgroundBlurView.colorTint = .black
+        backgroundBlurView.colorTint = .systemBackground
         backgroundBlurView.colorTintAlpha = 0.5
         backgroundBlurView.pin(to: view)
         

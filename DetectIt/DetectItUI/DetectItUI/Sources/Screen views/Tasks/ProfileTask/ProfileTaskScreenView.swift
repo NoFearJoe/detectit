@@ -15,6 +15,8 @@ public protocol ProfileTaskScreenViewDelegate: ProfileViewDelegate, ProfileRepor
     func numberOfAnswers() -> Int
     func answer(at index: Int) -> ProfileTaskAnswerCell.Model?
     
+    func didTapGetStatusButton()
+    
 }
 
 public final class ProfileTaskScreenView: NSObject {
@@ -27,8 +29,12 @@ public final class ProfileTaskScreenView: NSObject {
     public let answerButton = AnswerButton()
     
     public let scoreLabel = UILabel()
-    public let crimeDescriptionLabel = UILabel()
     
+    public let crimeDescriptionTitleView = ListSectionHeaderView()
+    public let crimeDescriptionLabel = UILabel()
+    public let hiddenCrimeDescriptionView = ProfileHiddenCrimeDescriptionView()
+    
+    public let answersTitleView = ListSectionHeaderView()
     private let listLayout = UICollectionViewFlowLayout()
     public lazy var answersView = AutosizingCollectionView(
         frame: .zero,
@@ -53,9 +59,7 @@ public final class ProfileTaskScreenView: NSObject {
     public func setupViews() {
         reportTitleView.titleLabel.textAlignment = .center
         reportTitleView.configure(title: "profile_task_screen_report_title".localized)
-        NSLayoutConstraint.activate([
-            reportTitleView.heightAnchor.constraint(equalToConstant: 52)
-        ])
+        reportTitleView.heightAnchor.constraint(equalToConstant: 52).isActive = true
         
         answerButton.isEnabled = false
         answerButton.titleLabel.text = "profile_task_screen_send_report_button_title".localized
@@ -67,9 +71,23 @@ public final class ProfileTaskScreenView: NSObject {
         scoreLabel.textColor = .white
         scoreLabel.textAlignment = .center
         
+        // Crime description
+        
+        crimeDescriptionTitleView.titleLabel.textAlignment = .center
+        crimeDescriptionTitleView.configure(title: "profile_task_screen_crime_description_title".localized)
+        crimeDescriptionTitleView.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        
         crimeDescriptionLabel.font = .text3
         crimeDescriptionLabel.textColor = .white
         crimeDescriptionLabel.numberOfLines = 0
+        
+        hiddenCrimeDescriptionView.onTapGetStatusButton = delegate.didTapGetStatusButton
+        
+        // Answers
+        
+        answersTitleView.titleLabel.textAlignment = .center
+        answersTitleView.configure(title: "profile_task_screen_answers_title".localized)
+        answersTitleView.heightAnchor.constraint(equalToConstant: 52).isActive = true
         
         answersView.delegate = self
         answersView.dataSource = self

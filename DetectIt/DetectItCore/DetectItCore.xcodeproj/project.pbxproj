@@ -20,6 +20,7 @@
 		961DE26E2476B60300008AAB /* AppRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE26D2476B60300008AAB /* AppRateManager.swift */; };
 		96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBA2443035700A3C720 /* PluralLocalizations.swift */; };
 		96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */; };
+		96346F1224962DFF00A815F2 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1124962DFF00A815F2 /* FullVersionManager.swift */; };
 		96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E0E2429FAD8005FFC7A /* TasksBundle.swift */; };
 		96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E19242BC489005FFC7A /* ProfileTask+Case.swift */; };
 		96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */; };
@@ -28,7 +29,6 @@
 		965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F02439A240003A3DC7 /* TaskScore.swift */; };
 		965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */; };
 		965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */; };
-		965AC7FA243A39C4003A3DC7 /* PaidTaskBundlesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F9243A39C4003A3DC7 /* PaidTaskBundlesManager.swift */; };
 		96AAAFED243A3FF900F61443 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */; };
 		96AAAFEF243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */; };
 		96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF2243B174600F61443 /* TaskDifficulty.swift */; };
@@ -67,6 +67,7 @@
 		961DE26F24793EAB00008AAB /* DetectItCore.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DetectItCore.xctestplan; sourceTree = "<group>"; };
 		96200CBA2443035700A3C720 /* PluralLocalizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalizations.swift; sourceTree = "<group>"; };
 		96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskAnswerComparisionTests.swift; sourceTree = "<group>"; };
+		96346F1124962DFF00A815F2 /* FullVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManager.swift; sourceTree = "<group>"; };
 		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
 		96500E19242BC489005FFC7A /* ProfileTask+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Case.swift"; sourceTree = "<group>"; };
 		96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Attachment.swift"; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		965AC7F02439A240003A3DC7 /* TaskScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScore.swift; sourceTree = "<group>"; };
 		965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoreTests.swift; sourceTree = "<group>"; };
 		965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnswerTests.swift; sourceTree = "<group>"; };
-		965AC7F9243A39C4003A3DC7 /* PaidTaskBundlesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidTaskBundlesManager.swift; sourceTree = "<group>"; };
 		96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidTaskBundlesManagerTests.swift; sourceTree = "<group>"; };
 		96AAAFF2243B174600F61443 /* TaskDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDifficulty.swift; sourceTree = "<group>"; };
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 		965AC7F8243A39AD003A3DC7 /* InApp purchases */ = {
 			isa = PBXGroup;
 			children = (
-				965AC7F9243A39C4003A3DC7 /* PaidTaskBundlesManager.swift */,
+				96346F1124962DFF00A815F2 /* FullVersionManager.swift */,
 			);
 			path = "InApp purchases";
 			sourceTree = "<group>";
@@ -379,13 +379,13 @@
 				96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */,
 				96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */,
 				96054327244F10D20083C217 /* NSObjectWrapper.swift in Sources */,
+				96346F1224962DFF00A815F2 /* FullVersionManager.swift in Sources */,
 				96054C202459A33B0083C217 /* String+Localization.swift in Sources */,
 				965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */,
 				96F85C18244718B100F5CD22 /* UserRank.swift in Sources */,
 				96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */,
 				96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */,
 				96F0547E2445EA2E000742E4 /* User.swift in Sources */,
-				965AC7FA243A39C4003A3DC7 /* PaidTaskBundlesManager.swift in Sources */,
 				96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

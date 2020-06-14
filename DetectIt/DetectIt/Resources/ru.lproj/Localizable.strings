@@ -80,12 +80,27 @@
 "profile_task_screen_send_report_button_title" = "Отправить отчет";
 "profile_task_screen_answer_yes_title" = "Да";
 "profile_task_screen_answer_no_title" = "Нет";
+"profile_task_screen_crime_description_title" = "История";
+"profile_task_screen_answers_title" = "Ответы";
+"profile_task_screen_hidden_description_title" = "Для просмотра истории расследования необходимо получить статус профессионального детектива";
+"profile_task_screen_get_status_button_title" = "Получить статус";
 
 // Tasks bundle
 
 "tasks_bundle_screen_ciphers_section_title" = "Шифры";
 "tasks_bundle_screen_profiles_section_title" = "Расследования";
 "tasks_bundle_screen_quests_section_title" = "Квесты";
+
+// PRO status
+
+"pro_status_title" = "Статус профессионального детектива";
+"pro_status_feature_1" = "Доступ к сложным заданиям";
+"pro_status_feature_2" = "Доступ к крайне сложным заданиям";
+"pro_status_feature_3" = "Доступ к участию в сезонных заданиях";
+"pro_status_feature_4" = "Просмотр реальной истории в расследованиях";
+"pro_status_disclaimer" = "* Новые задания появляются с периодичностью в 1-2 недели и будут доступны без необходимости дополнительной оплаты";
+"pro_status_buy" = "Купить за ";
+"pro_status_blocked_task_message" = "Нужен статус профессионального детектива";
 
 // Other
 
@@ -95,3 +110,5 @@
 "task_kind_cipher" = "Шифр";
 "task_kind_profile" = "Расследование";
 "task_kind_quest" = "Квест";
+
+"total_score" = "Общий счет  ";

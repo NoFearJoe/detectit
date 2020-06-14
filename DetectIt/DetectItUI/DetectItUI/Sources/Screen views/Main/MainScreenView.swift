@@ -13,9 +13,7 @@ public protocol MainScreenViewDelegate: AnyObject {
     
     func numberOfFeedItems() -> Int
     func feedItem(at index: Int) -> Any?
-    func tasksBundleShallowModel(at index: Int) -> TasksBundleCell.ShallowModel?
     func didSelectFeedItem(at index: Int)
-    func didTapBuyTasksBundleButton(at index: Int)
     
     func numberOfActions() -> Int
     func action(at index: Int) -> String?
@@ -57,16 +55,6 @@ public final class MainScreenView: UIView {
         contentView.reloadData()
     }
     
-    public func shallowReloadData() {
-        contentView.visibleCells.forEach { cell in
-            guard let indexPath = contentView.indexPath(for: cell), indexPath.section == 0 else { return }
-            guard let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) else { return }
-            guard let cell = cell as? TasksBundleCell else { return }
-            
-            cell.configure(model: shallowModel)
-        }
-    }
-    
     public func reloadHeader() {
         guard
             let header = contentView.supplementaryView(
@@ -81,7 +69,7 @@ public final class MainScreenView: UIView {
     // MARK: - Setup
     
     private func setup() {
-        backgroundColor = .black
+        backgroundColor = .systemBackground
     }
     
     private func setupContentView() {
@@ -156,16 +144,8 @@ extension MainScreenView: UICollectionViewDataSource {
                 
                 cell.configure(model: tasksBundleModel)
                 
-                if let shallowModel = delegate.tasksBundleShallowModel(at: indexPath.item) {
-                    cell.configure(model: shallowModel)
-                }
-                
                 cell.onTapPlayButton = { [unowned self] in
                     self.delegate.didSelectFeedItem(at: indexPath.item)
-                }
-                
-                cell.onTapBuyButton = {
-                    self.delegate.didTapBuyTasksBundleButton(at: indexPath.item)
                 }
                 
                 return cell

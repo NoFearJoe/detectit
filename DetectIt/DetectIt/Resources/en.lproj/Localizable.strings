@@ -80,12 +80,27 @@
 "profile_task_screen_send_report_button_title" = "Send report";
 "profile_task_screen_answer_yes_title" = "Yes";
 "profile_task_screen_answer_no_title" = "No";
+"profile_task_screen_crime_description_title" = "History";
+"profile_task_screen_answers_title" = "Answers";
+"profile_task_screen_hidden_description_title" = "To view the history of the profile you need to get the professional detective status";
+"profile_task_screen_get_status_button_title" = "Get status";
 
 // Tasks bundle
 
 "tasks_bundle_screen_ciphers_section_title" = "Ciphers";
 "tasks_bundle_screen_profiles_section_title" = "Profiles";
 "tasks_bundle_screen_quests_section_title" = "Quests";
+
+// PRO status
+
+"pro_status_title" = "Professional detective status";
+"pro_status_feature_1" = "Access to difficult tasks";
+"pro_status_feature_2" = "Access to extremely difficult tasks";
+"pro_status_feature_3" = "Participation in seasonal assignments";
+"pro_status_feature_4" = "View real story in investigations";
+"pro_status_disclaimer" = "* New tasks appear with a frequency of 1-2 weeks and will be available without the need for additional payment";
+"pro_status_buy" = "Buy for ";
+"pro_status_blocked_task_message" = "Need a professional detective status";
 
 // Other
 
@@ -95,3 +110,5 @@
 "task_kind_cipher" = "Cipher";
 "task_kind_profile" = "Profile";
 "task_kind_quest" = "Quest";
+
+"total_score" = "Total score  ";

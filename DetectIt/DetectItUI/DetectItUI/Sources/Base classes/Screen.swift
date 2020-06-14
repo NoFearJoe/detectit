@@ -32,6 +32,8 @@ open class Screen: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        overrideUserInterfaceStyle = .dark
+        
         view.addSubview(screenPlaceholderView)
         screenPlaceholderView.pin(to: view)
         screenPlaceholderView.setVisible(false, animated: false)

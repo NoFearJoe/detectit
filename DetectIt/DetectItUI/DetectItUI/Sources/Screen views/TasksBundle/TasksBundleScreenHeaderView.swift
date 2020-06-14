@@ -12,7 +12,6 @@ import DetectItCore
 public final class TasksBundleScreenHeaderView: UIView {
     
     var onChangeHeight: ((CGFloat) -> Void)?
-    var onTapBuyButton: (() -> Void)?
     
     // MARK: - Subviews
     
@@ -22,9 +21,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     
     private let bottomViewsContainer = UIStackView()
     
-    private let descriptionAndPurchaseViewsContainer = UIStackView()
     private let descriptionLabel = UILabel()
-    private let purchaseView = TasksBundlePurchaseView()
     
     private let totalScoreLabel = UILabel()
     
@@ -75,10 +72,6 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         descriptionLabel.text = model.description
         
-        purchaseView.isHidden = !model.isPaid
-        purchaseView.setLoading(model.price == nil)
-        purchaseView.priceLabel.text = model.price
-        
         totalScoreLabel.isHidden = model.isPaid
         totalScoreLabel.attributedText = makeAttributedScoreString(score: model.totalScore)
     }
@@ -114,8 +107,8 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         addSubview(imageGradientView)
         
-        imageGradientView.startColor = UIColor.black.withAlphaComponent(0)
-        imageGradientView.endColor = .black
+        imageGradientView.startColor = UIColor.systemBackground.withAlphaComponent(0)
+        imageGradientView.endColor = .systemBackground
         
         imageGradientView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -153,29 +146,11 @@ public final class TasksBundleScreenHeaderView: UIView {
             bottomViewsContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.vOffset)
         ])
         
-        bottomViewsContainer.addArrangedSubview(descriptionAndPurchaseViewsContainer)
-        
-        descriptionAndPurchaseViewsContainer.axis = .horizontal
-        descriptionAndPurchaseViewsContainer.distribution = .fill
-        descriptionAndPurchaseViewsContainer.alignment = .top
-        descriptionAndPurchaseViewsContainer.spacing = 8
-        
-        descriptionAndPurchaseViewsContainer.addArrangedSubview(descriptionLabel)
+        bottomViewsContainer.addArrangedSubview(descriptionLabel)
         
         descriptionLabel.font = .text4
         descriptionLabel.textColor = Constants.tintColor
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        descriptionLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        
-        descriptionAndPurchaseViewsContainer.addArrangedSubview(purchaseView)
-        
-        purchaseView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        purchaseView.onTapBuyButton = { [unowned self] in
-            self.onTapBuyButton?()
-        }
-        
-        purchaseView.widthAnchor.constraint(equalToConstant: 96).isActive = true
         
         bottomViewsContainer.addArrangedSubview(totalScoreLabel)
         
@@ -186,7 +161,7 @@ public final class TasksBundleScreenHeaderView: UIView {
     private func makeAttributedScoreString(score: String) -> NSAttributedString {
         let resultString = NSMutableAttributedString()
         
-        let prefixString = NSAttributedString(string: "Общий счет ", attributes: [.font: UIFont.text3, .foregroundColor: UIColor.lightGray])
+        let prefixString = NSAttributedString(string: "total_score".localized, attributes: [.font: UIFont.text3, .foregroundColor: UIColor.lightGray])
         let scoreString = NSAttributedString(string: score, attributes: [.font: UIFont.heading4, .foregroundColor: UIColor.yellow])
         
         resultString.append(prefixString)

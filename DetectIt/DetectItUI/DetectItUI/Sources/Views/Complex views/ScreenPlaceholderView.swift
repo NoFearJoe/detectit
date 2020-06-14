@@ -58,7 +58,7 @@ public final class ScreenPlaceholderView: UIView {
     }
     
     private func setup() {
-        backgroundColor = .black
+        backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -25,6 +25,8 @@
 		96200CB72442016900A3C720 /* ProfileTaskAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */; };
 		96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB82442084400A3C720 /* String+AttributedString.swift */; };
 		96200CBF24435F3800A3C720 /* MainScreenActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */; };
+		96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1324969D7100A815F2 /* LockedTaskView.swift */; };
+		96346F162496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */; };
 		96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 96500E2C242F0F92005FFC7A /* DetectItUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3D242F1151005FFC7A /* PhotoCardView.swift */; };
 		96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */; };
@@ -101,6 +103,8 @@
 		96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskAnswerCell.swift; sourceTree = "<group>"; };
 		96200CB82442084400A3C720 /* String+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AttributedString.swift"; sourceTree = "<group>"; };
 		96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenActionCell.swift; sourceTree = "<group>"; };
+		96346F1324969D7100A815F2 /* LockedTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTaskView.swift; sourceTree = "<group>"; };
+		96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHiddenCrimeDescriptionView.swift; sourceTree = "<group>"; };
 		96500E29242F0F92005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E2C242F0F92005FFC7A /* DetectItUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItUI.h; sourceTree = "<group>"; };
 		96500E2D242F0F92005FFC7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */,
 				96054C1624599E9D0083C217 /* ScreenPlaceholderView.swift */,
 				96162676243F73700097A4EE /* AnswerVariantView.swift */,
+				96346F1324969D7100A815F2 /* LockedTaskView.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -437,10 +442,11 @@
 		96AAB007243F369100F61443 /* ProfileTask */ = {
 			isa = PBXGroup;
 			children = (
+				96162673243F68E80097A4EE /* Cells */,
 				96AAB008243F369D00F61443 /* ProfileTaskScreenView.swift */,
 				96500E7624324158005FFC7A /* ProfileView.swift */,
 				96AF70262448CDEE00B6B848 /* ProfileReportView.swift */,
-				96162673243F68E80097A4EE /* Cells */,
+				96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */,
 			);
 			path = ProfileTask;
 			sourceTree = "<group>";
@@ -570,6 +576,7 @@
 				965AC79424364E86003A3DC7 /* SolidButton.swift in Sources */,
 				965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
+				96346F162496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift in Sources */,
 				96500E892435F1A6005FFC7A /* Screen.swift in Sources */,
 				96AAB000243B6F4100F61443 /* DecoderTaskScreenView.swift in Sources */,
 				96F85C152447119800F5CD22 /* MainScreenHeaderView.swift in Sources */,
@@ -580,6 +587,7 @@
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
 				9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */,
 				965AC7DC2438C704003A3DC7 /* StackChildControllerProtocols.swift in Sources */,
+				96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */,
 				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
 				965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */,
 				96200CB32441DECA00A3C720 /* AutosizingImageView.swift in Sources */,

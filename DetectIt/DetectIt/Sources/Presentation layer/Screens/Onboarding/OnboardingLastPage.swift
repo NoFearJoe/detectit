@@ -31,7 +31,7 @@ final class OnboardingLastPage: Screen {
     override func loadView() {
         super.loadView()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         
         view.addSubview(containerView)
         

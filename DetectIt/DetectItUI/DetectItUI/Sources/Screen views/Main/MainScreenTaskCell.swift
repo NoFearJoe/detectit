@@ -24,10 +24,12 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     private let bottomContainerView = UIView()
     private let bottomBlurView = BlurView(style: .systemMaterialDark)
     
+    private let lockedTaskView = LockedTaskView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let scoreLabel = UILabel()
     
+    private var constraintBetweenLockedViewAndDescription: NSLayoutConstraint!
     private var constraintBetweenTitleAndScore: NSLayoutConstraint!
     private var constraintBetweenTitleAndDescription: NSLayoutConstraint!
     
@@ -53,6 +55,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         public let difficultyIcon: UIImage
         public let score: String?
         public let scoreColor: UIColor
+        public let isLocked: Bool
         
         var isSolved: Bool {
             score != nil
@@ -64,7 +67,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
                     description: String,
                     difficultyIcon: UIImage,
                     score: String?,
-                    scoreColor: UIColor) {
+                    scoreColor: UIColor,
+                    isLocked: Bool) {
             self.backgroundImagePath = backgroundImagePath
             self.kind = kind
             self.title = title
@@ -72,6 +76,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             self.difficultyIcon = difficultyIcon
             self.score = score
             self.scoreColor = scoreColor
+            self.isLocked = isLocked
         }
         
     }
@@ -93,6 +98,9 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         taskKindLabel.text = model.kind.uppercased()
         difficultyView.image = model.difficultyIcon
+        
+        lockedTaskView.isHidden = !model.isLocked
+        constraintBetweenLockedViewAndDescription.constant = model.isLocked ? 12 : 0
                 
         if model.isSolved {
             titleLabel.attributedText = model.title.strikethroughAttributedString(color: .white)
@@ -110,7 +118,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         if !forSizeCalculation {
             [titleLabel, taskKindLabel, descriptionLabel, difficultyView].forEach {
-                $0.alpha = model.isSolved ? 0.5 : 1
+                $0.alpha = model.isSolved || model.isLocked ? 0.5 : 1
             }
         }
     }
@@ -219,6 +227,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         titleLabel.numberOfLines = 0
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: bottomContainerView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: bottomContainerView.leadingAnchor, constant: Constants.hInset),
@@ -256,7 +265,18 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             constraintBetweenTitleAndDescription,
             descriptionLabel.leadingAnchor.constraint(equalTo: bottomContainerView.leadingAnchor, constant: Constants.hInset),
             descriptionLabel.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomContainerView.bottomAnchor, constant: -12)
+        ])
+        
+        // MARK: Locked task
+        
+        bottomContainerView.addSubview(lockedTaskView)
+        
+        constraintBetweenLockedViewAndDescription = lockedTaskView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 6)
+        NSLayoutConstraint.activate([
+            constraintBetweenLockedViewAndDescription,
+            lockedTaskView.bottomAnchor.constraint(equalTo: bottomContainerView.bottomAnchor, constant: -12),
+            lockedTaskView.leadingAnchor.constraint(equalTo: bottomContainerView.leadingAnchor, constant: Constants.hInset),
+            lockedTaskView.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
         ])
     }
     
@@ -267,4 +287,3 @@ private struct Constants {
     static let hInset = CGFloat(12)
     static let tintColor = UIColor.white
 }
-

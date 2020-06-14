@@ -30,10 +30,6 @@ final class TasksBundleScreen: Screen {
     
     private var sections: [SectionModel] = []
     
-    var purchaseState: TasksBundlePurchaseState {
-        return PaidTaskBundlesManager.tasksBundlePurchaseState(id: tasksBundle.id)
-    }
-    
     // MARK: - Init
     
     init(tasksBundle: TasksBundle.Info, tasksBundleImageName: String) {
@@ -64,7 +60,7 @@ final class TasksBundleScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
+        FullVersionManager.subscribeToProductInfoLoading(self) {
             self.refresh()
         }
     }
@@ -125,23 +121,6 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         }()
         
         TaskScreenRoute(root: self).show(task: task, bundle: bundle.info)
-
-    }
-    
-    func didTapBuyButton() {
-        showLoadingHUD(title: nil)
-        
-        PaidTaskBundlesManager.purchase(bundleID: tasksBundle.id) { [weak self] error in
-            guard let self = self else { return }
-            
-            if let error = error {
-                self.showErrorHUD(title: error.localizedDescription)
-                self.hideHUD(after: 2)
-            } else {
-                self.showSuccessHUD()
-                self.hideHUD(after: 1)
-            }
-        }
     }
     
 }
@@ -195,8 +174,8 @@ private extension TasksBundleScreen {
                 title: tasksBundle.title,
                 totalScore: totalScore,
                 description: tasksBundle.description,
-                isPaid: !purchaseState.isAvailable,
-                price: PaidTaskBundlesManager.price(bundleID: tasksBundle.id)
+                isPaid: false,
+                price: nil
             )
         )
     }

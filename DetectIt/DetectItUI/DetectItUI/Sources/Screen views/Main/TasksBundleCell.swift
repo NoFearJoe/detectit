@@ -31,10 +31,6 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
     private let descriptionLabel = UILabel()
     
-    private let playStateViewsContainer = UIView()
-    private let priceOrScoreLabel = UILabel()
-    private let priceLoadingIndicator = UIActivityIndicatorView()
-    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -64,22 +60,6 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
     }
     
-    public struct ShallowModel {
-        
-        public enum PlayState {
-            case playable(score: String)
-            case paid(price: String)
-            case loading
-        }
-        
-        public let playState: PlayState
-        
-        public init(playState: PlayState) {
-            self.playState = playState
-        }
-        
-    }
-    
     func configure(model: Model, forSizeCalculation: Bool = false) {
         if let imagePath = model.backgroundImagePath {
             backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image, cached in
@@ -97,24 +77,6 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         titleLabel.text = model.title
         descriptionLabel.text = model.description
-    }
-    
-    func configure(model: ShallowModel) {
-        switch model.playState {
-        case let .playable(score):
-            priceOrScoreLabel.text = score
-            priceOrScoreLabel.isHidden = false
-            priceLoadingIndicator.isHidden = true
-        case let .paid(price):
-            priceOrScoreLabel.text = price
-            priceOrScoreLabel.isHidden = false
-            priceLoadingIndicator.stopAnimating()
-            priceLoadingIndicator.isHidden = true
-        case .loading:
-            priceOrScoreLabel.isHidden = true
-            priceLoadingIndicator.startAnimating()
-            priceLoadingIndicator.isHidden = false
-        }
     }
     
     // MARK: - Actions
@@ -197,49 +159,11 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
-        let descriptionLabelBottomConstraint = descriptionLabel.bottomAnchor.constraint(equalTo: bottomContainerView.bottomAnchor, constant: -16)
-        descriptionLabelBottomConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: bottomContainerView.topAnchor, constant: 16),
             descriptionLabel.leadingAnchor.constraint(equalTo: bottomContainerView.leadingAnchor, constant: Constants.hInset),
-            descriptionLabelBottomConstraint
-        ])
-        
-        bottomContainerView.addSubview(playStateViewsContainer)
-        
-        playStateViewsContainer.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            playStateViewsContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: 36),
-            playStateViewsContainer.topAnchor.constraint(greaterThanOrEqualTo: bottomContainerView.topAnchor, constant: 12),
-            playStateViewsContainer.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 12),
-            playStateViewsContainer.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
-            playStateViewsContainer.bottomAnchor.constraint(lessThanOrEqualTo: bottomContainerView.bottomAnchor, constant: -12),
-            playStateViewsContainer.centerYAnchor.constraint(equalTo: descriptionLabel.centerYAnchor)
-        ])
-        
-        playStateViewsContainer.addSubview(priceOrScoreLabel)
-        
-        priceOrScoreLabel.font = .score2
-        priceOrScoreLabel.textColor = .yellow
-        priceOrScoreLabel.textAlignment = .center
-        priceOrScoreLabel.adjustsFontSizeToFitWidth = true
-        priceOrScoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
-        priceOrScoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            priceOrScoreLabel.centerYAnchor.constraint(equalTo: playStateViewsContainer.centerYAnchor),
-            priceOrScoreLabel.leadingAnchor.constraint(equalTo: playStateViewsContainer.leadingAnchor),
-            priceOrScoreLabel.trailingAnchor.constraint(equalTo: playStateViewsContainer.trailingAnchor)
-        ])
-        
-        playStateViewsContainer.addSubview(priceLoadingIndicator)
-        
-        priceLoadingIndicator.color = .lightGray
-        
-        priceLoadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            priceLoadingIndicator.centerXAnchor.constraint(equalTo: playStateViewsContainer.centerXAnchor),
-            priceLoadingIndicator.centerYAnchor.constraint(equalTo: playStateViewsContainer.centerYAnchor)
+            descriptionLabel.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomContainerView.bottomAnchor, constant: -16)
         ])
     }
     

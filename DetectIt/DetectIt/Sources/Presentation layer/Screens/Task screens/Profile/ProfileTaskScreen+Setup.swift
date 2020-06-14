@@ -12,7 +12,7 @@ import DetectItCore
 extension ProfileTaskScreen {
     
     func setupContentView() {
-        contentContainer.view.backgroundColor = .black
+        contentContainer.view.backgroundColor = .systemBackground
         
         contentContainer.scrollView.clipsToBounds = false
         
@@ -25,9 +25,14 @@ extension ProfileTaskScreen {
         contentContainer.appendSpacing(Constants.spacingBeforeScore)
         contentContainer.appendChild(screenView.answerButton)
         contentContainer.appendChild(screenView.scoreLabel)
-        contentContainer.appendSpacing(40)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(screenView.crimeDescriptionTitleView)
+        contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.crimeDescriptionLabel)
-        contentContainer.appendSpacing(40)
+        contentContainer.appendChild(screenView.hiddenCrimeDescriptionView)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(screenView.answersTitleView)
+        contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.answersView)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         

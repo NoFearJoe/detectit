@@ -304,6 +304,21 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         )
     }
     
+    func didTapGetStatusButton() {
+        let screen = FullVersionPurchaseScreen()
+        screen.presentationController?.delegate = self
+        
+        present(self, animated: true, completion: nil)
+    }
+    
+}
+
+extension ProfileTaskScreen: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        updateContentState(animated: false)
+    }
+    
 }
 
 extension ProfileTaskScreen: UIGestureRecognizerDelegate {

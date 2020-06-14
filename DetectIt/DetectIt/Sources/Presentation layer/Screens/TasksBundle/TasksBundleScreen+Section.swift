@@ -59,13 +59,16 @@ extension TasksBundleScreen {
     private func map(task: Task & TaskScoring, scores: [TasksBundle.TaskScore]?, bundleID: String) -> TasksBundleScreenTaskCell.Model {
         let score = scores?.first(where: { $0.taskID == task.id })?.score ?? TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundleID)
         let scoreString = makeScoreString(score: score, max: task.maxScore)
+        let isLocked = !FullVersionManager.hasBought && task.taskDifficulty.rawValue >= 3
         
         return TasksBundleScreenTaskCell.Model(
+            icon: isLocked ? UIImage.asset(named: "lock")?.withTintColor(.yellow, renderingMode: .alwaysOriginal) : nil,
             title: task.title,
             score: scoreString,
             difficultyImage: task.taskDifficulty.icon,
-            isEnabled: purchaseState.isAvailable,
-            isDone: score != nil || !purchaseState.isAvailable
+            isEnabled: true,
+            isDone: score != nil,
+            isLocked: isLocked
         )
     }
     

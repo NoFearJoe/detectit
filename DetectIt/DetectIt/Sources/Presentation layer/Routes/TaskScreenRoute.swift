@@ -11,9 +11,16 @@ import DetectItUI
 import DetectItCore
 
 struct TaskScreenRoute {
-    let root: UIViewController
+    unowned let root: UIViewController
     
     func show(task: Task, bundle: TasksBundle.Info?) {
+        guard FullVersionManager.hasBought || task.taskDifficulty.rawValue < 3 else {
+            let screen = FullVersionPurchaseScreen()
+            screen.presentationController?.delegate = root as? UIAdaptivePresentationControllerDelegate
+            
+            return root.present(screen, animated: true, completion: nil)
+        }
+        
         let _screen: Screen? = {
             switch task {
             case let task as DecoderTask:

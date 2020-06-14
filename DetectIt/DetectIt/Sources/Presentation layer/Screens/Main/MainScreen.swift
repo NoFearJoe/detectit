@@ -25,7 +25,6 @@ final class MainScreen: Screen {
     // MARK: - State
     
     private var feed: Feed?
-    private var taskBundlesPurchaseStates: [String: TasksBundlePurchaseState] = [:]
     
     private let actions = Action.allCases.filter {
         switch $0 {
@@ -58,11 +57,7 @@ final class MainScreen: Screen {
         
         isStatusBarBlurred = true
         
-        PaidTaskBundlesManager.obtainProductsInfo()
-                
-        PaidTaskBundlesManager.subscribeToProductsInfoLoading(self) {
-            self.reloadPurchaseStates()
-        }
+        FullVersionManager.obtainProductInfo()
     }
     
     override func refresh() {
@@ -72,8 +67,6 @@ final class MainScreen: Screen {
         
         loadFeed()
         loadTotalScore()
-        
-        reloadPurchaseStates()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -111,7 +104,8 @@ extension MainScreen: MainScreenViewDelegate {
                 description: item.subtitle ?? "",
                 difficultyIcon: TaskDifficulty(rawValue: item.difficulty).icon,
                 score: item.score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
-                scoreColor: UIColor.score(value: item.score, max: item.maxScore)
+                scoreColor: UIColor.score(value: item.score, max: item.maxScore),
+                isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
             )
         case .bundle:
             return TasksBundleCell.Model(
@@ -119,23 +113,6 @@ extension MainScreen: MainScreenViewDelegate {
                 title: item.title,
                 description: item.subtitle ?? ""
             )
-        }
-    }
-    
-    func tasksBundleShallowModel(at index: Int) -> TasksBundleCell.ShallowModel? {
-        guard let bundle = feed?.items[index] else { return nil }
-        guard let state = taskBundlesPurchaseStates[bundle.id] else { return nil }
-        
-        switch state {
-        case .free, .bought:
-            let score = ScoreStringBuilder.makeScoreString(score: bundle.score, max: bundle.maxScore)
-            return TasksBundleCell.ShallowModel(playState: .playable(score: score))
-        case .paidLoading:
-            return TasksBundleCell.ShallowModel(playState: .loading)
-        case let .paid(price):
-            return TasksBundleCell.ShallowModel(playState: .paid(price: price))
-        case .paidLocked:
-            return nil // TODO: Handle
         }
     }
     
@@ -155,24 +132,6 @@ extension MainScreen: MainScreenViewDelegate {
         }
     }
     
-    func didTapBuyTasksBundleButton(at index: Int) {
-        guard let bundle = feed?.items[index] else { return }
-        
-        showLoadingHUD(title: nil)
-        
-        PaidTaskBundlesManager.purchase(bundleID: bundle.id) { [weak self] error in
-            guard let self = self else { return }
-            
-            if let error = error {
-                self.showErrorHUD(title: error.localizedDescription)
-                self.hideHUD(after: 2)
-            } else {
-                self.showSuccessHUD()
-                self.hideHUD(after: 1)
-            }
-        }
-    }
-    
     func numberOfActions() -> Int {
         actions.count
     }
@@ -188,7 +147,7 @@ extension MainScreen: MainScreenViewDelegate {
         case .restorePurchases:
             showLoadingHUD(title: "purchases_restoring_hud_title".localized)
             
-            PaidTaskBundlesManager.restorePurchases { [unowned self] success in
+            FullVersionManager.restorePurchases { [unowned self] success in
                 success ? self.showSuccessHUD() : self.showErrorHUD(title: "error_hud_title".localized)
                 self.hideHUD(after: 1)
             }
@@ -220,8 +179,6 @@ private extension MainScreen {
                 
                 self.feed = feed
                 self.screenView?.reloadData()
-                
-                self.reloadPurchaseStates()
             case .failure:
                 guard self.feed == nil else { return }
                 
@@ -235,11 +192,6 @@ private extension MainScreen {
                 )
             }
         }
-    }
-    
-    func reloadPurchaseStates() {
-        self.taskBundlesPurchaseStates = MainScreenDataLoader.getPurchaseStates(bundleIDs: PaidTaskBundlesManager.BundleID.allCases.map { $0.rawValue })
-        self.screenView?.shallowReloadData()
     }
     
     func loadTotalScore() {
@@ -277,10 +229,18 @@ private extension MainScreen {
         let viewController = MFMailComposeViewController()
         viewController.setPreferredSendingEmailAddress("mesterra.co@gmail.com")
         viewController.setToRecipients(["mesterra.co@gmail.com"])
-        viewController.setSubject("Проблема в Detect")
+        viewController.setSubject("Проблема в Detect") // TODO
         viewController.mailComposeDelegate = self
         
         present(viewController, animated: true, completion: nil)
+    }
+    
+}
+
+extension MainScreen: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        screenView?.reloadData()
     }
     
 }

@@ -19,7 +19,7 @@ final class DebugMenuScreen: Screen {
     override func loadView() {
         super.loadView()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         
         contentController.place(into: self)
         

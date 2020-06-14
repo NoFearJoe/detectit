@@ -95,7 +95,7 @@ final class AuthScreen: Screen {
     }
     
     private func setupViews() {
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         
         view.addSubview(containerView)
         

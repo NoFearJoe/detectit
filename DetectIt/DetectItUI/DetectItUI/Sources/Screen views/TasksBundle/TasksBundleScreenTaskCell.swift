@@ -41,19 +41,22 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         let difficultyImage: UIImage?
         let isEnabled: Bool
         let isDone: Bool
+        let isLocked: Bool
         
         public init(icon: UIImage? = nil,
                     title: String,
                     score: (String, UIColor)?,
                     difficultyImage: UIImage?,
                     isEnabled: Bool,
-                    isDone: Bool) {
+                    isDone: Bool,
+                    isLocked: Bool) {
             self.icon = icon
             self.title = title
             self.score = score
             self.difficultyImage = difficultyImage
             self.isEnabled = isEnabled
             self.isDone = isDone
+            self.isLocked = isLocked
         }
     }
     
@@ -65,13 +68,13 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         
         scoreLabel.text = model.score?.value
         scoreLabel.textColor = model.score?.color
-        scoreLabel.isHidden = model.score == nil
+        scoreLabel.isHidden = model.score == nil || model.isLocked
         
         difficultyView.image = model.difficultyImage
         difficultyView.isHidden = model.difficultyImage == nil
         
-        iconView.alpha = model.isDone ? 0.5 : 1
-        titleLabel.alpha = model.isDone ? 0.5 : 1
+        difficultyView.alpha = model.isDone || model.isLocked ? 0.5 : 1
+        titleLabel.alpha = model.isDone || model.isLocked ? 0.5 : 1
         
         isUserInteractionEnabled = model.isEnabled
     }
@@ -126,10 +129,10 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         contentContainer.addArrangedSubview(iconView)
         
         iconView.clipsToBounds = true
-        iconView.contentMode = .scaleAspectFit
+        iconView.contentMode = .center
         
         NSLayoutConstraint.activate([
-            iconView.widthAnchor.constraint(equalToConstant: 48),
+            iconView.widthAnchor.constraint(equalToConstant: 20),
             iconView.heightAnchor.constraint(equalTo: iconView.widthAnchor)
         ])
         

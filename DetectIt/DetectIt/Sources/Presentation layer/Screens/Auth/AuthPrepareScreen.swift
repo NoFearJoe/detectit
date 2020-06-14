@@ -40,7 +40,7 @@ final class AuthPrepareScreen: Screen {
     }
     
     private func setupViews() {
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         
         view.addSubview(containerView)
         

@@ -47,7 +47,7 @@ public final class ScreenLoadingView: UIView {
     
     private func setup() {
         alpha = 0
-        backgroundColor = .black
+        backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
     }
     
