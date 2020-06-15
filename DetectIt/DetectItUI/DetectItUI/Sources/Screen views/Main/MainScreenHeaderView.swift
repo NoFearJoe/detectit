@@ -28,9 +28,9 @@ public final class MainScreenHeaderView: UICollectionReusableView {
     
     public struct Model {
         public let alias: String
-        public let rank: String
+        public let rank: String?
         
-        public init(alias: String, rank: String) {
+        public init(alias: String, rank: String?) {
             self.alias = alias
             self.rank = rank
         }
@@ -39,6 +39,7 @@ public final class MainScreenHeaderView: UICollectionReusableView {
     public func configure(model: Model) {
         aliasLabel.text = model.alias
         rankLabel.text = model.rank
+        rankLabel.isHidden = model.rank == nil
     }
     
     public func size(model: Model, width: CGFloat) -> CGSize {

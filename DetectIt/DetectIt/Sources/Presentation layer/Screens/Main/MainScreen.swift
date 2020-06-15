@@ -84,7 +84,7 @@ extension MainScreen: MainScreenViewDelegate {
     func header() -> MainScreenHeaderView.Model {
         .init(
             alias: User.shared.alias ?? "",
-            rank: User.shared.rank.title
+            rank: FullVersionManager.hasBought ? "professional_detective".localized : nil
         )
     }
     
@@ -241,6 +241,7 @@ extension MainScreen: UIAdaptivePresentationControllerDelegate {
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         screenView?.reloadData()
+        screenView?.reloadHeader()
     }
     
 }
