@@ -109,6 +109,11 @@ public struct FullVersionManager {
         receiptStorage.set(true, forKey: inAppPurchaseReceiptKey)
     }
     
+    // For unit testing
+    static func reset() {
+        receiptStorage.removeObject(forKey: inAppPurchaseReceiptKey)
+    }
+    
 }
 
 private extension FullVersionManager {

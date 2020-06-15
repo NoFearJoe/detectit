@@ -63,7 +63,7 @@
 // Main screen
 
 "main_screen_report_problem_action_title" = "Сообщить о проблеме";
-"main_screen_restore_purchases_action_title" = "Восстановить покупки";
+"main_screen_restore_purchases_action_title" = "Восстановить статус профессионального детектива";
 "main_screen_debug_menu_action_title" = "Дебаг меню";
 "main_screen_tasks_bundle_cell_play_button_title" = "Играть";
 "main_screen_tasks_bundle_cell_kind_title" = "Набор";
@@ -101,6 +101,7 @@
 "pro_status_disclaimer" = "* Новые задания появляются с периодичностью в 1-2 недели и будут доступны без необходимости дополнительной оплаты";
 "pro_status_buy" = "Купить за ";
 "pro_status_blocked_task_message" = "Нужен статус профессионального детектива";
+"pro_status_restore" = "Восстановить";
 
 // Other
 

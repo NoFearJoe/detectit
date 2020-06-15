@@ -25,8 +25,9 @@ public final class MainScreenActionCell: UICollectionViewCell {
         titleLabel.font = .text3
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
         
-        titleLabel.pin(to: contentView)
+        titleLabel.pin(to: contentView, insets: UIEdgeInsets(top: 12, left: 12, bottom: -12, right: -12))
         
         let recognizer = TouchGestureRecognizer(action: { [unowned self] recognizer in
             switch recognizer.state {
@@ -46,6 +47,19 @@ public final class MainScreenActionCell: UICollectionViewCell {
     
     func configure(title: String) {
         titleLabel.text = title
+    }
+    
+    func calculateSize(model: String, width: CGFloat) -> CGSize {
+        configure(title: model)
+        
+        setNeedsLayout()
+        layoutIfNeeded()
+        
+        return contentView.systemLayoutSizeFitting(
+            CGSize(width: width, height: 0),
+            withHorizontalFittingPriority: .required,
+            verticalFittingPriority: .defaultLow
+        )
     }
     
 }

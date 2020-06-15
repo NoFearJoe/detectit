@@ -101,6 +101,7 @@
 "pro_status_disclaimer" = "* New tasks appear with a frequency of 1-2 weeks and will be available without the need for additional payment";
 "pro_status_buy" = "Buy for ";
 "pro_status_blocked_task_message" = "Need a professional detective status";
+"pro_status_restore" = "Restore";
 
 // Other
 

@@ -30,7 +30,7 @@
 		965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */; };
 		965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */; };
 		96AAAFED243A3FF900F61443 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */; };
-		96AAAFEF243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */; };
+		96AAAFEF243A4F2000F61443 /* FullVersionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */; };
 		96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF2243B174600F61443 /* TaskDifficulty.swift */; };
 		96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF5243B19CB00F61443 /* TaskScoring.swift */; };
 		96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF9243B5ACE00F61443 /* TaskKind.swift */; };
@@ -76,7 +76,7 @@
 		965AC7F02439A240003A3DC7 /* TaskScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScore.swift; sourceTree = "<group>"; };
 		965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoreTests.swift; sourceTree = "<group>"; };
 		965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnswerTests.swift; sourceTree = "<group>"; };
-		96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidTaskBundlesManagerTests.swift; sourceTree = "<group>"; };
+		96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManagerTests.swift; sourceTree = "<group>"; };
 		96AAAFF2243B174600F61443 /* TaskDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDifficulty.swift; sourceTree = "<group>"; };
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
 		96AAAFF9243B5ACE00F61443 /* TaskKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskKind.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				961B963F242600BB003EC992 /* Info.plist */,
 				965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */,
 				965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */,
-				96AAAFEE243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift */,
+				96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */,
 				96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */,
 				961DE26F24793EAB00008AAB /* DetectItCore.xctestplan */,
 			);
@@ -395,7 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */,
-				96AAAFEF243A4F2000F61443 /* PaidTaskBundlesManagerTests.swift in Sources */,
+				96AAAFEF243A4F2000F61443 /* FullVersionManagerTests.swift in Sources */,
 				96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */,
 				965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */,
 			);

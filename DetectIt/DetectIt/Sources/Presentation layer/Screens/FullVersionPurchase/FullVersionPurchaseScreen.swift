@@ -18,6 +18,7 @@ final class FullVersionPurchaseScreen: Screen {
     private let featuresListView = UIStackView()
     private let disclaimerLabel = UILabel()
     private let buyButton = SolidButton.primaryButton()
+    private let restoreButton = SolidButton.makePushButton()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -43,13 +44,32 @@ final class FullVersionPurchaseScreen: Screen {
             
             if let error = error {
                 self.showErrorHUD(title: error.localizedDescription)
+                self.hideHUD(after: 2)
+            } else {
+                self.showSuccessHUD()
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.close()
                 }
+            }
+        }
+    }
+    
+    @objc private func didTapRestoreButton() {
+        showLoadingHUD(title: nil)
+        isModalInPresentation = true
+        
+        FullVersionManager.restorePurchases { success in
+            self.isModalInPresentation = false
+            
+            if !success {
+                self.showErrorHUD(title: "unknown_error_message".localized)
+                self.hideHUD(after: 2)
             } else {
                 self.showSuccessHUD()
-                self.hideHUD(after: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.close()
+                }
             }
         }
     }
@@ -109,6 +129,11 @@ final class FullVersionPurchaseScreen: Screen {
         updateBuyButton()
         
         buyButton.addTarget(self, action: #selector(didTapBuyButton), for: .touchUpInside)
+        
+        view.addSubview(restoreButton)
+        restoreButton.setTitle("pro_status_restore".localized, for: .normal)
+        
+        restoreButton.addTarget(self, action: #selector(didTapRestoreButton), for: .touchUpInside)
     }
     
     private func setupLayout() {
@@ -143,7 +168,14 @@ final class FullVersionPurchaseScreen: Screen {
             buyButton.topAnchor.constraint(equalTo: disclaimerLabel.bottomAnchor, constant: 8),
             buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
             buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
-            buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
+        ])
+        
+        restoreButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            restoreButton.topAnchor.constraint(equalTo: buyButton.bottomAnchor, constant: 8),
+            restoreButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
+            restoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
+            restoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
     }
     

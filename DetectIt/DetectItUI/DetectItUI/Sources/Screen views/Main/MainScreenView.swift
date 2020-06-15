@@ -30,6 +30,7 @@ public final class MainScreenView: UIView {
     )
     
     private let prototypeTaskCell = MainScreenTaskCell()
+    private let prototypeActionCell = MainScreenActionCell()
     
     // MARK: - External dependencies
     
@@ -276,7 +277,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                 return CGSize(width: width, height: width * 1.25)
             }
         } else {
-            return CGSize(width: width, height: 40)
+            return prototypeActionCell.calculateSize(model: delegate.action(at: indexPath.item) ?? "", width: width)
         }
     }
     
