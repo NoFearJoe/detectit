@@ -308,7 +308,7 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         let screen = FullVersionPurchaseScreen()
         screen.presentationController?.delegate = self
         
-        present(self, animated: true, completion: nil)
+        present(screen, animated: true, completion: nil)
     }
     
 }

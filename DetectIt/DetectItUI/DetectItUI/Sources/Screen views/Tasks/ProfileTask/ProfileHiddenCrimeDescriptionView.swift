@@ -36,6 +36,7 @@ public final class ProfileHiddenCrimeDescriptionView: UIView {
         messageLabel.font = .text3
         messageLabel.textColor = .white
         messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(getStatusButton)
