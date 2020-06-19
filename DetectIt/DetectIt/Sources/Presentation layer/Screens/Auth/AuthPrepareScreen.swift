@@ -28,7 +28,7 @@ final class AuthPrepareScreen: Screen {
     }
     
     @objc private func onTapPrivacyButton() {
-        guard let url = URL(string: "https://detect-api.herokuapp.com/Public/PrivacyPolicy.pdf") else { return }
+        guard let url = URL(string: "https://detect-api.herokuapp.com/PrivacyPolicy.pdf") else { return }
         
         let safari = SFSafariViewController(url: url)
         
@@ -58,7 +58,6 @@ final class AuthPrepareScreen: Screen {
         
         containerView.addArrangedSubview(titleLabel)
         containerView.addArrangedSubview(subtitleLabel)
-//        containerView.addArrangedSubview(privacyPolicyButton)
         
         containerView.setCustomSpacing(48, after: titleLabel)
         
