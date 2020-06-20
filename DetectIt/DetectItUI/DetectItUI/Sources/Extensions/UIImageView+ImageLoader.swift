@@ -11,14 +11,14 @@ import DetectItCore
 
 public extension UIImageView {
     
-    func loadImage(_ source: ImageSource, postprocessing: ((UIImage) -> UIImage)? = nil, completion: ((UIImage?, Bool) -> Void)? = nil) {
+    func loadImage(_ source: ImageSource, postprocessing: ((UIImage) -> UIImage)? = nil, completion: ((UIImage?, Bool, TimeInterval) -> Void)? = nil) {
         ImageLoader.share.load(source, postprocessing: postprocessing) { [weak self] image, cached in
             guard let self = self else { return }
             
             if cached {
                 self.image = image
                 
-                completion?(image, cached)
+                completion?(image, cached, 0)
             } else {
                 UIView.transition(
                     with: self,
@@ -27,10 +27,9 @@ public extension UIImageView {
                     animations: {
                         self.image = image
                     },
-                    completion: { _ in
-                        completion?(image, cached)
-                    }
+                    completion: nil
                 )
+                completion?(image, cached, 0.25)
             }
         }
     }

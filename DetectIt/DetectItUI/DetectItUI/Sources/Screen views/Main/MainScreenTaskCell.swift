@@ -32,7 +32,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     private var constraintBetweenLockedViewAndDescription: NSLayoutConstraint!
     private var constraintBetweenTitleAndScore: NSLayoutConstraint!
     private var constraintBetweenTitleAndDescription: NSLayoutConstraint!
-    
+        
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -84,8 +84,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     func configure(model: Model, forSizeCalculation: Bool = false) {
         if !forSizeCalculation {
             if let imagePath = model.backgroundImagePath {
-                backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image, cached in
-                    self?.bottomBlurView.setHidden(image == nil, duration: cached ? 0 : 0.25)
+                backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image, cached, animationDuration in
+                    self?.bottomBlurView.setHidden(image == nil, duration: animationDuration)
                 }
                 taskKindLabel.configureShadow(radius: 2, isVisible: true)
             } else {
