@@ -19,7 +19,8 @@ public final class ImageLoader {
     
     private init() {}
     
-    private var cache: [String: UIImage] = [:]
+    private var inMemoryCache: [String: UIImage] = [:]
+    private let persistantCache = PersistantCache()
     
     private let queue = DispatchQueue(
         label: "ImageLoaderQueue",
@@ -74,14 +75,14 @@ public final class ImageLoader {
         completion: @escaping (UIImage?, Bool) -> Void
     ) {
         queue.async {
-            if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
+            if let cachedImage = self.cacheQueue.sync(execute: { self.getCachedImage(url: url) }) {
                 return completion(cachedImage, true)
             }
             
             let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) ?? $0 }
             
             self.cacheQueue.sync {
-                self.cache[url.path] = image
+                self.saveImageToCache(image: image, url: url)
             }
             
             completion(image, false)
@@ -94,7 +95,7 @@ public final class ImageLoader {
         completion: @escaping (UIImage?, Bool) -> Void
     ) {
         self.queue.async {
-            if let cachedImage = self.cacheQueue.sync(execute: { self.cache[url.path] }) {
+            if let cachedImage = self.cacheQueue.sync(execute: { self.getCachedImage(url: url) }) {
                 return completion(cachedImage, true)
             }
             
@@ -103,13 +104,64 @@ public final class ImageLoader {
                     let image = data.flatMap { UIImage(data: $0).flatMap { postprocessing?($0) ?? $0 } }
                     
                     self.cacheQueue.sync {
-                        self.cache[url.path] = image
+                        self.saveImageToCache(image: image, url: url)
                     }
                     
                     completion(image, false)
                 }
             }.resume()
         }
+    }
+    
+    private func getCachedImage(url: URL) -> UIImage? {
+        let key = url.pathComponents.suffix(3).joined(separator: "_")
+        
+        return inMemoryCache[key] ?? persistantCache.get(key: key)
+    }
+    
+    private func saveImageToCache(image: UIImage?, url: URL) {
+        let key = url.pathComponents.suffix(3).joined(separator: "_")
+        
+        inMemoryCache[key] = image
+        persistantCache.save(image: image, key: key)
+    }
+    
+}
+
+private extension ImageLoader {
+    
+    final class PersistantCache {
+        
+        let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appendingPathComponent("Images", isDirectory: true)
+        
+        init() {
+            guard let url = url, !FileManager.default.fileExists(atPath: url.path) else {
+                return
+            }
+            
+            try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        }
+        
+        func save(image: UIImage?, key: String) {
+            guard let path = url?.appendingPathComponent(key) else { return }
+            
+            if let image = image {
+                if key.lowercased().hasSuffix("jpg") || key.lowercased().hasSuffix("jpeg") {
+                    try? image.jpegData(compressionQuality: 1)?.write(to: path)
+                } else {
+                    try? image.pngData()?.write(to: path)
+                }
+            } else {
+                try? FileManager.default.removeItem(at: path)
+            }
+        }
+        
+        func get(key: String) -> UIImage? {
+            guard let path = url?.appendingPathComponent(key) else { return nil }
+            
+            return FileManager.default.contents(atPath: path.path).flatMap { UIImage(data: $0) }
+        }
+        
     }
     
 }
