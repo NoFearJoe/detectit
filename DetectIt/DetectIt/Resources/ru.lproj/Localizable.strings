@@ -103,6 +103,14 @@
 "pro_status_blocked_task_message" = "Нужен статус профессионального детектива";
 "pro_status_restore" = "Восстановить";
 
+// Detective profile
+
+"detective_profile_rate_app_action_title" = "Оценить приложение";
+"detective_profile_invite_friend_button_title" = "Завербовать друга";
+"detective_profile_total_score_title" = "Набрано очков";
+"detective_profile_correct_answer_percent" = "Процент правильных ответов";
+"detective_profile_solved_tasks_count" = "Решено заданий";
+
 // Other
 
 "answer_button_default_title" = "Отправить ответ";
@@ -115,3 +123,5 @@
 "total_score" = "Общий счет  ";
 
 "professional_detective" = "Профессиональный детектив";
+
+"report_problem_subject" = "Проблема в Detect";

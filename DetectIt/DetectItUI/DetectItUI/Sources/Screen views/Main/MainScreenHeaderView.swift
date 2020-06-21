@@ -14,9 +14,12 @@ public final class MainScreenHeaderView: UICollectionReusableView {
     
     public static let prototype = MainScreenHeaderView()
     
+    public var onTapProfileButton: (() -> Void)?
+    
     private let containerView = UIStackView()
     private let aliasLabel = UILabel()
     private let rankLabel = UILabel()
+    private let profileButton = SolidButton()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +58,10 @@ public final class MainScreenHeaderView: UICollectionReusableView {
         )
     }
     
+    @objc private func didTapProfileButton() {
+        onTapProfileButton?()
+    }
+    
     private func setupViews() {
         addSubview(containerView)
         
@@ -62,7 +69,13 @@ public final class MainScreenHeaderView: UICollectionReusableView {
         containerView.distribution = .fill
         containerView.spacing = 0
         
-        containerView.pin(to: self)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
         
         containerView.addArrangedSubview(aliasLabel)
         containerView.addArrangedSubview(rankLabel)
@@ -74,6 +87,28 @@ public final class MainScreenHeaderView: UICollectionReusableView {
         rankLabel.font = .score2
         rankLabel.textColor = .yellow
         rankLabel.numberOfLines = 0
+        
+        profileButton.fill = .gradient(
+            startColor: .darkGray,
+            endColor: .darkGray,
+            startPosition: CGPoint(x: 0, y: 0),
+            endPosition: CGPoint(x: 1, y: 1)
+        )
+        profileButton.layer.cornerRadius = 24
+        profileButton.clipsToBounds = true
+        profileButton.tintColor = .lightGray
+        profileButton.setImage(UIImage.asset(named: "profile"), for: .normal)
+        profileButton.addTarget(self, action: #selector(didTapProfileButton), for: .touchUpInside)
+        profileButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileButton)
+        
+        NSLayoutConstraint.activate([
+            profileButton.widthAnchor.constraint(equalToConstant: 48),
+            profileButton.heightAnchor.constraint(equalToConstant: 48),
+            profileButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            profileButton.leadingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 8),
+            profileButton.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
     }
     
 }

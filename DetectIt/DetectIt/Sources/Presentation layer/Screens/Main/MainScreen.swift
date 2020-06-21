@@ -88,6 +88,13 @@ extension MainScreen: MainScreenViewDelegate {
         )
     }
     
+    func didTapProfileButton() {
+        let screen = DetectiveProfileScreen()
+        screen.modalPresentationStyle = .fullScreen
+        screen.modalTransitionStyle = .crossDissolve
+        present(screen, animated: true, completion: nil)
+    }
+    
     func numberOfFeedItems() -> Int {
         feed?.items.count ?? 0
     }
@@ -229,7 +236,7 @@ private extension MainScreen {
         let viewController = MFMailComposeViewController()
         viewController.setPreferredSendingEmailAddress("mesterra.co@gmail.com")
         viewController.setToRecipients(["mesterra.co@gmail.com"])
-        viewController.setSubject("Проблема в Detect") // TODO
+        viewController.setSubject("report_problem_subject".localized)
         viewController.mailComposeDelegate = self
         
         present(viewController, animated: true, completion: nil)

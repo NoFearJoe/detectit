@@ -36,6 +36,10 @@
 		96346F08248D6AEE00A815F2 /* AuthPrepareScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F07248D6AEE00A815F2 /* AuthPrepareScreen.swift */; };
 		96346F0B248D701300A815F2 /* AuthNavigationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F0A248D701300A815F2 /* AuthNavigationScreen.swift */; };
 		96346F10249413A400A815F2 /* FullVersionPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F0F249413A400A815F2 /* FullVersionPurchaseScreen.swift */; };
+		964E2E3B249E06C10027F738 /* DetectiveProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E3A249E06C10027F738 /* DetectiveProfileScreen.swift */; };
+		964E2E3D249E3A5F0027F738 /* DetectiveProfileStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E3C249E3A5F0027F738 /* DetectiveProfileStatsView.swift */; };
+		964E2E3F249E4DE70027F738 /* DetectiveProfileActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E3E249E4DE70027F738 /* DetectiveProfileActionsView.swift */; };
+		964E2E41249F34670027F738 /* DetectiveProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E40249F34670027F738 /* DetectiveProfileHeaderView.swift */; };
 		96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; };
 		96500E36242F0FDD005FFC7A /* DetectItUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E852435A445005FFC7A /* TasksBundleScreen.swift */; };
@@ -119,6 +123,10 @@
 		96346F07248D6AEE00A815F2 /* AuthPrepareScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPrepareScreen.swift; sourceTree = "<group>"; };
 		96346F0A248D701300A815F2 /* AuthNavigationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationScreen.swift; sourceTree = "<group>"; };
 		96346F0F249413A400A815F2 /* FullVersionPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionPurchaseScreen.swift; sourceTree = "<group>"; };
+		964E2E3A249E06C10027F738 /* DetectiveProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfileScreen.swift; sourceTree = "<group>"; };
+		964E2E3C249E3A5F0027F738 /* DetectiveProfileStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfileStatsView.swift; sourceTree = "<group>"; };
+		964E2E3E249E4DE70027F738 /* DetectiveProfileActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfileActionsView.swift; sourceTree = "<group>"; };
+		964E2E40249F34670027F738 /* DetectiveProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfileHeaderView.swift; sourceTree = "<group>"; };
 		96500E34242F0FDD005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E852435A445005FFC7A /* TasksBundleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleScreen.swift; sourceTree = "<group>"; };
 		965AC7AB24387774003A3DC7 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -321,6 +329,17 @@
 			path = FullVersionPurchase;
 			sourceTree = "<group>";
 		};
+		964E2E39249E069B0027F738 /* DetectiveProfile */ = {
+			isa = PBXGroup;
+			children = (
+				964E2E3A249E06C10027F738 /* DetectiveProfileScreen.swift */,
+				964E2E40249F34670027F738 /* DetectiveProfileHeaderView.swift */,
+				964E2E3E249E4DE70027F738 /* DetectiveProfileActionsView.swift */,
+				964E2E3C249E3A5F0027F738 /* DetectiveProfileStatsView.swift */,
+			);
+			path = DetectiveProfile;
+			sourceTree = "<group>";
+		};
 		96500E822434FD0F005FFC7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +347,7 @@
 				96346F09248D6FA300A815F2 /* Auth */,
 				96F054762444C374000742E4 /* Onboarding */,
 				965AC7CA2438B9B1003A3DC7 /* Main */,
+				964E2E39249E069B0027F738 /* DetectiveProfile */,
 				965AC7C72438B932003A3DC7 /* TasksBundle */,
 				965AC7CB2438B9B7003A3DC7 /* Task screens */,
 				96200CAD244195C700A3C720 /* PhotoViewerScreen */,
@@ -534,13 +554,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964E2E41249F34670027F738 /* DetectiveProfileHeaderView.swift in Sources */,
 				96346F10249413A400A815F2 /* FullVersionPurchaseScreen.swift in Sources */,
 				965AC7D12438BA09003A3DC7 /* DecoderTaskScreen.swift in Sources */,
 				961B95E42425EE89003EC992 /* AppDelegate.swift in Sources */,
 				96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */,
 				96200CAF244195ED00A3C720 /* PhotoViewerScreen.swift in Sources */,
+				964E2E3F249E4DE70027F738 /* DetectiveProfileActionsView.swift in Sources */,
 				96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */,
 				96054C232459CAAE0083C217 /* DecoderTaskScreen+DataLoading.swift in Sources */,
+				964E2E3B249E06C10027F738 /* DetectiveProfileScreen.swift in Sources */,
 				961DE2732479427E00008AAB /* MainScreen+Accessibility.swift in Sources */,
 				9615F95C246309D00070E2D3 /* DecoderTaskScreen+Utils.swift in Sources */,
 				9615F95E24630A930070E2D3 /* ProfileTaskScreen+KeyboardHandler.swift in Sources */,
@@ -551,6 +574,7 @@
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
 				96054C112458789A0083C217 /* TaskScreenRoute.swift in Sources */,
 				96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */,
+				964E2E3D249E3A5F0027F738 /* DetectiveProfileStatsView.swift in Sources */,
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
 				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
 				9615F96024630B0D0070E2D3 /* ProfileTaskScreen+Setup.swift in Sources */,

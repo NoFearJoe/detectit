@@ -10,6 +10,7 @@ import UIKit
 
 public protocol MainScreenViewDelegate: AnyObject {
     func header() -> MainScreenHeaderView.Model
+    func didTapProfileButton()
     
     func numberOfFeedItems() -> Int
     func feedItem(at index: Int) -> Any?
@@ -65,6 +66,7 @@ public final class MainScreenView: UIView {
         else { return }
         
         header.configure(model: delegate.header())
+        header.onTapProfileButton = delegate.didTapProfileButton
     }
     
     // MARK: - Setup

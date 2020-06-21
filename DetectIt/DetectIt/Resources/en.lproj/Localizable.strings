@@ -103,6 +103,14 @@
 "pro_status_blocked_task_message" = "Need a professional detective status";
 "pro_status_restore" = "Restore";
 
+// Detective profile
+
+"detective_profile_rate_app_action_title" = "Rate the App";
+"detective_profile_invite_friend_button_title" = "Recruit a friend";
+"detective_profile_total_score_title" = "Total score";
+"detective_profile_correct_answer_percent" = "Percentage of correct answers";
+"detective_profile_solved_tasks_count" = "Number of completed tasks";
+
 // Other
 
 "answer_button_default_title" = "Send the answer";
@@ -115,3 +123,5 @@
 "total_score" = "Total score  ";
 
 "professional_detective" = "Professional detective";
+
+"report_problem_subject" = "There is a problem in Detect";

@@ -15,6 +15,7 @@
 		96054C0C24586BF20083C217 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96054C0B24586BF20083C217 /* DetectItCore.framework */; };
 		96054C15245898CE0083C217 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C14245898CE0083C217 /* UserEntity.swift */; };
 		96346F0D248EAB0E00A815F2 /* ErrorPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F0C248EAB0E00A815F2 /* ErrorPayload.swift */; };
+		964E2E43249F39FD0027F738 /* DetectiveProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E42249F39FD0027F738 /* DetectiveProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		96054C0B24586BF20083C217 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96054C14245898CE0083C217 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		96346F0C248EAB0E00A815F2 /* ErrorPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPayload.swift; sourceTree = "<group>"; };
+		964E2E42249F39FD0027F738 /* DetectiveProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				96054C02245614360083C217 /* Feed.swift */,
 				96054C14245898CE0083C217 /* UserEntity.swift */,
 				96346F0C248EAB0E00A815F2 /* ErrorPayload.swift */,
+				964E2E42249F39FD0027F738 /* DetectiveProfile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96054BFA2455D3E30083C217 /* DetectItAPI.swift in Sources */,
+				964E2E43249F39FD0027F738 /* DetectiveProfile.swift in Sources */,
 				96054C03245614360083C217 /* Feed.swift in Sources */,
 				96054BFC2455D5650083C217 /* DetectItAPITarget.swift in Sources */,
 				96054C15245898CE0083C217 /* UserEntity.swift in Sources */,

@@ -12,6 +12,8 @@ public final class AppRateManager {
     
     public static let shared = AppRateManager()
     
+    public static let appStoreLink = URL(string: "itms-apps://itunes.apple.com/app/id1507648958")!
+    
     private init() {}
     
     private var isAppRateAlertShown: Bool {

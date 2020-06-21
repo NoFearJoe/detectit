@@ -32,6 +32,8 @@ open class SolidButton: UIButton, TouchAnimatable {
         }
     }
     
+    public var heightConstraint: NSLayoutConstraint?
+    
     // MARK: - Private functions
     
     private func updateFill() {
@@ -76,7 +78,8 @@ public extension SolidButton {
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setContentCompressionResistancePriority(.required, for: .horizontal)
-        button.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        button.heightConstraint = button.heightAnchor.constraint(equalToConstant: 28)
+        button.heightConstraint?.isActive = true
         
         return button
     }
@@ -108,7 +111,8 @@ public extension SolidButton {
         button.titleLabel?.font = .text2
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: 52).isActive = true
+        button.heightConstraint = button.heightAnchor.constraint(equalToConstant: 52)
+        button.heightConstraint?.isActive = true
         
         return button
     }
