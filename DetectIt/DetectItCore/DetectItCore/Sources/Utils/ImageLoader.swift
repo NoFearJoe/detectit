@@ -22,13 +22,7 @@ public final class ImageLoader {
     private var inMemoryCache: [String: UIImage] = [:]
     private let persistantCache = PersistantCache()
     
-    private let queue = DispatchQueue(
-        label: "ImageLoaderQueue",
-        qos: .default,
-        attributes: .concurrent
-    )
-    
-    private let cacheQueue = DispatchQueue.main
+    private let cacheQueue = DispatchQueue(label: "ImageLoaderQueue", qos: .userInitiated, attributes: .concurrent)
     
     public func load(
         _ source: ImageSource,
@@ -36,8 +30,12 @@ public final class ImageLoader {
         completion: @escaping (UIImage?, _ cached: Bool) -> Void
     ) {
         let completionOnMain: (UIImage?, Bool) -> Void = { image, cached in
-            DispatchQueue.main.async {
+            if Thread.current.isMainThread {
                 completion(image, cached)
+            } else {
+                DispatchQueue.main.async {
+                    completion(image, cached)
+                }
             }
         }
         
@@ -74,19 +72,15 @@ public final class ImageLoader {
         postprocessing: ((UIImage) -> UIImage)? = nil,
         completion: @escaping (UIImage?, Bool) -> Void
     ) {
-        queue.async {
-            if let cachedImage = self.cacheQueue.sync(execute: { self.getCachedImage(url: url) }) {
-                return completion(cachedImage, true)
-            }
-            
-            let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) ?? $0 }
-            
-            self.cacheQueue.sync {
-                self.saveImageToCache(image: image, url: url)
-            }
-            
-            completion(image, false)
+        if let cachedImage = getCachedImage(url: url) {
+            return completion(cachedImage, true)
         }
+        
+        let image = UIImage(contentsOfFile: url.path).flatMap { postprocessing?($0) ?? $0 }
+        
+        saveImageToCache(image: image, url: url)
+        
+        completion(image, false)
     }
     
     private func loadFromNetwork(
@@ -94,36 +88,41 @@ public final class ImageLoader {
         postprocessing: ((UIImage) -> UIImage)? = nil,
         completion: @escaping (UIImage?, Bool) -> Void
     ) {
-        self.queue.async {
-            if let cachedImage = self.cacheQueue.sync(execute: { self.getCachedImage(url: url) }) {
-                return completion(cachedImage, true)
-            }
-            
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                self.queue.async {
-                    let image = data.flatMap { UIImage(data: $0).flatMap { postprocessing?($0) ?? $0 } }
-                    
-                    self.cacheQueue.sync {
-                        self.saveImageToCache(image: image, url: url)
-                    }
-                    
-                    completion(image, false)
-                }
-            }.resume()
+        if let cachedImage = getCachedImage(url: url) {
+            return completion(cachedImage, true)
         }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            DispatchQueue.main.async {
+                let image = data.flatMap { UIImage(data: $0).flatMap { postprocessing?($0) ?? $0 } }
+                
+                self.saveImageToCache(image: image, url: url)
+                
+                completion(image, false)
+            }
+        }.resume()
     }
     
     private func getCachedImage(url: URL) -> UIImage? {
         let key = url.pathComponents.suffix(3).joined(separator: "_")
         
-        return inMemoryCache[key] ?? persistantCache.get(key: key)
+        if let inMemoryImage = inMemoryCache[key] {
+            return inMemoryImage
+        } else if let persistantImage = persistantCache.get(key: key) {
+            inMemoryCache[key] = persistantImage
+            return persistantImage
+        }
+        
+        return nil
     }
     
     private func saveImageToCache(image: UIImage?, url: URL) {
-        let key = url.pathComponents.suffix(3).joined(separator: "_")
+        cacheQueue.async {
+            let key = url.pathComponents.suffix(3).joined(separator: "_")
         
-        inMemoryCache[key] = image
-        persistantCache.save(image: image, key: key)
+            self.inMemoryCache[key] = image
+            self.persistantCache.save(image: image, key: key)
+        }
     }
     
 }
