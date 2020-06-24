@@ -121,7 +121,10 @@ final class DetectiveProfileScreen: Screen {
     
     private func setupViews() {
         actionsView.onTapLeaderboardButton = { [unowned self] in
-            
+            let screen = LeaderboardScreen()
+            screen.modalPresentationStyle = .fullScreen
+            screen.modalTransitionStyle = .crossDissolve
+            self.present(screen, animated: true, completion: nil)
         }
         actionsView.onTapLogoutButton = { [unowned self] in
             

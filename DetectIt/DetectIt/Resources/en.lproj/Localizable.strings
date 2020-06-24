@@ -111,6 +111,10 @@
 "detective_profile_correct_answer_percent" = "Percentage of correct answers";
 "detective_profile_solved_tasks_count" = "Number of completed tasks";
 
+// Leaderboard
+
+"leaderboard_title" = "TOP-50";
+
 // Other
 
 "answer_button_default_title" = "Send the answer";

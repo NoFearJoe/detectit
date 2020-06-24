@@ -28,6 +28,9 @@ public extension UIFont {
     /// Regular 18
     static let text2 = UIFont.regular(18)
     
+    /// Bold 18
+    static let text2Bold = UIFont.bold(18)
+    
     /// Regular 16
     static let text3 = UIFont.regular(16)
     

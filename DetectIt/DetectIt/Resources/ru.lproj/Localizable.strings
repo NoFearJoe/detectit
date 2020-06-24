@@ -111,6 +111,10 @@
 "detective_profile_correct_answer_percent" = "Процент правильных ответов";
 "detective_profile_solved_tasks_count" = "Решено заданий";
 
+// Leaderboard
+
+"leaderboard_title" = "ТОП-50";
+
 // Other
 
 "answer_button_default_title" = "Отправить ответ";

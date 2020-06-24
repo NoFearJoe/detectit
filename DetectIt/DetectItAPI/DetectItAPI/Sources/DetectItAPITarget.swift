@@ -30,6 +30,8 @@ public enum DetectItAPITarget {
     
     case detectiveProfile
     
+    case leaderboard
+    
 }
 
 extension DetectItAPITarget: TargetType {
@@ -52,6 +54,7 @@ extension DetectItAPITarget: TargetType {
         case .cipherAnswer, .setCipherAnswer: return "cipherAnswer"
         case .profileAnswers, .setProfileAnswers: return "profileAnswer"
         case .detectiveProfile: return "detectiveProfile"
+        case .leaderboard: return "leaderboard"
         }
     }
     
@@ -59,7 +62,7 @@ extension DetectItAPITarget: TargetType {
         switch self {
         case .auth, .setTaskScore, .setCipherAnswer, .setProfileAnswers:
             return .post
-        case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers, .totalScore, .detectiveProfile:
+        case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers, .totalScore, .detectiveProfile, .leaderboard:
             return .get
         }
     }
@@ -119,7 +122,7 @@ extension DetectItAPITarget: TargetType {
                 parameters: ["taskID": taskID, "taskKind": "profile", "answers": answers],
                 encoding: JSONEncoding.default
             )
-        case .detectiveProfile:
+        case .detectiveProfile, .leaderboard:
             return .requestPlain
         }
     }

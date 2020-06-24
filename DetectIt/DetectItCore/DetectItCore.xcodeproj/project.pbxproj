@@ -21,6 +21,7 @@
 		96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBA2443035700A3C720 /* PluralLocalizations.swift */; };
 		96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */; };
 		96346F1224962DFF00A815F2 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1124962DFF00A815F2 /* FullVersionManager.swift */; };
+		964E2E5624A32BA70027F738 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5524A32BA70027F738 /* Double+Round.swift */; };
 		96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E0E2429FAD8005FFC7A /* TasksBundle.swift */; };
 		96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E19242BC489005FFC7A /* ProfileTask+Case.swift */; };
 		96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */; };
@@ -68,6 +69,7 @@
 		96200CBA2443035700A3C720 /* PluralLocalizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalizations.swift; sourceTree = "<group>"; };
 		96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskAnswerComparisionTests.swift; sourceTree = "<group>"; };
 		96346F1124962DFF00A815F2 /* FullVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManager.swift; sourceTree = "<group>"; };
+		964E2E5524A32BA70027F738 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
 		96500E19242BC489005FFC7A /* ProfileTask+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Case.swift"; sourceTree = "<group>"; };
 		96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Attachment.swift"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				96054C1F2459A33B0083C217 /* String+Localization.swift */,
+				964E2E5524A32BA70027F738 /* Double+Round.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				96054C202459A33B0083C217 /* String+Localization.swift in Sources */,
 				965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */,
 				96F85C18244718B100F5CD22 /* UserRank.swift in Sources */,
+				964E2E5624A32BA70027F738 /* Double+Round.swift in Sources */,
 				96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */,
 				96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */,
 				96F0547E2445EA2E000742E4 /* User.swift in Sources */,
