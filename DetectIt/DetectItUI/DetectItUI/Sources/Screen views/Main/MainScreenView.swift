@@ -12,6 +12,9 @@ public protocol MainScreenViewDelegate: AnyObject {
     func header() -> MainScreenHeaderView.Model
     func didTapProfileButton()
     
+    func filters() -> [MainScreenFiltersView.Model]
+    func didSelectFilter(at index: Int)
+    
     func numberOfFeedItems() -> Int
     func feedItem(at index: Int) -> Any?
     func didSelectFeedItem(at index: Int)
@@ -58,15 +61,11 @@ public final class MainScreenView: UIView {
     }
     
     public func reloadHeader() {
-        guard
-            let header = contentView.supplementaryView(
-                forElementKind: UICollectionView.elementKindSectionHeader,
-                at: IndexPath(item: 0, section: 0)
-            ) as? MainScreenHeaderView
-        else { return }
-        
-        header.configure(model: delegate.header())
-        header.onTapProfileButton = delegate.didTapProfileButton
+        header?.configure(model: delegate.header())
+    }
+    
+    public func reloadFilters() {
+        header?.configureFilters(models: delegate.filters())
     }
     
     // MARK: - Setup
@@ -103,10 +102,21 @@ public final class MainScreenView: UIView {
             forCellWithReuseIdentifier: MainScreenActionCell.identifier
         )
         contentView.register(
+            MainScreenPlaceholderCell.self,
+            forCellWithReuseIdentifier: MainScreenPlaceholderCell.identifier
+        )
+        contentView.register(
             MainScreenHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: MainScreenHeaderView.identifier
         )
+    }
+    
+    private var header: MainScreenHeaderView? {
+        contentView.supplementaryView(
+            forElementKind: UICollectionView.elementKindSectionHeader,
+            at: IndexPath(item: 0, section: 0)
+        ) as? MainScreenHeaderView
     }
     
 }
@@ -161,6 +171,15 @@ extension MainScreenView: UICollectionViewDataSource {
                 cell.configure(model: profileTaskModel)
                 
                 return cell
+            } else if let placeholderModel = item as? MainScreenPlaceholderCell.Model {
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: MainScreenPlaceholderCell.identifier,
+                    for: indexPath
+                ) as! MainScreenPlaceholderCell
+                
+                cell.configure(model: placeholderModel)
+                
+                return cell
             } else {
                 return collectionView.dequeueEmptyCell(for: indexPath)
             }
@@ -190,6 +209,10 @@ extension MainScreenView: UICollectionViewDataSource {
         ) as! MainScreenHeaderView
         
         header.configure(model: delegate.header())
+        header.configureFilters(models: delegate.filters())
+        
+        header.onTapProfileButton = delegate.didTapProfileButton
+        header.onSelectFilter = delegate.didSelectFilter
         
         return header
     }
@@ -243,7 +266,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
         if section == 0 {
-            return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
         } else {
             return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
         }

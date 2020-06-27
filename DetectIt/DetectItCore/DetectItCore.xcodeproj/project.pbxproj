@@ -22,6 +22,7 @@
 		96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */; };
 		96346F1224962DFF00A815F2 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1124962DFF00A815F2 /* FullVersionManager.swift */; };
 		964E2E5624A32BA70027F738 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5524A32BA70027F738 /* Double+Round.swift */; };
+		964E2E5A24A396A80027F738 /* FeedFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5924A396A80027F738 /* FeedFilter.swift */; };
 		96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E0E2429FAD8005FFC7A /* TasksBundle.swift */; };
 		96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E19242BC489005FFC7A /* ProfileTask+Case.swift */; };
 		96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */; };
@@ -70,6 +71,7 @@
 		96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskAnswerComparisionTests.swift; sourceTree = "<group>"; };
 		96346F1124962DFF00A815F2 /* FullVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManager.swift; sourceTree = "<group>"; };
 		964E2E5524A32BA70027F738 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
+		964E2E5924A396A80027F738 /* FeedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilter.swift; sourceTree = "<group>"; };
 		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
 		96500E19242BC489005FFC7A /* ProfileTask+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Case.swift"; sourceTree = "<group>"; };
 		96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Attachment.swift"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				96500E0E2429FAD8005FFC7A /* TasksBundle.swift */,
 				965AC7F02439A240003A3DC7 /* TaskScore.swift */,
 				96AAAFF9243B5ACE00F61443 /* TaskKind.swift */,
+				964E2E5924A396A80027F738 /* FeedFilter.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				961B965F24274C79003EC992 /* QuestTask.swift in Sources */,
 				96054C05245616950083C217 /* ScoreStringBuilder.swift in Sources */,
 				96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */,
+				964E2E5A24A396A80027F738 /* FeedFilter.swift in Sources */,
 				96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */,
 				9615F95624609E340070E2D3 /* Cache.swift in Sources */,
 				96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */,

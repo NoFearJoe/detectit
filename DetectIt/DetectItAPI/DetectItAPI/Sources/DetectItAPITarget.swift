@@ -13,7 +13,7 @@ public enum DetectItAPITarget {
     
     case auth(alias: String, email: String, password: String)
     
-    case feed
+    case feed(filters: [FeedFilter])
     
     case tasksBundle(bundleID: String)
         
@@ -76,9 +76,9 @@ extension DetectItAPITarget: TargetType {
                 parameters: ["alias": alias, "email": email, "password": password],
                 encoding: JSONEncoding.default
             )
-        case .feed:
+        case let .feed(filters):
             return .requestParameters(
-                parameters: [:],
+                parameters: ["filters": filters.map { $0.rawValue }.joined(separator: ",")],
                 encoding: URLEncoding.default
             )
         case let .tasksBundle(bundleID):

@@ -67,6 +67,16 @@
 "main_screen_debug_menu_action_title" = "Дебаг меню";
 "main_screen_tasks_bundle_cell_play_button_title" = "Играть";
 "main_screen_tasks_bundle_cell_kind_title" = "Набор";
+"main_screen_empty_placeholder_message" = "Нет заданий";
+
+"feed_filter_ciphers" = "Шифры";
+"feed_filter_profiles" = "Расследования";
+"feed_filter_bundles" = "Наборы";
+"feed_filter_easy" = "Легкие";
+"feed_filter_normal" = "Средние";
+"feed_filter_hard" = "Сложные";
+"feed_filter_nightmare" = "Крайне сложные";
+"feed_filter_notSolved" = "Непройденные";
 
 // Decoder task
 

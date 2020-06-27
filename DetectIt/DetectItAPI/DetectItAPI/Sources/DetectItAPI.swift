@@ -18,18 +18,25 @@ public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {
     }
     
     public init() {
+        #if DEBUG
         super.init(plugins: [NetworkLoggerPlugin()])
+        #else
+        super.init()
+        #endif
     }
     
+    @discardableResult
     public func obtain<T: Codable>(
         _ type: T.Type,
         target: DetectItAPITarget,
         cacheKey: Cache.Key,
         force: Bool = true,
         completion: @escaping (Result<T, MoyaError>) -> Void
-    ) {
+    ) -> CancellableObtain {
+        let cancellable = CancellableObtain()
+        
         cache.load(type, key: cacheKey) { [weak self] cachedObject in
-            guard let self = self else { return }
+            guard let self = self, !cancellable.isCancelled else { return }
             
             if let cachedObject = cachedObject {
                 completion(.success(cachedObject))
@@ -37,7 +44,7 @@ public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {
                 if !force { return }
             }
             
-            self.request(target) { [weak self] result in
+            let cancellableRequest = self.request(target) { [weak self] result in
                 guard let self = self else { return }
                 
                 switch result {
@@ -53,7 +60,21 @@ public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {
                     completion(.failure(error))
                 }
             }
+            
+            cancellable.cancellableRequest = cancellableRequest
         }
+        
+        return cancellable
     }
     
+}
+
+public final class CancellableObtain {
+    var isCancelled: Bool = false
+    var cancellableRequest: Moya.Cancellable?
+    
+    public func cancel() {
+        isCancelled = true
+        cancellableRequest?.cancel()
+    }
 }

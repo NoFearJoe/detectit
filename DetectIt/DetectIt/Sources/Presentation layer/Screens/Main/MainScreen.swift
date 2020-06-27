@@ -14,9 +14,7 @@ import MessageUI
 
 final class MainScreen: Screen {
     
-    var screenView: MainScreenView? {
-        view as? MainScreenView
-    }
+    lazy var screenView = MainScreenView(delegate: self)
     
     private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: false)
     
@@ -24,7 +22,11 @@ final class MainScreen: Screen {
     
     // MARK: - State
     
+    private var selectedFilterIndexes = Set<Int>()
+    
     private var feed: Feed?
+    
+    private var currentFeedRequest: CancellableObtain?
     
     private let actions = Action.allCases.filter {
         switch $0 {
@@ -44,7 +46,7 @@ final class MainScreen: Screen {
     // MARK: - Overrides
     
     override func loadView() {
-        view = MainScreenView(delegate: self)
+        view = screenView
         
         view.addSubview(screenLoadingView)
         screenLoadingView.pin(to: view)
@@ -63,7 +65,8 @@ final class MainScreen: Screen {
     override func refresh() {
         super.refresh()
         
-        screenView?.reloadHeader()
+        screenView.reloadHeader()
+        screenView.reloadFilters()
         
         loadFeed()
         loadTotalScore()
@@ -73,7 +76,7 @@ final class MainScreen: Screen {
         super.viewWillTransition(to: size, with: coordinator)
         
         coordinator.animate(alongsideTransition: { _ in
-            self.screenView?.reloadData()
+            self.screenView.reloadData()
         })
     }
     
@@ -95,11 +98,40 @@ extension MainScreen: MainScreenViewDelegate {
         present(screen, animated: true, completion: nil)
     }
     
+    func filters() -> [MainScreenFiltersView.Model] {
+        FeedFilter.allCases.enumerated().map { index, filter in
+            MainScreenFiltersView.Model(
+                title: filter.localizedTitle,
+                isSelected: selectedFilterIndexes.contains(index)
+            )
+        }
+    }
+    
+    func didSelectFilter(at index: Int) {
+        if selectedFilterIndexes.contains(index) {
+            selectedFilterIndexes.remove(index)
+        } else {
+            selectedFilterIndexes.insert(index)
+        }
+        
+        screenView.reloadFilters()
+        
+        loadFeed()
+    }
+    
     func numberOfFeedItems() -> Int {
-        feed?.items.count ?? 0
+        if feed?.items.isEmpty == true {
+            return 1
+        } else {
+            return feed?.items.count ?? 0
+        }
     }
     
     func feedItem(at index: Int) -> Any? {
+        if feed?.items.isEmpty == true {
+            return MainScreenPlaceholderCell.Model(message: "main_screen_empty_placeholder_message".localized)
+        }
+        
         guard let item = feed?.items[index] else { return nil }
         
         switch item.kind {
@@ -173,10 +205,12 @@ private extension MainScreen {
             screenPlaceholderView.setVisible(false, animated: false)
         }
         
-        api.obtain(
+        currentFeedRequest?.cancel()
+        
+        currentFeedRequest = api.obtain(
             Feed.self,
-            target: .feed,
-            cacheKey: Cache.Key("feed")
+            target: .feed(filters: selectedFilters),
+            cacheKey: Cache.Key(["feed"] + selectedFilters.map { $0.rawValue })
         ) { [weak self] result in
             guard let self = self else { return }
                                                 
@@ -185,7 +219,7 @@ private extension MainScreen {
                 self.screenLoadingView.setVisible(false, animated: true)
                 
                 self.feed = feed
-                self.screenView?.reloadData()
+                self.screenView.reloadData()
             case .failure:
                 guard self.feed == nil else { return }
                 
@@ -211,7 +245,7 @@ private extension MainScreen {
                 
                 User.shared.totalScore = score
                 
-                self?.screenView?.reloadHeader()
+                self?.screenView.reloadHeader()
             case .failure:
                 return
             }
@@ -242,13 +276,18 @@ private extension MainScreen {
         present(viewController, animated: true, completion: nil)
     }
     
+    private var selectedFilters: [FeedFilter] {
+        selectedFilterIndexes.map { FeedFilter.allCases[$0] }
+    }
+    
 }
 
 extension MainScreen: UIAdaptivePresentationControllerDelegate {
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        screenView?.reloadData()
-        screenView?.reloadHeader()
+        screenView.reloadData()
+        screenView.reloadHeader()
+        screenView.reloadFilters()
     }
     
 }

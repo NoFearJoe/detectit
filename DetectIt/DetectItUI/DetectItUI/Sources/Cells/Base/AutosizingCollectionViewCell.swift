@@ -10,17 +10,24 @@ import UIKit
 
 public class AutosizingCollectionViewCell: UICollectionViewCell {
     
+    public var axis: UICollectionView.ScrollDirection {
+        .vertical
+    }
+    
     public override func preferredLayoutAttributesFitting(
         _ layoutAttributes: UICollectionViewLayoutAttributes
     ) -> UICollectionViewLayoutAttributes {
         let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
         
-        let targetSize = CGSize(width: layoutAttributes.bounds.width, height: 0)
+        let targetSize = CGSize(
+            width: axis == .vertical ? layoutAttributes.bounds.width : 0,
+            height: axis == .vertical ? 0 : layoutAttributes.bounds.height
+        )
         
         let size = contentView.systemLayoutSizeFitting(
             targetSize,
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .defaultLow
+            withHorizontalFittingPriority: axis == .vertical ? .required : .defaultLow,
+            verticalFittingPriority: axis == .vertical ? .defaultLow : .required
         )
         
         attributes.frame = CGRect(origin: attributes.frame.origin, size: size)

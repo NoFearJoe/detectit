@@ -67,6 +67,16 @@
 "main_screen_debug_menu_action_title" = "Debug menu";
 "main_screen_tasks_bundle_cell_play_button_title" = "Play";
 "main_screen_tasks_bundle_cell_kind_title" = "Bundle";
+"main_screen_empty_placeholder_message" = "There are no tasks";
+
+"feed_filter_ciphers" = "Ciphers";
+"feed_filter_profiles" = "Profiles";
+"feed_filter_bundles" = "Bundles";
+"feed_filter_easy" = "Easy";
+"feed_filter_normal" = "Normal";
+"feed_filter_hard" = "Hard";
+"feed_filter_nightmare" = "Nightmare";
+"feed_filter_notSolved" = "Not solved";
 
 // Decoder task
 
