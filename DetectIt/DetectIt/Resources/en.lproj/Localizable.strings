@@ -115,6 +115,7 @@
 
 // Detective profile
 
+"main_screen_leaderboard_action_title" = "Leaderboard";
 "detective_profile_rate_app_action_title" = "Rate the App";
 "detective_profile_invite_friend_button_title" = "Recruit a friend";
 "detective_profile_total_score_title" = "Total score";

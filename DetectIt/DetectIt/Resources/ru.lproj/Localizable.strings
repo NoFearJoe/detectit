@@ -63,7 +63,7 @@
 // Main screen
 
 "main_screen_report_problem_action_title" = "Сообщить о проблеме";
-"main_screen_restore_purchases_action_title" = "Восстановить статус профессионального детектива";
+"main_screen_restore_purchases_action_title" = "Восстановить покупки";
 "main_screen_debug_menu_action_title" = "Дебаг меню";
 "main_screen_tasks_bundle_cell_play_button_title" = "Играть";
 "main_screen_tasks_bundle_cell_kind_title" = "Набор";
@@ -115,6 +115,7 @@
 
 // Detective profile
 
+"main_screen_leaderboard_action_title" = "Таблица лидеров";
 "detective_profile_rate_app_action_title" = "Оценить приложение";
 "detective_profile_invite_friend_button_title" = "Завербовать друга";
 "detective_profile_total_score_title" = "Набрано очков";

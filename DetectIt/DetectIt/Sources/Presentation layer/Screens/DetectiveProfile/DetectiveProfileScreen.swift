@@ -21,13 +21,12 @@ final class DetectiveProfileScreen: Screen {
     private let contentView = StackViewController()
     
     private let headerView = DetectiveProfileHeaderView()
-    
-    private let actionsView = DetectiveProfileActionsView()
-    
+        
     private let totalScoreView = DetectiveProfileStatsView()
     private let correctAnswersPercentView = DetectiveProfileStatsView()
     private let solvedTasksCountView = DetectiveProfileStatsView()
     
+    private let leaderboardButton = SolidButton.primaryButton()
     private let rateAppButton = SolidButton.primaryButton()
     private let inviteFriendButton = SolidButton.primaryButton()
     private let reportProblemButton = SolidButton.primaryButton()
@@ -62,14 +61,14 @@ final class DetectiveProfileScreen: Screen {
         contentView.setTopSpacing(48)
         contentView.appendChild(headerView)
         contentView.appendSpacing(24)
-        contentView.appendChild(actionsView)
-        contentView.appendSpacing(24)
         contentView.appendChild(totalScoreView)
         contentView.appendSpacing(12)
         contentView.appendChild(correctAnswersPercentView)
         contentView.appendSpacing(12)
         contentView.appendChild(solvedTasksCountView)
         contentView.appendSpacing(24)
+        contentView.appendChild(leaderboardButton)
+        contentView.appendSpacing(8)
         contentView.appendChild(rateAppButton)
         contentView.appendSpacing(8)
         contentView.appendChild(inviteFriendButton)
@@ -93,6 +92,13 @@ final class DetectiveProfileScreen: Screen {
     
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func didTapLeaderboardButton() {
+        let screen = LeaderboardScreen()
+        screen.modalPresentationStyle = .fullScreen
+        screen.modalTransitionStyle = .crossDissolve
+        self.present(screen, animated: true, completion: nil)
     }
     
     @objc private func didTapRateAppButton() {
@@ -120,40 +126,26 @@ final class DetectiveProfileScreen: Screen {
     }
     
     private func setupViews() {
-        actionsView.onTapLeaderboardButton = { [unowned self] in
-            let screen = LeaderboardScreen()
-            screen.modalPresentationStyle = .fullScreen
-            screen.modalTransitionStyle = .crossDissolve
-            self.present(screen, animated: true, completion: nil)
-        }
-        actionsView.onTapLogoutButton = { [unowned self] in
-            
-        }
-        
         totalScoreView.titleLabel.text = "detective_profile_total_score_title".localized
         correctAnswersPercentView.titleLabel.text = "detective_profile_correct_answer_percent".localized
         solvedTasksCountView.titleLabel.text = "detective_profile_solved_tasks_count".localized
         
+        leaderboardButton.setTitle("main_screen_leaderboard_action_title".localized, for: .normal)
         rateAppButton.setTitle("detective_profile_rate_app_action_title".localized, for: .normal)
         inviteFriendButton.setTitle("detective_profile_invite_friend_button_title".localized, for: .normal)
         reportProblemButton.setTitle("main_screen_report_problem_action_title".localized, for: .normal)
         restorePurchasesButton.setTitle("main_screen_restore_purchases_action_title".localized, for: .normal)
+
+        [leaderboardButton, rateAppButton, inviteFriendButton, reportProblemButton, restorePurchasesButton].forEach {
+            $0.fill = .color(.darkBackground)
+            $0.setTitleColor(.lightGray, for: .normal)
+            $0.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+            $0.heightConstraint?.isActive = false
+        }
         
-        rateAppButton.fill = .color(.darkGray)
-        inviteFriendButton.fill = .color(.darkGray)
-        reportProblemButton.fill = .color(.darkGray)
-        restorePurchasesButton.fill = .color(.darkGray)
+        leaderboardButton.setTitleColor(.yellow, for: .normal)
         
-        rateAppButton.setTitleColor(.systemBackground, for: .normal)
-        inviteFriendButton.setTitleColor(.systemBackground, for: .normal)
-        reportProblemButton.setTitleColor(.systemBackground, for: .normal)
-        restorePurchasesButton.setTitleColor(.systemBackground, for: .normal)
-        
-        rateAppButton.heightConstraint?.constant = 44
-        inviteFriendButton.heightConstraint?.constant = 44
-        reportProblemButton.heightConstraint?.constant = 44
-        restorePurchasesButton.heightConstraint?.constant = 44
-        
+        leaderboardButton.addTarget(self, action: #selector(didTapLeaderboardButton), for: .touchUpInside)
         rateAppButton.addTarget(self, action: #selector(didTapRateAppButton), for: .touchUpInside)
         inviteFriendButton.addTarget(self, action: #selector(didTapInviteFriendButton), for: .touchUpInside)
         reportProblemButton.addTarget(self, action: #selector(didTapReportProblemButton), for: .touchUpInside)
@@ -161,9 +153,6 @@ final class DetectiveProfileScreen: Screen {
         
         rateAppButton.isHidden = !UIApplication.shared.canOpenURL(AppRateManager.appStoreLink)
         reportProblemButton.isHidden = !MFMailComposeViewController.canSendMail()
-        
-        restorePurchasesButton.titleLabel?.numberOfLines = 0
-        restorePurchasesButton.titleLabel?.textAlignment = .center
         
         view.addSubview(closeButton)
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
