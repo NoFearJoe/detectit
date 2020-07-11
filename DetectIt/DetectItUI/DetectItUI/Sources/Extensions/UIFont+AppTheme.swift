@@ -37,6 +37,9 @@ public extension UIFont {
     /// Regular 14
     static let text4 = UIFont.regular(14)
     
+    /// Bold 14
+    static let text4Bold = UIFont.bold(14)
+    
     /// Regular 12
     static let text5 = UIFont.regular(12)
     

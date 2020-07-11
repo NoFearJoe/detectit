@@ -87,10 +87,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
                 backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image, cached, animationDuration in
                     self?.bottomBlurView.setHidden(image == nil, duration: animationDuration)
                 }
-                taskKindLabel.configureShadow(radius: 2, isVisible: true)
             } else {
                 backgroundImageView.image = nil
-                taskKindLabel.configureShadow(radius: 2, isVisible: false)
             }
             
             bottomBlurView.isHidden = backgroundImageView.image == nil
@@ -117,7 +115,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         constraintBetweenTitleAndDescription.constant = model.description.isEmpty || model.isSolved ? 0 : 12
         
         if !forSizeCalculation {
-            [titleLabel, taskKindLabel, descriptionLabel, difficultyView].forEach {
+            [titleLabel, descriptionLabel].forEach {
                 $0.alpha = model.isSolved || model.isLocked ? 0.5 : 1
             }
         }
@@ -212,9 +210,9 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         bottomContainerView.addSubview(bottomBlurView)
         
-        bottomBlurView.blurRadius = 20
+        bottomBlurView.blurRadius = 4
         bottomBlurView.colorTint = .darkBackground
-        bottomBlurView.colorTintAlpha = 0.8
+        bottomBlurView.colorTintAlpha = 0.5
         
         bottomBlurView.calculateFrame(container: bottomContainerView) { $0 }
         
