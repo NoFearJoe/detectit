@@ -2,7 +2,7 @@ import Foundation
 @testable import DetectItCore
 
 let task = ProfileTask(
-    id: "",
+    id: "p",
     title: "",
     preposition:
     """
@@ -20,7 +20,7 @@ let task = ProfileTask(
             """
             
             """,
-            evidencePicture: .init(title: "", pictureName: "c1.jpg")
+            evidencePicture: nil
         ),
         .init(
             id: "c2",
@@ -75,14 +75,38 @@ let task = ProfileTask(
             
             """,
             evidencePicture: nil
+        ),
+        .init(
+            id: "c8",
+            title: "",
+            text:
+            """
+            
+            """,
+            evidencePicture: nil
         )
     ],
     attachments: nil,
     questions: [
         .init(
-            id: "",
+            id: "q1",
             title: "",
             score: 2,
+            number: nil,
+            variant: .init(
+                variants: [
+                    .init(id: "v1", text: ""),
+                    .init(id: "v2", text: "")
+                ],
+                correctVariantID: "v1"
+            ),
+            exactAnswer: nil,
+            boolAnswer: nil
+        ),
+        .init(
+            id: "q2",
+            title: "",
+            score: 1,
             number: nil,
             variant: .init(
                 variants: [
@@ -90,22 +114,58 @@ let task = ProfileTask(
                     .init(id: "v2", text: ""),
                     .init(id: "v3", text: "")
                 ],
-                correctVariantID: ""
+                correctVariantID: "v1"
             ),
             exactAnswer: nil,
             boolAnswer: nil
         ),
         .init(
-            id: "",
+            id: "q3",
             title: "",
             score: 2,
             number: nil,
             variant: nil,
             exactAnswer: nil,
             boolAnswer: .init(answer: true)
+        ),
+        .init(
+            id: "q4",
+            title: "",
+            score: 2,
+            number: nil,
+            variant: nil,
+            exactAnswer: nil,
+            boolAnswer: .init(answer: true)
+        ),
+        .init(
+            id: "q5",
+            title: "",
+            score: 1,
+            number: nil,
+            variant: nil,
+            exactAnswer: nil,
+            boolAnswer: .init(answer: false)
+        ),
+        .init(
+            id: "q6",
+            title: "",
+            score: 1,
+            number: nil,
+            variant: nil,
+            exactAnswer: nil,
+            boolAnswer: .init(answer: true)
+        ),
+        .init(
+            id: "q7",
+            title: "",
+            score: 1,
+            number: nil,
+            variant: nil,
+            exactAnswer: nil,
+            boolAnswer: .init(answer: true)
         )
     ],
-    difficulty: 1
+    difficulty: 2
 )
 
 let encodedTask = try! JSONEncoder().encode(task)

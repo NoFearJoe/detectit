@@ -266,7 +266,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
         if section == 0 {
-            return UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         } else {
             return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
         }
