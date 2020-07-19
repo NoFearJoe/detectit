@@ -108,6 +108,7 @@ final class DetectiveProfileScreen: Screen {
     @objc private func didTapInviteFriendButton() {
         let sharingController = UIActivityViewController(activityItems: [AppRateManager.appStoreLink], applicationActivities: nil)
         sharingController.excludedActivityTypes = [.addToReadingList, .assignToContact, .markupAsPDF, .saveToCameraRoll]
+        sharingController.popoverPresentationController?.sourceView = inviteFriendButton
         
         present(sharingController, animated: true, completion: nil)
     }
