@@ -135,7 +135,7 @@ extension MainScreen: MainScreenViewDelegate {
         guard let item = feed?.items[index] else { return nil }
         
         switch item.kind {
-        case .profile, .cipher:
+        case .profile, .cipher, .quest:
             return MainScreenTaskCell.Model(
                 backgroundImagePath: item.picture,
                 kind: TaskKind(rawValue: item.kind.rawValue)?.title ?? "",
@@ -165,6 +165,9 @@ extension MainScreen: MainScreenViewDelegate {
         case .profile:
             guard let profile = item.profile else { return }
             TaskScreenRoute(root: self).show(task: profile, bundle: nil)
+        case .quest:
+            guard let quest = item.quest else { return }
+            TaskScreenRoute(root: self).show(task: quest, bundle: nil)
         case .bundle:
             guard let tasksBundle = item.bundle else { return }
             showTasksBundle(bundle: tasksBundle, imageName: item.picture)

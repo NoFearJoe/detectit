@@ -95,6 +95,10 @@
 "profile_task_screen_hidden_description_title" = "Для просмотра истории расследования необходимо получить статус профессионального детектива";
 "profile_task_screen_get_status_button_title" = "Получить статус";
 
+// Quest task
+
+"quest_task_screen_ending_title" = "Концовка";
+
 // Tasks bundle
 
 "tasks_bundle_screen_ciphers_section_title" = "Шифры";

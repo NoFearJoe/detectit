@@ -95,6 +95,10 @@
 "profile_task_screen_hidden_description_title" = "To view the history of the profile you need to get the professional detective status";
 "profile_task_screen_get_status_button_title" = "Get status";
 
+// Quest task
+
+"quest_task_screen_ending_title" = "The ending";
+
 // Tasks bundle
 
 "tasks_bundle_screen_ciphers_section_title" = "Ciphers";

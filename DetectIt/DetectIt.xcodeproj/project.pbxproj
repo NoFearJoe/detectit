@@ -14,6 +14,10 @@
 		96054C13245897DF0083C217 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C12245897DF0083C217 /* AuthScreen.swift */; };
 		96054C1A2459A20F0083C217 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96054C1C2459A20F0083C217 /* Localizable.strings */; };
 		96054C232459CAAE0083C217 /* DecoderTaskScreen+DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C222459CAAE0083C217 /* DecoderTaskScreen+DataLoading.swift */; };
+		9607EBB924C467C4006CD310 /* QuestTaskScreen+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9607EBB824C467C4006CD310 /* QuestTaskScreen+Setup.swift */; };
+		9607EBBB24C4680A006CD310 /* QuestTaskScreen+DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9607EBBA24C4680A006CD310 /* QuestTaskScreen+DataLoading.swift */; };
+		9607EBBD24C46C76006CD310 /* QuestTaskScreen+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9607EBBC24C46C76006CD310 /* QuestTaskScreen+State.swift */; };
+		9607EBBF24C478EA006CD310 /* QuestTaskScreen+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9607EBBE24C478EA006CD310 /* QuestTaskScreen+Utils.swift */; };
 		9615F958246304050070E2D3 /* DecoderTaskScreen+KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615F957246304050070E2D3 /* DecoderTaskScreen+KeyboardHandler.swift */; };
 		9615F95A2463045A0070E2D3 /* DecoderTaskScreen+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615F9592463045A0070E2D3 /* DecoderTaskScreen+Setup.swift */; };
 		9615F95C246309D00070E2D3 /* DecoderTaskScreen+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615F95B246309D00070E2D3 /* DecoderTaskScreen+Utils.swift */; };
@@ -97,6 +101,10 @@
 		96054C1B2459A20F0083C217 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		96054C1D2459A22D0083C217 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		96054C222459CAAE0083C217 /* DecoderTaskScreen+DataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecoderTaskScreen+DataLoading.swift"; sourceTree = "<group>"; };
+		9607EBB824C467C4006CD310 /* QuestTaskScreen+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestTaskScreen+Setup.swift"; sourceTree = "<group>"; };
+		9607EBBA24C4680A006CD310 /* QuestTaskScreen+DataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestTaskScreen+DataLoading.swift"; sourceTree = "<group>"; };
+		9607EBBC24C46C76006CD310 /* QuestTaskScreen+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestTaskScreen+State.swift"; sourceTree = "<group>"; };
+		9607EBBE24C478EA006CD310 /* QuestTaskScreen+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestTaskScreen+Utils.swift"; sourceTree = "<group>"; };
 		9615F957246304050070E2D3 /* DecoderTaskScreen+KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecoderTaskScreen+KeyboardHandler.swift"; sourceTree = "<group>"; };
 		9615F9592463045A0070E2D3 /* DecoderTaskScreen+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecoderTaskScreen+Setup.swift"; sourceTree = "<group>"; };
 		9615F95B246309D00070E2D3 /* DecoderTaskScreen+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecoderTaskScreen+Utils.swift"; sourceTree = "<group>"; };
@@ -197,6 +205,18 @@
 				9615F95B246309D00070E2D3 /* DecoderTaskScreen+Utils.swift */,
 			);
 			path = Cipher;
+			sourceTree = "<group>";
+		};
+		9607EBB524C466EF006CD310 /* Quest */ = {
+			isa = PBXGroup;
+			children = (
+				965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */,
+				9607EBBC24C46C76006CD310 /* QuestTaskScreen+State.swift */,
+				9607EBB824C467C4006CD310 /* QuestTaskScreen+Setup.swift */,
+				9607EBBA24C4680A006CD310 /* QuestTaskScreen+DataLoading.swift */,
+				9607EBBE24C478EA006CD310 /* QuestTaskScreen+Utils.swift */,
+			);
+			path = Quest;
 			sourceTree = "<group>";
 		};
 		961B95D72425EE89003EC992 = {
@@ -391,7 +411,7 @@
 			children = (
 				96054C212459CA980083C217 /* Cipher */,
 				96AAB00A243F3BB100F61443 /* Profile */,
-				965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */,
+				9607EBB524C466EF006CD310 /* Quest */,
 			);
 			path = "Task screens";
 			sourceTree = "<group>";
@@ -565,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9607EBBB24C4680A006CD310 /* QuestTaskScreen+DataLoading.swift in Sources */,
 				964E2E41249F34670027F738 /* DetectiveProfileHeaderView.swift in Sources */,
 				964E2E5424A1250C0027F738 /* LeaderboardCell.swift in Sources */,
 				96346F10249413A400A815F2 /* FullVersionPurchaseScreen.swift in Sources */,
@@ -576,7 +597,9 @@
 				96054C232459CAAE0083C217 /* DecoderTaskScreen+DataLoading.swift in Sources */,
 				964E2E3B249E06C10027F738 /* DetectiveProfileScreen.swift in Sources */,
 				961DE2732479427E00008AAB /* MainScreen+Accessibility.swift in Sources */,
+				9607EBBF24C478EA006CD310 /* QuestTaskScreen+Utils.swift in Sources */,
 				964E2E5024A11DB70027F738 /* LeaderboardScreen.swift in Sources */,
+				9607EBBD24C46C76006CD310 /* QuestTaskScreen+State.swift in Sources */,
 				9615F95C246309D00070E2D3 /* DecoderTaskScreen+Utils.swift in Sources */,
 				9615F95E24630A930070E2D3 /* ProfileTaskScreen+KeyboardHandler.swift in Sources */,
 				961DE279247D380E00008AAB /* CommandLineArguments.swift in Sources */,
@@ -585,6 +608,7 @@
 				961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */,
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
 				96054C112458789A0083C217 /* TaskScreenRoute.swift in Sources */,
+				9607EBB924C467C4006CD310 /* QuestTaskScreen+Setup.swift in Sources */,
 				96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */,
 				964E2E3D249E3A5F0027F738 /* DetectiveProfileStatsView.swift in Sources */,
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,

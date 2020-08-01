@@ -141,7 +141,7 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         let `case` = task.cases[index]
         
         return ProfileCaseCell.Model(
-            case: PaperSheetView.Model(
+            case: ProfileCaseCell.Model.CaseModel(
                 title: `case`.title,
                 text: `case`.text
             ),

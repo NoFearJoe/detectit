@@ -26,6 +26,9 @@ public enum DetectItAPITarget {
     case profileAnswers(taskID: String)
     case setProfileAnswers(taskID: String, answers: [[String: Any]])
     
+    case questAnswer(taskID: String)
+    case setQuestAnswer(taskID: String, answer: [String: Any])
+    
     case totalScore
     
     case detectiveProfile
@@ -53,6 +56,7 @@ extension DetectItAPITarget: TargetType {
         case .totalScore: return "totalScore"
         case .cipherAnswer, .setCipherAnswer: return "cipherAnswer"
         case .profileAnswers, .setProfileAnswers: return "profileAnswer"
+        case .questAnswer, .setQuestAnswer: return "questAnswer"
         case .detectiveProfile: return "detectiveProfile"
         case .leaderboard: return "leaderboard"
         }
@@ -60,9 +64,9 @@ extension DetectItAPITarget: TargetType {
     
     public var method: Moya.Method {
         switch self {
-        case .auth, .setTaskScore, .setCipherAnswer, .setProfileAnswers:
+        case .auth, .setTaskScore, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
             return .post
-        case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers, .totalScore, .detectiveProfile, .leaderboard:
+        case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard:
             return .get
         }
     }
@@ -120,6 +124,16 @@ extension DetectItAPITarget: TargetType {
         case let .setProfileAnswers(taskID, answers):
             return .requestParameters(
                 parameters: ["taskID": taskID, "taskKind": "profile", "answers": answers],
+                encoding: JSONEncoding.default
+            )
+        case let .questAnswer(taskID):
+            return .requestParameters(
+                parameters: ["taskID": taskID],
+                encoding: URLEncoding.default
+            )
+        case let .setQuestAnswer(taskID, answer):
+            return .requestParameters(
+                parameters: ["taskID": taskID, "taskKind": "quest", "answer": answer],
                 encoding: JSONEncoding.default
             )
         case .detectiveProfile, .leaderboard:

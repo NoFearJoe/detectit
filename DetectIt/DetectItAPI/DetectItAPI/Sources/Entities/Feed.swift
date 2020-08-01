@@ -27,6 +27,7 @@ public extension Feed {
         public let cipher: DecoderTask?
         public let profile: ProfileTask?
         public let bundle: TasksBundle.Info?
+        public let quest: QuestTask?
     }
     
 }
@@ -37,6 +38,7 @@ public extension Feed.Item {
         case bundle
         case cipher
         case profile
+        case quest
     }
     
 }

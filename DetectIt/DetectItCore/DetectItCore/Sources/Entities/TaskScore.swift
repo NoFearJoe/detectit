@@ -150,12 +150,23 @@ public struct TaskAnswer {
     // MARK: Quest
     
     public struct QuestTaskAnswer: Codable {
-        let chapterIDs: [String]
-        let endingID: String
         
-        public init(chapterIDs: [String], endingID: String) {
-            self.chapterIDs = chapterIDs
-            self.endingID = endingID
+        public struct Route: Codable {
+            public let fromChapter: String
+            public let toChapter: String
+            
+            public init(fromChapter: String, toChapter: String) {
+                self.fromChapter = fromChapter
+                self.toChapter = toChapter
+            }
+        }
+        
+        public var routes: [Route]
+        public var ending: Route?
+        
+        public init(routes: [Route], ending: Route?) {
+            self.routes = routes
+            self.ending = ending
         }
     }
     

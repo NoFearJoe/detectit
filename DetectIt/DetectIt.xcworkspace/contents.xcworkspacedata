@@ -22,6 +22,9 @@
       <FileRef
          location = "group:ProfileTaskCreation.playground">
       </FileRef>
+      <FileRef
+         location = "group:../QuestTaskCreation.playground">
+      </FileRef>
    </Group>
    <Group
       location = "group:Documentation"

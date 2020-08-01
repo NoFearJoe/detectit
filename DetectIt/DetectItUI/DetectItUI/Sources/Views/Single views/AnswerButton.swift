@@ -12,6 +12,8 @@ public final class AnswerButton: UIControl {
     
     public var onFill: (() -> Void)?
     
+    public var heightConstraint: NSLayoutConstraint!
+    
     public let titleLabel = UILabel()
     private let fillView = UIView()
     
@@ -20,8 +22,7 @@ public final class AnswerButton: UIControl {
     private lazy var fillAnimator = UIViewPropertyAnimator(duration: 0.75, curve: .easeOut) { [weak self] in
         guard let self = self else { return }
         
-        self.fillViewTrailingConstraint.constant = self.bounds.width
-        self.layoutIfNeeded()
+        self.fillView.bounds.size.width = self.bounds.width
     }
     
     private var fillAnimatorIsRunningObservation: NSKeyValueObservation!
@@ -37,34 +38,31 @@ public final class AnswerButton: UIControl {
         backgroundColor = .darkGray
         translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: 52)
-        ])
+        heightConstraint = heightAnchor.constraint(equalToConstant: 52)
+        heightConstraint.isActive = true
         
         addSubview(fillView)
         
         fillView.layer.cornerRadius = 12
         fillView.backgroundColor = .yellow
-        
-        fillView.translatesAutoresizingMaskIntoConstraints = false
-        
-        fillViewTrailingConstraint = fillView.trailingAnchor.constraint(equalTo: leadingAnchor)
-        NSLayoutConstraint.activate([
-            fillView.topAnchor.constraint(equalTo: topAnchor),
-            fillView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            fillView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            fillViewTrailingConstraint
-        ])
+        fillView.layer.anchorPoint.x = 0
+                
+        fillView.calculateFrame(container: self, onChangeContainerBounds: {
+            var bounds = $0
+            bounds.size.width = self.bounds.width * self.fillAnimator.fractionComplete
+            return bounds
+        })
         
         addSubview(titleLabel)
         
         titleLabel.font = .text2
         titleLabel.textColor = .black
+        titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.isUserInteractionEnabled = false
         titleLabel.text = "answer_button_default_title".localized
         
-        titleLabel.pin(to: self)
+        titleLabel.pin(to: self, insets: UIEdgeInsets(top: 8, left: 16, bottom: -8, right: -16))
     }
     
     public override init(frame: CGRect) {
@@ -97,15 +95,22 @@ public final class AnswerButton: UIControl {
     }
     
     public func reset() {
-        hasBeenFilled = false
-        isUserInteractionEnabled = true
-        cancelFillAnimator()
+        setFilled(false)
+    }
+    
+    public func setFilled(_ isFilled: Bool) {
+        hasBeenFilled = isFilled
+        isUserInteractionEnabled = !isFilled
+        if isFilled {
+            fillAnimator.fractionComplete = 1
+        }
     }
     
     // MARK: - Overrides
     
     public override var isEnabled: Bool {
         didSet {
+            fillView.backgroundColor = isEnabled ? .yellow : UIColor.yellow.withAlphaComponent(0.5)
             backgroundColor = isEnabled ? .gray : .darkGray
         }
     }
