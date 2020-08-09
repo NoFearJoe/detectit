@@ -47,7 +47,7 @@ extension ProfileTaskScreen {
         allPictures.forEach { picture in
             dispatchGroup.enter()
             
-            ImageLoader.share.load(
+            ImageLoader.shared.load(
                 .staticAPI(picture),
                 postprocessing: { $0.applyingOldPhotoFilter() }
             ) { image, _ in

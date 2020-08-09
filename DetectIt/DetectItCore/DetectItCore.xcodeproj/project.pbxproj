@@ -31,6 +31,7 @@
 		965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F02439A240003A3DC7 /* TaskScore.swift */; };
 		965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */; };
 		965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */; };
+		96AAADF124DFF21B00388404 /* AudioLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAADF024DFF21B00388404 /* AudioLoader.swift */; };
 		96AAAFED243A3FF900F61443 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */; };
 		96AAAFEF243A4F2000F61443 /* FullVersionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */; };
 		96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF2243B174600F61443 /* TaskDifficulty.swift */; };
@@ -80,6 +81,7 @@
 		965AC7F02439A240003A3DC7 /* TaskScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScore.swift; sourceTree = "<group>"; };
 		965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoreTests.swift; sourceTree = "<group>"; };
 		965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnswerTests.swift; sourceTree = "<group>"; };
+		96AAADF024DFF21B00388404 /* AudioLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLoader.swift; sourceTree = "<group>"; };
 		96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManagerTests.swift; sourceTree = "<group>"; };
 		96AAAFF2243B174600F61443 /* TaskDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDifficulty.swift; sourceTree = "<group>"; };
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		96500E14242BB194005FFC7A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				96AAADF024DFF21B00388404 /* AudioLoader.swift */,
 				965AC7E02438CAA1003A3DC7 /* ImageLoader.swift */,
 				96200CBA2443035700A3C720 /* PluralLocalizations.swift */,
 				96054326244F10D20083C217 /* NSObjectWrapper.swift */,
@@ -377,6 +380,7 @@
 				96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */,
 				9615F95624609E340070E2D3 /* Cache.swift in Sources */,
 				96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */,
+				96AAADF124DFF21B00388404 /* AudioLoader.swift in Sources */,
 				96054C25245AF0D40083C217 /* Keychain.swift in Sources */,
 				961DE26E2476B60300008AAB /* AppRateManager.swift in Sources */,
 				96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */,

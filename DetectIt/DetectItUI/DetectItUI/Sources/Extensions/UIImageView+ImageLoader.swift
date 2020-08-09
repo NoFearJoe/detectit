@@ -12,7 +12,7 @@ import DetectItCore
 public extension UIImageView {
     
     func loadImage(_ source: ImageSource, postprocessing: ((UIImage) -> UIImage)? = nil, completion: ((UIImage?, Bool, TimeInterval) -> Void)? = nil) {
-        ImageLoader.share.load(source, postprocessing: postprocessing) { [weak self] image, cached in
+        ImageLoader.shared.load(source, postprocessing: postprocessing) { [weak self] image, cached in
             guard let self = self else { return }
             
             if cached {

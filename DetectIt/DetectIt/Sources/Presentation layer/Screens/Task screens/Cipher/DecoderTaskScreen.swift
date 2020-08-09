@@ -35,6 +35,7 @@ final class DecoderTaskScreen: Screen {
     let bundle: TasksBundle.Info?
     
     var encodedImage: UIImage?
+    var encodedAudio: Data?
     
     var score: Int?
     var answer: String?

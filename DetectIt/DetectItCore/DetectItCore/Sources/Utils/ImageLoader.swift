@@ -15,7 +15,7 @@ public enum ImageSource {
 
 public final class ImageLoader {
     
-    public static let share = ImageLoader()
+    public static let shared = ImageLoader()
     
     private init() {}
     

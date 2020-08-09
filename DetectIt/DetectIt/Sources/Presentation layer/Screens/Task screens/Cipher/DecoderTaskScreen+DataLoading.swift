@@ -39,13 +39,41 @@ extension DecoderTaskScreen {
         
         var isDataLoaded = true
         
-        dispatchGroup.enter()
-        ImageLoader.share.load(
-            .staticAPI(task.encodedPictureName)
-        ) { [weak self] image, _ in
-            self?.encodedImage = image
-            isDataLoaded = image != nil ? isDataLoaded : false
-            dispatchGroup.leave()
+        switch task.decodedResource {
+        case .nothing:
+            break
+        case let .picture(path):
+            dispatchGroup.enter()
+            ImageLoader.shared.load(
+                .staticAPI(path)
+            ) { [weak self] image, _ in
+                self?.encodedImage = image
+                isDataLoaded = image != nil ? isDataLoaded : false
+                dispatchGroup.leave()
+            }
+        case let .audio(path):
+            dispatchGroup.enter()
+            AudioLoader.shared.load(path: path) { [weak self] audio, _ in
+                self?.encodedAudio = audio
+                isDataLoaded = audio != nil ? isDataLoaded : false
+                dispatchGroup.leave()
+            }
+        case let .pictureAndAudio(picturePath, audioPath):
+            dispatchGroup.enter()
+            ImageLoader.shared.load(
+                .staticAPI(picturePath)
+            ) { [weak self] image, _ in
+                self?.encodedImage = image
+                isDataLoaded = image != nil ? isDataLoaded : false
+                dispatchGroup.leave()
+            }
+            
+            dispatchGroup.enter()
+            AudioLoader.shared.load(path: audioPath) { [weak self] audio, _ in
+                self?.encodedAudio = audio
+                isDataLoaded = audio != nil ? isDataLoaded : false
+                dispatchGroup.leave()
+            }
         }
         
         dispatchGroup.enter()

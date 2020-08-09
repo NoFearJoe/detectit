@@ -26,7 +26,10 @@ public struct DecoderTask: Codable {
     let score: Int
     
     /// Название закодированного изображения.
-    public let encodedPictureName: String
+    let encodedPictureName: String?
+    
+    /// Название аудиофайла
+    let encodedAudioName: String?
     
     /// Ответ.
     public let answer: Answer
@@ -46,6 +49,29 @@ public extension DecoderTask {
         /// Ответы в зачет.
         public let possibleAnswers: [String]?
         
+    }
+    
+}
+
+public extension DecoderTask {
+
+    enum DecodedResource {
+        case nothing
+        case picture(path: String)
+        case audio(path: String)
+        case pictureAndAudio(picturePath: String, audioPath: String)
+    }
+    
+    var decodedResource: DecodedResource {
+        if let picture = encodedPictureName, let audio = encodedAudioName, !picture.isEmpty, !audio.isEmpty {
+            return .pictureAndAudio(picturePath: picture, audioPath: audio)
+        } else if let picture = encodedPictureName, !picture.isEmpty {
+            return .picture(path: picture)
+        } else if let audio = encodedAudioName, !audio.isEmpty {
+            return .audio(path: audio)
+        } else {
+            return .nothing
+        }
     }
     
 }
