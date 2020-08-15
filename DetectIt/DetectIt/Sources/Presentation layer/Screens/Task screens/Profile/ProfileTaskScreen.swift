@@ -37,6 +37,7 @@ final class ProfileTaskScreen: Screen {
     var isDataLoaded = false
     
     var images: [String: UIImage] = [:]
+    var audios: [String: Data] = [:]
     
     var answers = Answers() {
         didSet {
@@ -179,7 +180,9 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
             
             return ProfilePhotoAttachmentCell.Model(title: attachment.title, photo: picture)
         case .audio:
-            return nil
+            guard let audioName = attachment.audioFileName, let audio = audios[audioName] else { return nil }
+            
+            return ProfileAudioAttachmentCell.Model(title: attachment.title, audio: audio)
         }
     }
     

@@ -73,6 +73,7 @@
 		965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */; };
 		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
 		967B54CA24E00912009EEF3E /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967B54C924E00912009EEF3E /* AudioPlayerController.swift */; };
+		967B54CE24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967B54CD24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift */; };
 		9691FA4124A729660088B19E /* MainScreenPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691FA4024A729660088B19E /* MainScreenPlaceholderCell.swift */; };
 		96AAADF324DFFDBB00388404 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAADF224DFFDBB00388404 /* AudioPlayerView.swift */; };
 		96AAAFF1243B093600F61443 /* ScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */; };
@@ -157,6 +158,7 @@
 		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
 		967B54C924E00912009EEF3E /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
+		967B54CD24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAudioAttachmentCell.swift; sourceTree = "<group>"; };
 		9691FA4024A729660088B19E /* MainScreenPlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPlaceholderCell.swift; sourceTree = "<group>"; };
 		96AAADF224DFFDBB00388404 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLoadingView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				96500E712430C55E005FFC7A /* ProfileCaseCell.swift */,
+				967B54CD24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift */,
 				96500E7A24326EDF005FFC7A /* ProfilePhotoAttachmentCell.swift */,
 				96500E8024330180005FFC7A /* ProfilePrepositionCell.swift */,
 				96AAB00F243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift */,
@@ -638,6 +641,7 @@
 				96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */,
 				96162679243F73E20097A4EE /* ProfileTaskBoolAnswerQuestionCell.swift in Sources */,
 				96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */,
+				967B54CE24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift in Sources */,
 				96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				9615F952245EC8400070E2D3 /* UIView+Animations.swift in Sources */,

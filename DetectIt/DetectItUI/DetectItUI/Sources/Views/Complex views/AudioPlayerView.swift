@@ -40,8 +40,6 @@ public final class AudioPlayerView: UIView {
     required init?(coder: NSCoder) { fatalError() }
     
     private func setupViews() {
-        layoutMargins = .zero
-        
         addSubview(playButton)
         addSubview(pauseButton)
         
@@ -59,8 +57,8 @@ public final class AudioPlayerView: UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
-                $0.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-                $0.topAnchor.constraint(greaterThanOrEqualTo: layoutMarginsGuide.topAnchor),
+                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
+                $0.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
                 $0.centerYAnchor.constraint(equalTo: centerYAnchor),
                 $0.heightAnchor.constraint(equalToConstant: 52),
                 $0.widthAnchor.constraint(equalTo: $0.heightAnchor)
@@ -75,7 +73,7 @@ public final class AudioPlayerView: UIView {
         NSLayoutConstraint.activate([
             progressBar.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 12),
             progressBar.centerYAnchor.constraint(equalTo: centerYAnchor),
-            progressBar.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
+            progressBar.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     

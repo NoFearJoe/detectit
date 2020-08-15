@@ -72,6 +72,7 @@ public final class ProfileView: UIView {
         listView.register(ProfileCaseCell.self, forCellWithReuseIdentifier: ProfileCaseCell.identifier)
         listView.register(ProfilePrepositionCell.self, forCellWithReuseIdentifier: ProfilePrepositionCell.identifier)
         listView.register(ProfilePhotoAttachmentCell.self, forCellWithReuseIdentifier: ProfilePhotoAttachmentCell.identifier)
+        listView.register(ProfileAudioAttachmentCell.self, forCellWithReuseIdentifier: ProfileAudioAttachmentCell.identifier)
         
         listView.register(
             ListSectionHeaderView.self,
@@ -134,6 +135,15 @@ extension ProfileView: UICollectionViewDataSource {
                 cell.onTapPhoto = { [unowned self] in
                     self.delegate.didSelectAttachment(at: indexPath.item)
                 }
+                
+                return cell
+            } else if let audioAttachment = model as? ProfileAudioAttachmentCell.Model {
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: ProfileAudioAttachmentCell.identifier,
+                    for: indexPath
+                ) as! ProfileAudioAttachmentCell
+                
+                cell.configure(model: audioAttachment)
                 
                 return cell
             } else {

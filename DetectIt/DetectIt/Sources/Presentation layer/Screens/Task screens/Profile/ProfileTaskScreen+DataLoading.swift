@@ -57,6 +57,22 @@ extension ProfileTaskScreen {
             }
         }
         
+        let allAudios = task.attachments?.compactMap { $0.audioFileName } ?? []
+        
+        var audios: [String: Data] = [:]
+        
+        allAudios.forEach { audio in
+            dispatchGroup.enter()
+            
+            AudioLoader.shared.load(path: audio) { data, _ in
+                guard let data = data else { return dispatchGroup.leave()  }
+                
+                audios[audio] = data
+                
+                dispatchGroup.leave()
+            }
+        }
+        
         dispatchGroup.enter()
         loadScoreAndAnswer { success in
             isDataLoaded = success ? isDataLoaded : false
@@ -66,6 +82,7 @@ extension ProfileTaskScreen {
         
         dispatchGroup.notify(queue: .main) {
             self.images = images
+            self.audios = audios
             
             completion(isDataLoaded)
         }
