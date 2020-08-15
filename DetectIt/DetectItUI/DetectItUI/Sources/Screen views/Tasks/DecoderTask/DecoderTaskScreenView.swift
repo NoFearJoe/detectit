@@ -20,6 +20,8 @@ public final class DecoderTaskScreenView {
     private let encodedPictureSizingContainer = UIView()
     public let encodedPictureView = AutosizingImageView()
     
+    public let audioPlayerController = AudioPlayerController()
+    
     public let questionAndAnswerView = QuestionAndAnswerView()
     
     public let answerButton = AnswerButton()
@@ -62,6 +64,12 @@ public final class DecoderTaskScreenView {
         )
         
         encodedPictureView.pin(to: encodedPictureSizingContainer)
+        
+        // Audio player
+        
+        audioPlayerController.view.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        // Question and answer
         
         questionAndAnswerView.onChangeAnswer = { [unowned self] answer in
             self.answerButton.isEnabled = !answer.isEmpty

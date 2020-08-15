@@ -16,7 +16,7 @@ extension DecoderTaskScreen {
         screenPlaceholderView.setVisible(false, animated: false)
         
         loadData { [weak self] success in
-            guard success, let encodedImage = self?.encodedImage else {
+            guard success, self?.checkIfContentLoaded() == true else {
                 self?.screenPlaceholderView.setVisible(true, animated: false)
                 self?.screenLoadingView.setVisible(false, animated: true)
                 self?.screenPlaceholderView.configure(
@@ -29,7 +29,7 @@ extension DecoderTaskScreen {
             }
             
             self?.screenLoadingView.setVisible(false, animated: true)
-            self?.displayContent(encodedPicture: encodedImage)
+            self?.displayContent()
             self?.updateContentState(animated: false)
         }
     }

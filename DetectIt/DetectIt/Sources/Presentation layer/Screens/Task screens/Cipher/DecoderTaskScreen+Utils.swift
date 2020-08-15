@@ -26,10 +26,15 @@ extension DecoderTaskScreen {
         }
     }
         
-    func displayContent(encodedPicture: UIImage) {
+    func displayContent() {
         screenView.titleLabel.text = task.title
         screenView.prepositionLabel.attributedText = task.preposition.readableAttributedText()
-        screenView.encodedPictureView.image = encodedPicture
+        screenView.encodedPictureView.image = encodedImage
+        contentContainer.setChildHidden(screenView.encodedPictureView, hidden: encodedImage == nil, animated: false, animationDuration: 0)
+        if let audio = encodedAudio {
+            screenView.audioPlayerController.configure(audio: audio)
+        }
+        contentContainer.setChildHidden(screenView.audioPlayerController, hidden: encodedAudio == nil, animated: false, animationDuration: 0)
         screenView.questionAndAnswerView.configure(
             model: QuestionAndAnswerView.Model(
                 question: "decoder_task_screen_answer_title".localized,
@@ -78,6 +83,10 @@ extension DecoderTaskScreen {
                 self.view.isUserInteractionEnabled = true
             }
         }
+    }
+    
+    func checkIfContentLoaded() -> Bool {
+        encodedImage != nil || encodedAudio != nil
     }
     
 }

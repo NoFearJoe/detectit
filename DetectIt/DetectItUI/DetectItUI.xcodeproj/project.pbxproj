@@ -72,7 +72,9 @@
 		965AC7E82438E611003A3DC7 /* QuestionAndAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */; };
 		965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */; };
 		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
+		967B54CA24E00912009EEF3E /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967B54C924E00912009EEF3E /* AudioPlayerController.swift */; };
 		9691FA4124A729660088B19E /* MainScreenPlaceholderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691FA4024A729660088B19E /* MainScreenPlaceholderCell.swift */; };
+		96AAADF324DFFDBB00388404 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAADF224DFFDBB00388404 /* AudioPlayerView.swift */; };
 		96AAAFF1243B093600F61443 /* ScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */; };
 		96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */; };
 		96AAB000243B6F4100F61443 /* DecoderTaskScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFFF243B6F4100F61443 /* DecoderTaskScreenView.swift */; };
@@ -154,7 +156,9 @@
 		965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAndAnswerView.swift; sourceTree = "<group>"; };
 		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
+		967B54C924E00912009EEF3E /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
 		9691FA4024A729660088B19E /* MainScreenPlaceholderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPlaceholderCell.swift; sourceTree = "<group>"; };
+		96AAADF224DFFDBB00388404 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		96AAAFF0243B093600F61443 /* ScreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLoadingView.swift; sourceTree = "<group>"; };
 		96AAAFF7243B1DFC00F61443 /* TaskDifficulty+Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskDifficulty+Icon.swift"; sourceTree = "<group>"; };
 		96AAAFFF243B6F4100F61443 /* DecoderTaskScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskScreenView.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 				96054C1624599E9D0083C217 /* ScreenPlaceholderView.swift */,
 				96162676243F73700097A4EE /* AnswerVariantView.swift */,
 				96346F1324969D7100A815F2 /* LockedTaskView.swift */,
+				96AAADF224DFFDBB00388404 /* AudioPlayerView.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				965AC7D72438C704003A3DC7 /* StackViewController */,
+				967B54C924E00912009EEF3E /* AudioPlayerController.swift */,
 			);
 			path = "View controllers";
 			sourceTree = "<group>";
@@ -607,6 +613,7 @@
 				96162672243F67CC0097A4EE /* ProfileTaskExactAnswerQuestionCell.swift in Sources */,
 				96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */,
 				965AC7B524388B48003A3DC7 /* ListSectionHeaderView.swift in Sources */,
+				967B54CA24E00912009EEF3E /* AudioPlayerController.swift in Sources */,
 				965AC79424364E86003A3DC7 /* SolidButton.swift in Sources */,
 				965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
@@ -617,6 +624,7 @@
 				960543302451D38C0083C217 /* CGFloat+layoutInsets.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
+				96AAADF324DFFDBB00388404 /* AudioPlayerView.swift in Sources */,
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
 				9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */,
 				965AC7DC2438C704003A3DC7 /* StackChildControllerProtocols.swift in Sources */,

@@ -27,6 +27,8 @@ extension DecoderTaskScreen {
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.encodedPictureContainer)
         contentContainer.appendSpacing(40)
+        contentContainer.appendChild(screenView.audioPlayerController)
+        contentContainer.appendSpacing(40)
         contentContainer.appendChild(screenView.questionAndAnswerView)
         contentContainer.appendSpacing(Constants.spacingBeforeScore)
         contentContainer.appendChild(screenView.answerButton)
@@ -69,8 +71,12 @@ extension DecoderTaskScreen {
         
         screenView.setupViews()
         
-        screenView.onTapEncodedPicture = didTapEncodedPicture
-        screenView.onTapAnswerButton = didTapAnswerButton
+        screenView.onTapEncodedPicture = { [unowned self] in
+            self.didTapEncodedPicture()
+        }
+        screenView.onTapAnswerButton = { [unowned self] in
+            self.didTapAnswerButton()
+        }
     }
     
     func setupScreenLoadingView() {
