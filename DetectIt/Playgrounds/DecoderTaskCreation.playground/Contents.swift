@@ -12,6 +12,7 @@ let task = DecoderTask(
     difficulty: 1,
     score: 1,
     encodedPictureName: "encoded.jpg",
+    encodedAudioName: nil,
     answer: .init(
         crimeDescription:
         """
@@ -41,6 +42,7 @@ let task = DecoderTask(
     difficulty: 1,
     score: 1,
     encodedPictureName: "encoded.jpg",
+    encodedAudioName: nil,
     answer: .init(
         crimeDescription:
         """
