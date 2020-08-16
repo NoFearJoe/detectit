@@ -144,12 +144,17 @@ extension DetectItAPITarget: TargetType {
     public var headers: [String : String]? {
         switch self {
         case .auth:
-            return nil
+            return [
+                "Version": AppInfo.version
+            ]
         default:
             guard let user = User.shared.alias, let password = User.shared.password else { return nil }
             guard let token = "\(user):\(password)".data(using: .utf8)?.base64EncodedString() else { return nil }
             
-            return ["Authorization": "Basic \(token)"]
+            return [
+                "Authorization": "Basic \(token)",
+                "Version": AppInfo.version
+            ]
         }
     }
     
