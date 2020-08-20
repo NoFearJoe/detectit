@@ -39,7 +39,7 @@ extension ProfileTaskScreen {
     func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat? {
         guard var focusedView = contentContainer.stackView.currentFirstResponder() as? UIView else { return nil }
         
-        focusedView = focusedView.superview?.superview ?? focusedView
+        focusedView = focusedView.superview ?? focusedView
         
         let convertedFocusedViewFrame = focusedView.convert(focusedView.bounds, to: view)
         

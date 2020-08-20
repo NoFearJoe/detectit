@@ -178,7 +178,7 @@ final class DetectiveProfileScreen: Screen {
         solvedTasksCountView.isHidden = detectiveProfile == nil
         
         if let detectiveProfile = detectiveProfile {
-            correctAnswersPercentView.statsLabel.text = "\(detectiveProfile.correctAnswersPercent)%"
+            correctAnswersPercentView.statsLabel.text = "\(detectiveProfile.correctAnswersPercent.rounded(precision: 2))%"
             totalScoreView.statsLabel.text = "\(detectiveProfile.totalScore)"
             solvedTasksCountView.statsLabel.text = "\(detectiveProfile.solvedTasksCount)"
         } else {
