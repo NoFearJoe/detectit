@@ -20,6 +20,9 @@ final class QuestTaskScreen: Screen {
     let contentContainer = StackViewController()
     
     let closeButton = SolidButton.closeButton()
+    
+    let buttonsContainer = UIStackView()
+    let notesButton = SolidButton.notesButton()
     let helpButton = SolidButton.helpButton()
     
     lazy var screenView = QuestTaskScreenView(delegate: self)
@@ -101,6 +104,10 @@ final class QuestTaskScreen: Screen {
         helpButton.isHidden = true
         
         present(HelpScreen(taskKind: state.task.kind), animated: true, completion: nil)
+    }
+    
+    @objc func didTapNotesButton() {
+        present(TaskNotesScreen(task: state.task), animated: true, completion: nil)
     }
     
     @objc func onTapBackground() {

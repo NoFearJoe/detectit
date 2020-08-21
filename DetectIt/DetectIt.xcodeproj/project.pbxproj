@@ -40,6 +40,7 @@
 		96346F08248D6AEE00A815F2 /* AuthPrepareScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F07248D6AEE00A815F2 /* AuthPrepareScreen.swift */; };
 		96346F0B248D701300A815F2 /* AuthNavigationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F0A248D701300A815F2 /* AuthNavigationScreen.swift */; };
 		96346F10249413A400A815F2 /* FullVersionPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F0F249413A400A815F2 /* FullVersionPurchaseScreen.swift */; };
+		963F56CC24EF04D1002B949F /* TaskNotesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56CB24EF04D1002B949F /* TaskNotesScreen.swift */; };
 		964E2E3B249E06C10027F738 /* DetectiveProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E3A249E06C10027F738 /* DetectiveProfileScreen.swift */; };
 		964E2E3D249E3A5F0027F738 /* DetectiveProfileStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E3C249E3A5F0027F738 /* DetectiveProfileStatsView.swift */; };
 		964E2E41249F34670027F738 /* DetectiveProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E40249F34670027F738 /* DetectiveProfileHeaderView.swift */; };
@@ -132,6 +133,7 @@
 		96346F07248D6AEE00A815F2 /* AuthPrepareScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPrepareScreen.swift; sourceTree = "<group>"; };
 		96346F0A248D701300A815F2 /* AuthNavigationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationScreen.swift; sourceTree = "<group>"; };
 		96346F0F249413A400A815F2 /* FullVersionPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionPurchaseScreen.swift; sourceTree = "<group>"; };
+		963F56CB24EF04D1002B949F /* TaskNotesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNotesScreen.swift; sourceTree = "<group>"; };
 		964E2E3A249E06C10027F738 /* DetectiveProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfileScreen.swift; sourceTree = "<group>"; };
 		964E2E3C249E3A5F0027F738 /* DetectiveProfileStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfileStatsView.swift; sourceTree = "<group>"; };
 		964E2E40249F34670027F738 /* DetectiveProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -351,6 +353,14 @@
 			path = FullVersionPurchase;
 			sourceTree = "<group>";
 		};
+		963F56CA24EF04B3002B949F /* TaskNotes */ = {
+			isa = PBXGroup;
+			children = (
+				963F56CB24EF04D1002B949F /* TaskNotesScreen.swift */,
+			);
+			path = TaskNotes;
+			sourceTree = "<group>";
+		};
 		964E2E39249E069B0027F738 /* DetectiveProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +391,7 @@
 				964E2E4E24A11DA70027F738 /* Leaderboard */,
 				965AC7C72438B932003A3DC7 /* TasksBundle */,
 				965AC7CB2438B9B7003A3DC7 /* Task screens */,
+				963F56CA24EF04B3002B949F /* TaskNotes */,
 				96200CAD244195C700A3C720 /* PhotoViewerScreen */,
 				9605432C244F73430083C217 /* Help */,
 				96F054732444AAFA000742E4 /* DebugMenu */,
@@ -589,6 +600,7 @@
 				964E2E41249F34670027F738 /* DetectiveProfileHeaderView.swift in Sources */,
 				964E2E5424A1250C0027F738 /* LeaderboardCell.swift in Sources */,
 				96346F10249413A400A815F2 /* FullVersionPurchaseScreen.swift in Sources */,
+				963F56CC24EF04D1002B949F /* TaskNotesScreen.swift in Sources */,
 				965AC7D12438BA09003A3DC7 /* DecoderTaskScreen.swift in Sources */,
 				961B95E42425EE89003EC992 /* AppDelegate.swift in Sources */,
 				96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */,

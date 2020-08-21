@@ -130,6 +130,11 @@
 
 "leaderboard_title" = "TOP-50";
 
+// Task notes
+
+"task_notes_screen_title" = "Notes";
+"task_notes_screen_notes_placeholder" = "Enter your notes here...";
+
 // Other
 
 "answer_button_default_title" = "Send the answer";

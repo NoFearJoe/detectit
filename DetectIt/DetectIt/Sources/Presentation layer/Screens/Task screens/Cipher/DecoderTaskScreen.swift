@@ -20,6 +20,9 @@ final class DecoderTaskScreen: Screen {
     let contentContainer = StackViewController()
     
     let closeButton = SolidButton.closeButton()
+    
+    let buttonsContainer = UIStackView()
+    let notesButton = SolidButton.notesButton()
     let helpButton = SolidButton.helpButton()
     
     let screenView = DecoderTaskScreenView()
@@ -91,6 +94,10 @@ final class DecoderTaskScreen: Screen {
         helpButton.isHidden = true
         
         present(HelpScreen(taskKind: task.kind), animated: true, completion: nil)
+    }
+    
+    @objc func didTapNotesButton() {
+        present(TaskNotesScreen(task: task), animated: true, completion: nil)
     }
     
     func didTapEncodedPicture() {

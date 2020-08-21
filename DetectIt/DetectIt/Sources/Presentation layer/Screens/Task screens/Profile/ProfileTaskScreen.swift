@@ -20,6 +20,9 @@ final class ProfileTaskScreen: Screen {
     let contentContainer = StackViewController()
     
     let closeButton = SolidButton.closeButton()
+    
+    let buttonsContainer = UIStackView()
+    let notesButton = SolidButton.notesButton()
     let helpButton = SolidButton.helpButton()
     
     lazy var screenView = ProfileTaskScreenView(delegate: self)
@@ -117,6 +120,10 @@ final class ProfileTaskScreen: Screen {
         helpButton.isHidden = true
         
         present(HelpScreen(taskKind: task.kind), animated: true, completion: nil)
+    }
+    
+    @objc func didTapNotesButton() {
+        present(TaskNotesScreen(task: task), animated: true, completion: nil)
     }
     
     @objc func onTapBackground() {

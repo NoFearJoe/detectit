@@ -59,16 +59,23 @@ extension ProfileTaskScreen {
             closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
         
+        view.addSubview(buttonsContainer)
+        buttonsContainer.axis = .horizontal
+        buttonsContainer.spacing = 12
+        buttonsContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            buttonsContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            buttonsContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+        ])
+        
         if !User.shared.isProfileHelpShown {
-            view.addSubview(helpButton)
+            buttonsContainer.addArrangedSubview(helpButton)
             
             helpButton.addTarget(self, action: #selector(didTapHelpButton), for: .touchUpInside)
-            
-            NSLayoutConstraint.activate([
-                helpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-                helpButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
-            ])
         }
+        
+        buttonsContainer.addArrangedSubview(notesButton)
+        notesButton.addTarget(self, action: #selector(didTapNotesButton), for: .touchUpInside)
         
         screenView.setupViews()
     }

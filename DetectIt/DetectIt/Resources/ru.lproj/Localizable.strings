@@ -130,6 +130,11 @@
 
 "leaderboard_title" = "ТОП-50";
 
+// Task notes
+
+"task_notes_screen_title" = "Заметки";
+"task_notes_screen_notes_placeholder" = "Запишите сюда свои заметки...";
+
 // Other
 
 "answer_button_default_title" = "Отправить ответ";
