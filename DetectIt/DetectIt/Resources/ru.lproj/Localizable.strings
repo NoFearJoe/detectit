@@ -135,6 +135,10 @@
 "task_notes_screen_title" = "Заметки";
 "task_notes_screen_notes_placeholder" = "Запишите сюда свои заметки...";
 
+// Rate task widget
+
+"rate_task_widget_done_button_title" = "Оценить";
+
 // Other
 
 "answer_button_default_title" = "Отправить ответ";
@@ -143,6 +147,11 @@
 "task_kind_cipher" = "Шифр";
 "task_kind_profile" = "Расследование";
 "task_kind_quest" = "Квест";
+
+"task_difficulty_easy" = "Легко";
+"task_difficulty_normal" = "Средне";
+"task_difficulty_hard" = "Сложно";
+"task_difficulty_nightmare" = "Кошмар";
 
 "total_score" = "Общий счет  ";
 

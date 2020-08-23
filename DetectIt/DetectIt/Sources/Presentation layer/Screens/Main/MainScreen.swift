@@ -136,14 +136,18 @@ extension MainScreen: MainScreenViewDelegate {
         
         switch item.kind {
         case .profile, .cipher, .quest:
+            let difficulty = TaskDifficulty(rawValue: item.difficulty)
             return MainScreenTaskCell.Model(
                 backgroundImagePath: item.picture,
                 kind: TaskKind(rawValue: item.kind.rawValue)?.title ?? "",
                 title: item.title,
                 description: item.subtitle ?? "",
-                difficultyIcon: TaskDifficulty(rawValue: item.difficulty).icon,
+//                difficultyIcon: TaskDifficulty(rawValue: item.difficulty).icon,
+                difficulty: difficulty.localizedTitle,
+                difficultyColor: difficulty.color,
                 score: item.score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
                 scoreColor: UIColor.score(value: item.score, max: item.maxScore),
+                rating: item.rating,
                 isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
             )
         case .bundle:

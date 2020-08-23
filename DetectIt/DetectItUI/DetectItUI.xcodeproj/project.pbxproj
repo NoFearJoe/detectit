@@ -30,6 +30,10 @@
 		96200CBF24435F3800A3C720 /* MainScreenActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */; };
 		96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1324969D7100A815F2 /* LockedTaskView.swift */; };
 		96346F162496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */; };
+		963F56D424F10BA9002B949F /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D324F10BA9002B949F /* RatingView.swift */; };
+		963F56D624F24527002B949F /* RateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D524F24527002B949F /* RateTaskView.swift */; };
+		963F56D824F24574002B949F /* RateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D724F24574002B949F /* RateTaskViewController.swift */; };
+		963F56DA24F248AC002B949F /* DetectItAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963F56D924F248AC002B949F /* DetectItAPI.framework */; };
 		964E2E5824A36D710027F738 /* MainScreenFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5724A36D710027F738 /* MainScreenFiltersView.swift */; };
 		96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 96500E2C242F0F92005FFC7A /* DetectItUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3D242F1151005FFC7A /* PhotoCardView.swift */; };
@@ -113,6 +117,10 @@
 		96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenActionCell.swift; sourceTree = "<group>"; };
 		96346F1324969D7100A815F2 /* LockedTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTaskView.swift; sourceTree = "<group>"; };
 		96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHiddenCrimeDescriptionView.swift; sourceTree = "<group>"; };
+		963F56D324F10BA9002B949F /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		963F56D524F24527002B949F /* RateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTaskView.swift; sourceTree = "<group>"; };
+		963F56D724F24574002B949F /* RateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTaskViewController.swift; sourceTree = "<group>"; };
+		963F56D924F248AC002B949F /* DetectItAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964E2E5724A36D710027F738 /* MainScreenFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenFiltersView.swift; sourceTree = "<group>"; };
 		96500E29242F0F92005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E2C242F0F92005FFC7A /* DetectItUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItUI.h; sourceTree = "<group>"; };
@@ -179,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7E42438E3FF003A3DC7 /* NextGrowingTextView in Frameworks */,
+				963F56DA24F248AC002B949F /* DetectItAPI.framework in Frameworks */,
 				96AF70252448C80500B6B848 /* JGProgressHUD in Frameworks */,
 				96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */,
 			);
@@ -390,6 +399,7 @@
 				96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */,
 				96200CB22441DECA00A3C720 /* AutosizingImageView.swift */,
 				96054328244F25B60083C217 /* GradientView.swift */,
+				963F56D324F10BA9002B949F /* RatingView.swift */,
 			);
 			path = "Single views";
 			sourceTree = "<group>";
@@ -404,6 +414,7 @@
 				96162676243F73700097A4EE /* AnswerVariantView.swift */,
 				96346F1324969D7100A815F2 /* LockedTaskView.swift */,
 				96AAADF224DFFDBB00388404 /* AudioPlayerView.swift */,
+				963F56D524F24527002B949F /* RateTaskView.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -445,6 +456,7 @@
 			children = (
 				965AC7D72438C704003A3DC7 /* StackViewController */,
 				967B54C924E00912009EEF3E /* AudioPlayerController.swift */,
+				963F56D724F24574002B949F /* RateTaskViewController.swift */,
 			);
 			path = "View controllers";
 			sourceTree = "<group>";
@@ -493,6 +505,7 @@
 		96F85C112445FCF000F5CD22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				963F56D924F248AC002B949F /* DetectItAPI.framework */,
 				96F85C122445FCF000F5CD22 /* DetectItCore.framework */,
 			);
 			name = Frameworks;
@@ -630,6 +643,8 @@
 				96AAADF324DFFDBB00388404 /* AudioPlayerView.swift in Sources */,
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
 				9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */,
+				963F56D824F24574002B949F /* RateTaskViewController.swift in Sources */,
+				963F56D624F24527002B949F /* RateTaskView.swift in Sources */,
 				965AC7DC2438C704003A3DC7 /* StackChildControllerProtocols.swift in Sources */,
 				96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */,
 				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
@@ -642,6 +657,7 @@
 				96162679243F73E20097A4EE /* ProfileTaskBoolAnswerQuestionCell.swift in Sources */,
 				96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */,
 				967B54CE24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift in Sources */,
+				963F56D424F10BA9002B949F /* RatingView.swift in Sources */,
 				96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				9615F952245EC8400070E2D3 /* UIView+Animations.swift in Sources */,

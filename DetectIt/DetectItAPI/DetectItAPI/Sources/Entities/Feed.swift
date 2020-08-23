@@ -24,6 +24,7 @@ public extension Feed {
         public let difficulty: Int
         public let score: Int?
         public let maxScore: Int
+        public let rating: Double?
         public let cipher: DecoderTask?
         public let profile: ProfileTask?
         public let bundle: TasksBundle.Info?

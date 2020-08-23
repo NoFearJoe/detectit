@@ -2,11 +2,11 @@
 <playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='PhotoCardView'/>
-        <page name='PaperSheetView'/>
         <page name='EvidenceListView'/>
         <page name='ProfileView'/>
         <page name='TasksBundleCell'/>
         <page name='ScreenPlaceholderView'/>
         <page name='AnswerButton'/>
+        <page name='RatingView'/>
     </pages>
 </playground>

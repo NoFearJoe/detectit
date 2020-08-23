@@ -20,6 +20,9 @@ public enum DetectItAPITarget {
     case taskScore(taskID: String, taskKind: String, bundleID: String?)
     case setTaskScore(taskID: String, taskKind: String, bundleID: String?, score: Int)
     
+    case taskRating(taskID: String, taskKind: String, bundleID: String?)
+    case setTaskRating(taskID: String, taskKind: String, bundleID: String?, rating: Double)
+    
     case cipherAnswer(taskID: String)
     case setCipherAnswer(taskID: String, answer: String)
     
@@ -53,6 +56,7 @@ extension DetectItAPITarget: TargetType {
         case .feed: return "feed"
         case .tasksBundle: return "tasksBundle"
         case .taskScore, .setTaskScore: return "taskScore"
+        case .taskRating, .setTaskRating: return "taskRating"
         case .totalScore: return "totalScore"
         case .cipherAnswer, .setCipherAnswer: return "cipherAnswer"
         case .profileAnswers, .setProfileAnswers: return "profileAnswer"
@@ -64,9 +68,9 @@ extension DetectItAPITarget: TargetType {
     
     public var method: Moya.Method {
         switch self {
-        case .auth, .setTaskScore, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
+        case .auth, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
             return .post
-        case .feed, .tasksBundle, .taskScore, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard:
+        case .feed, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard:
             return .get
         }
     }
@@ -92,7 +96,7 @@ extension DetectItAPITarget: TargetType {
             )
         case .totalScore:
             return .requestPlain
-        case let .taskScore(taskID, taskKind, bundleID):
+        case let .taskScore(taskID, taskKind, bundleID), let .taskRating(taskID, taskKind, bundleID):
             var parameters: [String: Any] = ["taskID": taskID, "taskKind": taskKind]
             bundleID.map { parameters["bundleID"] = $0 }
             return .requestParameters(
@@ -101,6 +105,13 @@ extension DetectItAPITarget: TargetType {
             )
         case let .setTaskScore(taskID, taskKind, bundleID, score):
             var parameters: [String: Any] = ["taskID": taskID, "taskKind": taskKind, "score": score]
+            bundleID.map { parameters["bundleID"] = $0 }
+            return .requestParameters(
+                parameters: parameters,
+                encoding: JSONEncoding.default
+            )
+        case let .setTaskRating(taskID, taskKind, bundleID, rating):
+            var parameters: [String: Any] = ["taskID": taskID, "taskKind": taskKind, "rating": rating]
             bundleID.map { parameters["bundleID"] = $0 }
             return .requestParameters(
                 parameters: parameters,

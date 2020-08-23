@@ -19,7 +19,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     
     private let topContainerView = UIView()
     private let taskKindLabel = UILabel()
-    private let difficultyView = UIImageView()
+    private let taskRatingView = RatingView(maxRating: 5, size: .small)
+    private let difficultyLabel = UILabel()
         
     private let bottomContainerView = UIView()
     private let bottomBlurView = BlurView(style: .systemMaterialDark)
@@ -52,9 +53,11 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         public let kind: String
         public let title: String
         public let description: String
-        public let difficultyIcon: UIImage
+        public let difficulty: String
+        public let difficultyColor: UIColor
         public let score: String?
         public let scoreColor: UIColor
+        public let rating: Double?
         public let isLocked: Bool
         
         var isSolved: Bool {
@@ -65,17 +68,21 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
                     kind: String,
                     title: String,
                     description: String,
-                    difficultyIcon: UIImage,
+                    difficulty: String,
+                    difficultyColor: UIColor,
                     score: String?,
                     scoreColor: UIColor,
+                    rating: Double?,
                     isLocked: Bool) {
             self.backgroundImagePath = backgroundImagePath
             self.kind = kind
             self.title = title
             self.description = description
-            self.difficultyIcon = difficultyIcon
+            self.difficulty = difficulty
+            self.difficultyColor = difficultyColor
             self.score = score
             self.scoreColor = scoreColor
+            self.rating = rating
             self.isLocked = isLocked
         }
         
@@ -95,7 +102,10 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         }
         
         taskKindLabel.text = model.kind.uppercased()
-        difficultyView.image = model.difficultyIcon
+        taskRatingView.rating = model.rating ?? 0
+        taskRatingView.isHidden = model.rating == nil
+        difficultyLabel.text = model.difficulty
+        difficultyLabel.textColor = model.difficultyColor
         
         lockedTaskView.isHidden = !model.isLocked
         constraintBetweenLockedViewAndDescription.constant = model.isLocked ? 12 : 0
@@ -179,21 +189,31 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             taskKindLabel.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor)
         ])
         
+        // MARK: Task rating
+        
+        topContainerView.addSubview(taskRatingView)
+        
+        taskRatingView.tintColor = .yellow
+        taskRatingView.backgroundColor = .lightGray
+        taskRatingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            taskRatingView.leadingAnchor.constraint(equalTo: taskKindLabel.trailingAnchor, constant: 12),
+            taskRatingView.centerYAnchor.constraint(equalTo: taskKindLabel.centerYAnchor)
+        ])
+        
         // MARK: Difficulty
         
-        topContainerView.addSubview(difficultyView)
+        topContainerView.addSubview(difficultyLabel)
         
-        difficultyView.tintColor = .yellow
-        difficultyView.contentMode = .scaleAspectFit
-        difficultyView.setContentHuggingPriority(.required, for: .horizontal)
-        difficultyView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        
-        difficultyView.translatesAutoresizingMaskIntoConstraints = false
+        difficultyLabel.font = .score3
+        difficultyLabel.textColor = .white
+        difficultyLabel.setContentHuggingPriority(.required, for: .horizontal)
+        difficultyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            difficultyView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor),
-            difficultyView.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -Constants.hInset),
-            difficultyView.leadingAnchor.constraint(equalTo: taskKindLabel.trailingAnchor, constant: 8),
-            difficultyView.heightAnchor.constraint(equalToConstant: 16)
+            difficultyLabel.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor),
+            difficultyLabel.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -Constants.hInset),
+            difficultyLabel.leadingAnchor.constraint(greaterThanOrEqualTo: taskRatingView.trailingAnchor, constant: 8)
         ])
         
         // MARK: Bottom container

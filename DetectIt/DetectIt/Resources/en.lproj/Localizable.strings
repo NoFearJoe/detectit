@@ -135,6 +135,10 @@
 "task_notes_screen_title" = "Notes";
 "task_notes_screen_notes_placeholder" = "Enter your notes here...";
 
+// Rate task widget
+
+"rate_task_widget_done_button_title" = "Rate";
+
 // Other
 
 "answer_button_default_title" = "Send the answer";
@@ -143,6 +147,11 @@
 "task_kind_cipher" = "Cipher";
 "task_kind_profile" = "Profile";
 "task_kind_quest" = "Quest";
+
+"task_difficulty_easy" = "Easy";
+"task_difficulty_normal" = "Normal";
+"task_difficulty_hard" = "Hard";
+"task_difficulty_nightmare" = "Nightmare";
 
 "total_score" = "Total score  ";
 

@@ -18,7 +18,7 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
     private let iconView = UIImageView()
     private let titleLabel = UILabel()
     private let scoreLabel = UILabel()
-    private let difficultyView = UIImageView()
+    private let difficultyLabel = UILabel()
     
     // MARK: - Init
     
@@ -38,7 +38,8 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         let icon: UIImage?
         let title: String
         let score: (value: String, color: UIColor)?
-        let difficultyImage: UIImage?
+        let difficulty: String
+        let difficultyColor: UIColor
         let isEnabled: Bool
         let isDone: Bool
         let isLocked: Bool
@@ -46,14 +47,16 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         public init(icon: UIImage? = nil,
                     title: String,
                     score: (String, UIColor)?,
-                    difficultyImage: UIImage?,
+                    difficulty: String,
+                    difficultyColor: UIColor,
                     isEnabled: Bool,
                     isDone: Bool,
                     isLocked: Bool) {
             self.icon = icon
             self.title = title
             self.score = score
-            self.difficultyImage = difficultyImage
+            self.difficulty = difficulty
+            self.difficultyColor = difficultyColor
             self.isEnabled = isEnabled
             self.isDone = isDone
             self.isLocked = isLocked
@@ -70,10 +73,9 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         scoreLabel.textColor = model.score?.color
         scoreLabel.isHidden = model.score == nil || model.isLocked
         
-        difficultyView.image = model.difficultyImage
-        difficultyView.isHidden = model.difficultyImage == nil
+        difficultyLabel.text = model.difficulty
+        difficultyLabel.textColor = model.difficultyColor
         
-        difficultyView.alpha = model.isDone || model.isLocked ? 0.5 : 1
         titleLabel.alpha = model.isDone || model.isLocked ? 0.5 : 1
         
         isUserInteractionEnabled = model.isEnabled
@@ -142,17 +144,12 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         
-        contentContainer.addArrangedSubview(difficultyView)
+        contentContainer.addArrangedSubview(difficultyLabel)
         
-        difficultyView.tintColor = .yellow
-        difficultyView.contentMode = .center
-        
-        difficultyView.translatesAutoresizingMaskIntoConstraints = false
-        difficultyView.setContentHuggingPriority(.required, for: .horizontal)
-        difficultyView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        NSLayoutConstraint.activate([
-            difficultyView.heightAnchor.constraint(equalToConstant: 20)
-        ])
+        difficultyLabel.font = .score3
+        difficultyLabel.textColor = .white
+        difficultyLabel.setContentHuggingPriority(.required, for: .horizontal)
+        difficultyLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         contentContainer.addArrangedSubview(scoreLabel)
         
@@ -164,7 +161,7 @@ public final class TasksBundleScreenTaskCell: UICollectionViewCell {
         
         contentContainer.setCustomSpacing(12, after: iconView)
         contentContainer.setCustomSpacing(8, after: titleLabel)
-        contentContainer.setCustomSpacing(12, after: difficultyView)
+        contentContainer.setCustomSpacing(12, after: difficultyLabel)
     }
     
 }

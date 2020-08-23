@@ -34,6 +34,12 @@ final class GradientView: UIView {
         }
     }
     
+    var gradientType: CAGradientLayerType = .axial {
+        didSet {
+            gradientLayer.type = gradientType
+        }
+    }
+    
     override class var layerClass: AnyClass {
         return CAGradientLayer.self
     }

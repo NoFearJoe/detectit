@@ -65,7 +65,8 @@ extension TasksBundleScreen {
             icon: isLocked ? UIImage.asset(named: "lock")?.withTintColor(.yellow, renderingMode: .alwaysOriginal) : nil,
             title: task.title,
             score: scoreString,
-            difficultyImage: task.taskDifficulty.icon,
+            difficulty: task.taskDifficulty.localizedTitle,
+            difficultyColor: task.taskDifficulty.color,
             isEnabled: true,
             isDone: score != nil,
             isLocked: isLocked
