@@ -41,7 +41,7 @@ extension QuestTaskScreen {
         screenView.scoreLabel.text = state.score.map { "\($0)/\(state.task.maxScore)" }
         screenView.scoreLabel.textColor = .score(value: state.score, max: state.task.maxScore, defaultColor: .white)
         
-        screenView.endingTextLabel.attributedText = state.ending?.text.readableAttributedText()
+        screenView.endingTextLabel.attributedText = state.ending?.text.readableAttributedText(font: screenView.endingTextLabel.font)
     }
     
     func scrollToResults() {

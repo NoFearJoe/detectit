@@ -28,7 +28,7 @@ extension DecoderTaskScreen {
         
     func displayContent() {
         screenView.titleLabel.text = task.title
-        screenView.prepositionLabel.attributedText = task.preposition.readableAttributedText()
+        screenView.prepositionLabel.attributedText = task.preposition.readableAttributedText(font: screenView.prepositionLabel.font)
         screenView.encodedPictureView.image = encodedImage
         contentContainer.setChildHidden(screenView.encodedPictureView, hidden: encodedImage == nil, animated: false, animationDuration: 0)
         if let audio = encodedAudio {
@@ -41,7 +41,7 @@ extension DecoderTaskScreen {
                 answer: answer
             )
         )
-        screenView.crimeDescriptionLabel.attributedText = task.answer.crimeDescription.readableAttributedText()
+        screenView.crimeDescriptionLabel.attributedText = task.answer.crimeDescription.readableAttributedText(font: screenView.crimeDescriptionLabel.font)
         screenView.rightAnswerView.answer = task.answer.decodedMessage
     }
     

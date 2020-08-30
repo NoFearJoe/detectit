@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FullVersionManager.completeTransactions()
         
         handleCommandLineArguments()
-        
+                
         return true
     }
 

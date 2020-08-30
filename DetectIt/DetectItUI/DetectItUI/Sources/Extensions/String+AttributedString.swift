@@ -14,18 +14,19 @@ public extension String {
         NSAttributedString(string: self)
     }
     
-    func readableAttributedText() -> NSAttributedString {
+    func readableAttributedText(font: UIFont) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2
         paragraphStyle.paragraphSpacing = 4
         
-        return NSAttributedString(
+        return NSMutableAttributedString(
             string: self,
             attributes: [
-                NSAttributedString.Key.kern: 0.25,
-                NSAttributedString.Key.paragraphStyle: paragraphStyle
+                .font: font,
+                .kern: 0.25,
+                .paragraphStyle: paragraphStyle
             ]
-        )
+        ).replacingMarkdown(font: font)
     }
     
     func strikethroughAttributedString(color: UIColor) -> NSAttributedString {
@@ -49,6 +50,31 @@ public extension String {
                 NSAttributedString.Key.shadow: shadow
             ]
         )
+    }
+    
+}
+
+private extension NSMutableAttributedString {
+    
+    func replacingMarkdown(font: UIFont) -> NSAttributedString {
+        let textRegexp: (String) -> String = { #"[\w\s\d.,:""''!@$%^&?-_+=`(){}"# + $0 + "]+" }
+        let markdownPlaceholders: [String: [NSAttributedString.Key: Any]] = [
+            "##\(textRegexp("~*"))##": [.font: font.bold()],
+            "~~\(textRegexp("#*"))~~": [.font: font.italic()],
+            "\\*\\*\(textRegexp("#~"))\\*\\*": [.foregroundColor: UIColor.yellow]
+        ]
+        
+        markdownPlaceholders.forEach { placeholder, attributes in
+            let regexp = try! NSRegularExpression(pattern: placeholder, options: .caseInsensitive)
+            let matches = regexp.matches(in: string, options: [], range: NSRange(location: 0, length: string.count))
+            matches.reversed().forEach { match in
+                addAttributes(attributes, range: match.range)
+                deleteCharacters(in: NSRange(location: match.range.upperBound - 2, length: 2))
+                deleteCharacters(in: NSRange(location: match.range.location, length: 2))
+            }
+        }
+        
+        return self
     }
     
 }

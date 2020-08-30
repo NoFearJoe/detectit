@@ -58,7 +58,7 @@ extension ProfileTaskScreen {
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }
         screenView.scoreLabel.textColor = .score(value: score, max: task.maxScore, defaultColor: .white)
-        screenView.crimeDescriptionLabel.attributedText = task.crimeDescription.readableAttributedText()
+        screenView.crimeDescriptionLabel.attributedText = task.crimeDescription.readableAttributedText(font: screenView.crimeDescriptionLabel.font)
         
         guard isSolved else { return }
         

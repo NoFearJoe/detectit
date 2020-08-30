@@ -42,7 +42,7 @@ public final class ProfilePrepositionCell: AutosizingCollectionViewCell {
     
     public func configure(model: Model) {
         titleLabel.text = model.title
-        textLabel.attributedText = model.text.readableAttributedText()
+        textLabel.attributedText = model.text.readableAttributedText(font: .text3)
     }
     
     // MARK: - Setup

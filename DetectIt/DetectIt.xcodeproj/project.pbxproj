@@ -821,7 +821,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
 				SWIFT_VERSION = 5.0;
@@ -843,7 +843,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
 				PROVISIONING_PROFILE_SPECIFIER = "";

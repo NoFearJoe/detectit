@@ -66,7 +66,7 @@ public final class ProfileCaseCell: AutosizingCollectionViewCell {
     
     public func configure(model: Model) {
         titleLabel.text = model.case.title
-        textLabel.attributedText = model.case.text.readableAttributedText()
+        textLabel.attributedText = model.case.text.readableAttributedText(font: .text3)
         
         evidenceContainerView.isHidden = model.evidence == nil
         if let evidence = model.evidence {

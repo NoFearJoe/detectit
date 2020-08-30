@@ -51,11 +51,11 @@ final class HelpScreen: Screen {
         
         switch taskKind {
         case .cipher:
-            textLabel.attributedText = decoderTaskText.readableAttributedText()
+            textLabel.attributedText = decoderTaskText.readableAttributedText(font: textLabel.font)
         case .profile:
-            textLabel.attributedText = profileTaskText.readableAttributedText()
+            textLabel.attributedText = profileTaskText.readableAttributedText(font: textLabel.font)
         case .quest:
-            textLabel.attributedText = questTaskText.readableAttributedText()
+            textLabel.attributedText = questTaskText.readableAttributedText(font: textLabel.font)
         }
     }
     

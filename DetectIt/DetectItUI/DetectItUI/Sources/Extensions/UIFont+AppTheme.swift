@@ -54,6 +54,32 @@ public extension UIFont {
     
 }
 
+public extension UIFont {
+    
+    func bold() -> UIFont {
+        guard let descriptor = fontDescriptor.withSymbolicTraits(.traitBold) else {
+            return self
+        }
+        
+        return UIFont(
+            descriptor: descriptor,
+            size: pointSize
+        )
+    }
+    
+    func italic() -> UIFont {
+        guard let descriptor = fontDescriptor.withSymbolicTraits(.traitItalic) else {
+            return self
+        }
+        
+        return UIFont(
+            descriptor: descriptor,
+            size: pointSize
+        )
+    }
+    
+}
+
 private extension UIFont {
     
     static func regular(_ size: CGFloat) -> UIFont {
