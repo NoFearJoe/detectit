@@ -26,6 +26,7 @@ final class ProfileTaskScreen: Screen {
     let helpButton = SolidButton.helpButton()
     
     lazy var screenView = ProfileTaskScreenView(delegate: self)
+    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
     
     let keyboardManager = KeyboardManager()
     var contentScrollViewOffset: CGFloat?
@@ -342,6 +343,6 @@ extension ProfileTaskScreen: UIGestureRecognizerDelegate {
 extension ProfileTaskScreen {
     struct Constants {
         static let spacingBeforeScore = CGFloat(40)
-        static let bottomInset = CGFloat(20)
+        static let bottomInset = CGFloat(28)
     }
 }

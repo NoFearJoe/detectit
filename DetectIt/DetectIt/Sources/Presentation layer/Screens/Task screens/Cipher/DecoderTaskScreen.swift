@@ -26,7 +26,6 @@ final class DecoderTaskScreen: Screen {
     let helpButton = SolidButton.helpButton()
     
     let screenView = DecoderTaskScreenView()
-    
     lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
     
     let keyboardManager = KeyboardManager()

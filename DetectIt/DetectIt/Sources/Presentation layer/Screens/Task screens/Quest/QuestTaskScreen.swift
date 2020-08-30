@@ -26,6 +26,7 @@ final class QuestTaskScreen: Screen {
     let helpButton = SolidButton.helpButton()
     
     lazy var screenView = QuestTaskScreenView(delegate: self)
+    lazy var rateTaskViewController = RateTaskViewController(task: state.task, bundleID: state.bundle?.id)
         
     var api = DetectItAPI()
     
@@ -183,7 +184,7 @@ extension QuestTaskScreen: UIGestureRecognizerDelegate {
 extension QuestTaskScreen {
     struct Constants {
         static let spacingBeforeScore = CGFloat(40)
-        static let bottomInset = CGFloat(20)
+        static let bottomInset = CGFloat(28)
     }
 }
 

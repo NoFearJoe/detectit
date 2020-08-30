@@ -26,6 +26,8 @@ extension QuestTaskScreen {
         contentContainer.appendChild(screenView.endingTitleView)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.endingTextLabel)
+        contentContainer.appendSpacing(28)
+        contentContainer.appendChild(rateTaskViewController)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))

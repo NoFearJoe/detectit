@@ -11,9 +11,6 @@ import UIKit
 /// VisualEffectView is a dynamic background blur view.
 open class BlurView: UIVisualEffectView {
     
-    /// Returns the instance of UIBlurEffect.
-    private let blurEffect = (NSClassFromString("_UICustomBlurEffect") as? UIBlurEffect.Type)?.init() ?? UIBlurEffect(style: .dark)
-    
     /**
      Tint color.
      
@@ -57,18 +54,17 @@ open class BlurView: UIVisualEffectView {
     }
     
     // MARK: - Initialization
-    
+        
     public init(style: UIBlurEffect.Style) {
         super.init(effect: UIBlurEffect(style: style))
         
-        commonInit()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        effect = Self.makeBlurEffect(style: style)
         
         commonInit()
     }
+    
+    @available(*, unavailable)
+    required public init?(coder aDecoder: NSCoder) { fatalError() }
     
     private func commonInit() {
         scale = 1
@@ -78,13 +74,22 @@ open class BlurView: UIVisualEffectView {
     
     /// Returns the value for the key on the blurEffect.
     private func _value(forKey key: String) -> Any? {
-        return blurEffect.value(forKeyPath: key)
+        effect?.value(forKeyPath: key)
     }
     
     /// Sets the value for the key on the blurEffect.
     private func _setValue(_ value: Any?, forKey key: String) {
-        blurEffect.setValue(value, forKeyPath: key)
-        self.effect = blurEffect
+        if #available(iOS 14, *) { return }
+        
+        effect?.setValue(value, forKeyPath: key)
+    }
+    
+    private static func makeBlurEffect(style: UIBlurEffect.Style) -> UIBlurEffect {
+        if #available(iOS 14, *) {
+            return UIBlurEffect(style: style)
+        } else {
+            return (NSClassFromString("_UICustomBlurEffect") as? UIBlurEffect.Type)?.init() ?? UIBlurEffect(style: style)
+        }
     }
     
 }

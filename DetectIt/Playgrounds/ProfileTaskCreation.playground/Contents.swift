@@ -15,7 +15,9 @@ let task = ProfileTask(
     cases: [
         .init(
             id: "c1",
-            title: "",
+            title: """
+            
+            """,
             text:
             """
             
@@ -24,7 +26,9 @@ let task = ProfileTask(
         ),
         .init(
             id: "c2",
-            title: "",
+            title: """
+            
+            """,
             text:
             """
             
@@ -33,7 +37,9 @@ let task = ProfileTask(
         ),
         .init(
             id: "c3",
-            title: "",
+            title: """
+            
+            """,
             text:
             """
             
@@ -42,7 +48,9 @@ let task = ProfileTask(
         ),
         .init(
             id: "c4",
-            title: "",
+            title: """
+            
+            """,
             text:
             """
             
@@ -51,7 +59,9 @@ let task = ProfileTask(
         ),
         .init(
             id: "c5",
-            title: "",
+            title: """
+            
+            """,
             text:
             """
             
@@ -60,7 +70,9 @@ let task = ProfileTask(
         ),
         .init(
             id: "c6",
-            title: "",
+            title: """
+            
+            """,
             text:
             """
             
@@ -165,7 +177,7 @@ let task = ProfileTask(
             boolAnswer: .init(answer: true)
         )
     ],
-    difficulty: 2
+    difficulty: 3
 )
 
 let encodedTask = try! JSONEncoder().encode(task)
