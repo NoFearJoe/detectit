@@ -19,12 +19,7 @@ final class QuestTaskScreen: Screen {
     
     let contentContainer = StackViewController()
     
-    let closeButton = SolidButton.closeButton()
-    
-    let buttonsContainer = UIStackView()
-    let notesButton = SolidButton.notesButton()
-    let helpButton = SolidButton.helpButton()
-    
+    let topPanel = TaskScreenTopPanel()
     lazy var screenView = QuestTaskScreenView(delegate: self)
     lazy var rateTaskViewController = RateTaskViewController(task: state.task, bundleID: state.bundle?.id)
         
@@ -94,22 +89,6 @@ final class QuestTaskScreen: Screen {
     }
     
     // MARK: - Actions
-    
-    @objc func didTapCloseButton() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func didTapHelpButton() {
-        User.shared.isProfileHelpShown = true
-        
-        helpButton.isHidden = true
-        
-        present(HelpScreen(taskKind: state.task.kind), animated: true, completion: nil)
-    }
-    
-    @objc func didTapNotesButton() {
-        present(TaskNotesScreen(task: state.task), animated: true, completion: nil)
-    }
     
     @objc func onTapBackground() {
         view.endEditing(true)

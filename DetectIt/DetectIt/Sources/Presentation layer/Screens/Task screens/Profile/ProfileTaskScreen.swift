@@ -19,12 +19,7 @@ final class ProfileTaskScreen: Screen {
     
     let contentContainer = StackViewController()
     
-    let closeButton = SolidButton.closeButton()
-    
-    let buttonsContainer = UIStackView()
-    let notesButton = SolidButton.notesButton()
-    let helpButton = SolidButton.helpButton()
-    
+    let topPanel = TaskScreenTopPanel()
     lazy var screenView = ProfileTaskScreenView(delegate: self)
     lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
     
@@ -110,22 +105,6 @@ final class ProfileTaskScreen: Screen {
     }
     
     // MARK: - Actions
-    
-    @objc func didTapCloseButton() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func didTapHelpButton() {
-        User.shared.isProfileHelpShown = true
-        
-        helpButton.isHidden = true
-        
-        present(HelpScreen(taskKind: task.kind), animated: true, completion: nil)
-    }
-    
-    @objc func didTapNotesButton() {
-        present(TaskNotesScreen(task: task), animated: true, completion: nil)
-    }
     
     @objc func onTapBackground() {
         view.endEditing(true)

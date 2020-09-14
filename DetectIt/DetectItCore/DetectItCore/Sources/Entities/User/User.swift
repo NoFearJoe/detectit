@@ -75,6 +75,15 @@ public final class User {
         }
     }
     
+    public var isQuestHelpShown: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "is_quest_help_shown")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "is_quest_help_shown")
+        }
+    }
+    
     public var isOnboardingShown: Bool {
         get {
             UserDefaults.standard.bool(forKey: "is_onboarding_shown")

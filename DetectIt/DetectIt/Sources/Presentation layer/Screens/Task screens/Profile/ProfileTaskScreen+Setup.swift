@@ -52,32 +52,29 @@ extension ProfileTaskScreen {
     }
     
     func setupViews() {
-        view.addSubview(closeButton)
+        view.addSubview(topPanel)
         
-        closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        ])
-        
-        view.addSubview(buttonsContainer)
-        buttonsContainer.axis = .horizontal
-        buttonsContainer.spacing = 12
-        buttonsContainer.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            buttonsContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            buttonsContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
-        ])
-        
-        if !User.shared.isProfileHelpShown {
-            buttonsContainer.addArrangedSubview(helpButton)
+        topPanel.helpButton.isHidden = User.shared.isProfileHelpShown
+        topPanel.onClose = { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+        }
+        topPanel.onHelp = { [unowned self] in
+            User.shared.isProfileHelpShown = true
             
-            helpButton.addTarget(self, action: #selector(didTapHelpButton), for: .touchUpInside)
+            self.topPanel.helpButton.isHidden = true
+            
+            present(HelpScreen(taskKind: self.task.kind), animated: true, completion: nil)
+        }
+        topPanel.onNotes = { [unowned self] in
+            self.present(TaskNotesScreen(task: self.task), animated: true, completion: nil)
         }
         
-        buttonsContainer.addArrangedSubview(notesButton)
-        notesButton.addTarget(self, action: #selector(didTapNotesButton), for: .touchUpInside)
+        topPanel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topPanel.topAnchor.constraint(equalTo: view.topAnchor),
+            topPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
         
         screenView.setupViews()
     }

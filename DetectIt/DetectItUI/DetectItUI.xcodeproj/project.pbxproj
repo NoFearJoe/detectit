@@ -28,6 +28,9 @@
 		96200CB72442016900A3C720 /* ProfileTaskAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */; };
 		96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CB82442084400A3C720 /* String+AttributedString.swift */; };
 		96200CBF24435F3800A3C720 /* MainScreenActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */; };
+		9627E7CC250E0206007ACEBA /* TaskScreenTopPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9627E7CB250E0206007ACEBA /* TaskScreenTopPanel.swift */; };
+		9627E7CF250F9252007ACEBA /* NSObject+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9627E7CD250F9252007ACEBA /* NSObject+Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9627E7D0250F9252007ACEBA /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */; };
 		96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1324969D7100A815F2 /* LockedTaskView.swift */; };
 		96346F162496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */; };
 		963F56D424F10BA9002B949F /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D324F10BA9002B949F /* RatingView.swift */; };
@@ -115,6 +118,9 @@
 		96200CB62442016900A3C720 /* ProfileTaskAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskAnswerCell.swift; sourceTree = "<group>"; };
 		96200CB82442084400A3C720 /* String+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AttributedString.swift"; sourceTree = "<group>"; };
 		96200CBE24435F3800A3C720 /* MainScreenActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenActionCell.swift; sourceTree = "<group>"; };
+		9627E7CB250E0206007ACEBA /* TaskScreenTopPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScreenTopPanel.swift; sourceTree = "<group>"; };
+		9627E7CD250F9252007ACEBA /* NSObject+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
+		9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
 		96346F1324969D7100A815F2 /* LockedTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTaskView.swift; sourceTree = "<group>"; };
 		96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHiddenCrimeDescriptionView.swift; sourceTree = "<group>"; };
 		963F56D324F10BA9002B949F /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -334,6 +340,8 @@
 				9605432F2451D38C0083C217 /* CGFloat+layoutInsets.swift */,
 				9615F951245EC8400070E2D3 /* UIView+Animations.swift */,
 				9615F953245EC9E70070E2D3 /* UIImageView+ImageLoader.swift */,
+				9627E7CD250F9252007ACEBA /* NSObject+Extensions.h */,
+				9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -415,6 +423,7 @@
 				96346F1324969D7100A815F2 /* LockedTaskView.swift */,
 				96AAADF224DFFDBB00388404 /* AudioPlayerView.swift */,
 				963F56D524F24527002B949F /* RateTaskView.swift */,
+				9627E7CB250E0206007ACEBA /* TaskScreenTopPanel.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -518,6 +527,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9627E7CF250F9252007ACEBA /* NSObject+Extensions.h in Headers */,
 				96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,7 +568,7 @@
 				TargetAttributes = {
 					96500E28242F0F92005FFC7A = {
 						CreatedOnToolsVersion = 11.3.1;
-						LastSwiftMigration = 1130;
+						LastSwiftMigration = 1200;
 					};
 				};
 			};
@@ -619,6 +629,7 @@
 				965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */,
+				9627E7D0250F9252007ACEBA /* NSObject+Extensions.m in Sources */,
 				96054C1724599E9D0083C217 /* ScreenPlaceholderView.swift in Sources */,
 				96200CB72442016900A3C720 /* ProfileTaskAnswerCell.swift in Sources */,
 				96AAAFF1243B093600F61443 /* ScreenLoadingView.swift in Sources */,
@@ -632,6 +643,7 @@
 				967B54CA24E00912009EEF3E /* AudioPlayerController.swift in Sources */,
 				965AC79424364E86003A3DC7 /* SolidButton.swift in Sources */,
 				965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */,
+				9627E7CC250E0206007ACEBA /* TaskScreenTopPanel.swift in Sources */,
 				96500E722430C55E005FFC7A /* ProfileCaseCell.swift in Sources */,
 				96346F162496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift in Sources */,
 				96500E892435F1A6005FFC7A /* Screen.swift in Sources */,
@@ -825,6 +837,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectItUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -852,6 +865,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectItUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

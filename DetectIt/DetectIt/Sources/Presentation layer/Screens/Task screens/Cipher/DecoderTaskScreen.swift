@@ -19,12 +19,7 @@ final class DecoderTaskScreen: Screen {
     
     let contentContainer = StackViewController()
     
-    let closeButton = SolidButton.closeButton()
-    
-    let buttonsContainer = UIStackView()
-    let notesButton = SolidButton.notesButton()
-    let helpButton = SolidButton.helpButton()
-    
+    let topPanel = TaskScreenTopPanel()
     let screenView = DecoderTaskScreenView()
     lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
     
@@ -84,22 +79,6 @@ final class DecoderTaskScreen: Screen {
     }
     
     // MARK: - Actions
-    
-    @objc func didTapCloseButton() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func didTapHelpButton() {
-        User.shared.isDecoderHelpShown = true
-        
-        helpButton.isHidden = true
-        
-        present(HelpScreen(taskKind: task.kind), animated: true, completion: nil)
-    }
-    
-    @objc func didTapNotesButton() {
-        present(TaskNotesScreen(task: task), animated: true, completion: nil)
-    }
     
     func didTapEncodedPicture() {
         guard let image = encodedImage else { return }

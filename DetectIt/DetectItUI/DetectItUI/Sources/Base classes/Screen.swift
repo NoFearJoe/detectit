@@ -78,8 +78,8 @@ open class Screen: UIViewController {
             
             let blurView = BlurView(style: .dark)
             blurView.blurRadius = 28
-            blurView.colorTint = .black
-            blurView.colorTintAlpha = 0.5
+            blurView.colorTint = UIColor.black.withAlphaComponent(0.5)
+//            blurView.colorTintAlpha = 0.5
             
             view.addSubview(blurView)
             

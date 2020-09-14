@@ -231,8 +231,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         bottomContainerView.addSubview(bottomBlurView)
         
         bottomBlurView.blurRadius = 4
-        bottomBlurView.colorTint = .darkBackground
-        bottomBlurView.colorTintAlpha = 0.5
+        bottomBlurView.colorTint = UIColor.darkBackground.withAlphaComponent(0.5)
+//        bottomBlurView.colorTintAlpha = 0.5
         
         bottomBlurView.calculateFrame(container: bottomContainerView) { $0 }
         

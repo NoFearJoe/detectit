@@ -99,8 +99,8 @@ final class PhotoViewerScreen: Screen {
     private func setupViews() {
         view.addSubview(backgroundBlurView)
         backgroundBlurView.blurRadius = 20
-        backgroundBlurView.colorTint = .systemBackground
-        backgroundBlurView.colorTintAlpha = 0.5
+        backgroundBlurView.colorTint = UIColor.systemBackground.withAlphaComponent(0.5)
+//        backgroundBlurView.colorTintAlpha = 0.5
         backgroundBlurView.pin(to: view)
         
         setupScrollView()
@@ -128,7 +128,7 @@ final class PhotoViewerScreen: Screen {
             imageView.leadingAnchor.constraint(greaterThanOrEqualTo: imageContainer.leadingAnchor)
         ])
         
-        backgroundBlurView.contentView.addSubview(titleLabel)
+        backgroundBlurView.addSubview(titleLabel)
         
         titleLabel.font = .text4
         titleLabel.textColor = .lightGray

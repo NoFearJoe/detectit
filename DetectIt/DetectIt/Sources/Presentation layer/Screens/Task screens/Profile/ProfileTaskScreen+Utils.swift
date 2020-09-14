@@ -80,7 +80,7 @@ extension ProfileTaskScreen {
             let bottomInset = self.view.safeAreaInsets.bottom + Constants.bottomInset
             
             let minY = self.screenView.scoreLabel.frame.minY - topInset
-            let maxY = self.screenView.answersView.frame.maxY + bottomInset
+            let maxY = self.rateTaskViewController.view.frame.maxY + bottomInset
             
             let targetY = maxY - minY > self.view.bounds.height ? minY : max(0, maxY - self.view.bounds.height)
             

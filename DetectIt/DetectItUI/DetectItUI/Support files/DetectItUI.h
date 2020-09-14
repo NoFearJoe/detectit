@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+Extensions.h"
 
 //! Project version number for DetectItUI.
 FOUNDATION_EXPORT double DetectItUIVersionNumber;
