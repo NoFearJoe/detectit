@@ -35,6 +35,8 @@ final class QuestTaskScreen: Screen {
         self.state = State(task: task, bundle: bundle)
         
         super.init(nibName: nil, bundle: nil)
+        
+        transitioningDelegate = self
     }
     
     @available(*, unavailable)
@@ -140,6 +142,18 @@ extension QuestTaskScreen: QuestTaskScreenViewDelegate {
             
             finish()
         }
+    }
+    
+}
+
+extension QuestTaskScreen: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        TaskScreenOpenTransitionAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        TaskScreenCloseTransitionAnimator()
     }
     
 }

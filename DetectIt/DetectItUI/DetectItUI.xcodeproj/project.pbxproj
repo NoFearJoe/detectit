@@ -31,6 +31,7 @@
 		9627E7CC250E0206007ACEBA /* TaskScreenTopPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9627E7CB250E0206007ACEBA /* TaskScreenTopPanel.swift */; };
 		9627E7CF250F9252007ACEBA /* NSObject+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9627E7CD250F9252007ACEBA /* NSObject+Extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9627E7D0250F9252007ACEBA /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */; };
+		9627E7D325100367007ACEBA /* TaskScreenTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9627E7D225100367007ACEBA /* TaskScreenTransitionAnimator.swift */; };
 		96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1324969D7100A815F2 /* LockedTaskView.swift */; };
 		96346F162496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */; };
 		963F56D424F10BA9002B949F /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D324F10BA9002B949F /* RatingView.swift */; };
@@ -121,6 +122,7 @@
 		9627E7CB250E0206007ACEBA /* TaskScreenTopPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScreenTopPanel.swift; sourceTree = "<group>"; };
 		9627E7CD250F9252007ACEBA /* NSObject+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
 		9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
+		9627E7D225100367007ACEBA /* TaskScreenTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScreenTransitionAnimator.swift; sourceTree = "<group>"; };
 		96346F1324969D7100A815F2 /* LockedTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTaskView.swift; sourceTree = "<group>"; };
 		96346F152496B4D100A815F2 /* ProfileHiddenCrimeDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHiddenCrimeDescriptionView.swift; sourceTree = "<group>"; };
 		963F56D324F10BA9002B949F /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */,
 				965AC7B82438A017003A3DC7 /* FloatingViewVisibilityManager.swift */,
 				965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */,
+				9627E7D225100367007ACEBA /* TaskScreenTransitionAnimator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				96162675243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift in Sources */,
 				9607EBCA24CB6084006CD310 /* QuestTaskChapterView.swift in Sources */,
 				965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */,
+				9627E7D325100367007ACEBA /* TaskScreenTransitionAnimator.swift in Sources */,
 				965AC79824365004003A3DC7 /* TouchGestureRecognizer.swift in Sources */,
 				96500E7724324158005FFC7A /* ProfileView.swift in Sources */,
 				965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */,

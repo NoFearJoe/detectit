@@ -38,7 +38,7 @@ final class DecoderTaskScreen: Screen {
     
     var score: Int?
     var answer: String?
-        
+            
     // MARK: - Init
     
     init(task: DecoderTask, bundle: TasksBundle.Info?) {
@@ -46,6 +46,8 @@ final class DecoderTaskScreen: Screen {
         self.bundle = bundle
         
         super.init(nibName: nil, bundle: nil)
+        
+        transitioningDelegate = self
     }
     
     @available(*, unavailable)
@@ -100,6 +102,18 @@ final class DecoderTaskScreen: Screen {
     
     @objc func onTapBackground() {
         view.endEditing(true)
+    }
+    
+}
+
+extension DecoderTaskScreen: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        TaskScreenOpenTransitionAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        TaskScreenCloseTransitionAnimator()
     }
     
 }

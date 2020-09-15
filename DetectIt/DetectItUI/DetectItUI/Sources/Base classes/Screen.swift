@@ -34,6 +34,8 @@ open class Screen: UIViewController {
         
         overrideUserInterfaceStyle = .dark
         
+        view.backgroundColor = .systemBackground
+        
         view.addSubview(screenPlaceholderView)
         screenPlaceholderView.pin(to: view)
         screenPlaceholderView.setVisible(false, animated: false)

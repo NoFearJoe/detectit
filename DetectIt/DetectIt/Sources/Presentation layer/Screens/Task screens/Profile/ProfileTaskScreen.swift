@@ -59,6 +59,8 @@ final class ProfileTaskScreen: Screen {
         self.bundle = bundle
         
         super.init(nibName: nil, bundle: nil)
+        
+        transitioningDelegate = self
     }
     
     @available(*, unavailable)
@@ -299,6 +301,18 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         screen.presentationController?.delegate = self
         
         present(screen, animated: true, completion: nil)
+    }
+    
+}
+
+extension ProfileTaskScreen: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        TaskScreenOpenTransitionAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        TaskScreenCloseTransitionAnimator()
     }
     
 }
