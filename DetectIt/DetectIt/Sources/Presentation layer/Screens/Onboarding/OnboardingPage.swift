@@ -15,13 +15,20 @@ final class OnboardingPage: Screen {
     private let iconView = UIImageView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
+    private let button = SolidButton.makePushButton()
     
-    func configure(icon: UIImage?, title: String, subtitle: String) {
+    private var onTapButton: (() -> Void)?
+    
+    func configure(icon: UIImage?, title: String, subtitle: String, buttonTitle: String? = nil, onTapButton: (() -> Void)? = nil) {
         iconView.image = icon
         iconView.isHidden = icon == nil
         
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        
+        button.isHidden = buttonTitle == nil
+        button.setTitle(buttonTitle, for: .normal)
+        self.onTapButton = onTapButton
     }
     
     override func loadView() {
@@ -47,6 +54,7 @@ final class OnboardingPage: Screen {
         containerView.addArrangedSubview(iconView)
         containerView.addArrangedSubview(titleLabel)
         containerView.addArrangedSubview(subtitleLabel)
+        containerView.addArrangedSubview(button)
         
         iconView.contentMode = .scaleAspectFit
         
@@ -59,6 +67,13 @@ final class OnboardingPage: Screen {
         subtitleLabel.textColor = .white
         subtitleLabel.numberOfLines = 0
         subtitleLabel.textAlignment = .center
+        
+        button.setTitleColor(.yellow, for: .normal)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapButton() {
+        onTapButton?()
     }
     
 }

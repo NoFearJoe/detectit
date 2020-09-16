@@ -13,6 +13,10 @@ final class OnboardingScreen: UIPageViewController {
     
     var onFinish: (() -> Void)?
     
+    override var prefersStatusBarHidden: Bool {
+        true
+    }
+    
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
@@ -70,6 +74,7 @@ private extension OnboardingScreen {
     
     enum Page: Int, CaseIterable {
         case welcome
+        case tasks
         case noChance
         case enterName
     }
@@ -84,6 +89,14 @@ private extension OnboardingScreen {
                 icon: nil,
                 title: "onboarding_first_page_title".localized,
                 subtitle: "onboarding_first_page_subtitle".localized
+            )
+        case .tasks:
+            screen.configure(
+                icon: nil,
+                title: "onboarding_tasks_page_title".localized,
+                subtitle: "onboarding_tasks_page_subtitle".localized,
+                buttonTitle: "onboarding_tasks_page_details_button_title".localized,
+                onTapButton: { [unowned self] in self.showTasksOnboarding() }
             )
         case .noChance:
             screen.configure(
@@ -106,6 +119,12 @@ private extension OnboardingScreen {
         }
         
         return screen
+    }
+    
+    func showTasksOnboarding() {
+        let screen = TasksOnboardingScreen()
+        screen.modalPresentationStyle = .fullScreen
+        present(screen, animated: true, completion: nil)
     }
     
 }

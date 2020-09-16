@@ -37,6 +37,7 @@
 		961DE279247D380E00008AAB /* CommandLineArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE278247D380E00008AAB /* CommandLineArguments.swift */; };
 		961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */; };
 		96200CAF244195ED00A3C720 /* PhotoViewerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */; };
+		9627E7D72512AF21007ACEBA /* TasksOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9627E7D62512AF21007ACEBA /* TasksOnboardingScreen.swift */; };
 		96346F08248D6AEE00A815F2 /* AuthPrepareScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F07248D6AEE00A815F2 /* AuthPrepareScreen.swift */; };
 		96346F0B248D701300A815F2 /* AuthNavigationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F0A248D701300A815F2 /* AuthNavigationScreen.swift */; };
 		96346F10249413A400A815F2 /* FullVersionPurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F0F249413A400A815F2 /* FullVersionPurchaseScreen.swift */; };
@@ -130,6 +131,7 @@
 		961DE278247D380E00008AAB /* CommandLineArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineArguments.swift; sourceTree = "<group>"; };
 		961EEDF5243F834800462CD3 /* ProfileTaskScreen+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTaskScreen+State.swift"; sourceTree = "<group>"; };
 		96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerScreen.swift; sourceTree = "<group>"; };
+		9627E7D62512AF21007ACEBA /* TasksOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksOnboardingScreen.swift; sourceTree = "<group>"; };
 		96346F07248D6AEE00A815F2 /* AuthPrepareScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPrepareScreen.swift; sourceTree = "<group>"; };
 		96346F0A248D701300A815F2 /* AuthNavigationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationScreen.swift; sourceTree = "<group>"; };
 		96346F0F249413A400A815F2 /* FullVersionPurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionPurchaseScreen.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				96F054772444C60E000742E4 /* OnboardingScreen.swift */,
 				96F054792444CD77000742E4 /* OnboardingPage.swift */,
 				96F0547B2444D2EC000742E4 /* OnboardingLastPage.swift */,
+				9627E7D62512AF21007ACEBA /* TasksOnboardingScreen.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				964E2E3D249E3A5F0027F738 /* DetectiveProfileStatsView.swift in Sources */,
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
 				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
+				9627E7D72512AF21007ACEBA /* TasksOnboardingScreen.swift in Sources */,
 				9615F96024630B0D0070E2D3 /* ProfileTaskScreen+Setup.swift in Sources */,
 				9615F96224630CF50070E2D3 /* ProfileTaskScreen+Utils.swift in Sources */,
 				96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */,

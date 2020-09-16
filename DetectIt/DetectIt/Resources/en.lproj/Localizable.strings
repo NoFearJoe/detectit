@@ -38,6 +38,9 @@
 
 "onboarding_first_page_title" = "Welcome, detective!";
 "onboarding_first_page_subtitle" = "Get ready to plunge into the world of mysterious and terrifying stories";
+"onboarding_tasks_page_title" = "There is several task types in the game";
+"onboarding_tasks_page_subtitle" = "Each of them has its own rules and specialty. Read them before starting your investigation";
+"onboarding_tasks_page_details_button_title" = "Details...";
 "onboarding_second_page_title" = "Investigate wisely";
 "onboarding_second_page_subtitle" = "Use any means to search for truth - deduction, cunning, and even the Internet";
 "onboarding_last_page_title" = "Start simple";

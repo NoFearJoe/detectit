@@ -38,6 +38,9 @@
 
 "onboarding_first_page_title" = "Добро пожаловать, детектив!";
 "onboarding_first_page_subtitle" = "Приготовься погрузиться в мир таинственных и ужасающих историй";
+"onboarding_tasks_page_title" = "Тебе предстоит решать различные задания";
+"onboarding_tasks_page_subtitle" = "У каждого свои правила и особенности. Ознакомься с ними перед началом расследования.";
+"onboarding_tasks_page_details_button_title" = "Ознакомиться";
 "onboarding_second_page_title" = "Расследуй с умом";
 "onboarding_second_page_subtitle" = "Используй любые средства для поиска истины - дедукцию, хитрость и даже интернет";
 "onboarding_last_page_title" = "Начни с простого";
