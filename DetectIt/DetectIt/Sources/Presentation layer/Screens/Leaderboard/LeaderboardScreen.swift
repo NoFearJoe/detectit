@@ -73,6 +73,9 @@ final class LeaderboardScreen: Screen {
             leaderboardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             leaderboardView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        view.addSubview(screenLoadingView)
+        screenLoadingView.pin(to: leaderboardView)
     }
     
     required init?(coder: NSCoder) { fatalError() }
