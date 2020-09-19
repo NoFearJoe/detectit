@@ -62,9 +62,9 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
     func configure(model: Model, forSizeCalculation: Bool = false) {
         if let imagePath = model.backgroundImagePath {
-            backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image, cached, animationDuration in
+            backgroundImageView.loadImage(.staticAPI(imagePath), completion: { [weak self] image, cached, animationDuration in
                 self?.bottomBlurView.setHidden(image == nil, duration: animationDuration)
-            }
+            })
             kindLabel.configureShadow(radius: 2, isVisible: true)
             titleLabel.configureShadow(radius: 8, isVisible: true)
         } else {

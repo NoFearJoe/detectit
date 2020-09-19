@@ -91,9 +91,9 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     func configure(model: Model, forSizeCalculation: Bool = false) {
         if !forSizeCalculation {
             if let imagePath = model.backgroundImagePath {
-                backgroundImageView.loadImage(.staticAPI(imagePath)) { [weak self] image, cached, animationDuration in
+                backgroundImageView.loadImage(.staticAPI(imagePath), completion: { [weak self] image, cached, animationDuration in
                     self?.bottomBlurView.setHidden(image == nil, duration: animationDuration)
-                }
+                })
             } else {
                 backgroundImageView.image = nil
             }
