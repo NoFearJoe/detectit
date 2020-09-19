@@ -20,7 +20,7 @@ extension ProfileTaskScreen {
         }
         
         func get(questionID: String) -> TaskAnswer.ProfileTaskAnswer? {
-            answers.first(where: { $0.questionID == questionID })
+            answers.first { $0.questionID == questionID }
         }
         
         mutating func set(answer: TaskAnswer.ProfileAnswer, questionID: String) {
@@ -32,7 +32,7 @@ extension ProfileTaskScreen {
         }
         
         mutating func delete(questionID: String) {
-            answers.removeAll(where: { $0.questionID == questionID })
+            answers.removeAll { $0.questionID == questionID }
         }
         
         mutating func load(taskID: String, bundleID: String?) {

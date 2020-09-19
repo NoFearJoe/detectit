@@ -68,9 +68,9 @@ public final class TaskScreenTopPanel: UIView {
             buttonsContainer.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20)
         ])
         
-        buttonsContainer.addArrangedSubview(helpButton)
-        
-        helpButton.addTarget(self, action: #selector(didTapHelpButton), for: .touchUpInside)
+//        buttonsContainer.addArrangedSubview(helpButton)
+//        
+//        helpButton.addTarget(self, action: #selector(didTapHelpButton), for: .touchUpInside)
         
         buttonsContainer.addArrangedSubview(notesButton)
         notesButton.addTarget(self, action: #selector(didTapNotesButton), for: .touchUpInside)

@@ -132,8 +132,8 @@ extension ProfileView: UICollectionViewDataSource {
                 ) as! ProfilePhotoAttachmentCell
                 
                 cell.configure(model: photoAttachment)
-                cell.onTapPhoto = { [unowned self] in
-                    self.delegate.didSelectAttachment(at: indexPath.item)
+                cell.onTapPhoto = { [unowned delegate] in
+                    delegate.didSelectAttachment(at: indexPath.item)
                 }
                 
                 return cell
@@ -177,11 +177,7 @@ extension ProfileView: UICollectionViewDataSource {
     
 }
 
-extension ProfileView: UICollectionViewDelegate {
-    
-    
-    
-}
+extension ProfileView: UICollectionViewDelegate {}
 
 extension ProfileView: UICollectionViewDelegateFlowLayout {
     

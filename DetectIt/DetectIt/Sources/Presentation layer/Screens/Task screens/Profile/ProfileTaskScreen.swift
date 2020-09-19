@@ -77,7 +77,7 @@ final class ProfileTaskScreen: Screen {
     override func loadView() {
         super.loadView()
         
-        contentContainer.place(into: self) {
+        contentContainer.place(into: self) { [unowned self] in
             $0.pin(to: self.view, insets: UIEdgeInsets(top: 0, left: .hInset, bottom: 0, right: -.hInset))
         }
         

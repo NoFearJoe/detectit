@@ -41,7 +41,7 @@ public final class ProfileTaskScreenView: NSObject {
         collectionViewLayout: listLayout
     )
     
-    private let delegate: ProfileTaskScreenViewDelegate
+    private unowned let delegate: ProfileTaskScreenViewDelegate
     
     public init(delegate: ProfileTaskScreenViewDelegate) {
         self.delegate = delegate
@@ -81,7 +81,9 @@ public final class ProfileTaskScreenView: NSObject {
         crimeDescriptionLabel.textColor = .white
         crimeDescriptionLabel.numberOfLines = 0
         
-        hiddenCrimeDescriptionView.onTapGetStatusButton = delegate.didTapGetStatusButton
+        hiddenCrimeDescriptionView.onTapGetStatusButton = { [unowned delegate] in
+            delegate.didTapGetStatusButton()
+        }
         
         // Answers
         

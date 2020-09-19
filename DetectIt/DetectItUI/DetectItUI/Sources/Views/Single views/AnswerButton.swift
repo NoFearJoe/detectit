@@ -47,8 +47,8 @@ public final class AnswerButton: UIControl {
         fillView.backgroundColor = .yellow
         fillView.layer.anchorPoint.x = 0
                 
-        fillView.calculateFrame(container: self, onChangeContainerBounds: {
-            var bounds = $0
+        fillView.calculateFrame(container: self, onChangeContainerBounds: { [unowned self] bounds in
+            var bounds = bounds
             bounds.size.width = self.bounds.width * self.fillAnimator.fractionComplete
             return bounds
         })
