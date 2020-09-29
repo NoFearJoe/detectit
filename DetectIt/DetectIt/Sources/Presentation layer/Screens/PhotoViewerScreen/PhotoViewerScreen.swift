@@ -43,9 +43,7 @@ final class PhotoViewerScreen: Screen {
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError() }
     
-    override func loadView() {
-        super.loadView()
-        
+    override func prepare() {
         setup()
         setupViews()
         setupGestureRecognizers()
@@ -128,7 +126,7 @@ final class PhotoViewerScreen: Screen {
             imageView.leadingAnchor.constraint(greaterThanOrEqualTo: imageContainer.leadingAnchor)
         ])
         
-        backgroundBlurView.addSubview(titleLabel)
+        view.addSubview(titleLabel)
         
         titleLabel.font = .text4
         titleLabel.textColor = .lightGray
