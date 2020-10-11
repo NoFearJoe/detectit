@@ -13,9 +13,7 @@ import DetectItAPI
 
 final class TasksBundleScreen: Screen {
     
-    private var screenView: TasksBundleScreenView {
-        view as! TasksBundleScreenView
-    }
+    private lazy var screenView = TasksBundleScreenView(delegate: self)
     
     private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: true)
     
@@ -50,7 +48,7 @@ final class TasksBundleScreen: Screen {
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .fade }
     
     override func loadView() {
-        view = TasksBundleScreenView(delegate: self)
+        view = screenView
         
         view.clipsToBounds = true
         
@@ -174,6 +172,17 @@ private extension TasksBundleScreen {
                 title: tasksBundle.title,
                 totalScore: totalScore,
                 description: tasksBundle.description,
+                action: tasksBundle.action.map { action in
+                    TasksBundleScreenHeaderView.Model.Action(
+                        title: action.title,
+                        titleColor: UIColor(action.titleColor, defaultColor: .white),
+                        backgroundColor: UIColor(action.backgroundColor, defaultColor: .darkGray),
+                        action: {
+                            guard let url = URL(string: action.link) else { return }
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    )
+                },
                 isPaid: false,
                 price: nil
             )

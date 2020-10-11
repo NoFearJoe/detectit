@@ -35,9 +35,13 @@ public struct FullVersionManager {
     }
     
     public static var hasBought: Bool {
+        #if targetEnvironment(simulator)
+        return true
+        #else
         receiptStorage.bool(
             forKey: inAppPurchaseReceiptKey
         )
+        #endif
     }
     
     public static var canBuy: Bool {

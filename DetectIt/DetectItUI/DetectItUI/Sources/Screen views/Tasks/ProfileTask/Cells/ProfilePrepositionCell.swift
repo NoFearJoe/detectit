@@ -15,7 +15,7 @@ public final class ProfilePrepositionCell: AutosizingCollectionViewCell {
     // MARK: - Subviews
     
     private let titleLabel = UILabel()
-    private let textLabel = UILabel()
+    private let textView = TextView()
         
     // MARK: - Init
     
@@ -42,7 +42,7 @@ public final class ProfilePrepositionCell: AutosizingCollectionViewCell {
     
     public func configure(model: Model) {
         titleLabel.text = model.title
-        textLabel.attributedText = model.text.readableAttributedText(font: .text3)
+        textView.attributedText = model.text.readableAttributedText(font: .text3)
     }
     
     // MARK: - Setup
@@ -62,19 +62,15 @@ public final class ProfilePrepositionCell: AutosizingCollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
         
-        contentView.addSubview(textLabel)
+        contentView.addSubview(textView)
         
-        textLabel.font = .text3
-        textLabel.textColor = .white
-        textLabel.numberOfLines = 0
-        
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.setContentHuggingPriority(.defaultLow, for: .vertical)
         NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            textLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            textLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     

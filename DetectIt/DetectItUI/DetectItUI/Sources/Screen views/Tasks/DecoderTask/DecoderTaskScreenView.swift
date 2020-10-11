@@ -14,7 +14,7 @@ public final class DecoderTaskScreenView {
     public var onTapAnswerButton: (() -> Void)?
     
     public let titleLabel = UILabel()
-    public let prepositionLabel = UILabel()
+    public let prepositionView = TextView()
     
     public let encodedPictureContainer = UIView()
     private let encodedPictureSizingContainer = UIView()
@@ -28,16 +28,12 @@ public final class DecoderTaskScreenView {
     
     public let scoreLabel = UILabel()
     public let rightAnswerView = DecoderTaskRightAnswerView()
-    public let crimeDescriptionLabel = UILabel()
+    public let crimeDescriptionView = TextView()
     
     public func setupViews() {
         titleLabel.font = .heading1
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
-        
-        prepositionLabel.font = .text3
-        prepositionLabel.textColor = .white
-        prepositionLabel.numberOfLines = 0
         
         encodedPictureContainer.addSubview(encodedPictureSizingContainer)
         
@@ -84,10 +80,6 @@ public final class DecoderTaskScreenView {
         scoreLabel.font = .score1
         scoreLabel.textColor = .white
         scoreLabel.textAlignment = .center
-        
-        crimeDescriptionLabel.font = .text3
-        crimeDescriptionLabel.textColor = .white
-        crimeDescriptionLabel.numberOfLines = 0
     }
     
     @objc private func didTapEncodedPicture() {

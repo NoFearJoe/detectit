@@ -16,7 +16,7 @@ public struct TaskScore {
     
     public static func get(bundleID: String) -> Int? {
         storage.dictionaryRepresentation()
-            .filter { $0.key.contains(bundleID) }
+            .filter { $0.key.contains(keyPrefix + "_" + bundleID) }
             .reduce(0, { $0 + ($1.value as? Int ?? 0) })
     }
     

@@ -28,7 +28,7 @@ extension ProfileTaskScreen {
         contentContainer.appendSpacing(32)
         contentContainer.appendChild(screenView.crimeDescriptionTitleView)
         contentContainer.appendSpacing(20)
-        contentContainer.appendChild(screenView.crimeDescriptionLabel)
+        contentContainer.appendChild(screenView.crimeDescriptionView)
         contentContainer.appendChild(screenView.hiddenCrimeDescriptionView)
         contentContainer.appendSpacing(32)
         contentContainer.appendChild(screenView.answersTitleView)

@@ -38,6 +38,8 @@
 		963F56D624F24527002B949F /* RateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D524F24527002B949F /* RateTaskView.swift */; };
 		963F56D824F24574002B949F /* RateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D724F24574002B949F /* RateTaskViewController.swift */; };
 		963F56DA24F248AC002B949F /* DetectItAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963F56D924F248AC002B949F /* DetectItAPI.framework */; };
+		964511852533898400504D62 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964511842533898400504D62 /* TextView.swift */; };
+		964511882533A2BF00504D62 /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964511872533A2BF00504D62 /* UIColor+HEX.swift */; };
 		964E2E5824A36D710027F738 /* MainScreenFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5724A36D710027F738 /* MainScreenFiltersView.swift */; };
 		96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 96500E2C242F0F92005FFC7A /* DetectItUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E3D242F1151005FFC7A /* PhotoCardView.swift */; };
@@ -129,6 +131,8 @@
 		963F56D524F24527002B949F /* RateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTaskView.swift; sourceTree = "<group>"; };
 		963F56D724F24574002B949F /* RateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTaskViewController.swift; sourceTree = "<group>"; };
 		963F56D924F248AC002B949F /* DetectItAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		964511842533898400504D62 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		964511872533A2BF00504D62 /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
 		964E2E5724A36D710027F738 /* MainScreenFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenFiltersView.swift; sourceTree = "<group>"; };
 		96500E29242F0F92005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E2C242F0F92005FFC7A /* DetectItUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItUI.h; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 				9615F953245EC9E70070E2D3 /* UIImageView+ImageLoader.swift */,
 				9627E7CD250F9252007ACEBA /* NSObject+Extensions.h */,
 				9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */,
+				964511872533A2BF00504D62 /* UIColor+HEX.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				96200CB22441DECA00A3C720 /* AutosizingImageView.swift */,
 				96054328244F25B60083C217 /* GradientView.swift */,
 				963F56D324F10BA9002B949F /* RatingView.swift */,
+				964511842533898400504D62 /* TextView.swift */,
 			);
 			path = "Single views";
 			sourceTree = "<group>";
@@ -625,7 +631,9 @@
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
 				96500E902436208E005FFC7A /* UIImage+plain.swift in Sources */,
 				96162675243F69060097A4EE /* ProfileTaskVariantsQuestionCell.swift in Sources */,
+				964511882533A2BF00504D62 /* UIColor+HEX.swift in Sources */,
 				9607EBCA24CB6084006CD310 /* QuestTaskChapterView.swift in Sources */,
+				964511852533898400504D62 /* TextView.swift in Sources */,
 				965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */,
 				9627E7D325100367007ACEBA /* TaskScreenTransitionAnimator.swift in Sources */,
 				965AC79824365004003A3DC7 /* TouchGestureRecognizer.swift in Sources */,

@@ -28,7 +28,7 @@ extension DecoderTaskScreen {
         
     func displayContent() {
         screenView.titleLabel.text = task.title
-        screenView.prepositionLabel.attributedText = task.preposition.readableAttributedText(font: screenView.prepositionLabel.font)
+        screenView.prepositionView.attributedText = task.preposition.readableAttributedText(font: screenView.prepositionView.font!)
         screenView.encodedPictureView.image = encodedImage
         contentContainer.setChildHidden(screenView.encodedPictureView, hidden: encodedImage == nil, animated: false, animationDuration: 0)
         if let audio = encodedAudio {
@@ -41,7 +41,7 @@ extension DecoderTaskScreen {
                 answer: answer
             )
         )
-        screenView.crimeDescriptionLabel.attributedText = task.answer.crimeDescription.readableAttributedText(font: screenView.crimeDescriptionLabel.font)
+        screenView.crimeDescriptionView.attributedText = task.answer.crimeDescription.readableAttributedText(font: screenView.crimeDescriptionView.font!)
         screenView.rightAnswerView.answer = task.answer.decodedMessage
     }
     
@@ -52,7 +52,7 @@ extension DecoderTaskScreen {
         
         contentContainer.setChildHidden(screenView.answerButton, hidden: isSolved, animated: false)
         contentContainer.setChildHidden(screenView.scoreLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
-        contentContainer.setChildHidden(screenView.crimeDescriptionLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
+        contentContainer.setChildHidden(screenView.crimeDescriptionView, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.rightAnswerView, hidden: !isSolved || isSolvedCorrectly, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(rateTaskViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         

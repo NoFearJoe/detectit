@@ -14,6 +14,7 @@ public struct TasksBundle: Codable {
         public let id: String
         public let title: String
         public let description: String
+        public let action: Action?
     }
     
     public struct TaskScore: Codable {
@@ -24,6 +25,7 @@ public struct TasksBundle: Codable {
     public let info: Info
     private let ciphers: [DecoderTask]?
     private let profiles: [ProfileTask]?
+    private let quests: [QuestTask]?
     
     public let taskScores: [TaskScore]?
     
@@ -36,7 +38,18 @@ public struct TasksBundle: Codable {
     }
     
     public var questTasks: [QuestTask] {
-        []
+        quests ?? []
+    }
+    
+}
+
+public extension TasksBundle.Info {
+    
+    struct Action: Codable {
+        public let title: String
+        public let titleColor: String
+        public let backgroundColor: String
+        public let link: String
     }
     
 }

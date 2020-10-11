@@ -31,7 +31,7 @@ public final class ProfileTaskScreenView: NSObject {
     public let scoreLabel = UILabel()
     
     public let crimeDescriptionTitleView = ListSectionHeaderView()
-    public let crimeDescriptionLabel = UILabel()
+    public let crimeDescriptionView = TextView()
     public let hiddenCrimeDescriptionView = ProfileHiddenCrimeDescriptionView()
     
     public let answersTitleView = ListSectionHeaderView()
@@ -76,10 +76,6 @@ public final class ProfileTaskScreenView: NSObject {
         crimeDescriptionTitleView.titleLabel.textAlignment = .center
         crimeDescriptionTitleView.configure(title: "profile_task_screen_crime_description_title".localized)
         crimeDescriptionTitleView.heightAnchor.constraint(equalToConstant: 52).isActive = true
-        
-        crimeDescriptionLabel.font = .text3
-        crimeDescriptionLabel.textColor = .white
-        crimeDescriptionLabel.numberOfLines = 0
         
         hiddenCrimeDescriptionView.onTapGetStatusButton = { [unowned delegate] in
             delegate.didTapGetStatusButton()

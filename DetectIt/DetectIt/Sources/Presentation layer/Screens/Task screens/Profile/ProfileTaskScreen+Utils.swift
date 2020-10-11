@@ -50,7 +50,7 @@ extension ProfileTaskScreen {
         contentContainer.setChildHidden(screenView.answerButton, hidden: isSolved, animated: false)
         contentContainer.setChildHidden(screenView.scoreLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.crimeDescriptionTitleView, hidden: !isSolved, animated: animated, animationDuration: 2)
-        contentContainer.setChildHidden(screenView.crimeDescriptionLabel, hidden: !isSolved || !FullVersionManager.hasBought, animated: animated, animationDuration: 2)
+        contentContainer.setChildHidden(screenView.crimeDescriptionView, hidden: !isSolved || !FullVersionManager.hasBought, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.hiddenCrimeDescriptionView, hidden: !isSolved || FullVersionManager.hasBought, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.answersTitleView, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.answersView, hidden: !isSolved, animated: animated, animationDuration: 2)
@@ -58,7 +58,7 @@ extension ProfileTaskScreen {
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }
         screenView.scoreLabel.textColor = .score(value: score, max: task.maxScore, defaultColor: .white)
-        screenView.crimeDescriptionLabel.attributedText = task.crimeDescription.readableAttributedText(font: screenView.crimeDescriptionLabel.font)
+        screenView.crimeDescriptionView.attributedText = task.crimeDescription.readableAttributedText(font: screenView.crimeDescriptionView.font!)
         
         guard isSolved else { return }
         

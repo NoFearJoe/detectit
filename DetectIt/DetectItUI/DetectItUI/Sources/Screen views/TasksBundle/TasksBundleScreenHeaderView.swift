@@ -13,6 +13,8 @@ public final class TasksBundleScreenHeaderView: UIView {
     
     var onChangeHeight: ((CGFloat) -> Void)?
     
+    private var onTapActionButton: (() -> Void)?
+    
     // MARK: - Subviews
     
     private let imageView = UIImageView()
@@ -21,10 +23,12 @@ public final class TasksBundleScreenHeaderView: UIView {
     
     private let bottomViewsContainer = UIStackView()
     
-    private let descriptionLabel = UILabel()
+    private let actionButton = SolidButton.primaryButton()
+    
+    private let descriptionView = TextView()
     
     private let totalScoreLabel = UILabel()
-    
+        
     // MARK: - Init
     
     public override init(frame: CGRect) {
@@ -40,10 +44,31 @@ public final class TasksBundleScreenHeaderView: UIView {
     // MARK: - Configuration
     
     public struct Model {
+        
+        public struct Action {
+            let title: String
+            let titleColor: UIColor
+            let backgroundColor: UIColor
+            let action: () -> Void
+            
+            public init(
+                title: String,
+                titleColor: UIColor,
+                backgroundColor: UIColor,
+                action: @escaping () -> Void
+            ) {
+                self.title = title
+                self.titleColor = titleColor
+                self.backgroundColor = backgroundColor
+                self.action = action
+            }
+        }
+        
         let image: String
         let title: String
         let totalScore: String
         let description: String
+        let action: Action?
         
         let isPaid: Bool
         let price: String?
@@ -52,12 +77,14 @@ public final class TasksBundleScreenHeaderView: UIView {
                     title: String,
                     totalScore: String,
                     description: String,
+                    action: Action?,
                     isPaid: Bool,
                     price: String?) {
             self.image = image
             self.title = title
             self.totalScore = totalScore
             self.description = description
+            self.action = action
             self.isPaid = isPaid
             self.price = price
         }
@@ -70,10 +97,24 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         titleLabel.text = model.title
         
-        descriptionLabel.text = model.description
+        descriptionView.text = model.description
+        
+        if let action = model.action {
+            actionButton.isHidden = false
+            actionButton.setTitle(action.title, for: .normal)
+            actionButton.setTitleColor(action.titleColor, for: .normal)
+            actionButton.fill = .color(action.backgroundColor)
+        } else {
+            actionButton.isHidden = true
+        }
+        onTapActionButton = model.action?.action
         
         totalScoreLabel.isHidden = model.isPaid
         totalScoreLabel.attributedText = makeAttributedScoreString(score: model.totalScore)
+    }
+    
+    @objc private func didTapActionButton() {
+        onTapActionButton?()
     }
     
     // MARK: - Overrides
@@ -146,14 +187,15 @@ public final class TasksBundleScreenHeaderView: UIView {
             bottomViewsContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.vOffset)
         ])
         
-        bottomViewsContainer.addArrangedSubview(descriptionLabel)
+        bottomViewsContainer.addArrangedSubview(actionButton)
+        actionButton.heightConstraint?.constant = 48
+        actionButton.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
         
-        descriptionLabel.font = .text4
-        descriptionLabel.textColor = Constants.tintColor
-        descriptionLabel.numberOfLines = 0
+        bottomViewsContainer.addArrangedSubview(descriptionView)
+        descriptionView.font = .text4
+        descriptionView.textColor = Constants.tintColor
         
         bottomViewsContainer.addArrangedSubview(totalScoreLabel)
-        
         totalScoreLabel.font = .heading4
         totalScoreLabel.textColor = .yellow
     }

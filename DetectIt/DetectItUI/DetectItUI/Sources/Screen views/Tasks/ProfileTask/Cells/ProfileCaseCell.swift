@@ -25,7 +25,7 @@ public final class ProfileCaseCell: AutosizingCollectionViewCell {
     
     private let containerView = UIStackView()
     private let titleLabel = UILabel()
-    private let textLabel = UILabel()
+    private let textView = TextView()
     
     private let evidenceContainerView = UIView()
     private let evidenceView = PhotoCardView()
@@ -66,7 +66,7 @@ public final class ProfileCaseCell: AutosizingCollectionViewCell {
     
     public func configure(model: Model) {
         titleLabel.text = model.case.title
-        textLabel.attributedText = model.case.text.readableAttributedText(font: .text3)
+        textView.attributedText = model.case.text.readableAttributedText(font: .text3)
         
         evidenceContainerView.isHidden = model.evidence == nil
         if let evidence = model.evidence {
@@ -92,12 +92,8 @@ public final class ProfileCaseCell: AutosizingCollectionViewCell {
         titleLabel.textColor = .lightGray
         titleLabel.numberOfLines = 0
         
-        containerView.addArrangedSubview(textLabel)
-        containerView.setCustomSpacing(28, after: textLabel)
-        
-        textLabel.font = .text3
-        textLabel.textColor = .white
-        textLabel.numberOfLines = 0
+        containerView.addArrangedSubview(textView)
+        containerView.setCustomSpacing(28, after: textView)
         
         containerView.addArrangedSubview(evidenceContainerView)
         
