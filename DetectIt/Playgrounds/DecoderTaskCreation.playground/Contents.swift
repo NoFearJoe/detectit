@@ -9,8 +9,8 @@ let task = DecoderTask(
     
     """
     ,
-    difficulty: 1,
-    score: 1,
+    difficulty: 2,
+    score: 2,
     encodedPictureName: "encoded.jpg",
     encodedAudioName: nil,
     answer: .init(

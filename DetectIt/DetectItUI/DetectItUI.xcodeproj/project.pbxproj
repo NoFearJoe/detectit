@@ -60,6 +60,7 @@
 		96500E892435F1A6005FFC7A /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E882435F1A6005FFC7A /* Screen.swift */; };
 		96500E8E2435F337005FFC7A /* TasksBundleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E8D2435F337005FFC7A /* TasksBundleCell.swift */; };
 		96500E902436208E005FFC7A /* UIImage+plain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E8F2436208E005FFC7A /* UIImage+plain.swift */; };
+		965907152545A1970031107E /* PassthrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965907142545A1970031107E /* PassthrowView.swift */; };
 		965AC79424364E86003A3DC7 /* SolidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79324364E86003A3DC7 /* SolidButton.swift */; };
 		965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79524364F8B003A3DC7 /* TouchAnimatable.swift */; };
 		965AC79824365004003A3DC7 /* TouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */; };
@@ -156,6 +157,7 @@
 		96500E882435F1A6005FFC7A /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		96500E8D2435F337005FFC7A /* TasksBundleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleCell.swift; sourceTree = "<group>"; };
 		96500E8F2436208E005FFC7A /* UIImage+plain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+plain.swift"; sourceTree = "<group>"; };
+		965907142545A1970031107E /* PassthrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthrowView.swift; sourceTree = "<group>"; };
 		965AC79324364E86003A3DC7 /* SolidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidButton.swift; sourceTree = "<group>"; };
 		965AC79524364F8B003A3DC7 /* TouchAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchAnimatable.swift; sourceTree = "<group>"; };
 		965AC79724365004003A3DC7 /* TouchGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				96054328244F25B60083C217 /* GradientView.swift */,
 				963F56D324F10BA9002B949F /* RatingView.swift */,
 				964511842533898400504D62 /* TextView.swift */,
+				965907142545A1970031107E /* PassthrowView.swift */,
 			);
 			path = "Single views";
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				965AC7DE2438C704003A3DC7 /* StackViewControllerChild.swift in Sources */,
 				96AAAFF8243B1DFC00F61443 /* TaskDifficulty+Icon.swift in Sources */,
 				96162679243F73E20097A4EE /* ProfileTaskBoolAnswerQuestionCell.swift in Sources */,
+				965907152545A1970031107E /* PassthrowView.swift in Sources */,
 				96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */,
 				967B54CE24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift in Sources */,
 				963F56D424F10BA9002B949F /* RatingView.swift in Sources */,

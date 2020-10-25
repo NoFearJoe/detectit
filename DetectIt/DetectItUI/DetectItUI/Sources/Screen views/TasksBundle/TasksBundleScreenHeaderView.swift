@@ -9,7 +9,7 @@
 import UIKit
 import DetectItCore
 
-public final class TasksBundleScreenHeaderView: UIView {
+public final class TasksBundleScreenHeaderView: PassthrowView {
     
     var onChangeHeight: ((CGFloat) -> Void)?
     
@@ -136,6 +136,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = false
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         let heightMultiplier: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 9/16 : 5/16
@@ -150,6 +151,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         
         imageGradientView.startColor = UIColor.systemBackground.withAlphaComponent(0)
         imageGradientView.endColor = .systemBackground
+        imageGradientView.isUserInteractionEnabled = false
         
         imageGradientView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -164,6 +166,7 @@ public final class TasksBundleScreenHeaderView: UIView {
         titleLabel.font = .heading1
         titleLabel.textColor = Constants.tintColor
         titleLabel.numberOfLines = 0
+        titleLabel.isUserInteractionEnabled = false
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -194,10 +197,12 @@ public final class TasksBundleScreenHeaderView: UIView {
         bottomViewsContainer.addArrangedSubview(descriptionView)
         descriptionView.font = .text4
         descriptionView.textColor = Constants.tintColor
+        descriptionView.isUserInteractionEnabled = false
         
         bottomViewsContainer.addArrangedSubview(totalScoreLabel)
         totalScoreLabel.font = .heading4
         totalScoreLabel.textColor = .yellow
+        totalScoreLabel.isUserInteractionEnabled = false
     }
     
     private func makeAttributedScoreString(score: String) -> NSAttributedString {
