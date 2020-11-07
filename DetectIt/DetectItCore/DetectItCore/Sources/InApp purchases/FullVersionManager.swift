@@ -38,7 +38,7 @@ public struct FullVersionManager {
         #if targetEnvironment(simulator)
         return true
         #else
-        receiptStorage.bool(
+        return receiptStorage.bool(
             forKey: inAppPurchaseReceiptKey
         )
         #endif
