@@ -56,8 +56,6 @@ final class QuestTaskScreen: Screen {
         setupScreenLoadingView()
         setupViews()
         setupContentView()
-        
-        isStatusBarBlurred = true
     }
     
     override func prepare() {

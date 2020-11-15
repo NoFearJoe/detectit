@@ -85,8 +85,6 @@ final class ProfileTaskScreen: Screen {
         setupViews()
         setupContentView()
         setupKeyboardManager()
-        
-        isStatusBarBlurred = true
     }
     
     override func prepare() {

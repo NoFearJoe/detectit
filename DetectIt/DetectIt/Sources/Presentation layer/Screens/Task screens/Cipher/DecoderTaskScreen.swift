@@ -68,8 +68,6 @@ final class DecoderTaskScreen: Screen {
         setupContentView()
         setupViews()
         setupKeyboardManager()
-        
-        isStatusBarBlurred = true
     }
     
     override func prepare() {
