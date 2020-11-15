@@ -25,7 +25,9 @@ let task = DecoderTask(
 )
 
 let encodedTask = try! JSONEncoder().encode(task)
-let json = String(data: encodedTask, encoding: .utf8)!
+let obj = try! JSONSerialization.jsonObject(with: encodedTask, options: .allowFragments)
+let data = try! JSONSerialization.data(withJSONObject: obj, options: .prettyPrinted)
+let json = String(data: data, encoding: .utf8)!
 
 print(json)
 
