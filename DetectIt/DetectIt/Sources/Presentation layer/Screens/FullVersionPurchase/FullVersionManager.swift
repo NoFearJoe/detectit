@@ -6,9 +6,9 @@
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
-import Foundation
 import StoreKit
 import SwiftyStoreKit
+import DetectItCore
 
 public struct FullVersionManager {
     

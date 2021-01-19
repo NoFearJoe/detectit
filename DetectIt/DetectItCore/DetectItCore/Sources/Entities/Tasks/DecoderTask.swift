@@ -101,14 +101,19 @@ extension DecoderTask: TaskScoring {
 public extension DecoderTask.Answer {
     
     func compare(with answer: String) -> Bool {
-        clear(decodedMessage) == clear(answer)
-            || possibleAnswers?.map { clear($0) }.contains(clear(answer)) == true
+        ([decodedMessage] + (possibleAnswers ?? []))
+            .map { clear($0) }
+            .contains(where: { areAnswersEqual(userAnswer: clear(answer), correctAnswer: $0) })
     }
     
     private func clear(_ answer: String) -> String {
         answer
             .filter { !$0.isWhitespace && !$0.isNewline && ![",", "\"", "'", "«", "»"].contains($0) }
             .lowercased()
+    }
+    
+    private func areAnswersEqual(userAnswer: String, correctAnswer: String) -> Bool {
+        userAnswer.contains(correctAnswer)
     }
     
 }

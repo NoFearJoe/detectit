@@ -67,7 +67,7 @@ final class AuthScreen: Screen {
                     case "email_busy":
                         self?.showErrorHUD(title: "auth_email_busy_error_title".localized)
                     case "alias_busy":
-                        self?.showErrorHUD(title: "auth_email_busy_error_title".localized)
+                        self?.showErrorHUD(title: "auth_alias_busy_error_title".localized)
                     case "wrong_password":
                         self?.showErrorHUD(title: "auth_wrong_password_error_title".localized)
                     default:

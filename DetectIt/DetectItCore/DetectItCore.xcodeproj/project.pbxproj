@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,7 +20,6 @@
 		961DE26E2476B60300008AAB /* AppRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961DE26D2476B60300008AAB /* AppRateManager.swift */; };
 		96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBA2443035700A3C720 /* PluralLocalizations.swift */; };
 		96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */; };
-		96346F1224962DFF00A815F2 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1124962DFF00A815F2 /* FullVersionManager.swift */; };
 		963F56C924E9838E002B949F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56C824E9838E002B949F /* AppInfo.swift */; };
 		964E2E5624A32BA70027F738 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5524A32BA70027F738 /* Double+Round.swift */; };
 		964E2E5A24A396A80027F738 /* FeedFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5924A396A80027F738 /* FeedFilter.swift */; };
@@ -33,8 +32,6 @@
 		965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */; };
 		965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */; };
 		96AAADF124DFF21B00388404 /* AudioLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAADF024DFF21B00388404 /* AudioLoader.swift */; };
-		96AAAFED243A3FF900F61443 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */; };
-		96AAAFEF243A4F2000F61443 /* FullVersionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */; };
 		96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF2243B174600F61443 /* TaskDifficulty.swift */; };
 		96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF5243B19CB00F61443 /* TaskScoring.swift */; };
 		96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF9243B5ACE00F61443 /* TaskKind.swift */; };
@@ -71,7 +68,6 @@
 		961DE26F24793EAB00008AAB /* DetectItCore.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DetectItCore.xctestplan; sourceTree = "<group>"; };
 		96200CBA2443035700A3C720 /* PluralLocalizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluralLocalizations.swift; sourceTree = "<group>"; };
 		96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskAnswerComparisionTests.swift; sourceTree = "<group>"; };
-		96346F1124962DFF00A815F2 /* FullVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManager.swift; sourceTree = "<group>"; };
 		963F56C824E9838E002B949F /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		964E2E5524A32BA70027F738 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		964E2E5924A396A80027F738 /* FeedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilter.swift; sourceTree = "<group>"; };
@@ -84,7 +80,6 @@
 		965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoreTests.swift; sourceTree = "<group>"; };
 		965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnswerTests.swift; sourceTree = "<group>"; };
 		96AAADF024DFF21B00388404 /* AudioLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLoader.swift; sourceTree = "<group>"; };
-		96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManagerTests.swift; sourceTree = "<group>"; };
 		96AAAFF2243B174600F61443 /* TaskDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDifficulty.swift; sourceTree = "<group>"; };
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
 		96AAAFF9243B5ACE00F61443 /* TaskKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskKind.swift; sourceTree = "<group>"; };
@@ -98,7 +93,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96AAAFED243A3FF900F61443 /* SwiftyStoreKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +149,6 @@
 				961B963F242600BB003EC992 /* Info.plist */,
 				965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */,
 				965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */,
-				96AAAFEE243A4F2000F61443 /* FullVersionManagerTests.swift */,
 				96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */,
 				961DE26F24793EAB00008AAB /* DetectItCore.xctestplan */,
 			);
@@ -175,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				96054C1E2459A3210083C217 /* Extensions */,
-				965AC7F8243A39AD003A3DC7 /* InApp purchases */,
 				96500E14242BB194005FFC7A /* Utils */,
 				961B96502426013A003EC992 /* Entities */,
 			);
@@ -234,14 +226,6 @@
 			path = ProfileTask;
 			sourceTree = "<group>";
 		};
-		965AC7F8243A39AD003A3DC7 /* InApp purchases */ = {
-			isa = PBXGroup;
-			children = (
-				96346F1124962DFF00A815F2 /* FullVersionManager.swift */,
-			);
-			path = "InApp purchases";
-			sourceTree = "<group>";
-		};
 		96AAAFF4243B19B100F61443 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +273,6 @@
 			);
 			name = DetectItCore;
 			packageProductDependencies = (
-				96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */,
 			);
 			productName = DetectItCore;
 			productReference = 961B962F242600BB003EC992 /* DetectItCore.framework */;
@@ -342,7 +325,6 @@
 			);
 			mainGroup = 961B9625242600BB003EC992;
 			packageReferences = (
-				96AAAFEB243A3FF900F61443 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 			);
 			productRefGroup = 961B9630242600BB003EC992 /* Products */;
 			projectDirPath = "";
@@ -394,7 +376,6 @@
 				96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */,
 				96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */,
 				96054327244F10D20083C217 /* NSObjectWrapper.swift in Sources */,
-				96346F1224962DFF00A815F2 /* FullVersionManager.swift in Sources */,
 				96054C202459A33B0083C217 /* String+Localization.swift in Sources */,
 				965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */,
 				96F85C18244718B100F5CD22 /* UserRank.swift in Sources */,
@@ -411,7 +392,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */,
-				96AAAFEF243A4F2000F61443 /* FullVersionManagerTests.swift in Sources */,
 				96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */,
 				965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */,
 			);
@@ -555,6 +535,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 485UNLA592;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -581,6 +562,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 485UNLA592;
+				DISABLE_DIAMOND_PROBLEM_DIAGNOSTIC = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -673,25 +655,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		96AAAFEB243A3FF900F61443 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.15.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		96AAAFEC243A3FF900F61443 /* SwiftyStoreKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 96AAAFEB243A3FF900F61443 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
-			productName = SwiftyStoreKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 961B9626242600BB003EC992 /* Project object */;
 }

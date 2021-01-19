@@ -115,4 +115,12 @@ final class DecoderTaskAnswerComparisionTests: XCTestCase {
         XCTAssertTrue(rightAnswer.compare(with: userAnswer))
     }
     
+    /// Тест, что пользовательский ответ с лишними символами по краям строки будет засчитан
+    func testAnswerComparision16() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "test", possibleAnswers: nil)
+        let userAnswer = ".test."
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
 }
