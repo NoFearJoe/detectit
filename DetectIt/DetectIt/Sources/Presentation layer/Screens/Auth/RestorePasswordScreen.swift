@@ -1,29 +1,22 @@
 //
-//  AuthScreen.swift
+//  RestorePasswordScreen.swift
 //  DetectIt
 //
-//  Created by Илья Харабет on 28/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
+//  Created by Илья Харабет on 19.01.2021.
+//  Copyright © 2021 Mesterra. All rights reserved.
 //
 
 import UIKit
 import DetectItUI
-import DetectItCore
 import DetectItAPI
+import DetectItCore
 
-final class AuthScreen: Screen {
+final class RestorePasswordScreen: Screen {
     
-    var onFinish: (() -> Void)?
-        
     private let containerView = UIStackView()
+    
     private let titleLabel = UILabel()
-    private let aliasField = QuestionAndAnswerView(kind: .textField)
-    private let aliasHint = UILabel()
     private let emailField = QuestionAndAnswerView(kind: .textField)
-    private let emailHint = UILabel()
-    private let passwordField = QuestionAndAnswerView(kind: .textField)
-    private let passwordHint = UILabel()
-    private let authProblemsButton = SolidButton.makePushButton()
     private let continueButton = AnswerButton()
     
     private var continueButtonBottomConstraint: NSLayoutConstraint!
@@ -32,15 +25,19 @@ final class AuthScreen: Screen {
     
     private let api = DetectItAPI()
     
-    private var alias: String?
     private var email: String?
-    private var password: String?
+    
+    init(email: String?) {
+        self.email = email
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) { fatalError() }
     
     override func prepare() {
         super.prepare()
-        
-        User.shared.isOnboardingShown = true
-        
+                        
         setupViews()
         
         setupKeyboardManager()
@@ -49,15 +46,20 @@ final class AuthScreen: Screen {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        _ = aliasField.becomeFirstResponder()
+        if let email = email {
+            emailField.answer = email
+            updateContinueButtonState()
+        } else {
+            _ = emailField.becomeFirstResponder()
+        }
     }
     
-    private func auth() {
-        guard let alias = alias, let email = email, let password = password else { return }
+    private func restorePassword() {
+        guard let email = email else { return }
         
         showLoadingHUD(title: nil)
         
-        api.request(.auth(alias: alias, email: email, password: password)) { [weak self] result in
+        api.request(.restorePassword(email: email)) { [weak self] result in
             switch result {
             case let .success(response):
                 if response.statusCode == 401 {
@@ -65,23 +67,15 @@ final class AuthScreen: Screen {
                     
                     let payload = try? JSONDecoder().decode(ErrorPayload.self, from: response.data)
                     switch payload?.reason {
-                    case "email_busy":
-                        self?.showErrorHUD(title: "auth_email_busy_error_title".localized)
-                    case "alias_busy":
-                        self?.showErrorHUD(title: "auth_alias_busy_error_title".localized)
-                    case "wrong_password":
-                        self?.showErrorHUD(title: "auth_wrong_password_error_title".localized)
+                    case "no_email":
+                        self?.showErrorHUD(title: "auth_email_busy_error_title".localized) // TODO
                     default:
                         self?.showErrorHUD(title: "auth_401_error_title".localized)
                     }
                     
                     self?.hideHUD(after: 3)
                 } else if response.statusCode == 200 {
-                    User.shared.alias = alias
-                    User.shared.email = email
-                    User.shared.password = password
-                    
-                    self?.onFinish?()
+//                    self?.onFinish?() TODO
                 } else {
                     self?.continueButton.reset()
                     self?.showErrorHUD(title: "network_error_title".localized)
@@ -93,10 +87,6 @@ final class AuthScreen: Screen {
                 self?.hideHUD(after: 2)
             }
         }
-    }
-    
-    @objc private func onTapAuthProblemsButton() {
-        present(AuthProblemsScreen(email: email), animated: true, completion: nil)
     }
     
     private func setupViews() {
@@ -119,39 +109,17 @@ final class AuthScreen: Screen {
         ])
         
         containerView.addArrangedSubview(titleLabel)
-        containerView.addArrangedSubview(aliasField)
-        containerView.addArrangedSubview(aliasHint)
         containerView.addArrangedSubview(emailField)
-        containerView.addArrangedSubview(emailHint)
-        containerView.addArrangedSubview(passwordField)
-        containerView.addArrangedSubview(passwordHint)
         
         containerView.setCustomSpacing(32, after: titleLabel)
-        containerView.setCustomSpacing(2, after: aliasField)
         containerView.setCustomSpacing(2, after: emailField)
-        containerView.setCustomSpacing(2, after: passwordField)
         
-        titleLabel.text = "auth_title".localized
+        titleLabel.text = "restore_password_title".localized
         titleLabel.font = .heading1
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-        
-        aliasField.configure(model: .init(question: "auth_alias_title".localized, answer: nil))
-        aliasField.setContentCompressionResistancePriority(.required, for: .vertical)
-        aliasField.highlight(isCorrect: nil, animated: false, animationDuration: 0)
-        aliasField.onChangeAnswer = { [unowned self] answer in
-            self.alias = answer
-            self.updateContinueButtonState()
-            self.aliasField.highlight(isCorrect: !answer.isEmpty, animated: false, animationDuration: 0)
-        }
-        
-        aliasHint.font = .text5
-        aliasHint.textColor = .darkGray
-        aliasHint.numberOfLines = 0
-        aliasHint.text = "auth_alias_hint".localized
-        aliasHint.setContentCompressionResistancePriority(.required, for: .vertical)
         
         emailField.keyboardType = .emailAddress
         emailField.configure(model: .init(question: "auth_email_title".localized, answer: nil))
@@ -163,52 +131,14 @@ final class AuthScreen: Screen {
             self.emailField.highlight(isCorrect: self.isValidEmail(answer), animated: false, animationDuration: 0)
         }
         
-        emailHint.font = .text5
-        emailHint.textColor = .darkGray
-        emailHint.numberOfLines = 0
-        emailHint.text = "auth_email_hint".localized
-        emailHint.setContentCompressionResistancePriority(.required, for: .vertical)
-        
-        passwordField.configure(model: .init(question: "auth_password_title".localized, answer: nil))
-        passwordField.setContentCompressionResistancePriority(.required, for: .vertical)
-        passwordField.highlight(isCorrect: nil, animated: false, animationDuration: 0)
-        passwordField.onChangeAnswer = { [unowned self] answer in
-            self.password = answer
-            self.updateContinueButtonState()
-            self.passwordField.highlight(isCorrect: answer.count > 5, animated: false, animationDuration: 0)
-        }
-        
-        passwordHint.font = .text5
-        passwordHint.textColor = .darkGray
-        passwordHint.numberOfLines = 0
-        passwordHint.text = "auth_password_hint".localized
-        passwordHint.setContentCompressionResistancePriority(.required, for: .vertical)
-        
-        // Auth problems button
-        
-        view.addSubview(authProblemsButton)
-        
-        authProblemsButton.isHidden = true
-        authProblemsButton.heightConstraint?.constant = 0
-        authProblemsButton.setTitleColor(.yellow, for: .normal)
-        authProblemsButton.setTitleColor(.darkGray, for: .highlighted)
-        authProblemsButton.setTitle("auth_problems_button_title".localized, for: .normal)
-        authProblemsButton.addTarget(self, action: #selector(onTapAuthProblemsButton), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            authProblemsButton.topAnchor.constraint(greaterThanOrEqualTo: containerView.bottomAnchor, constant: 8),
-            authProblemsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
-            authProblemsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
-        ])
-        
         // Continue button
         
         view.addSubview(continueButton)
         
         continueButton.isEnabled = false
-        continueButton.titleLabel.text = "auth_continue_button_title".localized
+        continueButton.titleLabel.text = "restore_password_continue_button_title".localized
         continueButton.onFill = { [unowned self] in
-            self.auth()
+            self.restorePassword()
             self.view.endEditing(true)
         }
         
@@ -217,7 +147,7 @@ final class AuthScreen: Screen {
             constant: -12
         )
         NSLayoutConstraint.activate([
-            continueButton.topAnchor.constraint(equalTo: authProblemsButton.bottomAnchor, constant: 12),
+            continueButton.topAnchor.constraint(greaterThanOrEqualTo: containerView.bottomAnchor, constant: 12),
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
             continueButtonBottomConstraint
@@ -228,11 +158,7 @@ final class AuthScreen: Screen {
     }
     
     private func updateContinueButtonState() {
-        let aliasValid = alias?.isEmpty == false
-        let emailValid = isValidEmail(email)
-        let passwordValid = (password?.count ?? 0) > 5
-        
-        continueButton.isEnabled = aliasValid && emailValid && passwordValid
+        continueButton.isEnabled = isValidEmail(email)
     }
     
     func isValidEmail(_ email: String?) -> Bool {

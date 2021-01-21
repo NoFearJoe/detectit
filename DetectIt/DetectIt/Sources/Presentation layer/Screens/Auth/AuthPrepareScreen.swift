@@ -95,7 +95,7 @@ final class AuthPrepareScreen: Screen {
         NSLayoutConstraint.activate([
             privacyPolicyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
             privacyPolicyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
-            privacyPolicyButton.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -20)
+            privacyPolicyButton.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -12)
         ])
     }
     

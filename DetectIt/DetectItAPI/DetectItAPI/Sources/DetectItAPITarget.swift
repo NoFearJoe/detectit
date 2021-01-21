@@ -12,6 +12,7 @@ import DetectItCore
 public enum DetectItAPITarget {
     
     case auth(alias: String, email: String, password: String)
+    case restorePassword(email: String)
     
     case feed(filters: [FeedFilter])
     
@@ -53,6 +54,7 @@ extension DetectItAPITarget: TargetType {
     public var path: String {
         switch self {
         case .auth: return "auth"
+        case .restorePassword: return "auth/restore_password"
         case .feed: return "feed"
         case .tasksBundle: return "tasksBundle"
         case .taskScore, .setTaskScore: return "taskScore"
@@ -70,7 +72,7 @@ extension DetectItAPITarget: TargetType {
         switch self {
         case .auth, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
             return .post
-        case .feed, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard:
+        case .feed, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
             return .get
         }
     }
@@ -83,6 +85,11 @@ extension DetectItAPITarget: TargetType {
             return .requestParameters(
                 parameters: ["alias": alias, "email": email, "password": password],
                 encoding: JSONEncoding.default
+            )
+        case let .restorePassword(email):
+            return .requestParameters(
+                parameters: ["email": email],
+                encoding: URLEncoding.default
             )
         case let .feed(filters):
             return .requestParameters(
@@ -154,7 +161,7 @@ extension DetectItAPITarget: TargetType {
     
     public var headers: [String : String]? {
         switch self {
-        case .auth:
+        case .auth, .restorePassword:
             return [
                 "Version": AppInfo.version
             ]

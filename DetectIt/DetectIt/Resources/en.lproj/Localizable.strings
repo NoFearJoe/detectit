@@ -61,7 +61,20 @@
 "auth_email_hint" = "If you forget the login details, we will send them to this address (without spam and mailings)";
 "auth_password_title" = "Password";
 "auth_password_hint" = "At least 6 characters";
+"auth_problems_button_title" = "I have problems with log-in";
 "auth_continue_button_title" = "Enter";
+
+"auth_problems_title" = "Problems with authorization";
+"auth_problems_text" = "During authorization, the following errors may occur:
+– Introduced a pseudonym, which is already used by another detective. Just try to come up with a different alias.
+– Introduced email, which is already used by another detective. If you have not previously registered in the game, write to support to solve the problem.
+– Incorrect password entered. You have an infinite number of attempts to enter, but if you do not remember your password at all, click the \"Recover password\" button.
+– If you get an error without a clear description, check your internet connection or write to support.";
+"auth_problems_write_to_support_button_title" = "Write to support";
+"auth_problems_restore_password_button_title" = "Restore password";
+
+"restore_password_title" = "Password recovery";
+"restore_password_continue_button_title" = "Restore";
 
 // Main screen
 

@@ -58,6 +58,8 @@
 		969C825A25B4CA52008D9E72 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969C825925B4CA52008D9E72 /* FullVersionManager.swift */; };
 		969C826125B4CA9B008D9E72 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 969C826025B4CA9B008D9E72 /* SwiftyStoreKit */; };
 		96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */; };
+		96B32EB625B74B3500D0814F /* AuthProblemsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B32EB525B74B3500D0814F /* AuthProblemsScreen.swift */; };
+		96B32EBC25B7553400D0814F /* RestorePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B32EBB25B7553400D0814F /* RestorePasswordScreen.swift */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
@@ -153,6 +155,8 @@
 		969C825925B4CA52008D9E72 /* FullVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManager.swift; sourceTree = "<group>"; };
 		96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTaskScreen+DataLoading.swift"; sourceTree = "<group>"; };
 		96B32E5C25B4D2CF00D0814F /* Detect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Detect.entitlements; sourceTree = "<group>"; };
+		96B32EB525B74B3500D0814F /* AuthProblemsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProblemsScreen.swift; sourceTree = "<group>"; };
+		96B32EBB25B7553400D0814F /* RestorePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordScreen.swift; sourceTree = "<group>"; };
 		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
 		96F054772444C60E000742E4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		96F054792444CD77000742E4 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
@@ -349,6 +353,8 @@
 				96346F0A248D701300A815F2 /* AuthNavigationScreen.swift */,
 				96346F07248D6AEE00A815F2 /* AuthPrepareScreen.swift */,
 				96054C12245897DF0083C217 /* AuthScreen.swift */,
+				96B32EB525B74B3500D0814F /* AuthProblemsScreen.swift */,
+				96B32EBB25B7553400D0814F /* RestorePasswordScreen.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 				964E2E5024A11DB70027F738 /* LeaderboardScreen.swift in Sources */,
 				9607EBBD24C46C76006CD310 /* QuestTaskScreen+State.swift in Sources */,
 				9615F95C246309D00070E2D3 /* DecoderTaskScreen+Utils.swift in Sources */,
+				96B32EBC25B7553400D0814F /* RestorePasswordScreen.swift in Sources */,
 				9615F95E24630A930070E2D3 /* ProfileTaskScreen+KeyboardHandler.swift in Sources */,
 				961DE279247D380E00008AAB /* CommandLineArguments.swift in Sources */,
 				965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */,
@@ -634,6 +641,7 @@
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
 				96054C112458789A0083C217 /* TaskScreenRoute.swift in Sources */,
 				9607EBB924C467C4006CD310 /* QuestTaskScreen+Setup.swift in Sources */,
+				96B32EB625B74B3500D0814F /* AuthProblemsScreen.swift in Sources */,
 				96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */,
 				964E2E3D249E3A5F0027F738 /* DetectiveProfileStatsView.swift in Sources */,
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
