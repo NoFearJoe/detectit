@@ -142,7 +142,6 @@ extension MainScreen: MainScreenViewDelegate {
                 kind: TaskKind(rawValue: item.kind.rawValue)?.title ?? "",
                 title: item.title,
                 description: item.subtitle ?? "",
-//                difficultyIcon: TaskDifficulty(rawValue: item.difficulty).icon,
                 difficulty: difficulty.localizedTitle,
                 difficultyColor: difficulty.color,
                 score: item.score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },

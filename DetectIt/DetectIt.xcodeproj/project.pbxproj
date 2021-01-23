@@ -60,6 +60,7 @@
 		96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */; };
 		96B32EB625B74B3500D0814F /* AuthProblemsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B32EB525B74B3500D0814F /* AuthProblemsScreen.swift */; };
 		96B32EBC25B7553400D0814F /* RestorePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B32EBB25B7553400D0814F /* RestorePasswordScreen.swift */; };
+		96B3352C25BC63F800D0814F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3352B25BC63F800D0814F /* SplashScreen.swift */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
@@ -157,6 +158,7 @@
 		96B32E5C25B4D2CF00D0814F /* Detect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Detect.entitlements; sourceTree = "<group>"; };
 		96B32EB525B74B3500D0814F /* AuthProblemsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProblemsScreen.swift; sourceTree = "<group>"; };
 		96B32EBB25B7553400D0814F /* RestorePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordScreen.swift; sourceTree = "<group>"; };
+		96B3352B25BC63F800D0814F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
 		96F054772444C60E000742E4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		96F054792444CD77000742E4 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		96500E822434FD0F005FFC7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				96B3352A25BC63DD00D0814F /* SplashScreen */,
 				96346F0E2494137700A815F2 /* FullVersionPurchase */,
 				96346F09248D6FA300A815F2 /* Auth */,
 				96F054762444C374000742E4 /* Onboarding */,
@@ -453,6 +456,14 @@
 				9615F96124630CF50070E2D3 /* ProfileTaskScreen+Utils.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		96B3352A25BC63DD00D0814F /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				96B3352B25BC63F800D0814F /* SplashScreen.swift */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		96F054732444AAFA000742E4 /* DebugMenu */ = {
@@ -614,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96B3352C25BC63F800D0814F /* SplashScreen.swift in Sources */,
 				9607EBBB24C4680A006CD310 /* QuestTaskScreen+DataLoading.swift in Sources */,
 				964E2E41249F34670027F738 /* DetectiveProfileHeaderView.swift in Sources */,
 				964E2E5424A1250C0027F738 /* LeaderboardCell.swift in Sources */,

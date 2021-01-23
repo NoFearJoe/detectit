@@ -8,11 +8,14 @@
 
 import UIKit
 import DetectItCore
+import DetectItAPI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    let api = DetectItAPI()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = scene as? UIWindowScene else { return }
         
@@ -20,7 +23,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
 
         if User.shared.isAuthorized {
-            window.rootViewController = MainScreen()
+            window.rootViewController = SplashScreen()
+            api.chechAuthentication { isAuthorized in
+                if isAuthorized {
+                    self.performTransition(to: MainScreen())
+                } else {
+                    self.showAuth()
+                }
+            }
         } else if User.shared.isOnboardingShown {
             showAuth()
         } else {

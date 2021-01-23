@@ -67,6 +67,20 @@ public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {
         return cancellable
     }
     
+    public func chechAuthentication(completion: @escaping (Bool) -> Void) {
+        guard let alias = User.shared.alias, let email = User.shared.email, let password = User.shared.password else {
+            return completion(false)
+        }
+        
+        request(.auth(alias: alias, email: email, password: password)) { result in
+            if case .success = result {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
 }
 
 public final class CancellableObtain {
