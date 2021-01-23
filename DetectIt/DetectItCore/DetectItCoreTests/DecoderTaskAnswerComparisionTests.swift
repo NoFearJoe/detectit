@@ -63,12 +63,44 @@ final class DecoderTaskAnswerComparisionTests: XCTestCase {
         let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Test-test", possibleAnswers: nil)
         let userAnswer = "test test"
         
-        XCTAssertFalse(rightAnswer.compare(with: userAnswer))
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
     }
     
     func testAnswerComparision9() {
         let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "17:30", possibleAnswers: nil)
         let userAnswer = "17:30"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ засчитается, если пользователь ввел правильное время в другом формате
+    func testAnswerComparision9_1() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "17:30", possibleAnswers: nil)
+        let userAnswer = "5:30 pm"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ из нескольких слов, содержащих время, засчитается, если пользователь ввел правильное время в другом формате
+    func testAnswerComparision9_2() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Это было в 17:30", possibleAnswers: nil)
+        let userAnswer = "Это было в 5:30 pm"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ из нескольких слов, содержащих время, засчитается, если пользователь ввел правильное время в другом формате и сделал 1 опечатку
+    func testAnswerComparision9_3() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Это было в 17:30", possibleAnswers: nil)
+        let userAnswer = "Эта было в 5:30 pm"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ из нескольких слов, содержащих время, НЕ засчитается, если пользователь ввел правильное время в другом формате и сделал 2 опечатки
+    func testAnswerComparision9_4() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Это было в 17:30", possibleAnswers: nil)
+        let userAnswer = "Эта была в 5:30 pm"
         
         XCTAssertTrue(rightAnswer.compare(with: userAnswer))
     }
@@ -84,7 +116,7 @@ final class DecoderTaskAnswerComparisionTests: XCTestCase {
         let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "17:30", possibleAnswers: nil)
         let userAnswer = "17 30"
         
-        XCTAssertFalse(rightAnswer.compare(with: userAnswer))
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
     }
     
     func testAnswerComparision12() {
@@ -115,12 +147,152 @@ final class DecoderTaskAnswerComparisionTests: XCTestCase {
         XCTAssertTrue(rightAnswer.compare(with: userAnswer))
     }
     
+    /// Тест на то, что ответ, содержащий дату и введенный в неправильном порядке, засчитается
+    func testAnswerComparision15_1() {
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["test, test, 17:30"]
+            )
+            .validate(answer: "17:30 test test")
+        )
+    }
+    
+    // MARK: - Ответы с лишней информацией
+    
     /// Тест, что пользовательский ответ с лишними символами по краям строки будет засчитан
     func testAnswerComparision16() {
-        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "test", possibleAnswers: nil)
-        let userAnswer = ".test."
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["test"]
+            )
+            .validate(answer: ".test......")
+        )
+    }
+    
+    /// Тест, что пользовательский ответ с лишними символами по краям строки будет засчитан
+    func testAnswerComparision16_1() {
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["test, 1"]
+            )
+            .validate(answer: "test,, 1")
+        )
+    }
+    
+    /// Тест на то, что пользовательский ответ с неправильной последовательностью слов будет засчитан
+    func testAnswerComparision17() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "test1, test2", possibleAnswers: nil)
+        let userAnswer = "test2, test1"
         
         XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что пользовательский ответ с неправильной последовательностью слов и отсутствующим разделителем будет засчитан
+    func testAnswerComparision18() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "test1, test2", possibleAnswers: nil)
+        let userAnswer = "test2 test1"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что пользовательский ответ с допустимым количеством лишних ключевых слов будет засчитан
+    func testAnswerComparision19() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Сочи, стадион Фишт", possibleAnswers: nil)
+        let userAnswer = "Сочи, олимпийский стадион Фишт"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что пользовательский ответ с попыткой перебора ПРАВИЛЬНЫХ вариантов будет засчитан
+    func testAnswerComparision20() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Сочи, стадион Фишт", possibleAnswers: ["Адлер, стадион Фишт"])
+        let userAnswer = "Сочи или Адлер, Фишт"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что пользовательский ответ с попыткой перебора вариантов, среди которых есть правильный, в котором совпадает половина и более ключевых слов, будет засчитан
+    func testAnswerComparision21() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Сочи, стадион Фишт", possibleAnswers: ["Адлер, стадион Фишт"])
+        let userAnswer = "Сочи или Москва, Фишт"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что пользовательский ответ с попыткой перебора вариантов, среди которых есть правильный, в котором совпадает менее половины ключевых слов, НЕ будет засчитан
+    func testAnswerComparision22() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Сочи, стадион Фишт", possibleAnswers: ["Адлер, стадион Фишт"])
+        let userAnswer = "Сочи или Москва или Зурбаган, Фишт"
+        
+        XCTAssertFalse(rightAnswer.compare(with: userAnswer))
+    }
+    
+    // MARK: - Опечатки
+    
+    /// Тест на то, что ответ будет засчитан, если не совпадают буквы е-ё и и-й
+    func testAnswerComparision23() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Тест", possibleAnswers: nil)
+        let userAnswer = "Тёст"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ будет засчитан, если в нем допущено не более 1 опечаток
+    func testAnswerComparision24() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Аэропорт", possibleAnswers: nil)
+        let userAnswer = "Пэропорт"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ НЕ будет засчитан, если в нем допущено более 1 опечатки
+    func testAnswerComparision25() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Аэропорт", possibleAnswers: nil)
+        let userAnswer = "Пэропорд"
+        
+        XCTAssertFalse(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ из нескольких слов с одной опечаткой будет засчитан
+    func testAnswerComparision26() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "Аэропорт Хартсхилд-Джексон", possibleAnswers: nil)
+        let userAnswer = "Пэропорт Хартсхилд-Джексон"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    // MARK: - Даты
+    
+    /// Тест на то, что ответ, содержащий дату будет засчитан, если дата написана в другом формате
+    func testAnswerComparision27() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "15.02.1994", possibleAnswers: nil)
+        let userAnswer = "15.2.1994"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ, содержащий дату будет засчитан, если дата написана в другом формате
+    func testAnswerComparision28() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "15.02.1994", possibleAnswers: nil)
+        let userAnswer = "02.15.1994"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ, содержащий дату будет засчитан, если дата написана в другом формате
+    func testAnswerComparision29() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "15.02.1994", possibleAnswers: nil)
+        let userAnswer = "2.15.1994"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ, содержащий дату НЕ будет засчитан, если год написан сокращенно
+    func testAnswerComparision30() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "15.02.1994", possibleAnswers: nil)
+        let userAnswer = "15.02.94"
+        
+        XCTAssertFalse(rightAnswer.compare(with: userAnswer))
     }
     
 }

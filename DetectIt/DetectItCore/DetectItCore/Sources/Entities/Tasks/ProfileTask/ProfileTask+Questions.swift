@@ -115,9 +115,9 @@ public extension ProfileTask.Question {
         } else if let variantsQuestion = variant, case .string(let variantID) = answer {
             return variantsQuestion.correctVariantID == variantID
         } else if let exactAnswerQuestion = exactAnswer, case .string(let answer) = answer {
-            let clearAnswer = answer.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-            return exactAnswerQuestion.answer.lowercased() == clearAnswer
-                || exactAnswerQuestion.possibleAnswers.map { $0.lowercased() }.contains(clearAnswer)
+            return ExactAnswerValidator(
+                correctAnswers: [exactAnswerQuestion.answer] + exactAnswerQuestion.possibleAnswers
+            ).validate(answer: answer)
         } else if let boolAnswerQuestion = boolAnswer, case .bool(let answer) = answer {
             return boolAnswerQuestion.answer == answer
         } else {
