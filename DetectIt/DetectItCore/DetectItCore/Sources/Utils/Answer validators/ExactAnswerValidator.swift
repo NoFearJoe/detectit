@@ -43,37 +43,155 @@ struct ExactAnswerValidator {
     
     /// Проверка наличия введенных пользователем слов в полном ответе
     private func compareWholeAnswer(answer: String) -> Bool {
-        if correctAnswers.contains(answer) {
-            return true
-        }
-        
         if let specialTimesComparisionResult = compareSpecialTypes(answer: answer).bool {
             return specialTimesComparisionResult
         }
         
         let answerKeywords = getKeywords(answer: answer)
         
-        return answerKeywords
-            .matches { userKeyword in
-                correctAnswers.contains {
-                    isWord(userKeyword, containsIn: $0)
+        let matchesByAnswer = correctAnswers.map { _correctAnswer -> Bool in
+            var correctAnswer = clear(_correctAnswer)
+            
+            let matches = answerKeywords.map { answerKeyword -> KeywordMatch in
+                var isCorrect = false
+                if let rangeOfKeyword = correctAnswer.range(of: answerKeyword, options: [.caseInsensitive, .diacriticInsensitive]) {
+                    correctAnswer.removeSubrange(rangeOfKeyword)
+                    isCorrect = true
                 }
+                
+                return KeywordMatch(
+                    keyword: answerKeyword,
+                    isCorrect: isCorrect
+                )
             }
-            .matchPercent(totalKeywords: answerKeywords.count) >= Constants.minMatchPercent
+            
+            let matchesCoverage = matches.reduce(0) { $0 + ($1.isCorrect ? $1.keyword.count : 0) }
+            let extraMatchesCoverage = matches.reduce(0) { $0 + ($1.isCorrect ? 0 : $1.keyword.count) }
+            
+            let matchPercent = Double(matchesCoverage) / Double(_correctAnswer.count)
+            let extraMatchPercent = Double(extraMatchesCoverage) / Double(_correctAnswer.count)
+            
+            // ПРАВИЛО: совпадения должны покрывать не меньше чем 80% от ответа
+            return matchPercent >= 0.8 && extraMatchPercent <= 0.5
+        }
+        
+        return matchesByAnswer.contains(true)
     }
     
-    /// Проверка ответов на совпадение по ключевым словам
-    private func compareByKeywords(answer: String) -> Bool {
-        let answerKeywords = getKeywords(answer: answer)
-        let correctAnswerKeywords = correctAnswers.flatMap { getKeywords(answer: $0) }.unique
+    func compareByKeywords(answer: String) -> Bool {
+        typealias OneKeywordMatch = (typosCount: Int, keywordIndex: Int)
+        typealias AnswerKeywordsMatches = (index: Int, OneKeywordMatch?)
+        typealias MatchQuality = (missing: Int, matching: Int, extra: Int)
         
-        return answerKeywords
-            .matches { userKeyword in
-                correctAnswerKeywords.contains {
-                    areWordsEqual(lhs: userKeyword, rhs: $0)
+        /// Поиск максимально совпадающего слова в списке ключевых слов одного ответа
+        /// Если нет подходящих слов, возвращаем nil
+        func findBestKeywordMatch(userKeyword: String, answerKeywords: [String], exceptIndexes: [Int]) -> OneKeywordMatch? {
+            let matches = answerKeywords.enumerated().map { (index, answerKeyword) -> (equal: Bool, typos: Int, index: Int) in
+                guard !exceptIndexes.contains(index) else { return (false, 0, index) }
+                
+                if areWordsEqual(lhs: userKeyword, rhs: answerKeyword) {
+                    return (true, 0, index)
+                } else {
+                    let typosCount = getTyposCount(userKeyword, answerKeyword)
+                    let punctuationTyposCount = getPunctuationTyposCount(userKeyword, answerKeyword)
+                    
+                    let isEqualByLength = clear(userKeyword).count == clear(answerKeyword).count
+                    let areTyposSatisfiesLimit = typosCount <= Constants.maxTyposCount && punctuationTyposCount == 0
+                    return (isEqualByLength && areTyposSatisfiesLimit, typosCount + punctuationTyposCount, index)
                 }
             }
-            .matchPercent(totalKeywords: answerKeywords.count) >= Constants.minMatchPercent
+            
+            let _bestMatch = matches.min(by: { $0.equal && !$1.equal || $0.typos < $1.typos })
+            
+            guard let bestMatch = _bestMatch, bestMatch.equal, bestMatch.typos <= Constants.maxTyposCount else { return nil }
+            
+            return (bestMatch.typos, bestMatch.index)
+        }
+        
+        /// Составление списка всех пользовательских ключевых слов и их совпадений
+        func findAllMatches(userKeywords: [String], answerKeywords: [String]) -> [AnswerKeywordsMatches] {
+            var matches = [AnswerKeywordsMatches]()
+            
+            userKeywords.enumerated().forEach { index, userKeyword in
+                let bestMatch = findBestKeywordMatch(
+                    userKeyword: userKeyword,
+                    answerKeywords: answerKeywords,
+                    exceptIndexes: matches.compactMap { $0.1?.keywordIndex }
+                )
+                
+                matches.append((index, bestMatch))
+            }
+            
+            return matches
+        }
+        
+        /// Функция, которая проверяет, что все ключевые слова в варианте ответа есть в ключевых словах пользователя
+        func matchQuality(matches: [AnswerKeywordsMatches], correctAnswerKeywords: [String]) -> MatchQuality {
+            // Ключевые слова, у которых нет совпадений в ключевых словах из ответа
+            var extraMatches = matches
+            var missing = 0
+            var matching = 0
+            correctAnswerKeywords.enumerated().forEach { index, keyword in
+                let _matchIndex = extraMatches.firstIndex { matchIndex, match -> Bool in
+                    if let match = match {
+                        return match.keywordIndex == index
+                    } else {
+                        return false
+                    }
+                }
+                
+                guard let matchIndex = _matchIndex else {
+                    missing += 1
+                    return
+                }
+                
+                extraMatches.remove(at: matchIndex)
+                
+                matching += 1
+            }
+            
+            return (missing, matching, extraMatches.count)
+        }
+        
+        /// Функция, возвращающая результат проверки каждого ответа
+        func checkAllAnswers(userAnswer: String, correctAnswers: [String]) -> [Bool] {
+            let userKeywords = getKeywords(answer: userAnswer)
+            
+            return correctAnswers.map { correctAnswer in
+                let answerKeywords = getKeywords(answer: correctAnswer)
+                let allMatches = findAllMatches(userKeywords: userKeywords, answerKeywords: answerKeywords)
+                
+                let userAnswerQuality = matchQuality(matches: allMatches, correctAnswerKeywords: answerKeywords)
+                
+                // ПРАВИЛО: Максимальное количество пропущенных слов = 1 из 3 слов
+                let maxMissingWords = Int(floor(Double(answerKeywords.count) / 3))
+                if userAnswerQuality.missing > maxMissingWords {
+                    return false
+                }
+                
+                // ПРАВИЛО: Если все слова пропущены, неважно сколько напиано лишних слов = ответ неправильный
+                if answerKeywords.count - userAnswerQuality.missing == 0 {
+                    return false
+                }
+                
+                // ПРАВИЛО: Максимальное количество лишних слов = 1 на 2 слова
+                let maxExtraWords = Int(ceil(Double(answerKeywords.count) / 2))
+                if userAnswerQuality.extra > maxExtraWords {
+                    return false
+                }
+                
+                // ПРАВИЛО: Ответ можно засчитать, если количество правильных ключевых слов плюс лишних слов, за исключением пропущенных,
+                //          не больше количества ключевых слов из правильного ответа плюс максимальное количество лишних слов
+                let quality = userAnswerQuality.matching + (userAnswerQuality.extra - userAnswerQuality.missing)
+                
+                return (answerKeywords.count...(answerKeywords.count + maxExtraWords)).contains(quality)
+            }
+        }
+        
+        return checkAllAnswers(
+            userAnswer: answer,
+            correctAnswers: correctAnswers
+        ).contains(true)
     }
     
     // MARK: - Utils
@@ -89,10 +207,6 @@ struct ExactAnswerValidator {
             .lowercased()
     }
     
-    private func isWord(_ word: String, containsIn string: String) -> Bool {
-        clear(string).contains(word)
-    }
-    
     private func areWordsEqual(lhs _lhs: String, rhs _rhs: String) -> Bool {
         let lhs = clear(_lhs)
         let rhs = clear(_rhs)
@@ -104,9 +218,7 @@ struct ExactAnswerValidator {
                 lhs.compare(
                     rhs,
                     options: [.caseInsensitive, .diacriticInsensitive]
-                ) == .orderedSame && getPunctuationTyposCount(_lhs, _rhs) == 0
-            ) || (
-                getTyposCount(lhs, rhs) <= Constants.maxTyposCount && getPunctuationTyposCount(_lhs, _rhs) == 0
+                ) == .orderedSame
             )
         }
     }

@@ -19,3 +19,13 @@ public extension Array where Element: Equatable {
     }
     
 }
+
+public extension Array {
+    
+    func unique(include: @escaping (_ lhs: Element, _ rhs: Element) -> Bool) -> [Element] {
+        reduce([]) { acc, element in
+            acc.contains(where: { include(element, $0) }) ? acc : acc + [element]
+        }
+    }
+    
+}

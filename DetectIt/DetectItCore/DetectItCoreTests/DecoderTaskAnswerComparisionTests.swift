@@ -261,6 +261,24 @@ final class DecoderTaskAnswerComparisionTests: XCTestCase {
         XCTAssertTrue(rightAnswer.compare(with: userAnswer))
     }
     
+    /// Тест на то, что ответ будет засчитан, если пользователь разделил все буквы пробелом
+    func testAnswerComparision26_4() {
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["test"]
+            ).validate(answer: "t e s t")
+        )
+    }
+    
+    /// Тест на то, что ответ НЕ будет засчитан, если пользователь ввел ответ задом-наперед
+    func testAnswerComparision26_5() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["test"]
+            ).validate(answer: "tset")
+        )
+    }
+    
     // MARK: - Даты
     
     /// Тест на то, что ответ, содержащий дату будет засчитан, если дата написана в другом формате
@@ -293,6 +311,117 @@ final class DecoderTaskAnswerComparisionTests: XCTestCase {
         let userAnswer = "15.02.94"
         
         XCTAssertFalse(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ, содержащий дату и время будет засчитан, если ответ полностью введен верно
+    func testAnswerComparision30_1() {
+        let rightAnswer = DecoderTask.Answer(crimeDescription: "", decodedMessage: "15.02.1994 17:30", possibleAnswers: nil)
+        let userAnswer = "15.02.1994 17:30"
+        
+        XCTAssertTrue(rightAnswer.compare(with: userAnswer))
+    }
+    
+    /// Тест на то, что ответ, состоящий из нескольких слов с несколькими ошибками (больше нормы) НЕ будет засчитан
+    func testAnswerComparision31_1() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["Shakespeare is F. Bacon"]
+            ).validate(answer: "Shakespire is j Bacon")
+        )
+    }
+    
+    /// Тест на то, что ответ, состоящий из нескольких слов с несколькими ошибками (в пределах нормы) будет засчитан
+    func testAnswerComparision31_2() {
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["Shakespeare is F. Bacon"]
+            ).validate(answer: "Shakespiare is j Bacon")
+        )
+    }
+    
+    // MARK: - Повторения
+    
+    /// Тест на то, что ответ не будет засчитан, если в правильном ответе есть повторяющиеся слова, но пользователь не ввел их все
+    func testAnswerComparision32_1() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["test test test"]
+            ).validate(answer: "test")
+        )
+    }
+    
+    /// Тест на то, что ответ не будет засчитан, если в правильном ответе есть повторяющиеся символы, но пользователь ввел только 1
+    func testAnswerComparision32_2() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["111"]
+            ).validate(answer: "1")
+        )
+    }
+    
+    /// Тест на то, что ответ не будет засчитан, если в правильном ответе есть повторяющиеся символы, но пользователь ввел только 1
+    func testAnswerComparision32_3() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["aaa"]
+            ).validate(answer: "a")
+        )
+    }
+    
+    /// Тест на то, что ответ не будет засчитан, если в правильном ответе есть повторяющиеся символы, но пользователь ввел только 1
+    func testAnswerComparision32_4() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["aaa"]
+            ).validate(answer: "aa")
+        )
+    }
+    
+    /// Тест на то, что ответ из одного слова будет засчитан, если пользователь ввел ответ 2 раза
+    func testAnswerComparision32_5() {
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["test"]
+            ).validate(answer: "test test")
+        )
+    }
+    
+    /// Тест на то, что ответ из одного слова НЕ будет засчитан, если пользователь ввел ответ 3 раза
+    func testAnswerComparision32_6() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["test"]
+            ).validate(answer: "test test test")
+        )
+    }
+    
+    // MARK: - Проверка зачета нескольких вариантов ответа
+    
+    /// Тест на то, что ответ будет засчитан, если пользователь ввел альтернативный вариант ответа
+    func testAnswerComparision33_1() {
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["test", "foo"]
+            ).validate(answer: "foo")
+        )
+    }
+    
+    /// Тест на то, что ответ будет засчитан, если пользователь ввел основной и альтернативный вариант ответа
+    func testAnswerComparision33_2() {
+        XCTAssertTrue(
+            ExactAnswerValidator(
+                correctAnswers: ["test", "foo"]
+            ).validate(answer: "test foo")
+        )
+    }
+    
+    /// Тест на то, что ответ НЕ будет засчитан, если пользователь ввел основной и альтернативный вариант ответа одним словом
+    func testAnswerComparision33_3() {
+        XCTAssertFalse(
+            ExactAnswerValidator(
+                correctAnswers: ["test", "foo"]
+            ).validate(answer: "testfoo")
+        )
     }
     
 }
