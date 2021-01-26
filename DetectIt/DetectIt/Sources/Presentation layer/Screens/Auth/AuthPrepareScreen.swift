@@ -27,16 +27,26 @@ final class AuthPrepareScreen: Screen {
         setupViews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.authPrepare)
+    }
+    
     @objc private func onTapPrivacyButton() {
         guard let url = URL(string: "https://detect-api.herokuapp.com/PrivacyPolicy.pdf") else { return }
         
         let safari = SFSafariViewController(url: url)
         
         present(safari, animated: true, completion: nil)
+        
+        Analytics.logButtonTap(title: privacyPolicyButton.title, screen: .authPrepare)
     }
     
     @objc private func onTapContinueButton() {
         onContinue?()
+        
+        Analytics.logButtonTap(title: continueButton.title, screen: .authPrepare)
     }
     
     private func setupViews() {

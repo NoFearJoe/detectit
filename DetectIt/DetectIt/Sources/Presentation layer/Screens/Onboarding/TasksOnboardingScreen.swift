@@ -41,6 +41,12 @@ final class TasksOnboardingScreen: UIPageViewController {
         setViewControllers([makeScreen(for: .ciphers)], direction: .forward, animated: false, completion: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.tasksOnboarding)
+    }
+    
 }
 
 extension TasksOnboardingScreen: UIPageViewControllerDelegate {}

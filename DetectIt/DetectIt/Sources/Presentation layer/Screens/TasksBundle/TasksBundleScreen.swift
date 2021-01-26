@@ -76,6 +76,12 @@ final class TasksBundleScreen: Screen {
         loadTasksBundle()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.tasksBundle)
+    }
+    
 }
 
 // MARK: - TasksBundleScreenViewDelegate
@@ -119,6 +125,16 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         }()
         
         TaskScreenRoute(root: self).show(task: task, bundle: bundle.info)
+        
+        Analytics.log(
+            "task_selected",
+            parameters: [
+                "id": task.id,
+                "kind": task.kind.rawValue,
+                "difficulty": task.taskDifficulty,
+                "screen": Analytics.Screen.tasksBundle.rawValue
+            ]
+        )
     }
     
 }

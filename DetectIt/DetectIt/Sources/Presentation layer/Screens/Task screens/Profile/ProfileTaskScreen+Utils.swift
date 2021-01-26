@@ -25,6 +25,11 @@ extension ProfileTaskScreen {
         scrollToResults()
         
         AppRateManager.shared.commitEvent()
+        
+        Analytics.log(
+            "profile_answer_sent",
+            parameters: ["answer": answers.answers.compactMap { $0.jsonString }]
+        )
     }
     
     func commitAnswers() {

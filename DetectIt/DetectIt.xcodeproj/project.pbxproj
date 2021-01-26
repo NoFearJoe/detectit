@@ -61,6 +61,8 @@
 		96B32EB625B74B3500D0814F /* AuthProblemsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B32EB525B74B3500D0814F /* AuthProblemsScreen.swift */; };
 		96B32EBC25B7553400D0814F /* RestorePasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B32EBB25B7553400D0814F /* RestorePasswordScreen.swift */; };
 		96B3352C25BC63F800D0814F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3352B25BC63F800D0814F /* SplashScreen.swift */; };
+		96B3353325C0736B00D0814F /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 96B3353225C0736B00D0814F /* Amplitude */; };
+		96B3353725C0770500D0814F /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353625C0770500D0814F /* Analytics.swift */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
@@ -159,6 +161,7 @@
 		96B32EB525B74B3500D0814F /* AuthProblemsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProblemsScreen.swift; sourceTree = "<group>"; };
 		96B32EBB25B7553400D0814F /* RestorePasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordScreen.swift; sourceTree = "<group>"; };
 		96B3352B25BC63F800D0814F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		96B3353625C0770500D0814F /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
 		96F054772444C60E000742E4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		96F054792444CD77000742E4 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 				96054BF32455D2920083C217 /* DetectItAPI.framework in Frameworks */,
 				969C826125B4CA9B008D9E72 /* SwiftyStoreKit in Frameworks */,
 				96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */,
+				96B3353325C0736B00D0814F /* Amplitude in Frameworks */,
 				961B964B242600CF003EC992 /* DetectItCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +322,7 @@
 				961B95E32425EE89003EC992 /* AppDelegate.swift */,
 				961B95E52425EE89003EC992 /* SceneDelegate.swift */,
 				961DE278247D380E00008AAB /* CommandLineArguments.swift */,
+				96B3353625C0770500D0814F /* Analytics.swift */,
 			);
 			path = "Application layer";
 			sourceTree = "<group>";
@@ -504,6 +509,7 @@
 			name = DetectIt;
 			packageProductDependencies = (
 				969C826025B4CA9B008D9E72 /* SwiftyStoreKit */,
+				96B3353225C0736B00D0814F /* Amplitude */,
 			);
 			productName = DetectIt;
 			productReference = 961B95E02425EE89003EC992 /* Detect.app */;
@@ -581,6 +587,7 @@
 			mainGroup = 961B95D72425EE89003EC992;
 			packageReferences = (
 				969C825F25B4CA9B008D9E72 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				96B3353125C0736A00D0814F /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 			);
 			productRefGroup = 961B95E12425EE89003EC992 /* Products */;
 			projectDirPath = "";
@@ -661,6 +668,7 @@
 				9627E7D72512AF21007ACEBA /* TasksOnboardingScreen.swift in Sources */,
 				9615F96024630B0D0070E2D3 /* ProfileTaskScreen+Setup.swift in Sources */,
 				9615F96224630CF50070E2D3 /* ProfileTaskScreen+Utils.swift in Sources */,
+				96B3353725C0770500D0814F /* Analytics.swift in Sources */,
 				96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */,
 				96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */,
 				9615F95A2463045A0070E2D3 /* DecoderTaskScreen+Setup.swift in Sources */,
@@ -1027,6 +1035,14 @@
 				minimumVersion = 0.16.3;
 			};
 		};
+		96B3353125C0736A00D0814F /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1034,6 +1050,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 969C825F25B4CA9B008D9E72 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
+		};
+		96B3353225C0736B00D0814F /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96B3353125C0736A00D0814F /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

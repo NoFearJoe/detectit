@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Amplitude
 import DetectItCore
 import DetectItAPI
 
@@ -24,8 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         if User.shared.isAuthorized {
             window.rootViewController = SplashScreen()
-            api.chechAuthentication { isAuthorized in
+            api.chechAuthentication { isAuthorized, user in
                 if isAuthorized {
+                    user?.id.map { Amplitude.instance().setUserId("\($0)") }
+                    
                     self.performTransition(to: MainScreen())
                 } else {
                     self.showAuth()

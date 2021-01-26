@@ -88,6 +88,12 @@ final class QuestTaskScreen: Screen {
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.questTask)
+    }
+    
     // MARK: - Actions
     
     @objc func onTapBackground() {

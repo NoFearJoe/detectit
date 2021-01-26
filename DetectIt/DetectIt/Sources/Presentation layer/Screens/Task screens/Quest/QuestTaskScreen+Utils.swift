@@ -22,6 +22,10 @@ extension QuestTaskScreen {
         scrollToResults()
         
         AppRateManager.shared.commitEvent()
+        
+        if let answer = state.answer {
+            Analytics.log("quest_answer_sent", parameters: ["answer": answer.jsonString])
+        }
     }
     
     func commitAnswers() {

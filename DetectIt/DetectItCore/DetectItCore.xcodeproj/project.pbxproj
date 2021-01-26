@@ -45,6 +45,7 @@
 		96B334C725BB616400D0814F /* MatchingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B334C625BB616400D0814F /* MatchingResult.swift */; };
 		96B334CE25BB675300D0814F /* DateMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B334CD25BB675300D0814F /* DateMatcher.swift */; };
 		96B334D225BB67CB00D0814F /* TimeMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B334D125BB67CB00D0814F /* TimeMatcher.swift */; };
+		96B3353E25C08C2000D0814F /* Codable+JSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353D25C08C1F00D0814F /* Codable+JSONString.swift */; };
 		96F0547E2445EA2E000742E4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0547D2445EA2E000742E4 /* User.swift */; };
 		96F85C18244718B100F5CD22 /* UserRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F85C17244718B100F5CD22 /* UserRank.swift */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		96B334C625BB616400D0814F /* MatchingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResult.swift; sourceTree = "<group>"; };
 		96B334CD25BB675300D0814F /* DateMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMatcher.swift; sourceTree = "<group>"; };
 		96B334D125BB67CB00D0814F /* TimeMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMatcher.swift; sourceTree = "<group>"; };
+		96B3353D25C08C1F00D0814F /* Codable+JSONString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+JSONString.swift"; sourceTree = "<group>"; };
 		96F0547D2445EA2E000742E4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		96F85C17244718B100F5CD22 /* UserRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				96B334A325B98F4000D0814F /* Array+Unique.swift */,
 				96B334A725B9919500D0814F /* Double+SafeDivide.swift */,
 				96B334AB25B9AE7400D0814F /* Date+Init.swift */,
+				96B3353D25C08C1F00D0814F /* Codable+JSONString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				96B334A825B9919500D0814F /* Double+SafeDivide.swift in Sources */,
 				96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */,
 				96054327244F10D20083C217 /* NSObjectWrapper.swift in Sources */,
+				96B3353E25C08C2000D0814F /* Codable+JSONString.swift in Sources */,
 				96B334A425B98F4000D0814F /* Array+Unique.swift in Sources */,
 				96054C202459A33B0083C217 /* String+Localization.swift in Sources */,
 				965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Amplitude
 import DetectItCore
 
 @UIApplicationMain
@@ -16,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FullVersionManager.completeTransactions()
         
         handleCommandLineArguments()
+        
+        #if !DEBUG
+        Amplitude.instance().trackingSessionEvents = true
+        Amplitude.instance().initializeApiKey("f82ec4c4d3370dc29ba7e17dc3152d8d")
+        #endif
                 
         return true
     }

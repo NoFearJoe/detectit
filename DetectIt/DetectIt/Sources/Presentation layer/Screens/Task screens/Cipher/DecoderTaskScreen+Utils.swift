@@ -13,6 +13,7 @@ extension DecoderTaskScreen {
     
     func commitAnswer() {
         let answer = screenView.questionAndAnswerView.answer
+        self.answer = answer
         
         let isCorrectAnswer = task.answer.compare(with: answer)
         let score = isCorrectAnswer ? task.maxScore : 0

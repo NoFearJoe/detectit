@@ -72,6 +72,12 @@ final class MainScreen: Screen {
         loadTotalScore()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.main)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -96,6 +102,8 @@ extension MainScreen: MainScreenViewDelegate {
         screen.modalPresentationStyle = .fullScreen
         screen.modalTransitionStyle = .crossDissolve
         present(screen, animated: true, completion: nil)
+        
+        Analytics.logButtonTap(title: "profile", screen: .main)
     }
     
     func filters() -> [MainScreenFiltersView.Model] {
@@ -110,8 +118,12 @@ extension MainScreen: MainScreenViewDelegate {
     func didSelectFilter(at index: Int) {
         if selectedFilterIndexes.contains(index) {
             selectedFilterIndexes.remove(index)
+            
+            Analytics.log("filter_deselected", parameters: ["title": FeedFilter.allCases[index].localizedTitle])
         } else {
             selectedFilterIndexes.insert(index)
+            
+            Analytics.log("filter_selected", parameters: ["title": FeedFilter.allCases[index].localizedTitle])
         }
         
         screenView.reloadFilters()
@@ -175,6 +187,17 @@ extension MainScreen: MainScreenViewDelegate {
             guard let tasksBundle = item.bundle else { return }
             showTasksBundle(bundle: tasksBundle, imageName: item.picture)
         }
+        
+        Analytics.log(
+            "task_selected",
+            parameters: [
+                "id": item.id,
+                "kind": item.kind.rawValue,
+                "difficulty": item.difficulty,
+                "score": item.score ?? 0,
+                "screen": Analytics.Screen.main.rawValue
+            ]
+        )
     }
     
     func numberOfActions() -> Int {
@@ -199,6 +222,8 @@ extension MainScreen: MainScreenViewDelegate {
         case .debugMenu:
             present(DebugMenuScreen(), animated: true, completion: nil)
         }
+        
+        Analytics.logButtonTap(title: actions[index].title, screen: .main)
     }
     
 }

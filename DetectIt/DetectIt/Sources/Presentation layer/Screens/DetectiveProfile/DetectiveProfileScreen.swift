@@ -90,6 +90,12 @@ final class DetectiveProfileScreen: Screen {
         loadDetectiveProfile()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.detectiveProfile)
+    }
+    
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
     }
@@ -99,10 +105,14 @@ final class DetectiveProfileScreen: Screen {
         screen.modalPresentationStyle = .fullScreen
         screen.modalTransitionStyle = .crossDissolve
         self.present(screen, animated: true, completion: nil)
+        
+        Analytics.logButtonTap(title: leaderboardButton.title, screen: .detectiveProfile)
     }
     
     @objc private func didTapRateAppButton() {
         UIApplication.shared.open(AppRateManager.appStoreLink, options: [:], completionHandler: nil)
+        
+        Analytics.logButtonTap(title: rateAppButton.title, screen: .detectiveProfile)
     }
     
     @objc private func didTapInviteFriendButton() {
@@ -111,10 +121,14 @@ final class DetectiveProfileScreen: Screen {
         sharingController.popoverPresentationController?.sourceView = inviteFriendButton
         
         present(sharingController, animated: true, completion: nil)
+        
+        Analytics.logButtonTap(title: inviteFriendButton.title, screen: .detectiveProfile)
     }
     
     @objc private func didTapReportProblemButton() {
         showReportProblem()
+        
+        Analytics.logButtonTap(title: reportProblemButton.title, screen: .detectiveProfile)
     }
     
     @objc private func didTapRestorePurchasesButton() {
@@ -124,6 +138,8 @@ final class DetectiveProfileScreen: Screen {
             success ? self.showSuccessHUD() : self.showErrorHUD(title: "error_hud_title".localized)
             self.hideHUD(after: 1)
         }
+        
+        Analytics.logButtonTap(title: restorePurchasesButton.title, screen: .detectiveProfile)
     }
     
     private func setupViews() {

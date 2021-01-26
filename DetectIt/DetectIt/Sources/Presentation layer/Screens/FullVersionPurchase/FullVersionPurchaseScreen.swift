@@ -29,6 +29,12 @@ final class FullVersionPurchaseScreen: Screen {
     
     required init?(coder: NSCoder) { fatalError() }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.fullVersionPurchase)
+    }
+    
     @objc private func didTapCloseButton() {
         close()
     }
@@ -53,6 +59,8 @@ final class FullVersionPurchaseScreen: Screen {
                 }
             }
         }
+        
+        Analytics.logButtonTap(title: buyButton.title, screen: .fullVersionPurchase)
     }
     
     @objc private func didTapRestoreButton() {
@@ -72,6 +80,8 @@ final class FullVersionPurchaseScreen: Screen {
                 }
             }
         }
+        
+        Analytics.logButtonTap(title: restoreButton.title, screen: .fullVersionPurchase)
     }
     
     private func setupViews() {

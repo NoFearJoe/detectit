@@ -86,6 +86,12 @@ final class LeaderboardScreen: Screen {
         loadLeaderboard()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.leaderboard)
+    }
+    
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
     }

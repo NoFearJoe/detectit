@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Amplitude
 import DetectItUI
 import DetectItCore
 import DetectItAPI
@@ -50,6 +51,8 @@ final class AuthScreen: Screen {
         super.viewDidAppear(animated)
         
         _ = aliasField.becomeFirstResponder()
+        
+        Analytics.logScreenShow(.auth)
     }
     
     private func auth() {
@@ -81,6 +84,10 @@ final class AuthScreen: Screen {
                     User.shared.email = email
                     User.shared.password = password
                     
+                    if let userID = try? response.map(UserEntity.self).id {
+                        Amplitude.instance().setUserId("\(userID)")
+                    }
+                    
                     self?.onFinish?()
                 } else {
                     self?.continueButton.reset()
@@ -93,10 +100,14 @@ final class AuthScreen: Screen {
                 self?.hideHUD(after: 2)
             }
         }
+        
+        Analytics.logButtonTap(title: continueButton.titleLabel.text ?? "", screen: .auth)
     }
     
     @objc private func onTapAuthProblemsButton() {
         present(AuthProblemsScreen(email: email), animated: true, completion: nil)
+        
+        Analytics.logButtonTap(title: authProblemsButton.title, screen: .auth)
     }
     
     private func setupViews() {

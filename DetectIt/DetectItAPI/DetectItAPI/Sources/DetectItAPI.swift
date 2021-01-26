@@ -67,16 +67,16 @@ public final class DetectItAPI: MoyaProvider<DetectItAPITarget> {
         return cancellable
     }
     
-    public func chechAuthentication(completion: @escaping (Bool) -> Void) {
+    public func chechAuthentication(completion: @escaping (Bool, UserEntity?) -> Void) {
         guard let alias = User.shared.alias, let email = User.shared.email, let password = User.shared.password else {
-            return completion(false)
+            return completion(false, nil)
         }
         
         request(.auth(alias: alias, email: email, password: password)) { result in
-            if case .success = result {
-                completion(true)
+            if case .success(let payload) = result, (200...299) ~= payload.statusCode {
+                completion(true, try? payload.map(UserEntity.self))
             } else {
-                completion(false)
+                completion(false, nil)
             }
         }
     }

@@ -104,6 +104,12 @@ final class ProfileTaskScreen: Screen {
         loadTask()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.profileTask)
+    }
+    
     // MARK: - Actions
     
     @objc func onTapBackground() {
@@ -299,6 +305,8 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         screen.presentationController?.delegate = self
         
         present(screen, animated: true, completion: nil)
+        
+        Analytics.logButtonTap(title: "profile_task_screen_get_status_button_title".localized, screen: .profileTask)
     }
     
 }

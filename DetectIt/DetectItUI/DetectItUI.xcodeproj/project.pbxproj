@@ -96,6 +96,7 @@
 		96AAB010243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00F243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift */; };
 		96AF70252448C80500B6B848 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 96AF70242448C80500B6B848 /* JGProgressHUD */; };
 		96AF70272448CDEE00B6B848 /* ProfileReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF70262448CDEE00B6B848 /* ProfileReportView.swift */; };
+		96B3353B25C078EA00D0814F /* UIButton+title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353A25C078EA00D0814F /* UIButton+title.swift */; };
 		96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F85C122445FCF000F5CD22 /* DetectItCore.framework */; };
 		96F85C152447119800F5CD22 /* MainScreenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F85C142447119800F5CD22 /* MainScreenHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -191,6 +192,7 @@
 		96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionView.swift; sourceTree = "<group>"; };
 		96AAB00F243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskNumberQuestionCell.swift; sourceTree = "<group>"; };
 		96AF70262448CDEE00B6B848 /* ProfileReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileReportView.swift; sourceTree = "<group>"; };
+		96B3353A25C078EA00D0814F /* UIButton+title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+title.swift"; sourceTree = "<group>"; };
 		96F85C122445FCF000F5CD22 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F85C142447119800F5CD22 /* MainScreenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -352,6 +354,7 @@
 				9627E7CD250F9252007ACEBA /* NSObject+Extensions.h */,
 				9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */,
 				964511872533A2BF00504D62 /* UIColor+HEX.swift */,
+				96B3353A25C078EA00D0814F /* UIButton+title.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				96AAB010243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift in Sources */,
 				96200CB52441F29000A3C720 /* UICollectionView+EmptyCell.swift in Sources */,
 				961EEDF82440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift in Sources */,
+				96B3353B25C078EA00D0814F /* UIButton+title.swift in Sources */,
 				965AC7AE243878A6003A3DC7 /* TasksBundleScreenView.swift in Sources */,
 				96200CBF24435F3800A3C720 /* MainScreenActionCell.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,

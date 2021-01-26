@@ -78,6 +78,12 @@ final class DecoderTaskScreen: Screen {
         loadTask()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.cipherTask)
+    }
+    
     // MARK: - Actions
     
     func didTapEncodedPicture() {
@@ -96,6 +102,8 @@ final class DecoderTaskScreen: Screen {
         scrollToResults()
         
         AppRateManager.shared.commitEvent()
+        
+        Analytics.log("cipher_answer_sent", parameters: ["answer": answer ?? ""])
     }
     
     @objc func onTapBackground() {

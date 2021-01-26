@@ -40,6 +40,12 @@ final class OnboardingScreen: UIPageViewController {
         setViewControllers([makeScreen(for: .welcome)], direction: .forward, animated: false, completion: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Analytics.logScreenShow(.onboarding)
+    }
+    
 }
 
 extension OnboardingScreen: UIPageViewControllerDelegate {}
