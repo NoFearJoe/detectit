@@ -171,7 +171,7 @@ extension MainScreen: MainScreenViewDelegate {
     }
     
     func didSelectFeedItem(at index: Int) {
-        guard let item = feed?.items[index] else { return }
+        guard let item = feed?.items.item(at: index) else { return }
         
         switch item.kind {
         case .cipher:

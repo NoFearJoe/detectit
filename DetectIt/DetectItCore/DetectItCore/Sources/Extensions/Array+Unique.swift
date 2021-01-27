@@ -29,3 +29,12 @@ public extension Array {
     }
     
 }
+
+public extension Array {
+    
+    func item(at index: Int) -> Element? {
+        guard (0..<count) ~= index else { return nil }
+        return self[index]
+    }
+    
+}
