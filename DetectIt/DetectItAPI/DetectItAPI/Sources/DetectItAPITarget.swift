@@ -13,6 +13,7 @@ public enum DetectItAPITarget {
     
     case auth(alias: String, email: String, password: String)
     case restorePassword(email: String)
+    case deleteAccount
     
     case feed(filters: [FeedFilter])
     
@@ -55,6 +56,7 @@ extension DetectItAPITarget: TargetType {
         switch self {
         case .auth: return "auth"
         case .restorePassword: return "auth/restore_password"
+        case .deleteAccount: return "delete_account"
         case .feed: return "feed"
         case .tasksBundle: return "tasksBundle"
         case .taskScore, .setTaskScore: return "taskScore"
@@ -70,7 +72,7 @@ extension DetectItAPITarget: TargetType {
     
     public var method: Moya.Method {
         switch self {
-        case .auth, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
+        case .auth, .deleteAccount, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
             return .post
         case .feed, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
             return .get
@@ -91,6 +93,8 @@ extension DetectItAPITarget: TargetType {
                 parameters: ["email": email],
                 encoding: URLEncoding.default
             )
+        case .deleteAccount:
+            return .requestPlain
         case let .feed(filters):
             return .requestParameters(
                 parameters: ["filters": filters.map { $0.rawValue }.joined(separator: ",")],

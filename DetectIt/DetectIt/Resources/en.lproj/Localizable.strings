@@ -138,9 +138,15 @@
 "main_screen_leaderboard_action_title" = "Leaderboard";
 "detective_profile_rate_app_action_title" = "Rate the App";
 "detective_profile_invite_friend_button_title" = "Recruit a friend";
+"detective_profile_logout_action_title" = "Logout";
+"detective_profile_delete_account_action_title" = "Delete account";
 "detective_profile_total_score_title" = "Total score";
 "detective_profile_correct_answer_percent" = "Percentage of correct answers";
 "detective_profile_solved_tasks_count" = "Number of completed tasks";
+"detective_profile_delete_account_alert_title" = "Are you sure?";
+"detective_profile_delete_account_alert_message" = "Your account and progress will be removed forever";
+"detective_profile_delete_account_delete_action_title" = "Delete";
+"detective_profile_delete_account_cancel_button_title" = "Cancel";
 
 // Leaderboard
 

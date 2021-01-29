@@ -31,6 +31,8 @@ final class DetectiveProfileScreen: Screen {
     private let inviteFriendButton = SolidButton.primaryButton()
     private let reportProblemButton = SolidButton.primaryButton()
     private let restorePurchasesButton = SolidButton.primaryButton()
+    private let logoutButton = SolidButton.primaryButton()
+    private let deleteAccountButton = SolidButton.primaryButton()
     
     // MARK: - Services
     
@@ -76,6 +78,10 @@ final class DetectiveProfileScreen: Screen {
         contentView.appendChild(reportProblemButton)
         contentView.appendSpacing(8)
         contentView.appendChild(restorePurchasesButton)
+        contentView.appendSpacing(8)
+        contentView.appendChild(logoutButton)
+        contentView.appendSpacing(8)
+        contentView.appendChild(deleteAccountButton)
         contentView.setBottomSpacing(20)
         
         setupViews()
@@ -142,6 +148,39 @@ final class DetectiveProfileScreen: Screen {
         Analytics.logButtonTap(title: restorePurchasesButton.title, screen: .detectiveProfile)
     }
     
+    @objc private func didTapLogoutButton() {
+        User.shared.clearCredentials()
+        
+        navigateToAuth()
+        
+        Analytics.logButtonTap(title: logoutButton.title, screen: .detectiveProfile)
+    }
+    
+    @objc private func didTapDeleteAccountButton() {
+        showAlert(
+            title: "detective_profile_delete_account_alert_title".localized,
+            message: "detective_profile_delete_account_alert_message".localized,
+            actions:
+                Screen.AlertAction(title: "detective_profile_delete_account_delete_action_title".localized, style: .destructive) { [unowned self] in
+                    self.api.request(.deleteAccount) { [weak self] result in
+                        switch result {
+                        case let .success(response) where (200...299) ~= response.statusCode:
+                            User.shared.clearCredentials()
+                            
+                            self?.navigateToAuth()
+                        case let .failure(error):
+                            self?.showErrorHUD(title: error.localizedDescription)
+                        default:
+                            self?.showErrorHUD(title: "unknown_error_message".localized)
+                        }
+                    }
+                    
+                    Analytics.logButtonTap(title: self.deleteAccountButton.title, screen: .detectiveProfile)
+                },
+                Screen.AlertAction(title: "detective_profile_delete_account_cancel_button_title".localized) {}
+        )
+    }
+    
     private func setupViews() {
         totalScoreView.titleLabel.text = "detective_profile_total_score_title".localized
         correctAnswersPercentView.titleLabel.text = "detective_profile_correct_answer_percent".localized
@@ -152,8 +191,10 @@ final class DetectiveProfileScreen: Screen {
         inviteFriendButton.setTitle("detective_profile_invite_friend_button_title".localized, for: .normal)
         reportProblemButton.setTitle("main_screen_report_problem_action_title".localized, for: .normal)
         restorePurchasesButton.setTitle("main_screen_restore_purchases_action_title".localized, for: .normal)
+        logoutButton.setTitle("detective_profile_logout_action_title".localized, for: .normal)
+        deleteAccountButton.setTitle("detective_profile_delete_account_action_title".localized, for: .normal)
 
-        [leaderboardButton, rateAppButton, inviteFriendButton, reportProblemButton, restorePurchasesButton].forEach {
+        [leaderboardButton, rateAppButton, inviteFriendButton, reportProblemButton, restorePurchasesButton, logoutButton, deleteAccountButton].forEach {
             $0.fill = .color(.darkBackground)
             $0.setTitleColor(.lightGray, for: .normal)
             $0.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
@@ -161,12 +202,15 @@ final class DetectiveProfileScreen: Screen {
         }
         
         leaderboardButton.setTitleColor(.yellow, for: .normal)
+        deleteAccountButton.setTitleColor(.red, for: .normal)
         
         leaderboardButton.addTarget(self, action: #selector(didTapLeaderboardButton), for: .touchUpInside)
         rateAppButton.addTarget(self, action: #selector(didTapRateAppButton), for: .touchUpInside)
         inviteFriendButton.addTarget(self, action: #selector(didTapInviteFriendButton), for: .touchUpInside)
         reportProblemButton.addTarget(self, action: #selector(didTapReportProblemButton), for: .touchUpInside)
         restorePurchasesButton.addTarget(self, action: #selector(didTapRestorePurchasesButton), for: .touchUpInside)
+        logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        deleteAccountButton.addTarget(self, action: #selector(didTapDeleteAccountButton), for: .touchUpInside)
         
         rateAppButton.isHidden = !UIApplication.shared.canOpenURL(AppRateManager.appStoreLink)
         reportProblemButton.isHidden = !MFMailComposeViewController.canSendMail()
@@ -227,6 +271,15 @@ final class DetectiveProfileScreen: Screen {
         viewController.mailComposeDelegate = self
         
         present(viewController, animated: true, completion: nil)
+    }
+    
+    private func navigateToAuth() {
+        let sceneDelegate = (
+            view.window?.windowScene?.delegate
+            ?? UIApplication.shared.connectedScenes.first?.delegate
+        ) as? SceneDelegate
+        
+        sceneDelegate?.logout()
     }
     
 }

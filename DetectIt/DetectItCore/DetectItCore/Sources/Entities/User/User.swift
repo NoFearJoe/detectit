@@ -93,4 +93,10 @@ public final class User {
         }
     }
     
+    public func clearCredentials() {
+        alias = nil
+        email = nil
+        password = nil
+    }
+    
 }

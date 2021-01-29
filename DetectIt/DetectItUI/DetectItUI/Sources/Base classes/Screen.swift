@@ -81,7 +81,6 @@ open class Screen: UIViewController {
             let blurView = BlurView(style: .dark)
             blurView.blurRadius = 28
             blurView.colorTint = UIColor.black.withAlphaComponent(0.5)
-//            blurView.colorTintAlpha = 0.5
             
             view.addSubview(blurView)
             
@@ -130,6 +129,35 @@ open class Screen: UIViewController {
     public func hideHUD(after delay: TimeInterval) {
         hud?.dismiss(afterDelay: delay)
         hud = nil
+    }
+    
+    // Alert
+    
+    public struct AlertAction {
+        public let title: String
+        public let style: UIAlertAction.Style
+        public let action: () -> Void
+        
+        public init(title: String, style: UIAlertAction.Style = .default, action: @escaping () -> Void) {
+            self.title = title
+            self.style = style
+            self.action = action
+        }
+    }
+    
+    public func showAlert(title: String, message: String?, actions: AlertAction...) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.overrideUserInterfaceStyle = .dark
+        
+        actions.forEach { action in
+            alert.addAction(
+                UIAlertAction(title: action.title, style: action.style, handler: { _ in
+                    action.action()
+                })
+            )
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }

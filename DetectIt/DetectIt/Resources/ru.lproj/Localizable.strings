@@ -138,9 +138,15 @@
 "main_screen_leaderboard_action_title" = "Таблица лидеров";
 "detective_profile_rate_app_action_title" = "Оценить приложение";
 "detective_profile_invite_friend_button_title" = "Завербовать друга";
+"detective_profile_logout_action_title" = "Сменить аккаунт";
+"detective_profile_delete_account_action_title" = "Удалить аккаунт";
 "detective_profile_total_score_title" = "Набрано очков";
 "detective_profile_correct_answer_percent" = "Процент правильных ответов";
 "detective_profile_solved_tasks_count" = "Решено заданий";
+"detective_profile_delete_account_alert_title" = "Вы уверенны?";
+"detective_profile_delete_account_alert_message" = "После удаления аккаунт и прогресс нельзя будет восстановить";
+"detective_profile_delete_account_delete_action_title" = "Удалить";
+"detective_profile_delete_account_cancel_button_title" = "Отмена";
 
 // Leaderboard
 

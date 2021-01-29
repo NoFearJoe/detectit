@@ -43,6 +43,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
     }
     
+    func logout() {
+        showAuth()
+    }
+    
     private func performTransition(to screen: UIViewController) {
         guard let window = window else { return }
         
