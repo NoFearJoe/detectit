@@ -135,6 +135,7 @@
 
 // Detective profile
 
+"detective_profile_notifications_title" = "Уведомлять о новых заданиях";
 "main_screen_leaderboard_action_title" = "Таблица лидеров";
 "detective_profile_rate_app_action_title" = "Оценить приложение";
 "detective_profile_invite_friend_button_title" = "Завербовать друга";
@@ -147,6 +148,10 @@
 "detective_profile_delete_account_alert_message" = "После удаления аккаунт и прогресс нельзя будет восстановить";
 "detective_profile_delete_account_delete_action_title" = "Удалить";
 "detective_profile_delete_account_cancel_button_title" = "Отмена";
+"detective_profile_enable_notifications_alert_title" = "Уведомления отключены";
+"detective_profile_enable_notifications_alert_message" = "Включите уведомления в настройках приложения";
+"detective_profile_enable_notifications_alert_settings_action_title" = "Настройки";
+"detective_profile_enable_notifications_alert_cancel_action_title" = "Закрыть";
 
 // Leaderboard
 

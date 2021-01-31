@@ -135,6 +135,7 @@
 
 // Detective profile
 
+"detective_profile_notifications_title" = "Notify about new tasks";
 "main_screen_leaderboard_action_title" = "Leaderboard";
 "detective_profile_rate_app_action_title" = "Rate the App";
 "detective_profile_invite_friend_button_title" = "Recruit a friend";
@@ -147,6 +148,10 @@
 "detective_profile_delete_account_alert_message" = "Your account and progress will be removed forever";
 "detective_profile_delete_account_delete_action_title" = "Delete";
 "detective_profile_delete_account_cancel_button_title" = "Cancel";
+"detective_profile_enable_notifications_alert_title" = "Notifications disabled";
+"detective_profile_enable_notifications_alert_message" = "Turn notifications on in the app settings";
+"detective_profile_enable_notifications_alert_settings_action_title" = "Setting";
+"detective_profile_enable_notifications_alert_cancel_action_title" = "Close";
 
 // Leaderboard
 

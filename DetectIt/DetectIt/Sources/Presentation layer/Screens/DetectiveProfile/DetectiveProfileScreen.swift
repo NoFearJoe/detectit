@@ -26,6 +26,7 @@ final class DetectiveProfileScreen: Screen {
     private let correctAnswersPercentView = DetectiveProfileStatsView()
     private let solvedTasksCountView = DetectiveProfileStatsView()
     
+    private let notificationsView = TitleAndToggleView()
     private let leaderboardButton = SolidButton.primaryButton()
     private let rateAppButton = SolidButton.primaryButton()
     private let inviteFriendButton = SolidButton.primaryButton()
@@ -69,6 +70,8 @@ final class DetectiveProfileScreen: Screen {
         contentView.appendSpacing(12)
         contentView.appendChild(solvedTasksCountView)
         contentView.appendSpacing(24)
+        contentView.appendChild(notificationsView)
+        contentView.appendSpacing(24)
         contentView.appendChild(leaderboardButton)
         contentView.appendSpacing(8)
         contentView.appendChild(rateAppButton)
@@ -92,6 +95,7 @@ final class DetectiveProfileScreen: Screen {
         
         updateHeader()
         updateStats()
+        updateNotificationsStatus()
         
         loadDetectiveProfile()
     }
@@ -104,6 +108,47 @@ final class DetectiveProfileScreen: Screen {
     
     @objc private func didTapCloseButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func didToggleNotifications(isOn: Bool) {
+        if isOn {
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                DispatchQueue.main.async {
+                    switch settings.authorizationStatus {
+                    case .authorized:
+                        UIApplication.shared.registerForRemoteNotifications()
+                    case .denied:
+                        self.showAlert(
+                            title: "detective_profile_enable_notifications_alert_title".localized,
+                            message: "detective_profile_enable_notifications_alert_message".localized,
+                            actions:
+                                Screen.AlertAction(title: "detective_profile_enable_notifications_alert_settings_action_title".localized) {
+                                    guard let url = try? UIApplication.openSettingsURLString.asURL() else { return }
+                                    UIApplication.shared.open(url) { _ in
+                                        self.updateNotificationsStatus()
+                                    }
+                                },
+                            Screen.AlertAction(title: "detective_profile_enable_notifications_alert_cancel_action_title".localized) {
+                                self.notificationsView.isOn = false
+                            }
+                        )
+                    default:
+                        UNUserNotificationCenter.current().requestAuthorization(
+                            options: [.alert, .badge, .sound]
+                        ) { granted, _ in
+                            DispatchQueue.main.async {
+                                if granted {
+                                    UIApplication.shared.registerForRemoteNotifications()
+                                }
+                                self.notificationsView.isOn = granted
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            UIApplication.shared.unregisterForRemoteNotifications()
+        }
     }
     
     @objc private func didTapLeaderboardButton() {
@@ -186,6 +231,10 @@ final class DetectiveProfileScreen: Screen {
         correctAnswersPercentView.titleLabel.text = "detective_profile_correct_answer_percent".localized
         solvedTasksCountView.titleLabel.text = "detective_profile_solved_tasks_count".localized
         
+        notificationsView.configure(title: "detective_profile_notifications_title".localized) { [unowned self] isOn in
+            self.didToggleNotifications(isOn: isOn)
+        }
+        
         leaderboardButton.setTitle("main_screen_leaderboard_action_title".localized, for: .normal)
         rateAppButton.setTitle("detective_profile_rate_app_action_title".localized, for: .normal)
         inviteFriendButton.setTitle("detective_profile_invite_friend_button_title".localized, for: .normal)
@@ -243,6 +292,16 @@ final class DetectiveProfileScreen: Screen {
             solvedTasksCountView.statsLabel.text = "\(detectiveProfile.solvedTasksCount)"
         } else {
             totalScoreView.statsLabel.text = "\(User.shared.totalScore)"
+        }
+    }
+    
+    private func updateNotificationsStatus() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                self.notificationsView.isOn =
+                    settings.authorizationStatus == .authorized &&
+                    UIApplication.shared.isRegisteredForRemoteNotifications
+            }
         }
     }
     

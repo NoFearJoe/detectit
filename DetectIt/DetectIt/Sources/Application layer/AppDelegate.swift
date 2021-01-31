@@ -8,12 +8,16 @@
 
 import UIKit
 import Amplitude
+import Firebase
 import DetectItCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         FullVersionManager.completeTransactions()
         
         handleCommandLineArguments()
@@ -22,18 +26,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Amplitude.instance().trackingSessionEvents = true
         Amplitude.instance().initializeApiKey("f82ec4c4d3370dc29ba7e17dc3152d8d")
         #endif
+        
+        FirebaseApp.configure()
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
                 
         return true
     }
 
     // MARK: UISceneSession Lifecycle
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
         UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {}
+}
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        completionHandler()
+    }
+    
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+}
+
+extension AppDelegate: MessagingDelegate {
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print(fcmToken ?? "")
+    }
+    
 }
 
 private extension AppDelegate {
