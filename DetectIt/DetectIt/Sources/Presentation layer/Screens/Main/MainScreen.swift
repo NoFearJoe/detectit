@@ -20,6 +20,8 @@ final class MainScreen: Screen {
     
     private let api = DetectItAPI()
     
+    private let scoreSyncService = TasksScoreSynchronizationService()
+    
     // MARK: - State
     
     private var selectedFilterIndexes = Set<Int>()
@@ -27,6 +29,8 @@ final class MainScreen: Screen {
     var feed: Feed?
     
     var showingBanner: Banner?
+    
+    private var tasksScoreCache = [String: Int]()
     
     private var currentFeedRequest: CancellableObtain?
     
@@ -168,6 +172,7 @@ extension MainScreen: MainScreenViewDelegate {
         switch item.kind {
         case .profile, .cipher, .quest:
             let difficulty = TaskDifficulty(rawValue: item.difficulty)
+            let score = tasksScoreCache[item.id]
             return MainScreenTaskCell.Model(
                 backgroundImagePath: item.picture,
                 kind: TaskKind(rawValue: item.kind.rawValue)?.title ?? "",
@@ -175,8 +180,8 @@ extension MainScreen: MainScreenViewDelegate {
                 description: item.subtitle ?? "",
                 difficulty: difficulty.localizedTitle,
                 difficultyColor: difficulty.color,
-                score: item.score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
-                scoreColor: UIColor.score(value: item.score, max: item.maxScore),
+                score: score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
+                scoreColor: UIColor.score(value: score, max: item.maxScore),
                 rating: item.rating,
                 isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
             )
@@ -263,12 +268,25 @@ private extension MainScreen {
             cacheKey: Cache.Key(["feed"] + selectedFilters.map { $0.rawValue })
         ) { [weak self] result in
             guard let self = self else { return }
-                                                
+            
             switch result {
             case let .success(feed):
                 self.screenLoadingView.setVisible(false, animated: true)
                 
                 self.feed = feed
+                
+                self.tasksScoreCache.removeAll()
+                feed.items.forEach {
+                    self.tasksScoreCache[$0.id] =
+                        $0.score ??
+                        TaskScore.get(
+                            id: $0.id,
+                            taskKind: TaskKind(rawValue: $0.kind.rawValue) ?? .cipher,
+                            bundleID: $0.bundle?.id
+                        )
+                }
+                self.scoreSyncService.sync(feedItems: feed.items)
+                
                 self.screenView.reloadData()
                 
                 self.showBannerIfPossible()
