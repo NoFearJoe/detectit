@@ -94,6 +94,11 @@
 "feed_filter_nightmare" = "Nightmare";
 "feed_filter_notSolved" = "Not solved";
 
+"main_screen_banner_app_review_title" = "You are showing good results!";
+"main_screen_banner_app_review_subtitle" = "We would be interested in a review of the application from such an experienced detective. Share your impressions with future players and help the developers make the game better.";
+"main_screen_banner_subscribe_to_notifications_title" = "Are you waiting for new tasks?";
+"main_screen_banner_subscribe_to_notifications_subtitle" = "Tap on this message to subscribe to notifications";
+
 // Decoder task
 
 "decoder_task_screen_answer_title" = "Answer:";

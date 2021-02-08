@@ -15,6 +15,10 @@ public protocol MainScreenViewDelegate: AnyObject {
     func filters() -> [MainScreenFiltersView.Model]
     func didSelectFilter(at index: Int)
     
+    func banner() -> MainScreenBannerCell.Model?
+    func didSelectBanner()
+    func didCloseBanner()
+    
     func numberOfFeedItems() -> Int
     func feedItem(at index: Int) -> Any?
     func didSelectFeedItem(at index: Int)
@@ -33,6 +37,7 @@ public final class MainScreenView: UIView {
         collectionViewLayout: UICollectionViewFlowLayout()
     )
     
+    private let prototypeBannerCell = MainScreenBannerCell()
     private let prototypeTaskCell = MainScreenTaskCell()
     private let prototypeActionCell = MainScreenActionCell()
     
@@ -68,6 +73,10 @@ public final class MainScreenView: UIView {
         header?.configureFilters(models: delegate.filters())
     }
     
+    public func reloadBanner() {
+        contentView.reloadSections(IndexSet(integer: Section.banner.rawValue))
+    }
+    
     // MARK: - Setup
     
     private func setup() {
@@ -98,6 +107,10 @@ public final class MainScreenView: UIView {
             forCellWithReuseIdentifier: MainScreenTaskCell.identifier
         )
         contentView.register(
+            MainScreenBannerCell.self,
+            forCellWithReuseIdentifier: MainScreenBannerCell.identifier
+        )
+        contentView.register(
             MainScreenActionCell.self,
             forCellWithReuseIdentifier: MainScreenActionCell.identifier
         )
@@ -126,16 +139,19 @@ public final class MainScreenView: UIView {
 extension MainScreenView: UICollectionViewDataSource {
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        Section.allCases.count
     }
     
     public func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        if section == 0 {
+        switch Section(section) {
+        case .banner:
+            return delegate.banner() == nil ? 0 : 1
+        case .tasks:
             return delegate.numberOfFeedItems()
-        } else {
+        case .actions:
             return delegate.numberOfActions()
         }
     }
@@ -144,7 +160,25 @@ extension MainScreenView: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        if indexPath.section == 0 {
+        switch Section(indexPath.section) {
+        case .banner:
+            guard let model = delegate.banner() else {
+                return collectionView.dequeueEmptyCell(for: indexPath)
+            }
+            
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MainScreenBannerCell.identifier,
+                for: indexPath
+            ) as! MainScreenBannerCell
+            
+            cell.configure(model: model)
+            
+            cell.onTapCloseButton = { [unowned self] in
+                self.delegate.didCloseBanner()
+            }
+            
+            return cell
+        case .tasks:
             guard let item = delegate.feedItem(at: indexPath.item) else {
                 return collectionView.dequeueEmptyCell(for: indexPath)
             }
@@ -183,7 +217,7 @@ extension MainScreenView: UICollectionViewDataSource {
             } else {
                 return collectionView.dequeueEmptyCell(for: indexPath)
             }
-        } else {
+        case .actions:
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: MainScreenActionCell.identifier,
                 for: indexPath
@@ -227,9 +261,12 @@ extension MainScreenView: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        if indexPath.section == 0 {
+        switch Section(indexPath.section) {
+        case .banner:
+            delegate.didSelectBanner()
+        case .tasks:
             delegate.didSelectFeedItem(at: indexPath.item)
-        } else {
+        case .actions:
             delegate.didSelectAction(at: indexPath.item)
         }
     }
@@ -245,10 +282,10 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        if section == 0 {
-            return 20
-        } else {
-            return 8
+        switch Section(section) {
+        case .banner: return 0
+        case .tasks: return 20
+        case .actions: return 8
         }
     }
     
@@ -265,9 +302,14 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int
     ) -> UIEdgeInsets {
-        if section == 0 {
+        switch Section(section) {
+        case .banner:
+            guard delegate.banner() != nil else { return .zero }
+            
+            return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        case .tasks:
             return UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
-        } else {
+        case .actions:
             return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
         }
     }
@@ -290,8 +332,13 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                     - collectionView.contentInset.right
             }
         }()
-
-        if indexPath.section == 0 {
+        
+        switch Section(indexPath.section) {
+        case .banner:
+            guard let model = delegate.banner() else { return .zero }
+            
+            return prototypeBannerCell.calculateSize(model: model, width: width)
+        case .tasks:
             if let taskModel = delegate.feedItem(at: indexPath.item) as? MainScreenTaskCell.Model {
                 if taskModel.backgroundImagePath != nil {
                     return CGSize(width: width, height: width * 0.75)
@@ -301,7 +348,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             } else {
                 return CGSize(width: width, height: width * 1.25)
             }
-        } else {
+        case .actions:
             return prototypeActionCell.calculateSize(model: delegate.action(at: indexPath.item) ?? "", width: width)
         }
     }
@@ -332,4 +379,16 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         }
     }
     
+}
+
+private enum Section: Int, CaseIterable {
+    case banner
+    case tasks
+    case actions
+}
+
+extension Section {
+    init(_ section: Int) {
+        self = Section(rawValue: section) ?? .tasks
+    }
 }

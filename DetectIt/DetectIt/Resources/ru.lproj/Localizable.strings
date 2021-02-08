@@ -94,6 +94,11 @@
 "feed_filter_nightmare" = "Крайне сложные";
 "feed_filter_notSolved" = "Непройденные";
 
+"main_screen_banner_app_review_title" = "Ты показываешь хорошие результаты!";
+"main_screen_banner_app_review_subtitle" = "Нам был бы интересен отзыв о приложении от такого опытного детектива. Расскажи о своих впечатлениях будущим игрокам и помоги разработчикам сделать игру лучше.";
+"main_screen_banner_subscribe_to_notifications_title" = "Ждешь новых заданий?";
+"main_screen_banner_subscribe_to_notifications_subtitle" = "Нажми на это сообщение чтобы подписаться на уведомления";
+
 // Decoder task
 
 "decoder_task_screen_answer_title" = "Ответ:";

@@ -24,7 +24,9 @@ final class MainScreen: Screen {
     
     private var selectedFilterIndexes = Set<Int>()
     
-    private var feed: Feed?
+    var feed: Feed?
+    
+    var showingBanner: Banner?
     
     private var currentFeedRequest: CancellableObtain?
     
@@ -129,6 +131,23 @@ extension MainScreen: MainScreenViewDelegate {
         screenView.reloadFilters()
         
         loadFeed()
+    }
+    
+    func banner() -> MainScreenBannerCell.Model? {
+        guard let banner = showingBanner else { return nil }
+        
+        return MainScreenBannerCell.Model(
+            title: banner.title,
+            subtitle: banner.subtitle
+        )
+    }
+    
+    func didSelectBanner() {
+        showingBanner.map { handleBannerTap($0) }
+    }
+    
+    func didCloseBanner() {        
+        showingBanner.map { handleBannerClose($0) }
     }
     
     func numberOfFeedItems() -> Int {
@@ -251,6 +270,8 @@ private extension MainScreen {
                 
                 self.feed = feed
                 self.screenView.reloadData()
+                
+                self.showBannerIfPossible()
             case .failure:
                 guard self.feed == nil else { return }
                 
@@ -277,6 +298,8 @@ private extension MainScreen {
                 User.shared.totalScore = score
                 
                 self?.screenView.reloadHeader()
+                
+                self?.showBannerIfPossible()
             case .failure:
                 return
             }

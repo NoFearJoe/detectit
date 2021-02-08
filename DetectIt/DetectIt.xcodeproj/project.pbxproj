@@ -57,6 +57,8 @@
 		965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */; };
 		966B6E4125C5727F00FEBB51 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 966B6E4025C5727F00FEBB51 /* FirebaseMessaging */; };
 		966B6E4525C5741E00FEBB51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 966B6E4425C5741E00FEBB51 /* GoogleService-Info.plist */; };
+		9675D0D025CE89AB00593CB9 /* MainScreen+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D0CF25CE89AB00593CB9 /* MainScreen+Banner.swift */; };
+		9675D0D525D16C1600593CB9 /* PushNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D0D425D16C1600593CB9 /* PushNotificationsService.swift */; };
 		969C825A25B4CA52008D9E72 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969C825925B4CA52008D9E72 /* FullVersionManager.swift */; };
 		969C826125B4CA9B008D9E72 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 969C826025B4CA9B008D9E72 /* SwiftyStoreKit */; };
 		96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */; };
@@ -158,6 +160,8 @@
 		965AC7D22438BA19003A3DC7 /* ProfileTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTaskScreen.swift; sourceTree = "<group>"; };
 		965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTaskScreen.swift; sourceTree = "<group>"; };
 		966B6E4425C5741E00FEBB51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9675D0CF25CE89AB00593CB9 /* MainScreen+Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+Banner.swift"; sourceTree = "<group>"; };
+		9675D0D425D16C1600593CB9 /* PushNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsService.swift; sourceTree = "<group>"; };
 		969C825925B4CA52008D9E72 /* FullVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManager.swift; sourceTree = "<group>"; };
 		96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTaskScreen+DataLoading.swift"; sourceTree = "<group>"; };
 		96B32E5C25B4D2CF00D0814F /* Detect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Detect.entitlements; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 		961B96182425EF67003EC992 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				9675D0D325D16BFC00593CB9 /* Services */,
 				96054C0F245878760083C217 /* Routes */,
 				96500E822434FD0F005FFC7A /* Screens */,
 			);
@@ -441,6 +446,7 @@
 			children = (
 				965AC7AB24387774003A3DC7 /* MainScreen.swift */,
 				961DE2722479427E00008AAB /* MainScreen+Accessibility.swift */,
+				9675D0CF25CE89AB00593CB9 /* MainScreen+Banner.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -453,6 +459,14 @@
 				9607EBB524C466EF006CD310 /* Quest */,
 			);
 			path = "Task screens";
+			sourceTree = "<group>";
+		};
+		9675D0D325D16BFC00593CB9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9675D0D425D16C1600593CB9 /* PushNotificationsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		96AAB00A243F3BB100F61443 /* Profile */ = {
@@ -676,10 +690,12 @@
 				9627E7D72512AF21007ACEBA /* TasksOnboardingScreen.swift in Sources */,
 				9615F96024630B0D0070E2D3 /* ProfileTaskScreen+Setup.swift in Sources */,
 				9615F96224630CF50070E2D3 /* ProfileTaskScreen+Utils.swift in Sources */,
+				9675D0D525D16C1600593CB9 /* PushNotificationsService.swift in Sources */,
 				96B3353725C0770500D0814F /* Analytics.swift in Sources */,
 				96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */,
 				96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */,
 				9615F95A2463045A0070E2D3 /* DecoderTaskScreen+Setup.swift in Sources */,
+				9675D0D025CE89AB00593CB9 /* MainScreen+Banner.swift in Sources */,
 				96054C13245897DF0083C217 /* AuthScreen.swift in Sources */,
 				96346F0B248D701300A815F2 /* AuthNavigationScreen.swift in Sources */,
 				9605432E244F73580083C217 /* HelpScreen.swift in Sources */,
