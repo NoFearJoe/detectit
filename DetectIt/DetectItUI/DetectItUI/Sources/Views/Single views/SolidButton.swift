@@ -22,6 +22,8 @@ open class SolidButton: UIButton, TouchAnimatable {
     /// The fill type of the button.
     public var fill: Fill = .color(.clear) {
         didSet {
+            guard oldValue != fill else { return }
+            
             setFill(fill)
         }
     }
@@ -181,9 +183,18 @@ private extension SolidButton {
         
         let highlightedColor = color.addOverlay(color: overlayColor)
         
-        super.setBackgroundImageClippedToBounds(UIImage.plain(color: color), for: .normal)
-        super.setBackgroundImageClippedToBounds(UIImage.plain(color: highlightedColor), for: .highlighted)
-        super.setBackgroundImageClippedToBounds(UIImage.plain(color: highlightedColor), for: [.selected, .highlighted])
+        super.setBackgroundImage(
+            UIImage.plainRounded(color: color, size: bounds.size, cornerRadius: layer.cornerRadius),
+            for: .normal
+        )
+        super.setBackgroundImage(
+            UIImage.plainRounded(color: highlightedColor, size: bounds.size, cornerRadius: layer.cornerRadius),
+            for: .highlighted
+        )
+        super.setBackgroundImage(
+            UIImage.plainRounded(color: highlightedColor, size: bounds.size, cornerRadius: layer.cornerRadius),
+            for: [.selected, .highlighted]
+        )
     }
     
     func setBackgroundGradient(startColor: UIColor,

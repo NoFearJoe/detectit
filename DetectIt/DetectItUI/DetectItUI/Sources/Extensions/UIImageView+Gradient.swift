@@ -13,6 +13,21 @@ public enum Fill {
     case gradient(startColor: UIColor, endColor: UIColor, startPosition: CGPoint, endPosition: CGPoint)
 }
 
+extension Fill: Equatable {
+    
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        switch (lhs, rhs) {
+        case let (.color(lhsColor), .color(rhsColor)):
+            return lhsColor == rhsColor
+        case let (.gradient(lhsStartColor, lhsEndColor, _, _), .gradient(rhsStartColor, rhsEndColor, _, _)):
+            return lhsStartColor == rhsStartColor && lhsEndColor == rhsEndColor
+        default:
+            return false
+        }
+    }
+    
+}
+
 public extension UIImage {
     
     static func gradient(size: CGSize,

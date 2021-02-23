@@ -33,4 +33,22 @@ public extension UIImage {
         return image
     }
     
+    class func plainRounded(color: UIColor, size: CGSize = CGSize(width: 1, height: 1), cornerRadius: CGFloat) -> UIImage? {
+        let rect = CGRect(origin: .zero, size: size)
+        
+        UIGraphicsBeginImageContext(rect.size)
+        
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        
+        context.setFillColor(color.cgColor)
+
+        UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).fill()
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
 }

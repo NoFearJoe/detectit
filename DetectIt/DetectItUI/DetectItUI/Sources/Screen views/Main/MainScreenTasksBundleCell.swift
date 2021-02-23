@@ -9,9 +9,9 @@
 import UIKit
 import DetectItCore
 
-public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
+public final class MainScreenTasksBundleCell: UICollectionViewCell, TouchAnimatable {
     
-    public static let identifier = String(describing: TasksBundleCell.self)
+    public static let identifier = String(describing: MainScreenTasksBundleCell.self)
     
     public var onTapPlayButton: (() -> Void)?
     public var onTapBuyButton: (() -> Void)?
@@ -21,7 +21,7 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
     private let backgroundImageView = UIImageView()
     
     /// Надпись "Набор" сверху.
-    private let kindLabel = UILabel()
+    private let kindView = TagView()
     
     /// Название набора.
     private let titleLabel = UILabel()
@@ -65,11 +65,9 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
             backgroundImageView.loadImage(.staticAPI(imagePath), completion: { [weak self] image, cached, animationDuration in
                 self?.bottomBlurView.setHidden(image == nil, duration: animationDuration)
             })
-            kindLabel.configureShadow(radius: 2, isVisible: true)
             titleLabel.configureShadow(radius: 8, isVisible: true)
         } else {
             backgroundImageView.image = nil
-            kindLabel.configureShadow(radius: 2, isVisible: false)
             titleLabel.configureShadow(radius: 8, isVisible: false)
         }
         
@@ -104,19 +102,16 @@ public final class TasksBundleCell: UICollectionViewCell, TouchAnimatable {
         
         backgroundImageView.calculateFrame(container: contentView) { $0 }
         
-        contentView.addSubview(kindLabel)
+        contentView.addSubview(kindView)
         
-        kindLabel.text = "main_screen_tasks_bundle_cell_kind_title".localized.uppercased()
-        kindLabel.font = .text4
-        kindLabel.textColor = .lightGray
-        kindLabel.layer.masksToBounds = false
-        kindLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        kindView.title = "main_screen_tasks_bundle_cell_kind_title".localized.uppercased()
+        kindView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
-        kindLabel.translatesAutoresizingMaskIntoConstraints = false
+        kindView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            kindLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.hInset),
-            kindLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.hInset),
-            kindLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12)
+            kindView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.hInset / 2),
+            kindView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -Constants.hInset / 2),
+            kindView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12)
         ])
         
         contentView.addSubview(titleLabel)

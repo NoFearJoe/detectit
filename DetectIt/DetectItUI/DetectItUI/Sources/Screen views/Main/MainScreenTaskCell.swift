@@ -18,7 +18,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     private let backgroundImageView = UIImageView()
     
     private let topContainerView = UIView()
-    private let taskKindLabel = UILabel()
+    private let taskKindView = TagView()
     private let taskRatingView = RatingView(maxRating: 5, size: .small)
     private let difficultyLabel = UILabel()
         
@@ -100,8 +100,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             
             bottomBlurView.isHidden = backgroundImageView.image == nil
         }
-        
-        taskKindLabel.text = model.kind.uppercased()
+                
+        taskKindView.title = model.kind.uppercased()
         taskRatingView.rating = model.rating ?? 0
         taskRatingView.isHidden = model.rating == nil
         difficultyLabel.text = model.difficulty
@@ -177,16 +177,14 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         // MARK: Task kind
         
-        topContainerView.addSubview(taskKindLabel)
+        topContainerView.addSubview(taskKindView)
+
+        taskKindView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
-        taskKindLabel.font = .text4
-        taskKindLabel.textColor = .lightGray
-        taskKindLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        
-        taskKindLabel.translatesAutoresizingMaskIntoConstraints = false
+        taskKindView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            taskKindLabel.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: Constants.hInset),
-            taskKindLabel.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor)
+            taskKindView.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: Constants.hInset / 2),
+            taskKindView.centerYAnchor.constraint(equalTo: topContainerView.centerYAnchor)
         ])
         
         // MARK: Task rating
@@ -198,8 +196,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         taskRatingView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            taskRatingView.leadingAnchor.constraint(equalTo: taskKindLabel.trailingAnchor, constant: 12),
-            taskRatingView.centerYAnchor.constraint(equalTo: taskKindLabel.centerYAnchor)
+            taskRatingView.leadingAnchor.constraint(equalTo: taskKindView.trailingAnchor, constant: 6),
+            taskRatingView.centerYAnchor.constraint(equalTo: taskKindView.centerYAnchor)
         ])
         
         // MARK: Difficulty

@@ -99,8 +99,8 @@ public final class MainScreenView: UIView {
         
         contentView.registerEmptyCell()
         contentView.register(
-            TasksBundleCell.self,
-            forCellWithReuseIdentifier: TasksBundleCell.identifier
+            MainScreenTasksBundleCell.self,
+            forCellWithReuseIdentifier: MainScreenTasksBundleCell.identifier
         )
         contentView.register(
             MainScreenTaskCell.self,
@@ -183,11 +183,11 @@ extension MainScreenView: UICollectionViewDataSource {
                 return collectionView.dequeueEmptyCell(for: indexPath)
             }
             
-            if let tasksBundleModel = item as? TasksBundleCell.Model {
+            if let tasksBundleModel = item as? MainScreenTasksBundleCell.Model {
                 let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: TasksBundleCell.identifier,
+                    withReuseIdentifier: MainScreenTasksBundleCell.identifier,
                     for: indexPath
-                ) as! TasksBundleCell
+                ) as! MainScreenTasksBundleCell
                 
                 cell.configure(model: tasksBundleModel)
                 

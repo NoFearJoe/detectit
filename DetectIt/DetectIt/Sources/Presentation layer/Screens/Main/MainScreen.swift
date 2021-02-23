@@ -186,7 +186,7 @@ extension MainScreen: MainScreenViewDelegate {
                 isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
             )
         case .bundle:
-            return TasksBundleCell.Model(
+            return MainScreenTasksBundleCell.Model(
                 backgroundImagePath: item.picture,
                 title: item.title,
                 description: item.subtitle ?? ""
