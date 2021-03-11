@@ -9,6 +9,7 @@
 import UIKit
 import Amplitude
 import Firebase
+import UserNotifications
 import DetectItCore
 
 @UIApplicationMain
@@ -30,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
+        
+        application.applicationIconBadgeNumber = 0
                 
         return true
     }
