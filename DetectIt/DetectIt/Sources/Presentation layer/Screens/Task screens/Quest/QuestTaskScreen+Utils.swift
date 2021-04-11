@@ -23,8 +23,8 @@ extension QuestTaskScreen {
         
         AppRateManager.shared.commitEvent()
         
-        if let answer = state.answer {
-            Analytics.log("quest_answer_sent", parameters: ["answer": answer.jsonString])
+        if let answer = state.answer?.jsonString {
+            Analytics.log("quest_answer_sent", parameters: ["answer": answer])
         }
     }
     
@@ -70,7 +70,6 @@ extension QuestTaskScreen {
     
     func mapChapterEntityToModel(entity: QuestTask.Chapter) -> QuestTaskChapterView.Model {
         QuestTaskChapterView.Model(
-            title: "TODO", // TODO
             text: entity.text,
             isActive: state.currentChapter?.id == entity.id,
             actions: entity.actions.map { $0.title },

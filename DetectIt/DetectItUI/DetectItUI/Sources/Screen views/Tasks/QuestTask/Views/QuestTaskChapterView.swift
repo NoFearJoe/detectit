@@ -17,14 +17,12 @@ public final class QuestTaskChapterView: UIView {
     // MARK: - Model
     
     public struct Model {
-        public let title: String
         public let text: String
         public let isActive: Bool
         public let actions: [String]
         public let selectedActionIndex: Int?
         
-        public init(title: String, text: String, isActive: Bool, actions: [String], selectedActionIndex: Int?) {
-            self.title = title
+        public init(text: String, isActive: Bool, actions: [String], selectedActionIndex: Int?) {
             self.text = text
             self.isActive = isActive
             self.actions = actions
@@ -34,7 +32,6 @@ public final class QuestTaskChapterView: UIView {
     
     // MARK: - Subviews
     
-    private let titleLabel = UILabel()
     private let textLabel = UILabel()
     private let actionsView = QuestTaskChapterActionsView()
     
@@ -53,7 +50,6 @@ public final class QuestTaskChapterView: UIView {
     // MARK: - Configuration
     
     public func configure(model: Model) {
-        titleLabel.text = model.title
         textLabel.attributedText = model.text.readableAttributedText(font: .text3)
         
         actionsView.configure(
@@ -77,28 +73,16 @@ public final class QuestTaskChapterView: UIView {
     }
     
     func setupViews() {
-        addSubview(titleLabel)
         addSubview(textLabel)
         addSubview(actionsView)
-        
-        titleLabel.font = .heading3
-        titleLabel.textColor = .lightGray
-        titleLabel.numberOfLines = 0
         
         textLabel.font = .text3
         textLabel.textColor = .white
         textLabel.numberOfLines = 0
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
-        ])
-        
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            textLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 20),
             textLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             textLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
         ])
