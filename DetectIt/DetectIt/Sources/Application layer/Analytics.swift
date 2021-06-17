@@ -43,6 +43,7 @@ extension Analytics {
         case detectiveProfile = "detective_profile"
         case leaderboard
         case fullVersionPurchase = "full_version_purchase"
+        case completedTasks = "completed_tasks"
         case cipherTask = "cipher_task"
         case profileTask = "profile_task"
         case questTask = "quest_task"

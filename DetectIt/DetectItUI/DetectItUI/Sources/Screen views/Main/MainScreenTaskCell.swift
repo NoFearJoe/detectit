@@ -60,10 +60,6 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         public let rating: Double?
         public let isLocked: Bool
         
-        var isSolved: Bool {
-            score != nil
-        }
-        
         public init(backgroundImagePath: String?,
                     kind: String,
                     title: String,
@@ -110,23 +106,21 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         lockedTaskView.isHidden = !model.isLocked
         constraintBetweenLockedViewAndDescription.constant = model.isLocked ? 12 : 0
                 
-        if model.isSolved {
-            titleLabel.attributedText = model.title.strikethroughAttributedString(color: .white)
-        } else {
-            titleLabel.attributedText = NSAttributedString(string: model.title)
-        }
-        descriptionLabel.text = model.isSolved ? nil : model.description
+        titleLabel.attributedText = NSAttributedString(string: model.title)
+        
+        descriptionLabel.text = model.description
         descriptionLabel.numberOfLines = model.backgroundImagePath == nil ? 5 : 3
         
         scoreLabel.text = model.score
         scoreLabel.textColor = model.scoreColor
+        scoreLabel.isHidden = model.score == nil
         
         constraintBetweenTitleAndScore.constant = model.score == nil ? 0 : 12
-        constraintBetweenTitleAndDescription.constant = model.description.isEmpty || model.isSolved ? 0 : 12
+        constraintBetweenTitleAndDescription.constant = model.description.isEmpty ? 0 : 12
         
         if !forSizeCalculation {
             [titleLabel, descriptionLabel].forEach {
-                $0.alpha = model.isSolved || model.isLocked ? 0.5 : 1
+                $0.alpha = model.isLocked ? 0.5 : 1
             }
         }
     }

@@ -42,16 +42,8 @@ extension QuestTaskScreen {
     func setupViews() {
         view.addSubview(topPanel)
         
-        topPanel.helpButton.isHidden = User.shared.isQuestHelpShown
         topPanel.onClose = { [unowned self] in
             self.dismiss(animated: true, completion: nil)
-        }
-        topPanel.onHelp = { [unowned self] in
-            User.shared.isQuestHelpShown = true
-            
-            self.topPanel.helpButton.isHidden = true
-            
-            present(HelpScreen(taskKind: self.state.task.kind), animated: true, completion: nil)
         }
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.state.task), animated: true, completion: nil)

@@ -83,7 +83,7 @@
 "main_screen_debug_menu_action_title" = "Дебаг меню";
 "main_screen_tasks_bundle_cell_play_button_title" = "Играть";
 "main_screen_tasks_bundle_cell_kind_title" = "Набор";
-"main_screen_empty_placeholder_message" = "Нет заданий";
+"main_screen_empty_placeholder_message" = "Вы выполнили все задания. Отличная работа!\nНовые задания появятся совсем скоро";
 
 "feed_filter_ciphers" = "Шифры";
 "feed_filter_profiles" = "Расследования";
@@ -98,6 +98,13 @@
 "main_screen_banner_app_review_subtitle" = "Нам был бы интересен отзыв о приложении от такого опытного детектива. Расскажи о своих впечатлениях будущим игрокам и помоги разработчикам сделать игру лучше.";
 "main_screen_banner_subscribe_to_notifications_title" = "Ждешь новых заданий?";
 "main_screen_banner_subscribe_to_notifications_subtitle" = "Нажми на это сообщение чтобы подписаться на уведомления";
+
+"main_screen_completed_tasks_title" = "Завершенные задания";
+
+// Completed tasks
+
+"completed_tasks_screen_title" = "Завершенные задания";
+"completed_tasks_screen_empty_placeholder_message" = "Нет завершенных заданий";
 
 // Decoder task
 

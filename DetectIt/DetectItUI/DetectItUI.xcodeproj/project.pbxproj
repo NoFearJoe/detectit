@@ -78,11 +78,13 @@
 		965AC7DD2438C704003A3DC7 /* WrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D92438C704003A3DC7 /* WrapperViewController.swift */; };
 		965AC7DE2438C704003A3DC7 /* StackViewControllerChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7DA2438C704003A3DC7 /* StackViewControllerChild.swift */; };
 		965AC7DF2438C704003A3DC7 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7DB2438C704003A3DC7 /* StackViewController.swift */; };
-		965AC7E42438E3FF003A3DC7 /* NextGrowingTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 965AC7E32438E3FF003A3DC7 /* NextGrowingTextView */; };
 		965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7E52438E431003A3DC7 /* AnswerField.swift */; };
 		965AC7E82438E611003A3DC7 /* QuestionAndAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */; };
 		965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */; };
 		965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */; };
+		965F255F267A6F6700106F13 /* NextGrowingTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 965F255E267A6F6700106F13 /* NextGrowingTextView */; };
+		965F2562267A6F9B00106F13 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 965F2561267A6F9B00106F13 /* JGProgressHUD */; };
+		965F2564267A701200106F13 /* MainScreenCompletedTasksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F2563267A701100106F13 /* MainScreenCompletedTasksCell.swift */; };
 		966B6E4B25C57F9D00FEBB51 /* TitleAndToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B6E4A25C57F9D00FEBB51 /* TitleAndToggleView.swift */; };
 		966B6E5025C8800C00FEBB51 /* MainScreenBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B6E4F25C8800C00FEBB51 /* MainScreenBannerCell.swift */; };
 		9675D0E125E57E1A00593CB9 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D0E025E57E1A00593CB9 /* TagView.swift */; };
@@ -97,7 +99,6 @@
 		96AAB009243F369D00F61443 /* ProfileTaskScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB008243F369D00F61443 /* ProfileTaskScreenView.swift */; };
 		96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */; };
 		96AAB010243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00F243F5A2600F61443 /* ProfileTaskNumberQuestionCell.swift */; };
-		96AF70252448C80500B6B848 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 96AF70242448C80500B6B848 /* JGProgressHUD */; };
 		96AF70272448CDEE00B6B848 /* ProfileReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF70262448CDEE00B6B848 /* ProfileReportView.swift */; };
 		96B3353B25C078EA00D0814F /* UIButton+title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353A25C078EA00D0814F /* UIButton+title.swift */; };
 		96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F85C122445FCF000F5CD22 /* DetectItCore.framework */; };
@@ -183,6 +184,7 @@
 		965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAndAnswerView.swift; sourceTree = "<group>"; };
 		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
+		965F2563267A701100106F13 /* MainScreenCompletedTasksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCompletedTasksCell.swift; sourceTree = "<group>"; };
 		966B6E4A25C57F9D00FEBB51 /* TitleAndToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndToggleView.swift; sourceTree = "<group>"; };
 		966B6E4F25C8800C00FEBB51 /* MainScreenBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenBannerCell.swift; sourceTree = "<group>"; };
 		9675D0E025E57E1A00593CB9 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
@@ -208,10 +210,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965AC7E42438E3FF003A3DC7 /* NextGrowingTextView in Frameworks */,
+				965F2562267A6F9B00106F13 /* JGProgressHUD in Frameworks */,
 				963F56DA24F248AC002B949F /* DetectItAPI.framework in Frameworks */,
-				96AF70252448C80500B6B848 /* JGProgressHUD in Frameworks */,
 				96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */,
+				965F255F267A6F6700106F13 /* NextGrowingTextView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +464,7 @@
 				964E2E5724A36D710027F738 /* MainScreenFiltersView.swift */,
 				9691FA4024A729660088B19E /* MainScreenPlaceholderCell.swift */,
 				966B6E4F25C8800C00FEBB51 /* MainScreenBannerCell.swift */,
+				965F2563267A701100106F13 /* MainScreenCompletedTasksCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -574,8 +577,8 @@
 			);
 			name = DetectItUI;
 			packageProductDependencies = (
-				965AC7E32438E3FF003A3DC7 /* NextGrowingTextView */,
-				96AF70242448C80500B6B848 /* JGProgressHUD */,
+				965F255E267A6F6700106F13 /* NextGrowingTextView */,
+				965F2561267A6F9B00106F13 /* JGProgressHUD */,
 			);
 			productName = DetectItUI;
 			productReference = 96500E29242F0F92005FFC7A /* DetectItUI.framework */;
@@ -606,8 +609,8 @@
 			);
 			mainGroup = 96500E1F242F0F92005FFC7A;
 			packageReferences = (
-				965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */,
-				96AF70232448C80500B6B848 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				965F255D267A6F6600106F13 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */,
+				965F2560267A6F9B00106F13 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 96500E2A242F0F92005FFC7A /* Products */;
 			projectDirPath = "";
@@ -681,6 +684,7 @@
 				960543302451D38C0083C217 /* CGFloat+layoutInsets.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
+				965F2564267A701200106F13 /* MainScreenCompletedTasksCell.swift in Sources */,
 				96AAADF324DFFDBB00388404 /* AudioPlayerView.swift in Sources */,
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
 				9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */,
@@ -929,33 +933,33 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */ = {
+		965F255D267A6F6600106F13 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/muukii/NextGrowingTextView";
 			requirement = {
 				kind = exactVersion;
-				version = 1.6.0;
+				version = 1.6.1;
 			};
 		};
-		96AF70232448C80500B6B848 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+		965F2560267A6F9B00106F13 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
+				kind = exactVersion;
+				version = 2.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		965AC7E32438E3FF003A3DC7 /* NextGrowingTextView */ = {
+		965F255E267A6F6700106F13 /* NextGrowingTextView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 965AC7E22438E3FF003A3DC7 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */;
+			package = 965F255D267A6F6600106F13 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */;
 			productName = NextGrowingTextView;
 		};
-		96AF70242448C80500B6B848 /* JGProgressHUD */ = {
+		965F2561267A6F9B00106F13 /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 96AF70232448C80500B6B848 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			package = 965F2560267A6F9B00106F13 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
 			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */

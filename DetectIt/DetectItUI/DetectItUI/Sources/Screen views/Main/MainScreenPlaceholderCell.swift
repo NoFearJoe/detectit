@@ -24,10 +24,7 @@ public final class MainScreenPlaceholderCell: AutosizingCollectionViewCell {
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         
-        messageLabel.pin(
-            to: contentView,
-            insets: UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
-        )
+        messageLabel.pin(to: contentView)
     }
     
     required init?(coder: NSCoder) { fatalError() }

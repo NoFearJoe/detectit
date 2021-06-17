@@ -83,7 +83,7 @@
 "main_screen_debug_menu_action_title" = "Debug menu";
 "main_screen_tasks_bundle_cell_play_button_title" = "Play";
 "main_screen_tasks_bundle_cell_kind_title" = "Bundle";
-"main_screen_empty_placeholder_message" = "There are no tasks";
+"main_screen_empty_placeholder_message" = "You've done all tasks. Great job!\nWe'll add new tasks very soon";
 
 "feed_filter_ciphers" = "Ciphers";
 "feed_filter_profiles" = "Profiles";
@@ -98,6 +98,13 @@
 "main_screen_banner_app_review_subtitle" = "We would be interested in a review of the application from such an experienced detective. Share your impressions with future players and help the developers make the game better.";
 "main_screen_banner_subscribe_to_notifications_title" = "Are you waiting for new tasks?";
 "main_screen_banner_subscribe_to_notifications_subtitle" = "Tap on this message to subscribe to notifications";
+
+"main_screen_completed_tasks_title" = "Completed tasks";
+
+// Completed tasks
+
+"completed_tasks_screen_title" = "Completed tasks";
+"completed_tasks_screen_empty_placeholder_message" = "There are no completed tasks";
 
 // Decoder task
 

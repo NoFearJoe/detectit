@@ -14,7 +14,7 @@ import MessageUI
 
 final class MainScreen: Screen {
     
-    lazy var screenView = MainScreenView(delegate: self)
+    lazy var screenView = MainScreenView(sections: MainScreenView.Section.allCases, delegate: self)
     
     private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: false)
     
@@ -96,7 +96,7 @@ final class MainScreen: Screen {
 
 extension MainScreen: MainScreenViewDelegate {
     
-    func header() -> MainScreenHeaderView.Model {
+    func header() -> MainScreenHeaderView.Model? {
         .init(
             alias: User.shared.alias ?? "",
             rank: FullVersionManager.hasBought ? "professional_detective".localized : nil
@@ -152,6 +152,19 @@ extension MainScreen: MainScreenViewDelegate {
     
     func didCloseBanner() {        
         showingBanner.map { handleBannerClose($0) }
+    }
+    
+    func shouldShowCompletedTasksCell() -> Bool {
+        feed?.completedItemsInfo?.count != 0
+    }
+    
+    func didSelectCompletedTasksCell() {
+        let screen = CompletedTasksScreen()
+        screen.modalPresentationStyle = .fullScreen
+        screen.modalTransitionStyle = .crossDissolve
+        present(screen, animated: true, completion: nil)
+        
+        Analytics.logButtonTap(title: "Completed tasks", screen: .main)
     }
     
     func numberOfFeedItems() -> Int {

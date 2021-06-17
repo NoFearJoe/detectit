@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol MainScreenViewDelegate: AnyObject {
-    func header() -> MainScreenHeaderView.Model
+    func header() -> MainScreenHeaderView.Model?
     func didTapProfileButton()
     
     func filters() -> [MainScreenFiltersView.Model]
@@ -18,6 +18,9 @@ public protocol MainScreenViewDelegate: AnyObject {
     func banner() -> MainScreenBannerCell.Model?
     func didSelectBanner()
     func didCloseBanner()
+    
+    func shouldShowCompletedTasksCell() -> Bool
+    func didSelectCompletedTasksCell()
     
     func numberOfFeedItems() -> Int
     func feedItem(at index: Int) -> Any?
@@ -43,11 +46,13 @@ public final class MainScreenView: UIView {
     
     // MARK: - External dependencies
     
+    private let sections: [Section]
     private unowned let delegate: MainScreenViewDelegate
     
     // MARK: - Init
     
-    public init(delegate: MainScreenViewDelegate) {
+    public init(sections: [Section], delegate: MainScreenViewDelegate) {
+        self.sections = sections
         self.delegate = delegate
         
         super.init(frame: .zero)
@@ -66,7 +71,9 @@ public final class MainScreenView: UIView {
     }
     
     public func reloadHeader() {
-        header?.configure(model: delegate.header())
+        guard let model = delegate.header() else { return }
+        
+        header?.configure(model: model)
     }
     
     public func reloadFilters() {
@@ -75,6 +82,10 @@ public final class MainScreenView: UIView {
     
     public func reloadBanner() {
         contentView.reloadSections(IndexSet(integer: Section.banner.rawValue))
+    }
+    
+    public func reloadCompletedTasksCell() {
+        contentView.reloadSections(IndexSet(integer: Section.completedTasks.rawValue))
     }
     
     // MARK: - Setup
@@ -91,6 +102,7 @@ public final class MainScreenView: UIView {
         contentView.delegate = self
         contentView.dataSource = self
         contentView.backgroundColor = nil
+        contentView.alwaysBounceVertical = true
         contentView.delaysContentTouches = false
         contentView.showsVerticalScrollIndicator = false
         contentView.contentInset = UIEdgeInsets(
@@ -117,6 +129,10 @@ public final class MainScreenView: UIView {
         contentView.register(
             MainScreenPlaceholderCell.self,
             forCellWithReuseIdentifier: MainScreenPlaceholderCell.identifier
+        )
+        contentView.register(
+            MainScreenCompletedTasksCell.self,
+            forCellWithReuseIdentifier: MainScreenCompletedTasksCell.identifier
         )
         contentView.register(
             MainScreenHeaderView.self,
@@ -146,9 +162,15 @@ extension MainScreenView: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        switch Section(section) {
+        let section = Section(section)
+        
+        guard sections.contains(section) else { return 0 }
+        
+        switch section {
         case .banner:
             return delegate.banner() == nil ? 0 : 1
+        case .completedTasks:
+            return delegate.shouldShowCompletedTasksCell() ? 1 : 0
         case .tasks:
             return delegate.numberOfFeedItems()
         case .actions:
@@ -178,6 +200,11 @@ extension MainScreenView: UICollectionViewDataSource {
             }
             
             return cell
+        case .completedTasks:
+            return collectionView.dequeueReusableCell(
+                withReuseIdentifier: MainScreenCompletedTasksCell.identifier,
+                for: indexPath
+            )
         case .tasks:
             guard let item = delegate.feedItem(at: indexPath.item) else {
                 return collectionView.dequeueEmptyCell(for: indexPath)
@@ -242,7 +269,9 @@ extension MainScreenView: UICollectionViewDataSource {
             for: indexPath
         ) as! MainScreenHeaderView
         
-        header.configure(model: delegate.header())
+        if let model = delegate.header() {
+            header.configure(model: model)
+        }
         header.configureFilters(models: delegate.filters())
         
         header.onTapProfileButton = delegate.didTapProfileButton
@@ -264,6 +293,8 @@ extension MainScreenView: UICollectionViewDelegate {
         switch Section(indexPath.section) {
         case .banner:
             delegate.didSelectBanner()
+        case .completedTasks:
+            delegate.didSelectCompletedTasksCell()
         case .tasks:
             delegate.didSelectFeedItem(at: indexPath.item)
         case .actions:
@@ -284,6 +315,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
     ) -> CGFloat {
         switch Section(section) {
         case .banner: return 0
+        case .completedTasks: return 0
         case .tasks: return 20
         case .actions: return 8
         }
@@ -307,6 +339,8 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             guard delegate.banner() != nil else { return .zero }
             
             return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        case .completedTasks:
+            return .zero
         case .tasks:
             return UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         case .actions:
@@ -338,6 +372,8 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             guard let model = delegate.banner() else { return .zero }
             
             return prototypeBannerCell.calculateSize(model: model, width: width)
+        case .completedTasks:
+            return CGSize(width: width, height: 48)
         case .tasks:
             if let taskModel = delegate.feedItem(at: indexPath.item) as? MainScreenTaskCell.Model {
                 if taskModel.backgroundImagePath != nil {
@@ -345,8 +381,10 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                 } else {
                     return prototypeTaskCell.calculateSize(model: taskModel, width: width)
                 }
-            } else {
+            } else if delegate.feedItem(at: indexPath.item) is MainScreenTasksBundleCell.Model {
                 return CGSize(width: width, height: width * 1.25)
+            } else {
+                return CGSize(width: width, height: 156)
             }
         case .actions:
             return prototypeActionCell.calculateSize(model: delegate.action(at: indexPath.item) ?? "", width: width)
@@ -358,7 +396,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
-        if section == 0 {
+        if section == 0, let model = delegate.header() {
             let width: CGFloat = {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     let width = collectionView.bounds.width
@@ -372,8 +410,8 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
                         - collectionView.contentInset.right
                 }
             }()
-            
-            return MainScreenHeaderView.prototype.size(model: delegate.header(), width: width)
+                        
+            return MainScreenHeaderView.prototype.size(model: model, width: width)
         } else {
             return .zero
         }
@@ -381,14 +419,17 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
     
 }
 
-private enum Section: Int, CaseIterable {
-    case banner
-    case tasks
-    case actions
+public extension MainScreenView {
+    enum Section: Int, CaseIterable {
+        case banner
+        case completedTasks
+        case tasks
+        case actions
+    }
 }
 
-extension Section {
+extension MainScreenView.Section {
     init(_ section: Int) {
-        self = Section(rawValue: section) ?? .tasks
+        self = MainScreenView.Section(rawValue: section) ?? .tasks
     }
 }

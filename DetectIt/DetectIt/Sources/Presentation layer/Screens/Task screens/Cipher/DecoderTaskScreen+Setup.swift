@@ -53,16 +53,8 @@ extension DecoderTaskScreen {
     func setupViews() {
         view.addSubview(topPanel)
         
-        topPanel.helpButton.isHidden = User.shared.isDecoderHelpShown
         topPanel.onClose = { [unowned self] in
             self.dismiss(animated: true, completion: nil)
-        }
-        topPanel.onHelp = { [unowned self] in
-            User.shared.isDecoderHelpShown = true
-            
-            self.topPanel.helpButton.isHidden = true
-            
-            present(HelpScreen(taskKind: self.task.kind), animated: true, completion: nil)
         }
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.task), animated: true, completion: nil)

@@ -16,6 +16,7 @@ public enum DetectItAPITarget {
     case deleteAccount
     
     case feed(filters: [FeedFilter])
+    case completedTasks
     
     case tasksBundle(bundleID: String)
         
@@ -57,7 +58,8 @@ extension DetectItAPITarget: TargetType {
         case .auth: return "auth"
         case .restorePassword: return "auth/restore_password"
         case .deleteAccount: return "delete_account"
-        case .feed: return "feed"
+        case .feed: return "feed/v2"
+        case .completedTasks: return "completedTasks"
         case .tasksBundle: return "tasksBundle"
         case .taskScore, .setTaskScore: return "taskScore"
         case .taskRating, .setTaskRating: return "taskRating"
@@ -74,7 +76,7 @@ extension DetectItAPITarget: TargetType {
         switch self {
         case .auth, .deleteAccount, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
             return .post
-        case .feed, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
+        case .feed, .completedTasks, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
             return .get
         }
     }
@@ -100,6 +102,8 @@ extension DetectItAPITarget: TargetType {
                 parameters: ["filters": filters.map { $0.rawValue }.joined(separator: ",")],
                 encoding: URLEncoding.default
             )
+        case .completedTasks:
+            return .requestPlain
         case let .tasksBundle(bundleID):
             return .requestParameters(
                 parameters: ["bundleID": bundleID],

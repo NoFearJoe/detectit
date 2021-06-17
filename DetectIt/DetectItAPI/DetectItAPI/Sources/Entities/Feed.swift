@@ -10,7 +10,8 @@ import Foundation
 import DetectItCore
 
 public struct Feed: Codable {
-    public let items: [Item]
+    public var items: [Item]
+    public let completedItemsInfo: CompletedItemsInfo?
 }
 
 public extension Feed {
@@ -24,11 +25,18 @@ public extension Feed {
         public let difficulty: Int
         public let score: Int?
         public let maxScore: Int
+        public let completed: Bool
         public let rating: Double?
         public let cipher: DecoderTask?
         public let profile: ProfileTask?
         public let bundle: TasksBundle.Info?
         public let quest: QuestTask?
+    }
+    
+    struct CompletedItemsInfo: Codable {
+        public let count: Int
+        public let totalScore: Int
+        public let maxTotalScore: Int
     }
     
 }

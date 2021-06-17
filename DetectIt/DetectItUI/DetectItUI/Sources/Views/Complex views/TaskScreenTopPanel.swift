@@ -11,16 +11,14 @@ import UIKit
 public final class TaskScreenTopPanel: UIView {
     
     public var onClose: (() -> Void)?
-    public var onHelp: (() -> Void)?
     public var onNotes: (() -> Void)?
     
     private var blurView = BlurView(style: .dark)
     
-    private let closeButton = SolidButton.closeButton()
+    public let closeButton = SolidButton.closeButton()
     
     private let buttonsContainer = UIStackView()
     public let notesButton = SolidButton.notesButton()
-    public let helpButton = SolidButton.helpButton()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,10 +32,6 @@ public final class TaskScreenTopPanel: UIView {
         onClose?()
     }
     
-    @objc private func didTapHelpButton() {
-        onHelp?()
-    }
-    
     @objc private func didTapNotesButton() {
         onNotes?()
     }
@@ -46,7 +40,6 @@ public final class TaskScreenTopPanel: UIView {
         addSubview(blurView)
         blurView.blurRadius = 20
         blurView.colorTint = UIColor.black.withAlphaComponent(0.5)
-//        blurView.colorTintAlpha = 0.5
         blurView.pin(to: self)
         
         addSubview(closeButton)
@@ -67,10 +60,6 @@ public final class TaskScreenTopPanel: UIView {
             buttonsContainer.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12),
             buttonsContainer.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20)
         ])
-        
-//        buttonsContainer.addArrangedSubview(helpButton)
-//        
-//        helpButton.addTarget(self, action: #selector(didTapHelpButton), for: .touchUpInside)
         
         buttonsContainer.addArrangedSubview(notesButton)
         notesButton.addTarget(self, action: #selector(didTapNotesButton), for: .touchUpInside)

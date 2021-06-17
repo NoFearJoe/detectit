@@ -11,7 +11,6 @@ public enum FeedFilter: String, CaseIterable {
     case profiles
     case bundles
     case easy, normal, hard, nightmare
-    case notSolved
 }
 
 public extension FeedFilter {
