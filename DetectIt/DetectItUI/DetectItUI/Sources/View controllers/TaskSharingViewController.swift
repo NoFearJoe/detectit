@@ -11,6 +11,8 @@ import DetectItCore
 
 public final class TaskSharingViewController: UIViewController {
     
+    public var onShare: ((Task) -> Void)?
+    
     private let sharingView = TaskSharingView()
     
     private let task: Task
@@ -43,6 +45,8 @@ public final class TaskSharingViewController: UIViewController {
             controller.popoverPresentationController?.permittedArrowDirections = .down
             controller.popoverPresentationController?.sourceView = sharingView
         }
+        
+        onShare?(task)
         
         present(controller, animated: true, completion: nil)
     }

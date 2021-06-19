@@ -59,6 +59,16 @@ extension QuestTaskScreen {
         ])
         
         screenView.setupViews()
+        
+        taskSharingViewController.onShare = { task in
+            Analytics.log(
+                "share_task",
+                parameters: [
+                    "id": task.id,
+                    "kind": task.kind.rawValue
+                ]
+            )
+        }
     }
     
     func setupScreenLoadingView() {

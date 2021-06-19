@@ -77,6 +77,16 @@ extension DecoderTaskScreen {
         screenView.onTapAnswerButton = { [unowned self] in
             self.didTapAnswerButton()
         }
+        
+        taskSharingViewController.onShare = { task in
+            Analytics.log(
+                "share_task",
+                parameters: [
+                    "id": task.id,
+                    "kind": task.kind.rawValue
+                ]
+            )
+        }
     }
     
     func setupScreenLoadingView() {
