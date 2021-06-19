@@ -56,6 +56,7 @@ extension DecoderTaskScreen {
         contentContainer.setChildHidden(screenView.crimeDescriptionView, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.rightAnswerView, hidden: !isSolved || isSolvedCorrectly, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(rateTaskViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
+        contentContainer.setChildHidden(taskSharingViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }
         screenView.scoreLabel.textColor = .score(value: score, max: task.maxScore, defaultColor: .white)
@@ -75,7 +76,7 @@ extension DecoderTaskScreen {
             let bottomInset = self.view.safeAreaInsets.bottom + Constants.bottomInset
             
             let minY = self.screenView.scoreLabel.frame.minY - topInset
-            let maxY = self.rateTaskViewController.view.frame.maxY + bottomInset
+            let maxY = self.taskSharingViewController.view.frame.maxY + bottomInset
             
             let targetY = maxY - minY > self.view.bounds.height ? minY : max(0, maxY - self.view.bounds.height)
             

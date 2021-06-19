@@ -22,6 +22,7 @@ final class QuestTaskScreen: Screen {
     let topPanel = TaskScreenTopPanel()
     lazy var screenView = QuestTaskScreenView(delegate: self)
     lazy var rateTaskViewController = RateTaskViewController(task: state.task, bundleID: state.bundle?.id)
+    lazy var taskSharingViewController = TaskSharingViewController(task: state.task)
         
     var api = DetectItAPI()
     

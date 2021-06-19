@@ -178,6 +178,10 @@
 
 "rate_task_widget_done_button_title" = "Оценить";
 
+// Task sharing widget
+
+"task_sharing_title" = "Предложите друзьям решить это задание";
+
 // Other
 
 "answer_button_default_title" = "Отправить ответ";
@@ -197,3 +201,7 @@
 "professional_detective" = "Профессиональный детектив";
 
 "report_problem_subject" = "Проблема в Detect";
+
+"task_sharing_text_for_cipher" = "Попробуй разгадать шифр \"%@\" в Detect – %@";
+"task_sharing_text_for_profile" = "Попробуй расследовать дело \"%@\" в Detect – %@";
+"task_sharing_text_for_quest" = "Попробуй пройти квест \"%@\" в Detect – %@";

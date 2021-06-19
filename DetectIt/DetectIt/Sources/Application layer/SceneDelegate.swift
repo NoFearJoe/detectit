@@ -41,6 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         window.makeKeyAndVisible()
+        
+        handleUniversalLink(options: connectionOptions)
     }
     
     func logout() {
@@ -92,3 +94,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+// MARK: - Universal links
+
+private extension SceneDelegate {
+    
+    func handleUniversalLink(options: UIScene.ConnectionOptions) {
+        guard
+            let userActivity = options.userActivities.first,
+            userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL,
+            let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true)
+        else { return }
+
+        guard
+            let path = components.path,
+            let params = components.queryItems
+        else { return }
+        
+        UniversalLink.allCases.forEach { link in
+            guard
+                path == link.path,
+                params.allSatisfy({ link.queryItems.contains($0.name) })
+            else { return }
+            
+            print("::: Success")
+        }
+    }
+    
+    enum UniversalLink: CaseIterable {
+        case task
+        
+        var path: String {
+            return "task"
+        }
+        
+        var queryItems: [String] {
+            ["id", "kind"]
+        }
+    }
+    
+}

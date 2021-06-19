@@ -22,6 +22,7 @@ final class DecoderTaskScreen: Screen {
     let topPanel = TaskScreenTopPanel()
     let screenView = DecoderTaskScreenView()
     lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
+    lazy var taskSharingViewController = TaskSharingViewController(task: task)
     
     let keyboardManager = KeyboardManager()
     var contentScrollViewOffset: CGFloat?

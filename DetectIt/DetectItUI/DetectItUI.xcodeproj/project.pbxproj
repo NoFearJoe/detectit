@@ -85,6 +85,8 @@
 		965F255F267A6F6700106F13 /* NextGrowingTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 965F255E267A6F6700106F13 /* NextGrowingTextView */; };
 		965F2562267A6F9B00106F13 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 965F2561267A6F9B00106F13 /* JGProgressHUD */; };
 		965F2564267A701200106F13 /* MainScreenCompletedTasksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F2563267A701100106F13 /* MainScreenCompletedTasksCell.swift */; };
+		965F2569267D078300106F13 /* TaskSharingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F2568267D078300106F13 /* TaskSharingView.swift */; };
+		965F256B267D0C7100106F13 /* TaskSharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F256A267D0C7100106F13 /* TaskSharingViewController.swift */; };
 		966B6E4B25C57F9D00FEBB51 /* TitleAndToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B6E4A25C57F9D00FEBB51 /* TitleAndToggleView.swift */; };
 		966B6E5025C8800C00FEBB51 /* MainScreenBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B6E4F25C8800C00FEBB51 /* MainScreenBannerCell.swift */; };
 		9675D0E125E57E1A00593CB9 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D0E025E57E1A00593CB9 /* TagView.swift */; };
@@ -185,6 +187,8 @@
 		965AC7EC2438FDB6003A3DC7 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		965AC7EE2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CurrentFirstResponder.swift"; sourceTree = "<group>"; };
 		965F2563267A701100106F13 /* MainScreenCompletedTasksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCompletedTasksCell.swift; sourceTree = "<group>"; };
+		965F2568267D078300106F13 /* TaskSharingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSharingView.swift; sourceTree = "<group>"; };
+		965F256A267D0C7100106F13 /* TaskSharingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSharingViewController.swift; sourceTree = "<group>"; };
 		966B6E4A25C57F9D00FEBB51 /* TitleAndToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndToggleView.swift; sourceTree = "<group>"; };
 		966B6E4F25C8800C00FEBB51 /* MainScreenBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenBannerCell.swift; sourceTree = "<group>"; };
 		9675D0E025E57E1A00593CB9 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
@@ -449,6 +453,7 @@
 				9627E7CB250E0206007ACEBA /* TaskScreenTopPanel.swift */,
 				966B6E4A25C57F9D00FEBB51 /* TitleAndToggleView.swift */,
 				9675D0E025E57E1A00593CB9 /* TagView.swift */,
+				965F2568267D078300106F13 /* TaskSharingView.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -493,6 +498,7 @@
 				965AC7D72438C704003A3DC7 /* StackViewController */,
 				967B54C924E00912009EEF3E /* AudioPlayerController.swift */,
 				963F56D724F24574002B949F /* RateTaskViewController.swift */,
+				965F256A267D0C7100106F13 /* TaskSharingViewController.swift */,
 			);
 			path = "View controllers";
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				965907152545A1970031107E /* PassthrowView.swift in Sources */,
 				96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */,
 				967B54CE24E7CF45009EEF3E /* ProfileAudioAttachmentCell.swift in Sources */,
+				965F2569267D078300106F13 /* TaskSharingView.swift in Sources */,
 				963F56D424F10BA9002B949F /* RatingView.swift in Sources */,
 				96200CB92442084400A3C720 /* String+AttributedString.swift in Sources */,
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
@@ -723,6 +730,7 @@
 				96200CB52441F29000A3C720 /* UICollectionView+EmptyCell.swift in Sources */,
 				961EEDF82440D4C700462CD3 /* ProfileTaskAnyAnswerCell.swift in Sources */,
 				96B3353B25C078EA00D0814F /* UIButton+title.swift in Sources */,
+				965F256B267D0C7100106F13 /* TaskSharingViewController.swift in Sources */,
 				965AC7AE243878A6003A3DC7 /* TasksBundleScreenView.swift in Sources */,
 				96200CBF24435F3800A3C720 /* MainScreenActionCell.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,

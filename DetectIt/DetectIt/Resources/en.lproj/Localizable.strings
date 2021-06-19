@@ -178,6 +178,10 @@
 
 "rate_task_widget_done_button_title" = "Rate";
 
+// Task sharing widget
+
+"task_sharing_title" = "Invite your friends to solve this task";
+
 // Other
 
 "answer_button_default_title" = "Send the answer";
@@ -197,3 +201,7 @@
 "professional_detective" = "Professional detective";
 
 "report_problem_subject" = "There is a problem in Detect";
+
+"task_sharing_text_for_cipher" = "Try to solve the cipher \"%@\" in Detect – %@";
+"task_sharing_text_for_profile" = "Try the task \"%@\" in Detect – %@";
+"task_sharing_text_for_quest" = "Try the quest \"%@\" in Detect – %@";

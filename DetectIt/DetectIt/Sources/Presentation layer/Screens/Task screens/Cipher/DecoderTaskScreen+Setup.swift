@@ -39,6 +39,8 @@ extension DecoderTaskScreen {
         contentContainer.appendChild(screenView.crimeDescriptionView)
         contentContainer.appendSpacing(28)
         contentContainer.appendChild(rateTaskViewController)
+        contentContainer.appendSpacing(28)
+        contentContainer.appendChild(taskSharingViewController)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))

@@ -41,6 +41,7 @@ extension QuestTaskScreen {
         contentContainer.setChildHidden(screenView.endingTitleView, hidden: !state.isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.endingTextLabel, hidden: !state.isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(rateTaskViewController, hidden: !state.isSolved, animated: animated, animationDuration: 2)
+        contentContainer.setChildHidden(taskSharingViewController, hidden: !state.isSolved, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = state.score.map { "\($0)/\(state.task.maxScore)" }
         screenView.scoreLabel.textColor = .score(value: state.score, max: state.task.maxScore, defaultColor: .white)

@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+// MARK: - Push notifications
+
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(
@@ -69,6 +71,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
 }
 
+// MARK: - Firebase messaging
+
 extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
@@ -76,6 +80,8 @@ extension AppDelegate: MessagingDelegate {
     }
     
 }
+
+// MARK: - Private functions
 
 private extension AppDelegate {
     
