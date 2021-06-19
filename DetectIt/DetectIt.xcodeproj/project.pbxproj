@@ -906,7 +906,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
 				SUPPORTS_MACCATALYST = YES;
@@ -930,7 +930,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
 				PROVISIONING_PROFILE_SPECIFIER = "";
