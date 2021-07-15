@@ -82,7 +82,13 @@ final class DecoderTaskScreen: Screen {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Analytics.logScreenShow(.cipherTask)
+        Analytics.logScreenShow(
+            .cipherTask,
+            parameters: [
+                "task_id": task.id,
+                "task_kind": task.kind.rawValue
+            ]
+        )
     }
     
     // MARK: - Actions
@@ -104,7 +110,13 @@ final class DecoderTaskScreen: Screen {
         
         AppRateManager.shared.commitEvent()
         
-        Analytics.log("cipher_answer_sent", parameters: ["answer": answer ?? ""])
+        Analytics.log(
+            "cipher_answer_sent",
+            parameters: [
+                "id": task.id,
+                "answer": answer ?? ""
+            ]
+        )
     }
     
     @objc func onTapBackground() {

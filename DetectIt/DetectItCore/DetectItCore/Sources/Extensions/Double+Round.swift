@@ -12,7 +12,7 @@ public extension Double {
     
     func rounded(precision: Int) -> Double {
         let precision: Double = Double(10 * precision)
-        return Foundation.round(precision * self) / precision
+        return Foundation.round(precision * self).safeDivide(by: precision)
     }
     
 }

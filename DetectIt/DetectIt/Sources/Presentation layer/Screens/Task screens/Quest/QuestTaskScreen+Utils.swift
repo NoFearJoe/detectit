@@ -24,7 +24,13 @@ extension QuestTaskScreen {
         AppRateManager.shared.commitEvent()
         
         if let answer = state.answer?.jsonString {
-            Analytics.log("quest_answer_sent", parameters: ["answer": answer])
+            Analytics.log(
+                "quest_answer_sent",
+                parameters: [
+                    "id": state.task.id,
+                    "answer": answer
+                ]
+            )
         }
     }
     

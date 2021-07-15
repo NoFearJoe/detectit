@@ -16,9 +16,9 @@ struct Analytics {
         #endif
     }
     
-    static func logScreenShow(_ screen: Screen) {
+    static func logScreenShow(_ screen: Screen, parameters: [String: Any] = [:]) {
         #if !DEBUG
-        log("screen_showed", parameters: ["name": screen.rawValue])
+        log("screen_showed", parameters: ["name": screen.rawValue] + parameters)
         #endif
     }
     

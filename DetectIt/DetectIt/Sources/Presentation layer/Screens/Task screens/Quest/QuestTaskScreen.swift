@@ -92,7 +92,13 @@ final class QuestTaskScreen: Screen {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Analytics.logScreenShow(.questTask)
+        Analytics.logScreenShow(
+            .questTask,
+            parameters: [
+                "task_id": state.task.id,
+                "task_kind": state.task.kind.rawValue
+            ]
+        )
     }
     
     // MARK: - Actions

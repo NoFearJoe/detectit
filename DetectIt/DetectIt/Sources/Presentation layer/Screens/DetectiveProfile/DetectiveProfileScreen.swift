@@ -276,11 +276,13 @@ final class DetectiveProfileScreen: Screen {
             target: .detectiveProfile,
             cacheKey: .init("detective_profile")
         ) { [weak self] result in
-            switch result {
-            case let .success(detectiveProfile):
-                self?.detectiveProfile = detectiveProfile
-            case let .failure(error):
-                print(error)
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(detectiveProfile):
+                    self?.detectiveProfile = detectiveProfile
+                case let .failure(error):
+                    print(error)
+                }
             }
         }
     }

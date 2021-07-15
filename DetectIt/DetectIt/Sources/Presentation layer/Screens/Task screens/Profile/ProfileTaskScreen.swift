@@ -108,7 +108,13 @@ final class ProfileTaskScreen: Screen {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Analytics.logScreenShow(.profileTask)
+        Analytics.logScreenShow(
+            .profileTask,
+            parameters: [
+                "task_id": task.id,
+                "task_kind": task.kind.rawValue
+            ]
+        )
     }
     
     // MARK: - Actions

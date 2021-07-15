@@ -28,7 +28,10 @@ extension ProfileTaskScreen {
         
         Analytics.log(
             "profile_answer_sent",
-            parameters: ["answer": answers.answers.compactMap { $0.jsonString }]
+            parameters: [
+                "id": task.id,
+                "answer": answers.answers.compactMap { $0.jsonString }
+            ]
         )
     }
     
