@@ -13,6 +13,7 @@ final class DetectiveProfileStatsView: UIView {
     
     let titleLabel = UILabel()
     let statsLabel = UILabel()
+    let loader = UIActivityIndicatorView(style: .large)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,6 +23,7 @@ final class DetectiveProfileStatsView: UIView {
         titleLabel.font = .heading2
         titleLabel.textColor = .lightGray
         titleLabel.numberOfLines = 0
+        titleLabel.layer.cornerRadius = 8
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleLabel)
         
@@ -31,8 +33,10 @@ final class DetectiveProfileStatsView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
         ])
         
+        statsLabel.text = "0"
         statsLabel.font = .score1
         statsLabel.textColor = .yellow
+        statsLabel.layer.cornerRadius = 8
         statsLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(statsLabel)
         
@@ -42,8 +46,23 @@ final class DetectiveProfileStatsView: UIView {
             statsLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             statsLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
         ])
+        
+        loader.color = .lightGray
+        loader.hidesWhenStopped = true
+        loader.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(loader)
+        
+        NSLayoutConstraint.activate([
+            loader.centerYAnchor.constraint(equalTo: statsLabel.centerYAnchor),
+            loader.leadingAnchor.constraint(equalTo: statsLabel.leadingAnchor)
+        ])
     }
     
     required init?(coder: NSCoder) { fatalError() }
+    
+    func setLoading(_ isLoading: Bool) {
+        isLoading ? loader.startAnimating() : loader.stopAnimating()
+        statsLabel.textColor = isLoading ? .clear : .yellow
+    }
     
 }

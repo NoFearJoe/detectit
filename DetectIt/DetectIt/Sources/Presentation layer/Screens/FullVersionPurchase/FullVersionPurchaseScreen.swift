@@ -54,6 +54,8 @@ final class FullVersionPurchaseScreen: Screen {
             } else {
                 self.showSuccessHUD()
                 
+                self.logPurchase()
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.close()
                 }
@@ -209,6 +211,12 @@ final class FullVersionPurchaseScreen: Screen {
         dismiss(animated: true) {
             delegate?.presentationControllerDidDismiss?(self.presentationController!)
         }
+    }
+    
+    private func logPurchase() {
+        guard let price = FullVersionManager.priceValue else { return }
+        
+        Analytics.logRevenue(price: price, productID: FullVersionManager.productID)
     }
     
 }

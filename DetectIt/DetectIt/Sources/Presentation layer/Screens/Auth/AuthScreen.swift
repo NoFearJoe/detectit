@@ -180,6 +180,8 @@ final class AuthScreen: Screen {
         emailHint.text = "auth_email_hint".localized
         emailHint.setContentCompressionResistancePriority(.required, for: .vertical)
         
+        passwordField.answerField.textField.isSecureTextEntry = true
+        passwordField.answerField.textField.textContentType = .password
         passwordField.configure(model: .init(question: "auth_password_title".localized, answer: nil))
         passwordField.setContentCompressionResistancePriority(.required, for: .vertical)
         passwordField.highlight(isCorrect: nil, animated: false, animationDuration: 0)

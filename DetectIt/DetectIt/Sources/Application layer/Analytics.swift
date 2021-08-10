@@ -18,13 +18,30 @@ struct Analytics {
     
     static func logScreenShow(_ screen: Screen, parameters: [String: Any] = [:]) {
         #if !DEBUG
-        log("screen_showed", parameters: ["name": screen.rawValue] + parameters)
+        log("screen_showed", parameters: parameters.merging(["name": screen.rawValue], uniquingKeysWith: { _, new in new }))
         #endif
     }
     
     static func logButtonTap(title: String, screen: Screen) {
         #if !DEBUG
         log("button_tapped", parameters: ["title": title, "screen": screen.rawValue])
+        #endif
+    }
+    
+    static func logRevenue(price: Double, productID: String) {
+        #if !DEBUG
+        let revenue = AMPRevenue()
+        revenue.setPrice(NSNumber(value: price))
+        revenue.setRevenueType("purchase")
+        revenue.setProductIdentifier(productID)
+        
+        Amplitude.instance().logRevenueV2(revenue)
+        #endif
+    }
+    
+    static func setProperty(_ name: String, value: Any) {
+        #if !DEBUG
+        Amplitude.instance().setUserProperties([name: value])
         #endif
     }
     

@@ -212,7 +212,7 @@ final class DetectiveProfileScreen: Screen {
             $0.fill = .color(.darkBackground)
             $0.setTitleColor(.lightGray, for: .normal)
             $0.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-            $0.heightConstraint?.isActive = false
+            $0.heightConstraint?.constant = 48
         }
         
         leaderboardButton.setTitleColor(.yellow, for: .normal)
@@ -248,8 +248,8 @@ final class DetectiveProfileScreen: Screen {
     }
     
     private func updateStats() {
-        correctAnswersPercentView.isHidden = detectiveProfile == nil
-        solvedTasksCountView.isHidden = detectiveProfile == nil
+        correctAnswersPercentView.setLoading(detectiveProfile == nil)
+        solvedTasksCountView.setLoading(detectiveProfile == nil)
         
         if let detectiveProfile = detectiveProfile {
             correctAnswersPercentView.statsLabel.text = "\(detectiveProfile.correctAnswersPercent.rounded(precision: 2))%"

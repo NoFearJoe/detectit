@@ -30,6 +30,8 @@ open class SolidButton: UIButton, TouchAnimatable {
     
     public override var bounds: CGRect {
         didSet {
+            guard bounds.size != .zero, heightConstraint.map({ $0.constant == bounds.height }) ?? true else { return }
+            
             updateFill()
         }
     }

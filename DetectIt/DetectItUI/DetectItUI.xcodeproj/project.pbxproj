@@ -145,7 +145,6 @@
 		96500E29242F0F92005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E2C242F0F92005FFC7A /* DetectItUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectItUI.h; sourceTree = "<group>"; };
 		96500E2D242F0F92005FFC7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96500E3C242F10CC005FFC7A /* DetectItUI.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DetectItUI.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		96500E3D242F1151005FFC7A /* PhotoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCardView.swift; sourceTree = "<group>"; };
 		96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppTheme.swift"; sourceTree = "<group>"; };
 		96500E41242F1816005FFC7A /* UIFont+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AppTheme.swift"; sourceTree = "<group>"; };
@@ -270,7 +269,6 @@
 		96500E1F242F0F92005FFC7A = {
 			isa = PBXGroup;
 			children = (
-				96500E3C242F10CC005FFC7A /* DetectItUI.playground */,
 				96500E2B242F0F92005FFC7A /* DetectItUI */,
 				96500E2A242F0F92005FFC7A /* Products */,
 				96F85C112445FCF000F5CD22 /* Frameworks */,

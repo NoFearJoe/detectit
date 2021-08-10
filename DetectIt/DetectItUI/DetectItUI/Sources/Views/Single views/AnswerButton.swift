@@ -95,15 +95,14 @@ public final class AnswerButton: UIControl {
     }
     
     public func reset() {
-        setFilled(false)
+        isUserInteractionEnabled = true
+        cancelFillAnimator()
     }
     
     public func setFilled(_ isFilled: Bool) {
         hasBeenFilled = isFilled
         isUserInteractionEnabled = !isFilled
-        if isFilled {
-            fillAnimator.fractionComplete = 1
-        }
+        fillAnimator.fractionComplete = isFilled ? 1 : 0
     }
     
     // MARK: - Overrides

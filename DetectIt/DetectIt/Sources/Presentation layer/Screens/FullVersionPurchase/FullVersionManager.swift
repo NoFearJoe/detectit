@@ -30,17 +30,29 @@ public struct FullVersionManager {
     
     // MARK: - Getters
     
+    public static var productID: String {
+        product?.productIdentifier ?? "com.mesterra.detectit.pro"
+    }
+    
     public static var price: String? {
         product?.localizedPrice
     }
     
+    public static var priceValue: Double? {
+        product?.price.doubleValue
+    }
+    
     public static var hasBought: Bool {
         #if targetEnvironment(simulator)
-        return true
+        return false
         #else
-        return receiptStorage.bool(
+        let hasBought = receiptStorage.bool(
             forKey: inAppPurchaseReceiptKey
         )
+        
+        setFullVersionProperty(value: hasBought)
+        
+        return hasBought
         #endif
     }
     
@@ -111,6 +123,8 @@ public struct FullVersionManager {
     
     static func unlock() {
         receiptStorage.set(true, forKey: inAppPurchaseReceiptKey)
+        
+        setFullVersionProperty(value: true)
     }
     
     // For unit testing
@@ -121,13 +135,25 @@ public struct FullVersionManager {
 }
 
 private extension FullVersionManager {
-    
-    static let productID = "com.mesterra.detectit.pro"
-    
+        
     static let keyPrefix = "in_app_purchase_receipt"
     
     static var inAppPurchaseReceiptKey: String {
         "\(keyPrefix)_\(productID)"
+    }
+    
+}
+
+private extension FullVersionManager {
+    
+    static var fullVersionPropertySet = false
+    
+    static func setFullVersionProperty(value: Bool) {
+        guard !fullVersionPropertySet else { return }
+        
+        fullVersionPropertySet = true
+        
+        Analytics.setProperty("full_version", value: value)
     }
     
 }
