@@ -12,13 +12,15 @@ public final class TaskScreenTopPanel: UIView {
     
     public var onClose: (() -> Void)?
     public var onNotes: (() -> Void)?
+    public var onShare: (() -> Void)?
     
     private var blurView = BlurView(style: .dark)
     
     public let closeButton = SolidButton.closeButton()
     
     private let buttonsContainer = UIStackView()
-    public let notesButton = SolidButton.notesButton()
+    public let notesButton = SolidButton.plainButton(icon: "notes")
+    public let shareButton = SolidButton.plainButton(icon: "share")
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +36,10 @@ public final class TaskScreenTopPanel: UIView {
     
     @objc private func didTapNotesButton() {
         onNotes?()
+    }
+    
+    @objc private func didTapShareButton() {
+        onShare?()
     }
     
     private func setupViews() {
@@ -63,6 +69,9 @@ public final class TaskScreenTopPanel: UIView {
         
         buttonsContainer.addArrangedSubview(notesButton)
         notesButton.addTarget(self, action: #selector(didTapNotesButton), for: .touchUpInside)
+        
+        buttonsContainer.addArrangedSubview(shareButton)
+        shareButton.addTarget(self, action: #selector(didTapShareButton), for: .touchUpInside)
     }
     
 }

@@ -124,32 +124,14 @@ public extension SolidButton {
         return button
     }
     
-    static func helpButton() -> SolidButton {
+    static func plainButton(icon: String) -> SolidButton {
         let button = SolidButton()
         
         button.layer.cornerRadius = 12
         button.layer.cornerCurve = .continuous
         button.fill = .color(.clear)
         button.tintColor = .yellow
-        button.setImage(UIImage.asset(named: "help"), for: .normal)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 24),
-            button.heightAnchor.constraint(equalToConstant: 24)
-        ])
-        
-        return button
-    }
-    
-    static func notesButton() -> SolidButton {
-        let button = SolidButton()
-        
-        button.layer.cornerRadius = 12
-        button.layer.cornerCurve = .continuous
-        button.fill = .color(.clear)
-        button.tintColor = .yellow
-        button.setImage(UIImage.asset(named: "notes"), for: .normal)
+        button.setImage(UIImage.asset(named: icon), for: .normal)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

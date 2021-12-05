@@ -33,7 +33,7 @@ public final class TaskSharingViewController: UIViewController {
         }
     }
     
-    private func share() {
+    public func share() {
         let controller = UIActivityViewController(
             activityItems: [makeSharingContent()],
             applicationActivities: nil

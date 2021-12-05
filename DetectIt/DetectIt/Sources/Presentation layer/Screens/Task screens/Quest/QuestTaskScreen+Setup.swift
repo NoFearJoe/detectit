@@ -50,6 +50,9 @@ extension QuestTaskScreen {
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.state.task), animated: true, completion: nil)
         }
+        topPanel.onShare = { [unowned self] in
+            self.taskSharingViewController.share()
+        }
         
         topPanel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
