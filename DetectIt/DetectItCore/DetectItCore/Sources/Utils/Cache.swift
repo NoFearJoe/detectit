@@ -66,12 +66,30 @@ public final class Cache {
         }
     }
     
-    private func fileURL(for key: Key) -> URL? {
+    public func removeAll(completion: (() -> Void)? = nil) {
+        queue.async {
+            guard let url = self.cacheURL() else {
+                return DispatchQueue.main.sync {
+                    completion?()
+                }
+            }
+            
+            try? self.fileManager.removeItem(at: url)
+            
+            DispatchQueue.main.sync {
+                completion?()
+            }
+        }
+    }
+    
+    private func cacheURL() -> URL? {
         let cacheDirectory = try? fileManager.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         
-        return cacheDirectory?
-            .appendingPathComponent("Cache")
-            .appendingPathComponent(key.string)
+        return cacheDirectory?.appendingPathComponent("Cache")
+    }
+    
+    private func fileURL(for key: Key) -> URL? {
+        cacheURL()?.appendingPathComponent(key.string)
     }
     
     private func getObject<T: Decodable>(_ type: T.Type, key: Key) -> T? {

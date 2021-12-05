@@ -110,12 +110,14 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
         guard let item = feedItems.item(at: index) else { return nil }
         
         switch item.kind {
-        case .profile, .cipher, .quest:
+        case .profile, .blitz, .cipher, .quest:
+            let kind = TaskKind(rawValue: item.kind.rawValue)
             let difficulty = TaskDifficulty(rawValue: item.difficulty)
             let score = tasksScoreCache[item.id]
             return MainScreenTaskCell.Model(
                 backgroundImagePath: item.picture,
-                kind: TaskKind(rawValue: item.kind.rawValue)?.title ?? "",
+                kindIcon: kind?.icon,
+                kind: kind?.title ?? "",
                 title: item.title,
                 description: item.subtitle ?? "",
                 difficulty: difficulty.localizedTitle,
@@ -144,6 +146,9 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
         case .profile:
             guard let profile = item.profile else { return }
             TaskScreenRoute(root: self).show(task: profile, bundle: nil)
+        case .blitz:
+            guard let blitz = item.blitz else { return }
+            TaskScreenRoute(root: self).show(task: blitz, bundle: nil)
         case .quest:
             guard let quest = item.quest else { return }
             TaskScreenRoute(root: self).show(task: quest, bundle: nil)

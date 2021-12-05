@@ -32,6 +32,9 @@ public enum DetectItAPITarget {
     case profileAnswers(taskID: String)
     case setProfileAnswers(taskID: String, answers: [[String: Any]])
     
+    case blitzAnswer(taskID: String)
+    case setBlitzAnswer(taskID: String, answer: [String: Any])
+    
     case questAnswer(taskID: String)
     case setQuestAnswer(taskID: String, answer: [String: Any])
     
@@ -66,6 +69,7 @@ extension DetectItAPITarget: TargetType {
         case .totalScore: return "totalScore"
         case .cipherAnswer, .setCipherAnswer: return "cipherAnswer"
         case .profileAnswers, .setProfileAnswers: return "profileAnswer"
+        case .blitzAnswer, .setBlitzAnswer: return "blitzAnswer"
         case .questAnswer, .setQuestAnswer: return "questAnswer"
         case .detectiveProfile: return "detectiveProfile"
         case .leaderboard: return "leaderboard"
@@ -74,9 +78,9 @@ extension DetectItAPITarget: TargetType {
     
     public var method: Moya.Method {
         switch self {
-        case .auth, .deleteAccount, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setQuestAnswer:
+        case .auth, .deleteAccount, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setBlitzAnswer, .setQuestAnswer:
             return .post
-        case .feed, .completedTasks, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
+        case .feed, .completedTasks, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .blitzAnswer, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
             return .get
         }
     }
@@ -150,6 +154,16 @@ extension DetectItAPITarget: TargetType {
         case let .setProfileAnswers(taskID, answers):
             return .requestParameters(
                 parameters: ["taskID": taskID, "taskKind": "profile", "answers": answers],
+                encoding: JSONEncoding.default
+            )
+        case let .blitzAnswer(taskID):
+            return .requestParameters(
+                parameters: ["taskID": taskID],
+                encoding: URLEncoding.default
+            )
+        case let .setBlitzAnswer(taskID, answer):
+            return .requestParameters(
+                parameters: ["taskID": taskID, "taskKind": "blitz", "answer": answer],
                 encoding: JSONEncoding.default
             )
         case let .questAnswer(taskID):

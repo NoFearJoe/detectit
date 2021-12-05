@@ -86,6 +86,7 @@
 "main_screen_empty_placeholder_message" = "Вы выполнили все задания. Отличная работа!\nНовые задания появятся совсем скоро";
 
 "feed_filter_ciphers" = "Шифры";
+"feed_filter_blitz" = "Блиц";
 "feed_filter_profiles" = "Расследования";
 "feed_filter_bundles" = "Наборы";
 "feed_filter_easy" = "Легкие";
@@ -122,6 +123,9 @@
 "profile_task_screen_answers_title" = "Ответы";
 "profile_task_screen_hidden_description_title" = "Для просмотра истории расследования необходимо получить статус профессионального детектива";
 "profile_task_screen_get_status_button_title" = "Получить статус";
+
+// Blitz task
+
 
 // Quest task
 
@@ -189,6 +193,7 @@
 
 "task_kind_cipher" = "Шифр";
 "task_kind_profile" = "Расследование";
+"task_kind_blitz" = "Блиц";
 "task_kind_quest" = "Квест";
 
 "task_difficulty_easy" = "Легко";
@@ -204,4 +209,5 @@
 
 "task_sharing_text_for_cipher" = "Попробуй разгадать шифр \"%@\" в Detect – %@";
 "task_sharing_text_for_profile" = "Попробуй расследовать дело \"%@\" в Detect – %@";
+"task_sharing_text_for_blitz" = "Попробуй пройти блиц-расследование \"%@\" в Detect – %@";
 "task_sharing_text_for_quest" = "Попробуй пройти квест \"%@\" в Detect – %@";

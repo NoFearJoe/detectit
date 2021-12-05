@@ -6,8 +6,10 @@
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
+import UIKit
+
 public enum TaskKind: String {
-    case cipher, profile, quest
+    case cipher, profile, blitz, quest
     
     public var title: String {
         switch self {
@@ -15,6 +17,8 @@ public enum TaskKind: String {
             return "task_kind_cipher".localized
         case .profile:
             return "task_kind_profile".localized
+        case .blitz:
+            return "task_kind_blitz".localized
         case .quest:
             return "task_kind_quest".localized
         }

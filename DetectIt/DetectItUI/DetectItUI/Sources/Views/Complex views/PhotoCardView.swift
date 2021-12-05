@@ -37,7 +37,7 @@ public final class PhotoCardView: UIView {
     // MARK: - Subviews
     
     private let photoView = UIImageView()
-    let titleLabel = UILabel()
+    public let titleLabel = UILabel()
     
     // MARK: - Init
     

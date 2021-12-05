@@ -165,11 +165,11 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         present(imageViewer, animated: true, completion: nil)
     }
     
-    func numberOfAttachments() -> Int {
+    func numberOfAttachments(in view: AttachmentsView) -> Int {
         isDataLoaded ? (task.attachments?.count ?? 0) : 0
     }
     
-    func attachment(at index: Int) -> Any? {
+    func attachment(at index: Int, in view: AttachmentsView) -> Any? {
         guard let attachment = task.attachments?[index] else {
             return nil
         }
@@ -178,15 +178,15 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         case .picture:
             guard let pictureName = attachment.pictureName, let picture = images[pictureName] else { return nil }
             
-            return ProfilePhotoAttachmentCell.Model(title: attachment.title, photo: picture)
+            return PhotoAttachmentCell.Model(title: attachment.title, photo: picture)
         case .audio:
             guard let audioName = attachment.audioFileName, let audio = audios[audioName] else { return nil }
             
-            return ProfileAudioAttachmentCell.Model(title: attachment.title, audio: audio)
+            return AudioAttachmentCell.Model(title: attachment.title, audio: audio)
         }
     }
     
-    func didSelectAttachment(at index: Int) {
+    func didSelectAttachment(at index: Int, in view: AttachmentsView) {
         guard let attachment = task.attachments?[index], let picture = attachment.pictureName, let image = images[picture] else {
             return
         }

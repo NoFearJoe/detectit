@@ -147,6 +147,18 @@ public struct TaskAnswer {
         set(value: answers, id: id, taskKind: .profile, bundleID: bundleID)
     }
     
+    // MARK: Blitz
+    
+    public typealias BlitzTaskAnswer = ProfileTaskAnswer
+    
+    public static func get(blitzTaskID id: String, bundleID: String?) -> BlitzTaskAnswer? {
+        get(id: id, taskKind: .profile, bundleID: bundleID)
+    }
+    
+    public static func set(answer: BlitzTaskAnswer, blitzTaskID id: String, bundleID: String?) {
+        set(value: answer, id: id, taskKind: .profile, bundleID: bundleID)
+    }
+    
     // MARK: Quest
     
     public struct QuestTaskAnswer: Codable {

@@ -10,18 +10,18 @@ import UIKit
 
 public final class AnswerVariantView: UIView {
     
-    var onTap: (() -> Void)?
+    public var onTap: (() -> Void)?
     
-    let titleLabel = UILabel()
+    public let titleLabel = UILabel()
     
-    var isSelected: Bool = false {
+    public var isSelected: Bool = false {
         didSet {
             backgroundColor = isSelected ? .darkGray : .clear
             titleLabel.textColor = isSelected ? .yellow : .white
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         layer.cornerRadius = 2
@@ -41,7 +41,7 @@ public final class AnswerVariantView: UIView {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapBackground)))
     }
     
-    required init?(coder: NSCoder) { fatalError() }
+    public required init?(coder: NSCoder) { fatalError() }
     
     @objc private func didTapBackground() {
         onTap?()

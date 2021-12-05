@@ -38,7 +38,7 @@
 
 "onboarding_first_page_title" = "Welcome, detective!";
 "onboarding_first_page_subtitle" = "Get ready to plunge into the world of mysterious and terrifying stories";
-"onboarding_tasks_page_title" = "There is several task types in the game";
+"onboarding_tasks_page_title" = "There are several task types in the game";
 "onboarding_tasks_page_subtitle" = "Each of them has its own rules and specialty. Read them before starting your investigation";
 "onboarding_tasks_page_details_button_title" = "Details...";
 "onboarding_second_page_title" = "Investigate wisely";
@@ -86,6 +86,7 @@
 "main_screen_empty_placeholder_message" = "You've done all tasks. Great job!\nWe'll add new tasks very soon";
 
 "feed_filter_ciphers" = "Ciphers";
+"feed_filter_blitz" = "Blitz";
 "feed_filter_profiles" = "Profiles";
 "feed_filter_bundles" = "Bundles";
 "feed_filter_easy" = "Easy";
@@ -122,6 +123,9 @@
 "profile_task_screen_answers_title" = "Answers";
 "profile_task_screen_hidden_description_title" = "To view the history of the profile you need to get the professional detective status";
 "profile_task_screen_get_status_button_title" = "Get status";
+
+// Blitz task
+
 
 // Quest task
 
@@ -189,6 +193,7 @@
 
 "task_kind_cipher" = "Cipher";
 "task_kind_profile" = "Profile";
+"task_kind_blitz" = "Blitz";
 "task_kind_quest" = "Quest";
 
 "task_difficulty_easy" = "Easy";
@@ -204,4 +209,5 @@
 
 "task_sharing_text_for_cipher" = "Try to solve the cipher \"%@\" in Detect – %@";
 "task_sharing_text_for_profile" = "Try the task \"%@\" in Detect – %@";
+"task_sharing_text_for_blitz" = "Try to solve the task \"%@\" in Detect – %@";
 "task_sharing_text_for_quest" = "Try the quest \"%@\" in Detect – %@";

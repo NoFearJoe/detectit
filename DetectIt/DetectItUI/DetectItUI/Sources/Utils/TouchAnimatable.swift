@@ -24,7 +24,7 @@ class TouchAnimatableView: UIView, TouchAnimatable {
     
 }
 
-public protocol TouchAnimatable: class {
+public protocol TouchAnimatable: AnyObject {
     func enableTouchAnimation()
     func disableTouchAnimation()
 }

@@ -54,6 +54,8 @@ final class HelpScreen: Screen {
             textLabel.attributedText = decoderTaskText.readableAttributedText(font: textLabel.font)
         case .profile:
             textLabel.attributedText = profileTaskText.readableAttributedText(font: textLabel.font)
+        case .blitz:
+            textLabel.attributedText = blitzTaskText.readableAttributedText(font: textLabel.font)
         case .quest:
             textLabel.attributedText = questTaskText.readableAttributedText(font: textLabel.font)
         }
@@ -120,6 +122,15 @@ final class HelpScreen: Screen {
     Будьте внимательны при написании текстовых ответов. Важно придерживаться формата, указанного в вопросе, не писать ничего лишнего и не делать ошибок.
 
     И самое главное - второго шанса у вас нет. Тщательно обдумывайте и проверяйте ответы.
+    """
+    
+    private let blitzTaskText =
+    """
+    Блиц – это короткое расследование, содержащее всего один вопрос. Но от этого оно не становится легче обычного расследования.
+    
+    Ищите ответ на вопрос где угодно – в тексте задания, интернете, между строк. Любые средства могут дать наводку.
+    
+    И самое главное - второго шанса у вас нет. Тщательно обдумывайте и проверяйте ответ.
     """
     
     private let questTaskText =

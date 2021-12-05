@@ -8,6 +8,7 @@
 
 public enum FeedFilter: String, CaseIterable {
     case ciphers
+    case blitz
     case profiles
     case bundles
     case easy, normal, hard, nightmare

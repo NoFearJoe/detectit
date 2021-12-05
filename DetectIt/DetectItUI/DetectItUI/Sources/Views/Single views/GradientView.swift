@@ -8,39 +8,39 @@
 
 import UIKit
 
-final class GradientView: UIView {
+public final class GradientView: UIView {
     
-    var startColor: UIColor = .black {
+    public var startColor: UIColor = .black {
         didSet { updateColors() }
     }
-    var endColor: UIColor = UIColor.black.withAlphaComponent(0) {
+    public var endColor: UIColor = UIColor.black.withAlphaComponent(0) {
         didSet { updateColors() }
     }
-    var startLocation: CGFloat = 0 {
+    public var startLocation: CGFloat = 0 {
         didSet { updateLocations() }
     }
-    var endLocation: CGFloat = 1 {
+    public var endLocation: CGFloat = 1 {
         didSet { updateLocations() }
     }
     
-    var startPoint: CGPoint = .zero {
+    public var startPoint: CGPoint = .zero {
         didSet {
             gradientLayer.startPoint = startPoint
         }
     }
-    var endPoint: CGPoint = CGPoint(x: 0, y: 1) {
+    public var endPoint: CGPoint = CGPoint(x: 0, y: 1) {
         didSet {
             gradientLayer.endPoint = endPoint
         }
     }
     
-    var gradientType: CAGradientLayerType = .axial {
+    public var gradientType: CAGradientLayerType = .axial {
         didSet {
             gradientLayer.type = gradientType
         }
     }
     
-    override class var layerClass: AnyClass {
+    public override class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     
@@ -55,7 +55,7 @@ final class GradientView: UIView {
         gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         updateLocations()
     }

@@ -29,8 +29,9 @@ public extension Feed {
         public let rating: Double?
         public let cipher: DecoderTask?
         public let profile: ProfileTask?
-        public let bundle: TasksBundle.Info?
+        public let blitz: BlitzTask?
         public let quest: QuestTask?
+        public let bundle: TasksBundle.Info?
     }
     
     struct CompletedItemsInfo: Codable {
@@ -47,6 +48,7 @@ public extension Feed.Item {
         case bundle
         case cipher
         case profile
+        case blitz
         case quest
     }
     

@@ -59,6 +59,8 @@ public final class TaskSharingViewController: UIViewController {
             return String(format: "task_sharing_text_for_cipher".localized, task.title, taskLink)
         case .profile:
             return String(format: "task_sharing_text_for_profile".localized, task.title, taskLink)
+        case .blitz:
+            return String(format: "task_sharing_text_for_blitz".localized, task.title, taskLink)
         case .quest:
             return String(format: "task_sharing_text_for_quest".localized, task.title, taskLink)
         }

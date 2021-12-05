@@ -10,20 +10,20 @@ import UIKit
 
 public final class ListSectionHeaderView: UICollectionReusableView {
     
-    static let identifier = String(describing: ListSectionHeaderView.self)
+    public static let identifier = String(describing: ListSectionHeaderView.self)
     
-    let titleLabel = UILabel()
+    public let titleLabel = UILabel()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupTitleLabel()
     }
     
     @available(*, unavailable)
-    required init?(coder: NSCoder) { fatalError() }
+    public required init?(coder: NSCoder) { fatalError() }
     
-    func configure(title: String) {
+    public func configure(title: String) {
         titleLabel.text = title
     }
     

@@ -10,36 +10,56 @@ import UIKit
 
 public final class TagView: UIView {
     
-    var title: String = "" {
+    public var icon: UIImage? {
+        didSet {
+            iconView.image = icon
+            iconView.isHidden = icon == nil
+        }
+    }
+    
+    public var title: String = "" {
         didSet {
             titleLabel.text = title
         }
     }
     
+    private let iconView = UIImageView()
     private let titleLabel = UILabel()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupViews()
     }
     
-    required init?(coder: NSCoder) { fatalError() }
+    public required init?(coder: NSCoder) { fatalError() }
     
     private func setupViews() {
         backgroundColor = .darkBackground
         layer.cornerRadius = 8
         
-        addSubview(titleLabel)
+        let container = UIStackView(arrangedSubviews: [titleLabel, iconView])
+        container.axis = .horizontal
+        container.alignment = .center
+        container.spacing = 4
+        
+        addSubview(container)
+        
+        iconView.contentMode = .scaleAspectFit
+        iconView.tintColor = .blue
+        iconView.isHidden = true
+        iconView.heightAnchor.constraint(equalToConstant: 12).isActive = true
+        iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor).isActive = true
         
         titleLabel.font = .text4
         titleLabel.textColor = .lightGray
         titleLabel.textAlignment = .center
         
-        titleLabel.pin(
+        container.pin(
             to: self,
             insets: UIEdgeInsets(top: 4, left: 6, bottom: -4, right: -6)
         )
+//        container.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
 }

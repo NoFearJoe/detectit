@@ -22,24 +22,31 @@ struct TaskScreenRoute {
         }
         
         let _screen: Screen? = {
-            switch task {
-            case let task as DecoderTask:
+            switch task.kind {
+            case .cipher:
+                guard let task = task as? DecoderTask else { return nil }
                 return DecoderTaskScreen(
                     task: task,
                     bundle: bundle
                 )
-            case let task as ProfileTask:
+            case .profile:
+                guard let task = task as? ProfileTask else { return nil }
                 return ProfileTaskScreen(
                     task: task,
                     bundle: bundle
                 )
-            case let task as QuestTask:
+            case .blitz:
+                guard let task = task as? BlitzTask else { return nil }
+                return BlitzTaskScreen(
+                    task: task,
+                    bundle: bundle
+                )
+            case .quest:
+                guard let task = task as? QuestTask else { return nil }
                 return QuestTaskScreen(
                     task: task,
                     bundle: bundle
                 )
-            default:
-                return nil
             }
         }()
         

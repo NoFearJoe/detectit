@@ -25,6 +25,7 @@ public struct TasksBundle: Codable {
     public let info: Info
     private let ciphers: [DecoderTask]?
     private let profiles: [ProfileTask]?
+    private let blitzs: [BlitzTask]?
     private let quests: [QuestTask]?
     
     public let taskScores: [TaskScore]?
@@ -35,6 +36,10 @@ public struct TasksBundle: Codable {
     
     public var profileTasks: [ProfileTask] {
         profiles ?? []
+    }
+    
+    public var blitzTasks: [BlitzTask] {
+        blitzs ?? []
     }
     
     public var questTasks: [QuestTask] {
@@ -61,6 +66,7 @@ public extension TasksBundle {
         [
             decoderTasks,
             profileTasks,
+            blitzTasks,
             questTasks
         ]
             .compactMap { $0 as? [TaskScoring] }

@@ -1,0 +1,94 @@
+//
+//  BlitzTaskScreen+Setup.swift
+//  DetectIt
+//
+//  Created by Илья Харабет on 21.11.2021.
+//  Copyright © 2021 Mesterra. All rights reserved.
+//
+
+import UIKit
+import DetectItCore
+
+extension BlitzTaskScreen {
+    
+    func setupContentView() {
+        contentContainer.view.backgroundColor = .systemBackground
+        
+        contentContainer.scrollView.clipsToBounds = false
+        
+        contentContainer.setTopSpacing(52)
+        contentContainer.appendChild(screenView.profileView)
+        contentContainer.appendSpacing(20)
+        contentContainer.appendChild(screenView.attachmentsView)
+        contentContainer.appendSpacing(40)
+        contentContainer.appendChild(screenView.reportTitleView)
+        contentContainer.appendSpacing(20)
+        contentContainer.appendChild(screenView.reportView)
+        contentContainer.appendSpacing(Constants.spacingBeforeScore)
+        contentContainer.appendChild(screenView.answerButton)
+        contentContainer.appendChild(screenView.scoreLabel)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(screenView.rightAnswerView)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(screenView.crimeDescriptionTitleView)
+        contentContainer.appendSpacing(20)
+        contentContainer.appendChild(screenView.crimeDescriptionView)
+        contentContainer.appendSpacing(20)
+        contentContainer.appendChild(screenView.crimeDescriptionAttachmentsView)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(screenView.hiddenCrimeDescriptionView)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(rateTaskViewController)
+        contentContainer.appendSpacing(28)
+        contentContainer.appendChild(taskSharingViewController)
+        contentContainer.setBottomSpacing(Constants.bottomInset)
+        
+        let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
+        backgroundTapRecognizer.delegate = self
+        contentContainer.scrollView.addGestureRecognizer(backgroundTapRecognizer)
+        
+        let backgroundTapRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
+        backgroundTapRecognizer1.delegate = self
+        contentContainer.stackView.addGestureRecognizer(backgroundTapRecognizer1)
+        
+        let backgroundTapRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
+        backgroundTapRecognizer2.delegate = self
+        screenView.profileView.listView.addGestureRecognizer(backgroundTapRecognizer2)
+    }
+    
+    func setupViews() {
+        view.addSubview(topPanel)
+        
+        topPanel.onClose = { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+        }
+        topPanel.onNotes = { [unowned self] in
+            self.present(TaskNotesScreen(task: self.task), animated: true, completion: nil)
+        }
+        
+        topPanel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topPanel.topAnchor.constraint(equalTo: view.topAnchor),
+            topPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        screenView.setupViews()
+        
+        taskSharingViewController.onShare = { task in
+            Analytics.log(
+                "share_task",
+                parameters: [
+                    "id": task.id,
+                    "kind": task.kind.rawValue
+                ]
+            )
+        }
+    }
+    
+    func setupScreenLoadingView() {
+        view.addSubview(screenLoadingView)
+        screenLoadingView.pin(to: view)
+    }
+    
+}

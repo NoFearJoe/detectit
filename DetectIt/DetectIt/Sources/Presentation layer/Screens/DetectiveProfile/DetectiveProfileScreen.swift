@@ -159,7 +159,7 @@ final class DetectiveProfileScreen: Screen {
     }
     
     @objc private func didTapLogoutButton() {
-        User.shared.clearCredentials()
+        clearUserData()
         
         navigateToAuth()
         
@@ -175,7 +175,7 @@ final class DetectiveProfileScreen: Screen {
                     self.api.request(.deleteAccount) { [weak self] result in
                         switch result {
                         case let .success(response) where (200...299) ~= response.statusCode:
-                            User.shared.clearCredentials()
+                            self?.clearUserData()
                             
                             self?.navigateToAuth()
                         case let .failure(error):
@@ -285,6 +285,13 @@ final class DetectiveProfileScreen: Screen {
                 }
             }
         }
+    }
+    
+    private func clearUserData() {
+        User.shared.clearCredentials()
+        Cache.default.removeAll()
+        TaskScore.clear()
+        TaskAnswer.clear()
     }
     
     private func showReportProblem() {

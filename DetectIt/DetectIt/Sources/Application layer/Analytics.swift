@@ -63,6 +63,7 @@ extension Analytics {
         case completedTasks = "completed_tasks"
         case cipherTask = "cipher_task"
         case profileTask = "profile_task"
+        case blitzTask = "blitz_task"
         case questTask = "quest_task"
         case tasksBundle = "tasks_bundle"
     }

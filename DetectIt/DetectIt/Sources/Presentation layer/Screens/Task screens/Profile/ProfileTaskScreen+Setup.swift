@@ -18,6 +18,8 @@ extension ProfileTaskScreen {
         
         contentContainer.setTopSpacing(52)
         contentContainer.appendChild(screenView.profileView)
+        contentContainer.appendSpacing(20)
+        contentContainer.appendChild(screenView.attachmentsView)
         contentContainer.appendSpacing(40)
         contentContainer.appendChild(screenView.reportTitleView)
         contentContainer.appendSpacing(20)
@@ -29,6 +31,7 @@ extension ProfileTaskScreen {
         contentContainer.appendChild(screenView.crimeDescriptionTitleView)
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.crimeDescriptionView)
+        contentContainer.appendSpacing(32)
         contentContainer.appendChild(screenView.hiddenCrimeDescriptionView)
         contentContainer.appendSpacing(32)
         contentContainer.appendChild(screenView.answersTitleView)

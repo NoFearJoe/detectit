@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class AutosizingCollectionViewCell: UICollectionViewCell {
+open class AutosizingCollectionViewCell: UICollectionViewCell {
     
     public var axis: UICollectionView.ScrollDirection {
         .vertical

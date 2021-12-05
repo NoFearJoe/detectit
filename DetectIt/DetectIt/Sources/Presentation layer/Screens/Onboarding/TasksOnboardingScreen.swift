@@ -82,6 +82,7 @@ private extension TasksOnboardingScreen {
     enum Page: Int, CaseIterable {
         case ciphers
         case profiles
+        case blitz
         case quests
     }
     
@@ -92,6 +93,8 @@ private extension TasksOnboardingScreen {
                 return .cipher
             case .profiles:
                 return .profile
+            case .blitz:
+                return .blitz
             case .quests:
                 return .quest
             }

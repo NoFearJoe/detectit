@@ -31,6 +31,7 @@
 		965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F02439A240003A3DC7 /* TaskScore.swift */; };
 		965AC7F32439AD9D003A3DC7 /* TaskScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */; };
 		965AC7F52439B10B003A3DC7 /* TaskAnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */; };
+		96A5C63C274989260056DC09 /* BlitzTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5C63B274989260056DC09 /* BlitzTask.swift */; };
 		96AAADF124DFF21B00388404 /* AudioLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAADF024DFF21B00388404 /* AudioLoader.swift */; };
 		96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF2243B174600F61443 /* TaskDifficulty.swift */; };
 		96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF5243B19CB00F61443 /* TaskScoring.swift */; };
@@ -89,6 +90,7 @@
 		965AC7F02439A240003A3DC7 /* TaskScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScore.swift; sourceTree = "<group>"; };
 		965AC7F22439AD9D003A3DC7 /* TaskScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoreTests.swift; sourceTree = "<group>"; };
 		965AC7F42439B10B003A3DC7 /* TaskAnswerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAnswerTests.swift; sourceTree = "<group>"; };
+		96A5C63B274989260056DC09 /* BlitzTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlitzTask.swift; sourceTree = "<group>"; };
 		96AAADF024DFF21B00388404 /* AudioLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLoader.swift; sourceTree = "<group>"; };
 		96AAAFF2243B174600F61443 /* TaskDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDifficulty.swift; sourceTree = "<group>"; };
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
@@ -231,11 +233,12 @@
 		96500E17242BC450005FFC7A /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				96AAAFF4243B19B100F61443 /* Protocols */,
 				96AAAFF2243B174600F61443 /* TaskDifficulty.swift */,
+				96AAAFF4243B19B100F61443 /* Protocols */,
 				96500E18242BC47C005FFC7A /* ProfileTask */,
 				961B965C24274ABA003EC992 /* DecoderTask.swift */,
 				961B965E24274C79003EC992 /* QuestTask.swift */,
+				96A5C63B274989260056DC09 /* BlitzTask.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				961DE26E2476B60300008AAB /* AppRateManager.swift in Sources */,
 				96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */,
 				965AC7E12438CAA1003A3DC7 /* ImageLoader.swift in Sources */,
+				96A5C63C274989260056DC09 /* BlitzTask.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
 				961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */,
 				96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */,
