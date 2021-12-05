@@ -25,6 +25,7 @@ public final class AnswerVariantView: UIView {
         super.init(frame: frame)
         
         layer.cornerRadius = 2
+        layer.cornerCurve = .continuous
         
         addSubview(titleLabel)
         

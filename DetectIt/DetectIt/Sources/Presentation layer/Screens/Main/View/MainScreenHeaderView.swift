@@ -103,6 +103,7 @@ public final class MainScreenHeaderView: UICollectionReusableView {
             endPosition: CGPoint(x: 1, y: 1)
         )
         profileButton.layer.cornerRadius = 20
+        profileButton.layer.cornerCurve = .continuous
         profileButton.clipsToBounds = true
         profileButton.tintColor = .lightGray
         profileButton.setImage(UIImage.asset(named: "arrow"), for: .normal)

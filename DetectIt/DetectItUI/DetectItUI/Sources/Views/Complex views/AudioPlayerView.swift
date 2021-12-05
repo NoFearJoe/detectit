@@ -54,6 +54,7 @@ public final class AudioPlayerView: UIView {
             $0.tintColor = .black
             $0.clipsToBounds = true
             $0.layer.cornerRadius = 26
+            $0.layer.cornerCurve = .continuous
             $0.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([

@@ -77,6 +77,7 @@ public extension SolidButton {
         
         button.clipsToBounds = true
         button.layer.cornerRadius = 14
+        button.layer.cornerCurve = .continuous
         button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10)
         button.titleLabel?.font = .score3
         
@@ -92,6 +93,7 @@ public extension SolidButton {
         let button = SolidButton()
         
         button.layer.cornerRadius = 12
+        button.layer.cornerCurve = .continuous
         button.fill = .color(.lightGray)
         button.tintColor = .darkGray
         button.setImage(UIImage.asset(named: "close"), for: .normal)
@@ -109,6 +111,7 @@ public extension SolidButton {
         let button = SolidButton()
         
         button.layer.cornerRadius = 8
+        button.layer.cornerCurve = .continuous
         button.fill = .color(.yellow)
         button.setTitleColor(.black, for: .normal)
         button.setTitleColor(.darkGray, for: .highlighted)
@@ -125,6 +128,7 @@ public extension SolidButton {
         let button = SolidButton()
         
         button.layer.cornerRadius = 12
+        button.layer.cornerCurve = .continuous
         button.fill = .color(.clear)
         button.tintColor = .yellow
         button.setImage(UIImage.asset(named: "help"), for: .normal)
@@ -142,6 +146,7 @@ public extension SolidButton {
         let button = SolidButton()
         
         button.layer.cornerRadius = 12
+        button.layer.cornerCurve = .continuous
         button.fill = .color(.clear)
         button.tintColor = .yellow
         button.setImage(UIImage.asset(named: "notes"), for: .normal)

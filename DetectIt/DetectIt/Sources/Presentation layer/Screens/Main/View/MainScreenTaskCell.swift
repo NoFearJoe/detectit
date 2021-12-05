@@ -148,6 +148,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     private func setup() {
         contentView.backgroundColor = .darkBackground
         contentView.layer.cornerRadius = Constants.cornerRadius
+        contentView.layer.cornerCurve = .continuous
         contentView.clipsToBounds = true
         
         enableTouchAnimation()
@@ -158,6 +159,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.layer.cornerRadius = Constants.cornerRadius
+        backgroundImageView.layer.cornerCurve = .continuous
         backgroundImageView.clipsToBounds = true
         
         backgroundImageView.pin(to: contentView)

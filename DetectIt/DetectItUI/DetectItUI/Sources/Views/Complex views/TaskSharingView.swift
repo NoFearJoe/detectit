@@ -33,6 +33,7 @@ public final class TaskSharingView: UIView, TouchAnimatable {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap)))
         
         layer.cornerRadius = 16
+        layer.cornerCurve = .continuous
         backgroundColor = .darkBackground
         
         layoutMargins = UIEdgeInsets(top: 16, left: .hInset, bottom: 16, right: .hInset)

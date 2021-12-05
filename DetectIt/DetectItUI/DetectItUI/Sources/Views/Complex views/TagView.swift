@@ -37,6 +37,7 @@ public final class TagView: UIView {
     private func setupViews() {
         backgroundColor = .darkBackground
         layer.cornerRadius = 8
+        layer.cornerCurve = .continuous
         
         let container = UIStackView(arrangedSubviews: [titleLabel, iconView])
         container.axis = .horizontal

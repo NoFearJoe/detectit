@@ -89,6 +89,7 @@ final class MainScreenFilterCell: UIView {
     private func setupViews() {
         backgroundColor = .darkGray
         layer.cornerRadius = 12
+        layer.cornerCurve = .continuous
         
         addSubview(titleLabel)
         

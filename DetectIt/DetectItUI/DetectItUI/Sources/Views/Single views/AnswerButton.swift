@@ -35,6 +35,7 @@ public final class AnswerButton: UIControl {
     private func setupViews() {
         clipsToBounds = true
         layer.cornerRadius = 12
+        layer.cornerCurve = .continuous
         backgroundColor = .darkGray
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -44,6 +45,7 @@ public final class AnswerButton: UIControl {
         addSubview(fillView)
         
         fillView.layer.cornerRadius = 12
+        fillView.layer.cornerCurve = .continuous
         fillView.backgroundColor = .yellow
         fillView.layer.anchorPoint.x = 0
                 

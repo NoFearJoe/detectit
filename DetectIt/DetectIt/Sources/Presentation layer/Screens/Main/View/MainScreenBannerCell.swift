@@ -72,6 +72,7 @@ public final class MainScreenBannerCell: UICollectionViewCell, TouchAnimatable {
     private func setup() {
         contentView.backgroundColor = .darkBackground
         contentView.layer.cornerRadius = 16
+        contentView.layer.cornerCurve = .continuous
         contentView.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         
         enableTouchAnimation()

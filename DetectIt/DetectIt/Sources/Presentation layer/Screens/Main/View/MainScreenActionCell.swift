@@ -19,6 +19,7 @@ public final class MainScreenActionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.layer.cornerRadius = 12
+        contentView.layer.cornerCurve = .continuous
         contentView.backgroundColor = .darkGray
         
         contentView.addSubview(titleLabel)
