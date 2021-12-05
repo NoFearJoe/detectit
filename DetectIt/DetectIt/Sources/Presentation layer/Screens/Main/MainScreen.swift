@@ -27,6 +27,7 @@ final class MainScreen: Screen {
     private var selectedFilterIndexes = Set<Int>()
     
     var feed: Feed?
+    var feedItemModels: [Any] = []
     
     var showingBanner: Banner?
     
@@ -176,37 +177,7 @@ extension MainScreen: MainScreenViewDelegate {
     }
     
     func feedItem(at index: Int) -> Any? {
-        if feed?.items.isEmpty == true {
-            return MainScreenPlaceholderCell.Model(message: "main_screen_empty_placeholder_message".localized)
-        }
-        
-        guard let item = feed?.items[index] else { return nil }
-        
-        switch item.kind {
-        case .profile, .blitz, .cipher, .quest:
-            let kind = TaskKind(rawValue: item.kind.rawValue)
-            let difficulty = TaskDifficulty(rawValue: item.difficulty)
-            let score = tasksScoreCache[item.id]
-            return MainScreenTaskCell.Model(
-                backgroundImagePath: item.picture,
-                kindIcon: kind?.icon,
-                kind: kind?.title ?? "",
-                title: item.title,
-                description: item.subtitle ?? "",
-                difficulty: difficulty.localizedTitle,
-                difficultyColor: difficulty.color,
-                score: score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
-                scoreColor: UIColor.score(value: score, max: item.maxScore),
-                rating: item.rating,
-                isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
-            )
-        case .bundle:
-            return MainScreenTasksBundleCell.Model(
-                backgroundImagePath: item.picture,
-                title: item.title,
-                description: item.subtitle ?? ""
-            )
-        }
+        feedItemModels.item(at: index)
     }
     
     func didSelectFeedItem(at index: Int) {
@@ -292,6 +263,7 @@ private extension MainScreen {
                 self.screenLoadingView.setVisible(false, animated: true)
                 
                 self.feed = feed
+                self.feedItemModels = self.makeFeedItemModels()
                 
                 self.tasksScoreCache.removeAll()
                 feed.items.forEach {
@@ -338,6 +310,42 @@ private extension MainScreen {
                 self?.showBannerIfPossible()
             case .failure:
                 return
+            }
+        }
+    }
+    
+    func makeFeedItemModels() -> [Any] {
+        guard let items = feed?.items else { return [] }
+        
+        if items.isEmpty {
+            return [MainScreenPlaceholderCell.Model(message: "main_screen_empty_placeholder_message".localized)]
+        }
+        
+        return items.compactMap { item in
+            switch item.kind {
+            case .profile, .blitz, .cipher, .quest:
+                let kind = TaskKind(rawValue: item.kind.rawValue)
+                let difficulty = TaskDifficulty(rawValue: item.difficulty)
+                let score = tasksScoreCache[item.id]
+                return MainScreenTaskCell.Model(
+                    backgroundImagePath: item.picture,
+                    kindIcon: kind?.icon,
+                    kind: kind?.title ?? "",
+                    title: item.title,
+                    description: item.subtitle ?? "",
+                    difficulty: difficulty.localizedTitle,
+                    difficultyColor: difficulty.color,
+                    score: score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
+                    scoreColor: UIColor.score(value: score, max: item.maxScore),
+                    rating: item.rating,
+                    isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
+                )
+            case .bundle:
+                return MainScreenTasksBundleCell.Model(
+                    backgroundImagePath: item.picture,
+                    title: item.title,
+                    description: item.subtitle ?? ""
+                )
             }
         }
     }
