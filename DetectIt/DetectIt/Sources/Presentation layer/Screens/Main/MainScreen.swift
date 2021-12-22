@@ -21,6 +21,7 @@ final class MainScreen: Screen {
     private let api = DetectItAPI()
     
     private let scoreSyncService = TasksScoreSynchronizationService()
+    private let taskRecommender = TaskRecommender()
     
     // MARK: - State
     
@@ -262,6 +263,8 @@ private extension MainScreen {
             case let .success(feed):
                 self.screenLoadingView.setVisible(false, animated: true)
                 
+                self.taskRecommender.updateRecommendation(tasks: feed.items)
+
                 self.feed = feed
                 self.feedItemModels = self.makeFeedItemModels()
                 
@@ -338,7 +341,8 @@ private extension MainScreen {
                     score: score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
                     scoreColor: UIColor.score(value: score, max: item.maxScore),
                     rating: item.rating,
-                    isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
+                    isLocked: !FullVersionManager.hasBought && item.difficulty >= 3,
+                    isFocused: taskRecommender.recommendedTaskID == item.id
                 )
             case .bundle:
                 return MainScreenTasksBundleCell.Model(

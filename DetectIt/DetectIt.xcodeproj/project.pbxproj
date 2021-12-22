@@ -50,6 +50,8 @@
 		96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; };
 		96500E36242F0FDD005FFC7A /* DetectItUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96500E862435A445005FFC7A /* TasksBundleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E852435A445005FFC7A /* TasksBundleScreen.swift */; };
+		96574E6D277396CF00A0F24C /* MainScreenViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96574E6C277396CF00A0F24C /* MainScreenViewLayout.swift */; };
+		96574E6F2773A7CE00A0F24C /* MainScreen+TaskRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96574E6E2773A7CE00A0F24C /* MainScreen+TaskRecommendation.swift */; };
 		965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7AB24387774003A3DC7 /* MainScreen.swift */; };
 		965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7C82438B945003A3DC7 /* TasksBundleScreen+Section.swift */; };
 		965AC7D12438BA09003A3DC7 /* DecoderTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */; };
@@ -191,6 +193,8 @@
 		964E2E5324A1250C0027F738 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		96500E34242F0FDD005FFC7A /* DetectItUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96500E852435A445005FFC7A /* TasksBundleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundleScreen.swift; sourceTree = "<group>"; };
+		96574E6C277396CF00A0F24C /* MainScreenViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewLayout.swift; sourceTree = "<group>"; };
+		96574E6E2773A7CE00A0F24C /* MainScreen+TaskRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+TaskRecommendation.swift"; sourceTree = "<group>"; };
 		965AC7AB24387774003A3DC7 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		965AC7C82438B945003A3DC7 /* TasksBundleScreen+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TasksBundleScreen+Section.swift"; sourceTree = "<group>"; };
 		965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskScreen.swift; sourceTree = "<group>"; };
@@ -526,6 +530,7 @@
 				965AC7AB24387774003A3DC7 /* MainScreen.swift */,
 				961DE2722479427E00008AAB /* MainScreen+Accessibility.swift */,
 				9675D0CF25CE89AB00593CB9 /* MainScreen+Banner.swift */,
+				96574E6E2773A7CE00A0F24C /* MainScreen+TaskRecommendation.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 			isa = PBXGroup;
 			children = (
 				96A5C647274A2AE00056DC09 /* MainScreenView.swift */,
+				96574E6C277396CF00A0F24C /* MainScreenViewLayout.swift */,
 				96A5C645274A2AE00056DC09 /* MainScreenActionCell.swift */,
 				96A5C644274A2ADF0056DC09 /* MainScreenHeaderView.swift */,
 				96A5C641274A2ADF0056DC09 /* MainScreenTasksBundleCell.swift */,
@@ -886,6 +892,7 @@
 				96A5C6E3274A3A9D0056DC09 /* BlitzTaskScreen+Utils.swift in Sources */,
 				96A5C6D3274A2C9A0056DC09 /* ProfileTaskScreenView.swift in Sources */,
 				9615F95C246309D00070E2D3 /* DecoderTaskScreen+Utils.swift in Sources */,
+				96574E6F2773A7CE00A0F24C /* MainScreen+TaskRecommendation.swift in Sources */,
 				96B32EBC25B7553400D0814F /* RestorePasswordScreen.swift in Sources */,
 				9615F95E24630A930070E2D3 /* ProfileTaskScreen+KeyboardHandler.swift in Sources */,
 				96A5C6DD274A34DB0056DC09 /* BlitzTaskScreenView.swift in Sources */,
@@ -902,6 +909,7 @@
 				96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */,
 				964E2E3D249E3A5F0027F738 /* DetectiveProfileStatsView.swift in Sources */,
 				965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */,
+				96574E6D277396CF00A0F24C /* MainScreenViewLayout.swift in Sources */,
 				965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */,
 				96A5C6CD274A2C9A0056DC09 /* ProfileTaskBoolAnswerQuestionCell.swift in Sources */,
 				9627E7D72512AF21007ACEBA /* TasksOnboardingScreen.swift in Sources */,

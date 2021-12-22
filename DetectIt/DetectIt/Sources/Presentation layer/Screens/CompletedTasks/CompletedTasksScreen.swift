@@ -35,6 +35,7 @@ final class CompletedTasksScreen: Screen {
         view.addSubview(topPanel)
         
         topPanel.notesButton.isHidden = true
+        topPanel.shareButton.isHidden = true
         topPanel.onClose = { [unowned self] in
             self.dismiss(animated: true, completion: nil)
         }
@@ -125,7 +126,8 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
                 score: score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
                 scoreColor: UIColor.score(value: score, max: item.maxScore),
                 rating: item.rating,
-                isLocked: !FullVersionManager.hasBought && item.difficulty >= 3
+                isLocked: !FullVersionManager.hasBought && item.difficulty >= 3,
+                isFocused: false
             )
         case .bundle:
             return MainScreenTasksBundleCell.Model(

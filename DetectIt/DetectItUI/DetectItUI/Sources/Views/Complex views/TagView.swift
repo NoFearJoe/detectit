@@ -47,7 +47,7 @@ public final class TagView: UIView {
         addSubview(container)
         
         iconView.contentMode = .scaleAspectFit
-        iconView.tintColor = .blue
+        iconView.tintColor = .red
         iconView.isHidden = true
         iconView.heightAnchor.constraint(equalToConstant: 12).isActive = true
         iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor).isActive = true
@@ -60,7 +60,6 @@ public final class TagView: UIView {
             to: self,
             insets: UIEdgeInsets(top: 4, left: 6, bottom: -4, right: -6)
         )
-//        container.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
 }

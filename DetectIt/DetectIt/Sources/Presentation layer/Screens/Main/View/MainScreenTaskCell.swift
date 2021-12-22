@@ -31,6 +31,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     private let descriptionLabel = UILabel()
     private let scoreLabel = UILabel()
     
+    private let strokeView = UIView()
+    
     private var constraintBetweenLockedViewAndDescription: NSLayoutConstraint!
     private var constraintBetweenTitleAndScore: NSLayoutConstraint!
     private var constraintBetweenTitleAndDescription: NSLayoutConstraint!
@@ -61,6 +63,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         public let scoreColor: UIColor
         public let rating: Double?
         public let isLocked: Bool
+        public let isFocused: Bool
         
         public init(backgroundImagePath: String?,
                     kindIcon: UIImage?,
@@ -72,7 +75,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
                     score: String?,
                     scoreColor: UIColor,
                     rating: Double?,
-                    isLocked: Bool) {
+                    isLocked: Bool,
+                    isFocused: Bool) {
             self.backgroundImagePath = backgroundImagePath
             self.kindIcon = kindIcon
             self.kind = kind
@@ -84,6 +88,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             self.scoreColor = scoreColor
             self.rating = rating
             self.isLocked = isLocked
+            self.isFocused = isFocused
         }
         
     }
@@ -119,6 +124,13 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         scoreLabel.text = model.score
         scoreLabel.textColor = model.scoreColor
         scoreLabel.isHidden = model.score == nil
+        
+        strokeView.isHidden = !model.isFocused
+        if model.isFocused, !forSizeCalculation {
+            runStrokeViewAnimation()
+        } else {
+            strokeView.layer.removeAllAnimations()
+        }
         
         constraintBetweenTitleAndScore.constant = model.score == nil ? 0 : 12
         constraintBetweenTitleAndDescription.constant = model.description.isEmpty ? 0 : 12
@@ -231,7 +243,6 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         bottomBlurView.blurRadius = 4
         bottomBlurView.colorTint = UIColor.darkBackground.withAlphaComponent(0.5)
-//        bottomBlurView.colorTintAlpha = 0.5
         
         bottomBlurView.calculateFrame(container: bottomContainerView) { $0 }
         
@@ -295,6 +306,35 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
             lockedTaskView.leadingAnchor.constraint(equalTo: bottomContainerView.leadingAnchor, constant: Constants.hInset),
             lockedTaskView.trailingAnchor.constraint(equalTo: bottomContainerView.trailingAnchor, constant: -Constants.hInset),
         ])
+        
+        // MARK: Stroke view
+        
+        addSubview(strokeView)
+        sendSubviewToBack(strokeView)
+        
+        strokeView.layer.cornerRadius = 24
+        strokeView.layer.cornerCurve = .continuous
+        strokeView.layer.borderColor = UIColor.yellow.cgColor
+        strokeView.layer.borderWidth = 2
+
+        strokeView.backgroundColor = .clear
+        strokeView.translatesAutoresizingMaskIntoConstraints = false
+        
+        strokeView.pin(to: self, insets: UIEdgeInsets(top: -8, left: -8, bottom: 8, right: 8))
+    }
+        
+    private func runStrokeViewAnimation() {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 1
+        animation.toValue = 0.25
+        animation.duration = 0.75
+        animation.repeatCount = .infinity
+        animation.autoreverses = true
+        animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        DispatchQueue.main.async {
+            self.strokeView.layer.add(animation, forKey: nil)
+        }
     }
     
 }
