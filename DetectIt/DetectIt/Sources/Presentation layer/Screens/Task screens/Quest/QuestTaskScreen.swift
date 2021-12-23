@@ -32,8 +32,8 @@ final class QuestTaskScreen: Screen {
     
     // MARK: - Init
     
-    init(task: QuestTask, bundle: TasksBundle.Info?) {
-        self.state = State(task: task, bundle: bundle)
+    init(task: QuestTask, bundle: TasksBundle.Info?, isTaskCompleted: Bool) {
+        self.state = State(task: task, bundle: bundle, isTaskCompleted: isTaskCompleted)
         
         super.init(nibName: nil, bundle: nil)
         

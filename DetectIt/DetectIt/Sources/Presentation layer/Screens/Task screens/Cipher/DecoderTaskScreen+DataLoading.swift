@@ -92,15 +92,18 @@ extension DecoderTaskScreen {
            let answer = TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle?.id) {
             self.score = score
             self.answer = answer
+            
             return completion(true)
-        } else if wasDataLoadedOnce {
-            completion(true)
+        }
+        
+        guard isTaskCompleted else {
+            return completion(true)
         }
         
         let dispatchGroup = DispatchGroup()
         
         var isDataLoaded = true
-        
+
         dispatchGroup.enter()
         api.request(
             .taskScore(
@@ -110,50 +113,46 @@ extension DecoderTaskScreen {
             )
         ) { [weak self] result in
             defer { dispatchGroup.leave() }
-            
+
             guard let self = self else { return }
-            
+
             switch result {
             case let .success(response):
                 guard let json = try? response.mapJSON() as? [String: Any], let score = json["score"] as? Int else {
                     isDataLoaded = response.statusCode == 404 ? isDataLoaded : false
                     return
                 }
-                
+
                 TaskScore.set(value: score, id: self.task.id, taskKind: self.task.kind, bundleID: self.bundle?.id)
                 self.score = score
             case .failure:
                 isDataLoaded = false
             }
         }
-        
+
         dispatchGroup.enter()
         api.request(
             .cipherAnswer(taskID: task.id)
         ) { [weak self] result in
             defer { dispatchGroup.leave() }
-            
+
             guard let self = self else { return }
-            
+
             switch result {
             case let .success(response):
                 guard let json = try? response.mapJSON() as? [String: Any], let answer = json["answer"] as? String else {
                     isDataLoaded = response.statusCode == 404 ? isDataLoaded : false
                     return
                 }
-                
+
                 TaskAnswer.set(answer: answer, decoderTaskID: self.task.id, bundleID: self.bundle?.id)
                 self.answer = answer
             case .failure:
                 isDataLoaded = false
             }
         }
-        
+
         dispatchGroup.notify(queue: .main) {
-            guard !self.wasDataLoadedOnce else { return }
-            
-            self.wasDataLoadedOnce = isDataLoaded
-            
             completion(isDataLoaded)
         }
     }
@@ -203,21 +202,6 @@ extension DecoderTaskScreen {
         dispatchGroup.notify(queue: .main) {
             completion(isDataSaved)
         }
-    }
-    
-    private var wasDataLoadedOnce: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: wasDataLoadedOnceKey)
-        }
-        set {
-            guard newValue == true else { return }
-            
-            UserDefaults.standard.set(newValue, forKey: wasDataLoadedOnceKey)
-        }
-    }
-    
-    private var wasDataLoadedOnceKey: String {
-        "was_data_loaded_\(task.id)_\(task.kind.rawValue)_\(bundle?.id ?? "")"
     }
     
 }

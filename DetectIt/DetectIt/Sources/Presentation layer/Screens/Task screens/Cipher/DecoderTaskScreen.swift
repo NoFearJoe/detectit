@@ -33,6 +33,7 @@ final class DecoderTaskScreen: Screen {
     
     let task: DecoderTask
     let bundle: TasksBundle.Info?
+    let isTaskCompleted: Bool
     
     var encodedImage: UIImage?
     var encodedAudio: Data?
@@ -42,9 +43,10 @@ final class DecoderTaskScreen: Screen {
             
     // MARK: - Init
     
-    init(task: DecoderTask, bundle: TasksBundle.Info?) {
+    init(task: DecoderTask, bundle: TasksBundle.Info?, isTaskCompleted: Bool) {
         self.task = task
         self.bundle = bundle
+        self.isTaskCompleted = isTaskCompleted
         
         super.init(nibName: nil, bundle: nil)
         

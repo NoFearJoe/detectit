@@ -92,9 +92,12 @@ extension BlitzTaskScreen {
            let answer = TaskAnswer.get(blitzTaskID: task.id, bundleID: bundle?.id) {
             self.score = score
             self.answer.answer = answer
+            
             return completion(true)
-        } else if wasDataLoadedOnce {
-            completion(true)
+        }
+        
+        guard isTaskCompleted else {
+            return completion(true)
         }
         
         let dispatchGroup = DispatchGroup()
@@ -147,6 +150,7 @@ extension BlitzTaskScreen {
                     return
                 }
                 
+                TaskAnswer.set(answer: answer, blitzTaskID: self.task.id, bundleID: self.bundle?.id)
                 self.answer.answer = answer
             case .failure:
                 isDataLoaded = false
@@ -154,10 +158,6 @@ extension BlitzTaskScreen {
         }
         
         dispatchGroup.notify(queue: .main) {
-            guard !self.wasDataLoadedOnce else { return }
-            
-            self.wasDataLoadedOnce = isDataLoaded
-            
             completion(isDataLoaded)
         }
     }
@@ -211,20 +211,4 @@ extension BlitzTaskScreen {
         }
     }
     
-    private var wasDataLoadedOnce: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: wasDataLoadedOnceKey)
-        }
-        set {
-            guard newValue == true else { return }
-            
-            UserDefaults.standard.set(newValue, forKey: wasDataLoadedOnceKey)
-        }
-    }
-    
-    private var wasDataLoadedOnceKey: String {
-        "was_data_loaded_\(task.id)_\(task.kind.rawValue)_\(bundle?.id ?? "")"
-    }
-    
 }
-

@@ -39,9 +39,12 @@ extension QuestTaskScreen {
     func loadAnswer(completion: @escaping (Bool) -> Void) {
         if let answer = TaskAnswer.get(questTaskID: state.task.id, bundleID: state.bundle?.id) {
             state.answer = answer
+            
             return completion(true)
-        } else if wasDataLoadedOnce {
-            completion(true)
+        }
+        
+        guard state.isTaskCompleted else {
+            return completion(true)
         }
         
         let dispatchGroup = DispatchGroup()
@@ -76,10 +79,6 @@ extension QuestTaskScreen {
         }
         
         dispatchGroup.notify(queue: .main) {
-            guard !self.wasDataLoadedOnce else { return }
-            
-            self.wasDataLoadedOnce = isDataLoaded
-            
             completion(isDataLoaded)
         }
     }
@@ -131,21 +130,6 @@ extension QuestTaskScreen {
         dispatchGroup.notify(queue: .main) {
             completion(isDataSaved)
         }
-    }
-    
-    private var wasDataLoadedOnce: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: wasDataLoadedOnceKey)
-        }
-        set {
-            guard newValue == true else { return }
-            
-            UserDefaults.standard.set(newValue, forKey: wasDataLoadedOnceKey)
-        }
-    }
-    
-    private var wasDataLoadedOnceKey: String {
-        "was_data_loaded_\(state.task.id)_\(state.task.kind.rawValue)_\(state.bundle?.id ?? "")"
     }
     
 }

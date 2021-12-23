@@ -93,9 +93,12 @@ extension ProfileTaskScreen {
            let answers = TaskAnswer.get(profileTaskID: task.id, bundleID: bundle?.id) {
             self.score = score
             self.answers.answers = answers
+            
             return completion(true)
-        } else if wasDataLoadedOnce {
-            completion(true)
+        }
+        
+        guard isTaskCompleted else {
+            return completion(true)
         }
         
         let dispatchGroup = DispatchGroup()
@@ -156,10 +159,6 @@ extension ProfileTaskScreen {
         }
         
         dispatchGroup.notify(queue: .main) {
-            guard !self.wasDataLoadedOnce else { return }
-            
-            self.wasDataLoadedOnce = isDataLoaded
-            
             completion(isDataLoaded)
         }
     }
@@ -211,21 +210,6 @@ extension ProfileTaskScreen {
         dispatchGroup.notify(queue: .main) {
             completion(isDataSaved)
         }
-    }
-    
-    private var wasDataLoadedOnce: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: wasDataLoadedOnceKey)
-        }
-        set {
-            guard newValue == true else { return }
-            
-            UserDefaults.standard.set(newValue, forKey: wasDataLoadedOnceKey)
-        }
-    }
-    
-    private var wasDataLoadedOnceKey: String {
-        "was_data_loaded_\(task.id)_\(task.kind.rawValue)_\(bundle?.id ?? "")"
     }
     
 }
