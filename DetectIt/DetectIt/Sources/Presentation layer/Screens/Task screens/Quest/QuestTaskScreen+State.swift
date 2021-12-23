@@ -16,11 +16,18 @@ extension QuestTaskScreen {
         let task: QuestTask
         let bundle: TasksBundle.Info?
         let isTaskCompleted: Bool
+        let onClose: (_ isCompleted: Bool) -> Void
         
-        init(task: QuestTask, bundle: TasksBundle.Info?, isTaskCompleted: Bool) {
+        init(
+            task: QuestTask,
+            bundle: TasksBundle.Info?,
+            isTaskCompleted: Bool,
+            onClose: @escaping (_ isCompleted: Bool) -> Void
+        ) {
             self.task = task
             self.bundle = bundle
             self.isTaskCompleted = isTaskCompleted
+            self.onClose = onClose
         }
         
         var isDataLoaded = false

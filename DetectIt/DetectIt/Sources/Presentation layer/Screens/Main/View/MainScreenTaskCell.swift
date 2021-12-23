@@ -52,6 +52,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
     
     public struct Model {
         
+        public let id: String
         public let backgroundImagePath: String?
         public let kindIcon: UIImage?
         public let kind: String
@@ -65,7 +66,8 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         public let isLocked: Bool
         public let isFocused: Bool
         
-        public init(backgroundImagePath: String?,
+        public init(id: String,
+                    backgroundImagePath: String?,
                     kindIcon: UIImage?,
                     kind: String,
                     title: String,
@@ -77,6 +79,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
                     rating: Double?,
                     isLocked: Bool,
                     isFocused: Bool) {
+            self.id = id
             self.backgroundImagePath = backgroundImagePath
             self.kindIcon = kindIcon
             self.kind = kind

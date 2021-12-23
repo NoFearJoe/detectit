@@ -116,6 +116,7 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
             let difficulty = TaskDifficulty(rawValue: item.difficulty)
             let score = tasksScoreCache[item.id]
             return MainScreenTaskCell.Model(
+                id: item.id,
                 backgroundImagePath: item.picture,
                 kindIcon: kind?.icon,
                 kind: kind?.title ?? "",
@@ -144,16 +145,20 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
         switch item.kind {
         case .cipher:
             guard let cipher = item.cipher else { return }
-            TaskScreenRoute(root: self).show(task: cipher, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: cipher, bundle: nil, isTaskCompleted: item.completed, onClose: { _ in })
         case .profile:
             guard let profile = item.profile else { return }
-            TaskScreenRoute(root: self).show(task: profile, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: profile, bundle: nil, isTaskCompleted: item.completed, onClose: { _ in })
         case .blitz:
             guard let blitz = item.blitz else { return }
-            TaskScreenRoute(root: self).show(task: blitz, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: blitz, bundle: nil, isTaskCompleted: item.completed, onClose: { _ in })
         case .quest:
             guard let quest = item.quest else { return }
-            TaskScreenRoute(root: self).show(task: quest, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: quest, bundle: nil, isTaskCompleted: item.completed, onClose: { _ in })
         case .bundle:
             guard let tasksBundle = item.bundle else { return }
             showTasksBundle(bundle: tasksBundle, imageName: item.picture)

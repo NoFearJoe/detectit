@@ -34,6 +34,7 @@ final class ProfileTaskScreen: Screen {
     let task: ProfileTask
     let bundle: TasksBundle.Info?
     let isTaskCompleted: Bool
+    let onClose: (_ isCompleted: Bool) -> Void
     
     var isDataLoaded = false
     
@@ -56,10 +57,16 @@ final class ProfileTaskScreen: Screen {
     
     // MARK: - Init
     
-    init(task: ProfileTask, bundle: TasksBundle.Info?, isTaskCompleted: Bool) {
+    init(
+        task: ProfileTask,
+        bundle: TasksBundle.Info?,
+        isTaskCompleted: Bool,
+        onClose: @escaping (_ isCompleted: Bool) -> Void
+    ) {
         self.task = task
         self.bundle = bundle
         self.isTaskCompleted = isTaskCompleted
+        self.onClose = onClose
         
         super.init(nibName: nil, bundle: nil)
         

@@ -60,6 +60,7 @@ extension BlitzTaskScreen {
         view.addSubview(topPanel)
         
         topPanel.onClose = { [unowned self] in
+            self.onClose(self.isTaskCompleted || self.score != nil)
             self.dismiss(animated: true, completion: nil)
         }
         topPanel.onNotes = { [unowned self] in

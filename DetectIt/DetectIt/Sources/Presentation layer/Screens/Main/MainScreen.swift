@@ -184,19 +184,32 @@ extension MainScreen: MainScreenViewDelegate {
     func didSelectFeedItem(at index: Int) {
         guard let item = feed?.items.item(at: index) else { return }
         
+        func onCloseTaskScreen(isTaskCompleted: Bool) {
+            guard isTaskCompleted else { return }
+            
+            self.feedItemModels.removeAll {
+                ($0 as? MainScreenTaskCell.Model)?.id == item.id
+            }
+            self.screenView.reloadData()
+        }
+        
         switch item.kind {
         case .cipher:
             guard let cipher = item.cipher else { return }
-            TaskScreenRoute(root: self).show(task: cipher, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: cipher, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .profile:
             guard let profile = item.profile else { return }
-            TaskScreenRoute(root: self).show(task: profile, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: profile, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .blitz:
             guard let blitz = item.blitz else { return }
-            TaskScreenRoute(root: self).show(task: blitz, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: blitz, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .quest:
             guard let quest = item.quest else { return }
-            TaskScreenRoute(root: self).show(task: quest, bundle: nil, isTaskCompleted: item.completed)
+            TaskScreenRoute(root: self)
+                .show(task: quest, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .bundle:
             guard let tasksBundle = item.bundle else { return }
             showTasksBundle(bundle: tasksBundle, imageName: item.picture)
@@ -331,6 +344,7 @@ private extension MainScreen {
                 let difficulty = TaskDifficulty(rawValue: item.difficulty)
                 let score = tasksScoreCache[item.id]
                 return MainScreenTaskCell.Model(
+                    id: item.id,
                     backgroundImagePath: item.picture,
                     kindIcon: kind?.icon,
                     kind: kind?.title ?? "",

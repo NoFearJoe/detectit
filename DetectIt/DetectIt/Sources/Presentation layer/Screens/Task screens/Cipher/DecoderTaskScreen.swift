@@ -34,6 +34,7 @@ final class DecoderTaskScreen: Screen {
     let task: DecoderTask
     let bundle: TasksBundle.Info?
     let isTaskCompleted: Bool
+    let onClose: (_ isCompleted: Bool) -> Void
     
     var encodedImage: UIImage?
     var encodedAudio: Data?
@@ -43,10 +44,16 @@ final class DecoderTaskScreen: Screen {
             
     // MARK: - Init
     
-    init(task: DecoderTask, bundle: TasksBundle.Info?, isTaskCompleted: Bool) {
+    init(
+        task: DecoderTask,
+        bundle: TasksBundle.Info?,
+        isTaskCompleted: Bool,
+        onClose: @escaping (_ isCompleted: Bool) -> Void
+    ) {
         self.task = task
         self.bundle = bundle
         self.isTaskCompleted = isTaskCompleted
+        self.onClose = onClose
         
         super.init(nibName: nil, bundle: nil)
         

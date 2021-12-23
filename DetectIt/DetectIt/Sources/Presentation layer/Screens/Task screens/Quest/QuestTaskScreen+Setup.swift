@@ -45,6 +45,7 @@ extension QuestTaskScreen {
         view.addSubview(topPanel)
         
         topPanel.onClose = { [unowned self] in
+            self.state.onClose(self.state.isTaskCompleted || self.state.isSolved)
             self.dismiss(animated: true, completion: nil)
         }
         topPanel.onNotes = { [unowned self] in

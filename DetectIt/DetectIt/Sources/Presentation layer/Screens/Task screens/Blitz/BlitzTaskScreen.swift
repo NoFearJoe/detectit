@@ -34,6 +34,7 @@ final class BlitzTaskScreen: Screen {
     let task: BlitzTask
     let bundle: TasksBundle.Info?
     let isTaskCompleted: Bool
+    let onClose: (_ isCompleted: Bool) -> Void
     
     var isDataLoaded = false
     
@@ -56,10 +57,16 @@ final class BlitzTaskScreen: Screen {
     
     // MARK: - Init
     
-    init(task: BlitzTask, bundle: TasksBundle.Info?, isTaskCompleted: Bool) {
+    init(
+        task: BlitzTask,
+        bundle: TasksBundle.Info?,
+        isTaskCompleted: Bool,
+        onClose: @escaping (_ isCompleted: Bool) -> Void
+    ) {
         self.task = task
         self.bundle = bundle
         self.isTaskCompleted = isTaskCompleted
+        self.onClose = onClose
         
         super.init(nibName: nil, bundle: nil)
         
