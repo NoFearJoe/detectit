@@ -77,7 +77,7 @@ public final class ProfileView: UIView {
 extension ProfileView: UICollectionViewDataSource {
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        4
+        2
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
