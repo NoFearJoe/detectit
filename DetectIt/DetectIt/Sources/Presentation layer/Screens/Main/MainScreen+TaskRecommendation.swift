@@ -16,12 +16,25 @@ extension MainScreen {
         
         func updateRecommendation(tasks: [Feed.Item]) {
             recommendedTaskID = tasks
-                .first { shouldRecommend(task: $0, allTasks: tasks) }?
+                .first { shouldRecommend(task: $0) }?
                 .id
         }
         
-        private func shouldRecommend(task: Feed.Item, allTasks: [Feed.Item]) -> Bool {
-            task.kind == .blitz && !task.completed && !allTasks.contains(where: { $0.kind == .blitz && task.completed })
+        private func shouldRecommend(task: Feed.Item) -> Bool {
+            if task.kind == .blitz, !isBlitzRecommended {
+                isBlitzRecommended = true
+                return true
+            }
+            return false
+        }
+        
+        private var isBlitzRecommended: Bool {
+            get {
+                UserDefaults.standard.bool(forKey: "is_blitz_recommended")
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: "is_blitz_recommended")
+            }
         }
         
     }
