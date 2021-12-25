@@ -190,6 +190,7 @@
 
 "answer_button_default_title" = "Отправить ответ";
 "buy_button_title" = "Купить";
+"attachments_title" = "Дополнения";
 
 "task_kind_cipher" = "Шифр";
 "task_kind_profile" = "Расследование";

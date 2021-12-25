@@ -63,7 +63,7 @@ public final class PhotoAttachmentCell: AutosizingCollectionViewCell {
         containerView.pin(to: contentView)
         
         containerView.addArrangedSubview(titleLabel)
-        containerView.setCustomSpacing(20, after: titleLabel)
+        containerView.setCustomSpacing(12, after: titleLabel)
         
         titleLabel.font = .heading3
         titleLabel.textColor = .lightGray

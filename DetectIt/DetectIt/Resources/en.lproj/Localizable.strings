@@ -190,6 +190,7 @@
 
 "answer_button_default_title" = "Send the answer";
 "buy_button_title" = "Buy";
+"attachments_title" = "Attachments";
 
 "task_kind_cipher" = "Cipher";
 "task_kind_profile" = "Profile";

@@ -126,7 +126,7 @@ extension AttachmentsView: UICollectionViewDataSource {
             for: indexPath
         ) as! ListSectionHeaderView
         
-        view.configure(title: "Дополнения") // TODO
+        view.configure(title: "attachments_title".localized)
         
         view.layoutMargins = .zero
         view.titleLabel.font = .heading2
@@ -161,6 +161,14 @@ extension AttachmentsView: UICollectionViewDelegateFlowLayout {
         else { return .zero }
         
         return CGSize(width: collectionView.bounds.width, height: 52)
+    }
+    
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        20
     }
     
 }

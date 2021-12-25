@@ -68,7 +68,7 @@ public final class AudioAttachmentCell: AutosizingCollectionViewCell {
         
         NSLayoutConstraint.activate([
             audioPlayerController.view.heightAnchor.constraint(equalToConstant: 64),
-            audioPlayerController.view.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            audioPlayerController.view.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             audioPlayerController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             audioPlayerController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             audioPlayerController.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
