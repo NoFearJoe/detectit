@@ -135,6 +135,7 @@
 
 "tasks_bundle_screen_ciphers_section_title" = "Шифры";
 "tasks_bundle_screen_profiles_section_title" = "Расследования";
+"tasks_bundle_screen_blitz_section_title" = "Блиц";
 "tasks_bundle_screen_quests_section_title" = "Квесты";
 
 // PRO status

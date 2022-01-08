@@ -101,6 +101,14 @@ public extension ProfileTask {
         /// Ответ.
         public let answer: Bool
         
+        static var yes: BoolQuestion {
+            .init(answer: true)
+        }
+        
+        static var no: BoolQuestion {
+            .init(answer: false)
+        }
+        
     }
     
 }

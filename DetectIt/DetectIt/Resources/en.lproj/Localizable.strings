@@ -135,6 +135,7 @@
 
 "tasks_bundle_screen_ciphers_section_title" = "Ciphers";
 "tasks_bundle_screen_profiles_section_title" = "Profiles";
+"tasks_bundle_screen_blitz_section_title" = "Blitz";
 "tasks_bundle_screen_quests_section_title" = "Quests";
 
 // PRO status

@@ -15,6 +15,7 @@ extension TasksBundleScreen {
     enum Section {
         case ciphers
         case profiles
+        case blitz
         case quests
         
         var title: String {
@@ -23,6 +24,8 @@ extension TasksBundleScreen {
                 return "tasks_bundle_screen_ciphers_section_title".localized
             case .profiles:
                 return "tasks_bundle_screen_profiles_section_title".localized
+            case .blitz:
+                return "tasks_bundle_screen_blitz_section_title".localized
             case .quests:
                 return "tasks_bundle_screen_quests_section_title".localized
             }
@@ -44,6 +47,12 @@ extension TasksBundleScreen {
         if !bundle.profileTasks.isEmpty {
             sections.append(
                 (.profiles, bundle.profileTasks.map { map(task: $0, scores: bundle.taskScores, bundleID: bundle.info.id) })
+            )
+        }
+        
+        if !bundle.blitzTasks.isEmpty {
+            sections.append(
+                (.blitz, bundle.blitzTasks.map { map(task: $0, scores: bundle.taskScores, bundleID: bundle.info.id) })
             )
         }
         

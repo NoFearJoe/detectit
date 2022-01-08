@@ -119,6 +119,8 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
                 return bundle.decoderTasks[index]
             case .profiles:
                 return bundle.profileTasks[index]
+            case .blitz:
+                return bundle.blitzTasks[index]
             case .quests:
                 return bundle.questTasks[index]
             }

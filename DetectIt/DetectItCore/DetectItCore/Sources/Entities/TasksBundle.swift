@@ -25,7 +25,7 @@ public struct TasksBundle: Codable {
     public let info: Info
     private let ciphers: [DecoderTask]?
     private let profiles: [ProfileTask]?
-    private let blitzs: [BlitzTask]?
+    private let blitz: [BlitzTask]?
     private let quests: [QuestTask]?
     
     public let taskScores: [TaskScore]?
@@ -39,7 +39,7 @@ public struct TasksBundle: Codable {
     }
     
     public var blitzTasks: [BlitzTask] {
-        blitzs ?? []
+        blitz ?? []
     }
     
     public var questTasks: [QuestTask] {
