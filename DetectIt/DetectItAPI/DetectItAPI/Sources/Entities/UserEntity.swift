@@ -12,4 +12,5 @@ public struct UserEntity: Codable {
     public let id: Int?
     public let alias: String
     public let email: String
+    public let abTestIDs: [String]?
 }

@@ -80,13 +80,18 @@ final class AuthScreen: Screen {
                     
                     self?.hideHUD(after: 3)
                 } else if response.statusCode == 200 {
+                    let user = try? response.map(UserEntity.self)
+                    
                     User.shared.alias = alias
                     User.shared.email = email
                     User.shared.password = password
+                    User.shared.abTestIDs = user?.abTestIDs
                     
-                    if let userID = try? response.map(UserEntity.self).id {
+                    if let userID = user?.id {
                         Amplitude.instance().setUserId("\(userID)")
                     }
+                    Analytics.setStartAppVersionUserProperty()
+                    Analytics.setProperty("ab_test_ids", value: user?.abTestIDs ?? [])
                     
                     self?.onFinish?()
                 } else {

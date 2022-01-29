@@ -9,16 +9,25 @@
 import UIKit
 import DetectItUI
 import DetectItCore
+import JGProgressHUD
 
 final class FullVersionPurchaseScreen: Screen {
     
     private let closeButton = SolidButton.closeButton()
     
     private let titleLabel = UILabel()
-    private let featuresListView = UIStackView()
-    private let disclaimerLabel = UILabel()
+    private let subtitleLabel = UILabel()
+    private let contributionContainer = UIStackView()
+    private let contributionTitle = UILabel()
+    private let contributionPicker = UISegmentedControl()
+    private let contributionSubtitle = UILabel()
+    
+    private let buttonsContainer = UIStackView()
+    private let contributionExplanationButton = SolidButton.makePushButton()
     private let buyButton = SolidButton.primaryButton()
     private let restoreButton = SolidButton.makePushButton()
+    
+    private var selectedProduct: FullVersionManager.Product?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -35,15 +44,40 @@ final class FullVersionPurchaseScreen: Screen {
         Analytics.logScreenShow(.fullVersionPurchase)
     }
     
+    @objc private func onChangeContributionAmount() {
+        contributionSubtitle.text = "pro_status_price_\(contributionPicker.selectedSegmentIndex)_text".localized
+        contributionSubtitle.isHidden = false
+        
+        updateBuyButton()
+    }
+    
     @objc private func didTapCloseButton() {
         close()
     }
     
+    @objc private func didTapContributionExplanationButton() {
+        let hud = JGProgressHUD.init(style: .dark)
+        hud.textLabel.attributedText = "pro_status_why_should_i_pay_text".localized.readableAttributedText(font: .text4)
+        hud.indicatorView = nil
+        hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 16, opacity: 0.25)
+        hud.interactionType = .blockAllTouches
+        hud.show(in: view)
+        
+        hud.tapOnHUDViewBlock = { [unowned hud] _ in
+            hud.dismiss()
+        }
+        hud.tapOutsideBlock = { [unowned hud] _ in
+            hud.dismiss()
+        }
+    }
+    
     @objc private func didTapBuyButton() {
+        guard let product = selectedProduct else { return }
+        
         showLoadingHUD(title: nil)
         isModalInPresentation = true
         
-        FullVersionManager.purchase { error in
+        FullVersionManager.purchase(product: product) { error in
             self.updateBuyButton()
             
             self.isModalInPresentation = false
@@ -54,7 +88,7 @@ final class FullVersionPurchaseScreen: Screen {
             } else {
                 self.showSuccessHUD()
                 
-                self.logPurchase()
+                self.logPurchase(product: product)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.close()
@@ -100,51 +134,59 @@ final class FullVersionPurchaseScreen: Screen {
         titleLabel.numberOfLines = 0
         titleLabel.text = "pro_status_title".localized
         
-        view.addSubview(featuresListView)
+        view.addSubview(subtitleLabel)
         
-        featuresListView.axis = .vertical
-        featuresListView.distribution = .fill
-        
-        featuresListView.addArrangedSubview(
-            FeatureView(
-                title: "pro_status_feature_1".localized,
-                icon: UIImage.asset(named: "ThreeStars")?.withTintColor(.yellow, renderingMode: .alwaysOriginal)
-            )
-        )
-        featuresListView.addArrangedSubview(
-            FeatureView(
-                title: "pro_status_feature_2".localized,
-                icon: UIImage.asset(named: "Nightmare")
-            )
-        )
-        featuresListView.addArrangedSubview(
-            FeatureView(
-                title: "pro_status_feature_3".localized,
-                icon: UIImage.asset(named: "key")
-            )
-        )
-        featuresListView.addArrangedSubview(
-            FeatureView(
-                title: "pro_status_feature_4".localized,
-                icon: UIImage.asset(named: "book")?.withTintColor(.yellow, renderingMode: .alwaysOriginal)
+        subtitleLabel.attributedText = "pro_status_subtitle".localized.readableAttributedText(font: .text4)
+        subtitleLabel.numberOfLines = 0
+        subtitleLabel.isUserInteractionEnabled = true
+        subtitleLabel.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(didTapContributionExplanationButton)
             )
         )
         
-        view.addSubview(disclaimerLabel)
         
-        disclaimerLabel.font = .text5
-        disclaimerLabel.textColor = .lightGray
-        disclaimerLabel.numberOfLines = 0
-        disclaimerLabel.text = "pro_status_disclaimer".localized
+        view.addSubview(contributionContainer)
         
-        view.addSubview(buyButton)
+        contributionContainer.addArrangedSubview(contributionTitle)
+        contributionContainer.addArrangedSubview(contributionPicker)
+        contributionContainer.addArrangedSubview(contributionSubtitle)
+        contributionContainer.axis = .vertical
+        contributionContainer.spacing = 8
+        
+        contributionTitle.font = UIFont.heading4
+        contributionTitle.textColor = .white
+        contributionTitle.text = "pro_status_contribution_title".localized
+        
+        contributionPicker.selectedSegmentTintColor = .yellow
+        contributionPicker.tintColor = .black
+        contributionPicker.backgroundColor = .darkGray
+        contributionPicker.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        contributionPicker.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+        contributionPicker.addTarget(self, action: #selector(onChangeContributionAmount), for: .valueChanged)
+        updatePrices()
+        
+        contributionSubtitle.font = UIFont.text4
+        contributionSubtitle.textColor = .lightGray
+        contributionSubtitle.numberOfLines = 0
+        contributionSubtitle.isHidden = true
+        
+        view.addSubview(buttonsContainer)
+        buttonsContainer.addArrangedSubview(contributionExplanationButton)
+        buttonsContainer.addArrangedSubview(buyButton)
+        buttonsContainer.addArrangedSubview(restoreButton)
+        buttonsContainer.axis = .vertical
+        buttonsContainer.spacing = 8
+        
+        contributionExplanationButton.setTitle("pro_status_why_should_i_pay".localized, for: .normal)
+        contributionExplanationButton.addTarget(self, action: #selector(didTapContributionExplanationButton), for: .touchUpInside)
+        
         updateBuyButton()
-        
+        buyButton.setTitle("buy_button_title".localized, for: .normal)
         buyButton.addTarget(self, action: #selector(didTapBuyButton), for: .touchUpInside)
         
-        view.addSubview(restoreButton)
         restoreButton.setTitle("pro_status_restore".localized, for: .normal)
-        
         restoreButton.addTarget(self, action: #selector(didTapRestoreButton), for: .touchUpInside)
     }
     
@@ -158,45 +200,39 @@ final class FullVersionPurchaseScreen: Screen {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset)
         ])
         
-        featuresListView.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            featuresListView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            featuresListView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
-            featuresListView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            subtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
+            subtitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset)
         ])
         
-        disclaimerLabel.translatesAutoresizingMaskIntoConstraints = false
+        contributionContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            disclaimerLabel.topAnchor.constraint(greaterThanOrEqualTo: featuresListView.bottomAnchor, constant: 12),
-            disclaimerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
-            disclaimerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
+            contributionContainer.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 40),
+            contributionContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
+            contributionContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset)
         ])
         
-        buyButton.translatesAutoresizingMaskIntoConstraints = false
+        buttonsContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buyButton.topAnchor.constraint(equalTo: disclaimerLabel.bottomAnchor, constant: 8),
-            buyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
-            buyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
-        ])
-        
-        restoreButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            restoreButton.topAnchor.constraint(equalTo: buyButton.bottomAnchor, constant: 8),
-            restoreButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
-            restoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
-            restoreButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
+            buttonsContainer.topAnchor.constraint(greaterThanOrEqualTo: contributionContainer.bottomAnchor, constant: 8),
+            buttonsContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .hInset),
+            buttonsContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -.hInset),
+            buttonsContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
     }
     
     private func updateBuyButton() {
-        if let price = FullVersionManager.price, FullVersionManager.canBuy {
-            buyButton.setTitle("pro_status_buy".localized + price, for: .normal)
-        } else {
-            buyButton.isEnabled = false
-            buyButton.setTitle("buy_button_title".localized, for: .normal)
+        buyButton.isEnabled = selectedProduct != nil
+    }
+    
+    private func updatePrices() {
+        FullVersionManager.Product.allCases.enumerated().forEach {
+            contributionPicker.insertSegment(withTitle: FullVersionManager.price(for: $1), at: $0, animated: false)
         }
     }
     
@@ -213,10 +249,10 @@ final class FullVersionPurchaseScreen: Screen {
         }
     }
     
-    private func logPurchase() {
-        guard let price = FullVersionManager.priceValue else { return }
+    private func logPurchase(product: FullVersionManager.Product) {
+        guard let price = FullVersionManager.priceValue(for: product) else { return }
         
-        Analytics.logRevenue(price: price, productID: FullVersionManager.productID)
+        Analytics.logRevenue(price: price, productID: product.id)
     }
     
 }

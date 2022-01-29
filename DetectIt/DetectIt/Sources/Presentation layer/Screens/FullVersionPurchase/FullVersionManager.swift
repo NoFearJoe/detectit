@@ -14,6 +14,14 @@ public struct FullVersionManager {
     
     public typealias LoadingCompletion = () -> Void
     
+    public enum Product: String, CaseIterable {
+        case pro1, pro2, pro3, pro4, pro5
+        
+        public var id: String {
+            "com.mesterra.detectit.\(rawValue)"
+        }
+    }
+    
     private static var subscribers = NSMapTable<AnyObject, NSObjectWrapper<LoadingCompletion>>.weakToStrongObjects()
     
     public static func subscribeToProductInfoLoading(_ subscriber: AnyObject, action: @escaping LoadingCompletion) {
@@ -24,31 +32,27 @@ public struct FullVersionManager {
     
     public static var isLoadingProductInfo = false
     
-    private static var product: SKProduct?
+    private static var products = [SKProduct]()
         
     private static let receiptStorage = UserDefaults.standard
     
     // MARK: - Getters
     
-    public static var productID: String {
-        product?.productIdentifier ?? "com.mesterra.detectit.pro"
+    public static func price(for product: Product) -> String? {
+        products.first(where: { $0.productIdentifier == product.id })?.localizedPrice
     }
     
-    public static var price: String? {
-        product?.localizedPrice
-    }
-    
-    public static var priceValue: Double? {
-        product?.price.doubleValue
+    public static func priceValue(for product: Product) -> Double? {
+        products.first(where: { $0.productIdentifier == product.id })?.price.doubleValue
     }
     
     public static var hasBought: Bool {
         #if targetEnvironment(simulator)
-        return true
+        return false
         #else
-        let hasBought = receiptStorage.bool(
-            forKey: inAppPurchaseReceiptKey
-        )
+        let hasBought = Product.allCases.contains {
+            receiptStorage.bool(forKey: inAppPurchaseReceiptKey(for: $0))
+        } || receiptStorage.bool(forKey: inAppPurchaseOldReceiptKey)
         
         setFullVersionProperty(value: hasBought)
         
@@ -64,21 +68,23 @@ public struct FullVersionManager {
     
     public static func completeTransactions() {
         SwiftyStoreKit.completeTransactions { purchases in
-            guard let purchase = purchases.first(where: { $0.productId == productID }) else {
-                return
-            }
+            let purchases = purchases.filter { p in Product.allCases.contains(where: { p.productId == $0.id }) }
             
-            switch purchase.transaction.transactionState {
-            case .purchased, .restored:
-                if purchase.needsFinishTransaction {
-                    SwiftyStoreKit.finishTransaction(purchase.transaction)
+            purchases.forEach { purchase in
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    
+                    if let product = Product.allCases.first(where: { $0.id == purchase.productId }) {
+                        unlock(product: product)
+                    }
+                case .failed, .purchasing, .deferred:
+                    return
+                @unknown default:
+                    return
                 }
-                
-                unlock()
-            case .failed, .purchasing, .deferred:
-                return
-            @unknown default:
-                return
             }
         }
     }
@@ -86,10 +92,10 @@ public struct FullVersionManager {
     public static func obtainProductInfo() {
         isLoadingProductInfo = true
         
-        let ids = Set([productID])
+        let ids = Set(Product.allCases.map { $0.id })
         
         SwiftyStoreKit.retrieveProductsInfo(ids) { results in
-            Self.product = results.retrievedProducts.first
+            Self.products = Array(results.retrievedProducts)
             
             Self.isLoadingProductInfo = false
             
@@ -103,15 +109,15 @@ public struct FullVersionManager {
         }
     }
     
-    public static func purchase(completion: @escaping (Error?) -> Void) {
-        guard canBuy, let product = product else {
+    public static func purchase(product: Product, completion: @escaping (Error?) -> Void) {
+        guard canBuy, let skProduct = products.first(where: { $0.productIdentifier == product.id }) else {
             return
         }
         
-        SwiftyStoreKit.purchaseProduct(product) { result in
+        SwiftyStoreKit.purchaseProduct(skProduct) { result in
             switch result {
             case .success:
-                unlock()
+                unlock(product: product)
                 completion(nil)
             case let .error(error):
                 completion(error)
@@ -121,15 +127,17 @@ public struct FullVersionManager {
     
     // MARK: - Utils
     
-    static func unlock() {
-        receiptStorage.set(true, forKey: inAppPurchaseReceiptKey)
+    static func unlock(product: Product) {
+        receiptStorage.set(true, forKey: inAppPurchaseReceiptKey(for: product))
         
         setFullVersionProperty(value: true)
     }
     
     // For unit testing
     static func reset() {
-        receiptStorage.removeObject(forKey: inAppPurchaseReceiptKey)
+        Product.allCases.forEach {
+            receiptStorage.removeObject(forKey: inAppPurchaseReceiptKey(for: $0))
+        }
     }
     
 }
@@ -138,8 +146,12 @@ private extension FullVersionManager {
         
     static let keyPrefix = "in_app_purchase_receipt"
     
-    static var inAppPurchaseReceiptKey: String {
-        "\(keyPrefix)_\(productID)"
+    static func inAppPurchaseReceiptKey(for product: Product) -> String {
+        "\(keyPrefix)_\(product.id)"
+    }
+    
+    static var inAppPurchaseOldReceiptKey: String {
+        "in_app_purchase_receipt_com.mesterra.detectit.pro"
     }
     
 }

@@ -45,6 +45,18 @@ struct Analytics {
         #endif
     }
     
+    // MARK: Special methods
+    
+    static func setStartAppVersionUserProperty() {
+        guard !UserDefaults.standard.bool(forKey: "start_app_version_property_set") else { return }
+        
+        UserDefaults.standard.set(true, forKey: "start_app_version_property_set")
+        
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return }
+        
+        setProperty("start_app_version", value: version)
+    }
+    
 }
 
 extension Analytics {

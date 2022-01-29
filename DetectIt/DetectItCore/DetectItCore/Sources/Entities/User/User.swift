@@ -43,6 +43,15 @@ public final class User {
         }
     }
     
+    public var abTestIDs: [String]? {
+        get {
+            UserDefaults.standard.object(forKey: "ab_test_ids") as? [String]
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "ab_test_ids")
+        }
+    }
+    
     public var rank: UserRank {
         UserRank(score: totalScore)
     }
