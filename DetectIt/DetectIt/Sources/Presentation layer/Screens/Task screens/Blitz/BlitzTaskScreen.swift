@@ -21,7 +21,7 @@ final class BlitzTaskScreen: Screen {
     
     let topPanel = TaskScreenTopPanel()
     lazy var screenView = BlitzTaskScreenView(delegate: self)
-    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
+    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundleID)
     lazy var taskSharingViewController = TaskSharingViewController(task: task)
     
     let keyboardManager = KeyboardManager()
@@ -32,7 +32,7 @@ final class BlitzTaskScreen: Screen {
     // MARK: - State
     
     let task: BlitzTask
-    let bundle: TasksBundle.Info?
+    let bundleID: String?
     let isTaskCompleted: Bool
     let onClose: (_ isCompleted: Bool) -> Void
     
@@ -43,7 +43,7 @@ final class BlitzTaskScreen: Screen {
     
     var answer = Answer() {
         didSet {
-            answer.save(taskID: task.id, bundleID: bundle?.id)
+            answer.save(taskID: task.id, bundleID: bundleID)
             
             updateAnswerButtonState()
         }
@@ -59,12 +59,12 @@ final class BlitzTaskScreen: Screen {
     
     init(
         task: BlitzTask,
-        bundle: TasksBundle.Info?,
+        bundleID: String?,
         isTaskCompleted: Bool,
         onClose: @escaping (_ isCompleted: Bool) -> Void
     ) {
         self.task = task
-        self.bundle = bundle
+        self.bundleID = bundleID
         self.isTaskCompleted = isTaskCompleted
         self.onClose = onClose
         

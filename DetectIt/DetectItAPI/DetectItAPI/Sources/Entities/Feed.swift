@@ -12,6 +12,7 @@ import DetectItCore
 public struct Feed: Codable {
     public var items: [Item]
     public let completedItemsInfo: CompletedItemsInfo?
+    public let compilations: [Compilation]?
 }
 
 public extension Feed {
@@ -32,12 +33,19 @@ public extension Feed {
         public let blitz: BlitzTask?
         public let quest: QuestTask?
         public let bundle: TasksBundle.Info?
+        public let parentBundleID: String?
     }
     
     struct CompletedItemsInfo: Codable {
         public let count: Int
         public let totalScore: Int
         public let maxTotalScore: Int
+    }
+    
+    struct Compilation: Codable {
+        public let id: String
+        public let title: String
+        public let imageUrl: String
     }
     
 }

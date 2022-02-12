@@ -1,9 +1,9 @@
 //
-//  CompletedTasksScreen.swift
+//  TasksCompilationScreen.swift
 //  DetectIt
 //
-//  Created by Илья Харабет on 16.06.2021.
-//  Copyright © 2021 Mesterra. All rights reserved.
+//  Created by Илья Харабет on 01.02.2022.
+//  Copyright © 2022 Mesterra. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import DetectItUI
 import DetectItAPI
 import DetectItCore
 
-final class CompletedTasksScreen: Screen {
+final class TasksCompilationScreen: Screen {
     
     private let topPanel = ScreenHeaderView()
     private let titleLabel = UILabel()
@@ -21,8 +21,18 @@ final class CompletedTasksScreen: Screen {
     
     private let api = DetectItAPI()
     
-    private var feedItems: [Feed.Item] = []
+    private var compilationDetails: CompilationDetails?
     private var tasksScoreCache = [String: Int]()
+    
+    let compilation: Feed.Compilation
+    
+    init(compilation: Feed.Compilation) {
+        self.compilation = compilation
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) { fatalError() }
     
     // MARK: - Overrides
     
@@ -33,12 +43,12 @@ final class CompletedTasksScreen: Screen {
         screenLoadingView.pin(to: view)
         
         view.addSubview(topPanel)
-        
-        topPanel.titleLabel.text = "completed_tasks_screen_title".localized
+
+        topPanel.titleLabel.text = compilation.title
         topPanel.onClose = { [unowned self] in
             self.dismiss(animated: true, completion: nil)
         }
-        
+
         topPanel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             topPanel.topAnchor.constraint(equalTo: view.topAnchor),
@@ -50,13 +60,19 @@ final class CompletedTasksScreen: Screen {
     override func refresh() {
         super.refresh()
         
-        loadFeed()
+        loadCompilation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Analytics.logScreenShow(.completedTasks)
+        Analytics.logScreenShow(
+            .tasksCompilation,
+            parameters: [
+                "compilationID": compilation.id,
+                "compilationTitle": compilation.title
+            ]
+        )
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,7 +91,7 @@ final class CompletedTasksScreen: Screen {
     
 }
 
-extension CompletedTasksScreen: MainScreenViewDelegate {
+extension TasksCompilationScreen: MainScreenViewDelegate {
     
     func header() -> MainScreenHeaderView.Model? { nil }
     func didTapProfileButton() {}
@@ -91,19 +107,19 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
     func didSelectCompilation(at index: Int) {}
     
     func numberOfFeedItems() -> Int {
-        if feedItems.isEmpty == true {
+        if compilationDetails == nil || compilationDetails?.tasks.isEmpty == true {
             return 1
         } else {
-            return feedItems.count
+            return compilationDetails?.tasks.count ?? 0
         }
     }
     
     func feedItem(at index: Int) -> Any? {
-        if feedItems.isEmpty {
-            return MainScreenPlaceholderCell.Model(message: "completed_tasks_screen_empty_placeholder_message".localized)
+        if compilationDetails == nil || compilationDetails?.tasks.isEmpty == true {
+            return MainScreenPlaceholderCell.Model(message: "tasks_compilation_screen_empty_placeholder_message".localized)
         }
         
-        guard let item = feedItems.item(at: index) else { return nil }
+        guard let item = compilationDetails?.tasks.item(at: index) else { return nil }
         
         switch item.kind {
         case .profile, .blitz, .cipher, .quest:
@@ -135,25 +151,25 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
     }
     
     func didSelectFeedItem(at index: Int) {
-        guard let item = feedItems.item(at: index) else { return }
+        guard let item = compilationDetails?.tasks.item(at: index) else { return }
         
         switch item.kind {
         case .cipher:
             guard let cipher = item.cipher else { return }
             TaskScreenRoute(root: self)
-                .show(task: cipher, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
+                .show(task: cipher, bundleID: item.parentBundleID, isTaskCompleted: item.completed, onClose: { _ in })
         case .profile:
             guard let profile = item.profile else { return }
             TaskScreenRoute(root: self)
-                .show(task: profile, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
+                .show(task: profile, bundleID: item.parentBundleID, isTaskCompleted: item.completed, onClose: { _ in })
         case .blitz:
             guard let blitz = item.blitz else { return }
             TaskScreenRoute(root: self)
-                .show(task: blitz, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
+                .show(task: blitz, bundleID: item.parentBundleID, isTaskCompleted: item.completed, onClose: { _ in })
         case .quest:
             guard let quest = item.quest else { return }
             TaskScreenRoute(root: self)
-                .show(task: quest, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
+                .show(task: quest, bundleID: item.parentBundleID, isTaskCompleted: item.completed, onClose: { _ in })
         case .bundle:
             guard let tasksBundle = item.bundle else { return }
             showTasksBundle(bundle: tasksBundle, imageName: item.picture)
@@ -166,7 +182,8 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
                 "kind": item.kind.rawValue,
                 "difficulty": item.difficulty,
                 "score": item.score ?? 0,
-                "screen": Analytics.Screen.main.rawValue
+                "screen": Analytics.Screen.tasksCompilation.rawValue,
+                "compilationID": compilation.id
             ]
         )
     }
@@ -177,29 +194,29 @@ extension CompletedTasksScreen: MainScreenViewDelegate {
     
 }
 
-private extension CompletedTasksScreen {
+private extension TasksCompilationScreen {
     
-    func loadFeed() {
-        if feedItems.isEmpty {
+    func loadCompilation() {
+        if compilationDetails == nil || compilationDetails?.tasks.isEmpty == true {
             screenLoadingView.setVisible(true, animated: false)
             screenPlaceholderView.setVisible(false, animated: false)
         }
                 
        api.obtain(
-            Feed.self,
-            target: .completedTasks,
-            cacheKey: Cache.Key("completedTasks")
+            CompilationDetails.self,
+            target: .compilation(id: compilation.id),
+            cacheKey: Cache.Key("compilation_\(compilation.id)")
         ) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
-            case let .success(feed):
+            case let .success(compilation):
                 self.screenLoadingView.setVisible(false, animated: true)
                 
-                self.feedItems = feed.items
+                self.compilationDetails = compilation
                 
                 self.tasksScoreCache.removeAll()
-                self.feedItems.forEach {
+                self.compilationDetails?.tasks.forEach {
                     self.tasksScoreCache[$0.id] =
                         $0.score ??
                         TaskScore.get(
@@ -211,14 +228,14 @@ private extension CompletedTasksScreen {
                 
                 self.screenView.reloadData()
             case .failure:
-                guard self.feedItems.isEmpty else { return }
+                guard self.compilationDetails == nil || self.compilationDetails?.tasks.isEmpty == true else { return }
                 
                 self.screenPlaceholderView.setVisible(true, animated: false)
                 self.screenLoadingView.setVisible(false, animated: true)
                 self.screenPlaceholderView.configure(
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
-                    onRetry: { [unowned self] in self.loadFeed() },
+                    onRetry: { [unowned self] in self.loadCompilation() },
                     onClose: nil
                 )
             }
@@ -235,6 +252,14 @@ private extension CompletedTasksScreen {
         tasksBundleScreen.modalPresentationStyle = .fullScreen
         
         present(tasksBundleScreen, animated: true, completion: nil)
+    }
+    
+}
+
+extension TasksCompilationScreen: UIAdaptivePresentationControllerDelegate {
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        screenView.reloadData()
     }
     
 }

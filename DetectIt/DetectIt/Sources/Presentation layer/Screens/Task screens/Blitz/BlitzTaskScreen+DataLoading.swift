@@ -88,8 +88,8 @@ extension BlitzTaskScreen {
     }
     
     func loadScoreAndAnswer(completion: @escaping (Bool) -> Void) {
-        if let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle?.id),
-           let answer = TaskAnswer.get(blitzTaskID: task.id, bundleID: bundle?.id) {
+        if let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundleID),
+           let answer = TaskAnswer.get(blitzTaskID: task.id, bundleID: bundleID) {
             self.score = score
             self.answer.answer = answer
             
@@ -109,7 +109,7 @@ extension BlitzTaskScreen {
             .taskScore(
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
-                bundleID: bundle?.id
+                bundleID: bundleID
             )
         ) { [weak self] result in
             defer { dispatchGroup.leave() }
@@ -123,7 +123,7 @@ extension BlitzTaskScreen {
                     return
                 }
                 
-                TaskScore.set(value: score, id: self.task.id, taskKind: self.task.kind, bundleID: self.bundle?.id)
+                TaskScore.set(value: score, id: self.task.id, taskKind: self.task.kind, bundleID: self.bundleID)
                 self.score = score
             case .failure:
                 isDataLoaded = false
@@ -150,7 +150,7 @@ extension BlitzTaskScreen {
                     return
                 }
                 
-                TaskAnswer.set(answer: answer, blitzTaskID: self.task.id, bundleID: self.bundle?.id)
+                TaskAnswer.set(answer: answer, blitzTaskID: self.task.id, bundleID: self.bundleID)
                 self.answer.answer = answer
             case .failure:
                 isDataLoaded = false
@@ -163,8 +163,8 @@ extension BlitzTaskScreen {
     }
     
     func saveScoreAndAnswer(_ score: Int, answer: TaskAnswer.BlitzTaskAnswer, completion: @escaping (Bool) -> Void) {
-        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle?.id)
-        TaskAnswer.set(answer: answer, blitzTaskID: task.id, bundleID: bundle?.id)
+        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundleID)
+        TaskAnswer.set(answer: answer, blitzTaskID: task.id, bundleID: bundleID)
         
         let dispatchGroup = DispatchGroup()
         
@@ -175,7 +175,7 @@ extension BlitzTaskScreen {
             .setTaskScore(
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
-                bundleID: bundle?.id,
+                bundleID: bundleID,
                 score: score
             )
         ) { result in

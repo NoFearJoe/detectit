@@ -169,6 +169,28 @@ extension MainScreen: MainScreenViewDelegate {
         Analytics.logButtonTap(title: "Completed tasks", screen: .main)
     }
     
+    func numberOfCompilations() -> Int {
+        feed?.compilations?.count ?? 0
+    }
+    
+    func compilations() -> [MainScreenCompilationCell.Model] {
+        feed?.compilations?.map {
+            MainScreenCompilationCell.Model(
+                title: $0.title,
+                imageUrl: $0.imageUrl
+            )
+        } ?? []
+    }
+    
+    func didSelectCompilation(at index: Int) {
+        guard let compilation = feed?.compilations?.item(at: index) else { return }
+        
+        let screen = TasksCompilationScreen(compilation: compilation)
+        screen.modalPresentationStyle = .fullScreen
+        screen.modalTransitionStyle = .crossDissolve
+        present(screen, animated: true, completion: nil)
+    }
+    
     func numberOfFeedItems() -> Int {
         if feed?.items.isEmpty == true {
             return 1
@@ -197,19 +219,19 @@ extension MainScreen: MainScreenViewDelegate {
         case .cipher:
             guard let cipher = item.cipher else { return }
             TaskScreenRoute(root: self)
-                .show(task: cipher, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: cipher, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .profile:
             guard let profile = item.profile else { return }
             TaskScreenRoute(root: self)
-                .show(task: profile, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: profile, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .blitz:
             guard let blitz = item.blitz else { return }
             TaskScreenRoute(root: self)
-                .show(task: blitz, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: blitz, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .quest:
             guard let quest = item.quest else { return }
             TaskScreenRoute(root: self)
-                .show(task: quest, bundle: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: quest, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .bundle:
             guard let tasksBundle = item.bundle else { return }
             showTasksBundle(bundle: tasksBundle, imageName: item.picture)

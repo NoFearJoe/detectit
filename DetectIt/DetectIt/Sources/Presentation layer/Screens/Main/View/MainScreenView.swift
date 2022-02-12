@@ -16,6 +16,10 @@ public protocol MainScreenViewDelegate: AnyObject {
     func filters() -> [MainScreenFiltersView.Model]
     func didSelectFilter(at index: Int)
     
+    func numberOfCompilations() -> Int
+    func compilations() -> [MainScreenCompilationCell.Model]
+    func didSelectCompilation(at index: Int)
+    
     func banner() -> MainScreenBannerCell.Model?
     func didSelectBanner()
     func didCloseBanner()
@@ -89,6 +93,10 @@ public final class MainScreenView: UIView {
         contentView.reloadSections(IndexSet(integer: Section.completedTasks.rawValue))
     }
     
+    public func setTopInset(_ inset: CGFloat) {
+        contentView.contentInset.top = inset
+    }
+    
     // MARK: - Setup
     
     private func setup() {
@@ -136,6 +144,10 @@ public final class MainScreenView: UIView {
             forCellWithReuseIdentifier: MainScreenCompletedTasksCell.identifier
         )
         contentView.register(
+            MainScreenCompilationsCarouselCell.self,
+            forCellWithReuseIdentifier: MainScreenCompilationsCarouselCell.identifier
+        )
+        contentView.register(
             MainScreenHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: MainScreenHeaderView.identifier
@@ -172,6 +184,8 @@ extension MainScreenView: UICollectionViewDataSource {
             return delegate.banner() == nil ? 0 : 1
         case .completedTasks:
             return delegate.shouldShowCompletedTasksCell() ? 1 : 0
+        case .compilations:
+            return delegate.numberOfCompilations() == 0 ? 0 : 1
         case .tasks:
             return delegate.numberOfFeedItems()
         case .actions:
@@ -206,6 +220,17 @@ extension MainScreenView: UICollectionViewDataSource {
                 withReuseIdentifier: MainScreenCompletedTasksCell.identifier,
                 for: indexPath
             )
+        case .compilations:
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MainScreenCompilationsCarouselCell.identifier,
+                for: indexPath
+            ) as! MainScreenCompilationsCarouselCell
+            
+            cell.configure(compilations: delegate.compilations()) { [unowned self] index in
+                self.delegate.didSelectCompilation(at: index)
+            }
+            
+            return cell
         case .tasks:
             guard let item = delegate.feedItem(at: indexPath.item) else {
                 return collectionView.dequeueEmptyCell(for: indexPath)
@@ -296,6 +321,8 @@ extension MainScreenView: UICollectionViewDelegate {
             delegate.didSelectBanner()
         case .completedTasks:
             delegate.didSelectCompletedTasksCell()
+        case .compilations:
+            return
         case .tasks:
             delegate.didSelectFeedItem(at: indexPath.item)
         case .actions:
@@ -317,6 +344,7 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
         switch Section(section) {
         case .banner: return 0
         case .completedTasks: return 0
+        case .compilations: return 0
         case .tasks: return 20
         case .actions: return 8
         }
@@ -342,6 +370,10 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         case .completedTasks:
             return .zero
+        case .compilations:
+            guard delegate.numberOfCompilations() > 0 else { return .zero }
+            
+            return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
         case .tasks:
             return UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         case .actions:
@@ -375,6 +407,8 @@ extension MainScreenView: UICollectionViewDelegateFlowLayout {
             return prototypeBannerCell.calculateSize(model: model, width: width)
         case .completedTasks:
             return CGSize(width: width, height: 48)
+        case .compilations:
+            return CGSize(width: collectionView.bounds.width, height: 112)
         case .tasks:
             if let taskModel = delegate.feedItem(at: indexPath.item) as? MainScreenTaskCell.Model {
                 if taskModel.backgroundImagePath != nil {
@@ -424,6 +458,7 @@ public extension MainScreenView {
     enum Section: Int, CaseIterable {
         case banner
         case completedTasks
+        case compilations
         case tasks
         case actions
     }

@@ -89,8 +89,8 @@ extension ProfileTaskScreen {
     }
     
     func loadScoreAndAnswer(completion: @escaping (Bool) -> Void) {
-        if let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle?.id),
-           let answers = TaskAnswer.get(profileTaskID: task.id, bundleID: bundle?.id) {
+        if let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundleID),
+           let answers = TaskAnswer.get(profileTaskID: task.id, bundleID: bundleID) {
             self.score = score
             self.answers.answers = answers
             
@@ -110,7 +110,7 @@ extension ProfileTaskScreen {
             .taskScore(
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
-                bundleID: bundle?.id
+                bundleID: bundleID
             )
         ) { [weak self] result in
             defer { dispatchGroup.leave() }
@@ -124,7 +124,7 @@ extension ProfileTaskScreen {
                     return
                 }
                 
-                TaskScore.set(value: score, id: self.task.id, taskKind: self.task.kind, bundleID: self.bundle?.id)
+                TaskScore.set(value: score, id: self.task.id, taskKind: self.task.kind, bundleID: self.bundleID)
                 self.score = score
             case .failure:
                 isDataLoaded = false
@@ -151,7 +151,7 @@ extension ProfileTaskScreen {
                     return
                 }
                 
-                TaskAnswer.set(answers: answers, profileTaskID: self.task.id, bundleID: self.bundle?.id)
+                TaskAnswer.set(answers: answers, profileTaskID: self.task.id, bundleID: self.bundleID)
                 self.answers.answers = answers
             case .failure:
                 isDataLoaded = false
@@ -164,8 +164,8 @@ extension ProfileTaskScreen {
     }
     
     func saveScoreAndAnswer(_ score: Int, answers: [TaskAnswer.ProfileTaskAnswer], completion: @escaping (Bool) -> Void) {
-        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle?.id)
-        TaskAnswer.set(answers: answers, profileTaskID: task.id, bundleID: bundle?.id)
+        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundleID)
+        TaskAnswer.set(answers: answers, profileTaskID: task.id, bundleID: bundleID)
         
         let dispatchGroup = DispatchGroup()
         
@@ -176,7 +176,7 @@ extension ProfileTaskScreen {
             .setTaskScore(
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
-                bundleID: bundle?.id,
+                bundleID: bundleID,
                 score: score
             )
         ) { result in

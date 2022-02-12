@@ -138,6 +138,10 @@
 "tasks_bundle_screen_blitz_section_title" = "Блиц";
 "tasks_bundle_screen_quests_section_title" = "Квесты";
 
+// Tasks compilation
+
+"tasks_compilation_screen_empty_placeholder_message" = "Задания куда-то пропали :(\nПроверьте подключение к интернету и откройте экран еще раз";
+
 // PRO status
 
 "pro_status_title" = "Статус профессионального детектива";

@@ -34,7 +34,7 @@ public extension String {
         NSAttributedString(
             string: self,
             attributes: [
-                NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                NSAttributedString.Key.strikethroughStyle: 4,
                 NSAttributedString.Key.strikethroughColor: color
             ]
         )

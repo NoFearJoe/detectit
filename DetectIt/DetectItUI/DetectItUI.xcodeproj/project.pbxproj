@@ -78,6 +78,7 @@
 		96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */; };
 		96B3353B25C078EA00D0814F /* UIButton+title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353A25C078EA00D0814F /* UIButton+title.swift */; };
 		96BE1626268C74B900247ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BE1625268C74B900247ECA /* Assets.xcassets */; };
+		96DE6F4127AC5B2D001266DE /* ScreenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE6F4027AC5B2D001266DE /* ScreenHeaderView.swift */; };
 		96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F85C122445FCF000F5CD22 /* DetectItCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -153,6 +154,7 @@
 		96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionView.swift; sourceTree = "<group>"; };
 		96B3353A25C078EA00D0814F /* UIButton+title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+title.swift"; sourceTree = "<group>"; };
 		96BE1625268C74B900247ECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96DE6F4027AC5B2D001266DE /* ScreenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeaderView.swift; sourceTree = "<group>"; };
 		96F85C122445FCF000F5CD22 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -348,6 +350,7 @@
 				966B6E4A25C57F9D00FEBB51 /* TitleAndToggleView.swift */,
 				9675D0E025E57E1A00593CB9 /* TagView.swift */,
 				965F2568267D078300106F13 /* TaskSharingView.swift */,
+				96DE6F4027AC5B2D001266DE /* ScreenHeaderView.swift */,
 			);
 			path = "Complex views";
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				964511852533898400504D62 /* TextView.swift in Sources */,
 				966B6E4B25C57F9D00FEBB51 /* TitleAndToggleView.swift in Sources */,
 				965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */,
+				96DE6F4127AC5B2D001266DE /* ScreenHeaderView.swift in Sources */,
 				9627E7D325100367007ACEBA /* TaskScreenTransitionAnimator.swift in Sources */,
 				96A5C6ED275B7D410056DC09 /* AttachmentsView.swift in Sources */,
 				965AC79824365004003A3DC7 /* TouchGestureRecognizer.swift in Sources */,

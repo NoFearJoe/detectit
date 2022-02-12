@@ -15,7 +15,7 @@ struct TaskScreenRoute {
     
     func show(
         task: Task,
-        bundle: TasksBundle.Info?,
+        bundleID: String?,
         isTaskCompleted: Bool,
         onClose: @escaping (_ isCompleted: Bool) -> Void
     ) {
@@ -32,7 +32,7 @@ struct TaskScreenRoute {
                 guard let task = task as? DecoderTask else { return nil }
                 return DecoderTaskScreen(
                     task: task,
-                    bundle: bundle,
+                    bundleID: bundleID,
                     isTaskCompleted: isTaskCompleted,
                     onClose: onClose
                 )
@@ -40,7 +40,7 @@ struct TaskScreenRoute {
                 guard let task = task as? ProfileTask else { return nil }
                 return ProfileTaskScreen(
                     task: task,
-                    bundle: bundle,
+                    bundleID: bundleID,
                     isTaskCompleted: isTaskCompleted,
                     onClose: onClose
                 )
@@ -48,7 +48,7 @@ struct TaskScreenRoute {
                 guard let task = task as? BlitzTask else { return nil }
                 return BlitzTaskScreen(
                     task: task,
-                    bundle: bundle,
+                    bundleID: bundleID,
                     isTaskCompleted: isTaskCompleted,
                     onClose: onClose
                 )
@@ -56,7 +56,7 @@ struct TaskScreenRoute {
                 guard let task = task as? QuestTask else { return nil }
                 return QuestTaskScreen(
                     task: task,
-                    bundle: bundle,
+                    bundleID: bundleID,
                     isTaskCompleted: isTaskCompleted,
                     onClose: onClose
                 )

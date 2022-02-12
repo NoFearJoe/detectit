@@ -110,16 +110,24 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         }
         
         taskKindView.icon = model.kindIcon
+        #if DEBUG
+        taskKindView.title = model.kind.uppercased() + " \(model.id)"
+        #else
         taskKindView.title = model.kind.uppercased()
+        #endif
         taskRatingView.rating = model.rating ?? 0
         taskRatingView.isHidden = model.rating == nil
         difficultyLabel.text = model.difficulty
-        difficultyLabel.textColor = model.difficultyColor
+        difficultyLabel.textColor = model.score == nil
+            ? model.difficultyColor.withAlphaComponent(0.75)
+            : model.difficultyColor.withAlphaComponent(0.5)
         
         lockedTaskView.isHidden = !model.isLocked
         constraintBetweenLockedViewAndDescription.constant = model.isLocked ? 12 : 0
-                
-        titleLabel.attributedText = NSAttributedString(string: model.title)
+        
+        titleLabel.attributedText = model.score == nil
+            ? NSAttributedString(string: model.title)
+            : model.title.strikethroughAttributedString(color: .white)
         
         descriptionLabel.text = model.description
         descriptionLabel.numberOfLines = model.backgroundImagePath == nil ? 5 : 3
@@ -140,7 +148,9 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         
         if !forSizeCalculation {
             [titleLabel, descriptionLabel].forEach {
-                $0.alpha = model.isLocked ? 0.5 : 1
+                $0.textColor = !model.isLocked && model.score == nil
+                    ? Constants.tintColor
+                    : .gray
             }
         }
     }
@@ -254,7 +264,7 @@ public final class MainScreenTaskCell: UICollectionViewCell, TouchAnimatable {
         bottomContainerView.addSubview(titleLabel)
         
         titleLabel.font = .heading4
-        titleLabel.textColor = Constants.tintColor
+//        titleLabel.textColor = Constants.tintColor
         titleLabel.numberOfLines = 0
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

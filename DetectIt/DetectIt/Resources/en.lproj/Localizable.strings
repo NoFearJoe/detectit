@@ -138,6 +138,10 @@
 "tasks_bundle_screen_blitz_section_title" = "Blitz";
 "tasks_bundle_screen_quests_section_title" = "Quests";
 
+// Tasks compilation
+
+"tasks_compilation_screen_empty_placeholder_message" = "Tasks are missing :(\nCheck your internet connection and try again";
+
 // PRO status
 
 "pro_status_title" = "Professional detective status";

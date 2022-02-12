@@ -88,8 +88,8 @@ extension DecoderTaskScreen {
     }
     
     private func loadScoreAndAnswer(completion: @escaping (Bool) -> Void) {
-        if let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle?.id),
-           let answer = TaskAnswer.get(decoderTaskID: task.id, bundleID: bundle?.id) {
+        if let score = TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundleID),
+           let answer = TaskAnswer.get(decoderTaskID: task.id, bundleID: bundleID) {
             self.score = score
             self.answer = answer
             
@@ -109,7 +109,7 @@ extension DecoderTaskScreen {
             .taskScore(
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
-                bundleID: bundle?.id
+                bundleID: bundleID
             )
         ) { [weak self] result in
             defer { dispatchGroup.leave() }
@@ -123,7 +123,7 @@ extension DecoderTaskScreen {
                     return
                 }
 
-                TaskScore.set(value: score, id: self.task.id, taskKind: self.task.kind, bundleID: self.bundle?.id)
+                TaskScore.set(value: score, id: self.task.id, taskKind: self.task.kind, bundleID: self.bundleID)
                 self.score = score
             case .failure:
                 isDataLoaded = false
@@ -145,7 +145,7 @@ extension DecoderTaskScreen {
                     return
                 }
 
-                TaskAnswer.set(answer: answer, decoderTaskID: self.task.id, bundleID: self.bundle?.id)
+                TaskAnswer.set(answer: answer, decoderTaskID: self.task.id, bundleID: self.bundleID)
                 self.answer = answer
             case .failure:
                 isDataLoaded = false
@@ -158,8 +158,8 @@ extension DecoderTaskScreen {
     }
     
     func saveScoreAndAnswer(_ score: Int, answer: String, completion: @escaping (Bool) -> Void) {
-        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundle?.id)
-        TaskAnswer.set(answer: answer, decoderTaskID: task.id, bundleID: bundle?.id)
+        TaskScore.set(value: score, id: task.id, taskKind: task.kind, bundleID: bundleID)
+        TaskAnswer.set(answer: answer, decoderTaskID: task.id, bundleID: bundleID)
         
         let dispatchGroup = DispatchGroup()
         
@@ -170,7 +170,7 @@ extension DecoderTaskScreen {
             .setTaskScore(
                 taskID: task.id,
                 taskKind: task.kind.rawValue,
-                bundleID: bundle?.id,
+                bundleID: bundleID,
                 score: score
             )
         ) { result in

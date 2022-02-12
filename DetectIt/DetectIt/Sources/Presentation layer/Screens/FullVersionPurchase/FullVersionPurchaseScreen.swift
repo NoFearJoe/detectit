@@ -48,6 +48,8 @@ final class FullVersionPurchaseScreen: Screen {
         contributionSubtitle.text = "pro_status_price_\(contributionPicker.selectedSegmentIndex)_text".localized
         contributionSubtitle.isHidden = false
         
+        selectedProduct = FullVersionManager.Product.allCases.item(at: contributionPicker.selectedSegmentIndex)
+        
         updateBuyButton()
     }
     

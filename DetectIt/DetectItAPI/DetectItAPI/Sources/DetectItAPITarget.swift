@@ -19,6 +19,7 @@ public enum DetectItAPITarget {
     case completedTasks
     
     case tasksBundle(bundleID: String)
+    case compilation(id: String)
         
     case taskScore(taskID: String, taskKind: String, bundleID: String?)
     case setTaskScore(taskID: String, taskKind: String, bundleID: String?, score: Int)
@@ -64,6 +65,7 @@ extension DetectItAPITarget: TargetType {
         case .feed: return "feed/v2"
         case .completedTasks: return "completedTasks"
         case .tasksBundle: return "tasksBundle"
+        case .compilation: return "compilation"
         case .taskScore, .setTaskScore: return "taskScore"
         case .taskRating, .setTaskRating: return "taskRating"
         case .totalScore: return "totalScore"
@@ -80,7 +82,7 @@ extension DetectItAPITarget: TargetType {
         switch self {
         case .auth, .deleteAccount, .setTaskScore, .setTaskRating, .setCipherAnswer, .setProfileAnswers, .setBlitzAnswer, .setQuestAnswer:
             return .post
-        case .feed, .completedTasks, .tasksBundle, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .blitzAnswer, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
+        case .feed, .completedTasks, .tasksBundle, .compilation, .taskScore, .taskRating, .cipherAnswer, .profileAnswers, .blitzAnswer, .questAnswer, .totalScore, .detectiveProfile, .leaderboard, .restorePassword:
             return .get
         }
     }
@@ -111,6 +113,11 @@ extension DetectItAPITarget: TargetType {
         case let .tasksBundle(bundleID):
             return .requestParameters(
                 parameters: ["bundleID": bundleID],
+                encoding: URLEncoding.default
+            )
+        case let .compilation(id):
+            return .requestParameters(
+                parameters: ["compilationID": id],
                 encoding: URLEncoding.default
             )
         case .totalScore:

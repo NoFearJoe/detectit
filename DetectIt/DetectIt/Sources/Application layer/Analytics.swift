@@ -78,6 +78,7 @@ extension Analytics {
         case blitzTask = "blitz_task"
         case questTask = "quest_task"
         case tasksBundle = "tasks_bundle"
+        case tasksCompilation = "tasks_compilation"
     }
     
 }

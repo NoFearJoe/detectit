@@ -17,6 +17,7 @@
 		964E2E43249F39FD0027F738 /* DetectiveProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E42249F39FD0027F738 /* DetectiveProfile.swift */; };
 		964E2E5224A11FCD0027F738 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5124A11FCD0027F738 /* Leaderboard.swift */; };
 		965F255C267A6F3400106F13 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 965F255B267A6F3400106F13 /* RxMoya */; };
+		96DE6F3827A713D2001266DE /* CompilationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE6F3727A713D2001266DE /* CompilationDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		96346F0C248EAB0E00A815F2 /* ErrorPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPayload.swift; sourceTree = "<group>"; };
 		964E2E42249F39FD0027F738 /* DetectiveProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectiveProfile.swift; sourceTree = "<group>"; };
 		964E2E5124A11FCD0027F738 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		96DE6F3727A713D2001266DE /* CompilationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompilationDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				96346F0C248EAB0E00A815F2 /* ErrorPayload.swift */,
 				964E2E42249F39FD0027F738 /* DetectiveProfile.swift */,
 				964E2E5124A11FCD0027F738 /* Leaderboard.swift */,
+				96DE6F3727A713D2001266DE /* CompilationDetails.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DE6F3827A713D2001266DE /* CompilationDetails.swift in Sources */,
 				96054BFA2455D3E30083C217 /* DetectItAPI.swift in Sources */,
 				964E2E43249F39FD0027F738 /* DetectiveProfile.swift in Sources */,
 				96054C03245614360083C217 /* Feed.swift in Sources */,

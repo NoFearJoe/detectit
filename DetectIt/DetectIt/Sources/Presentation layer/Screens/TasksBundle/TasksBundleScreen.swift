@@ -127,7 +127,7 @@ extension TasksBundleScreen: TasksBundleScreenViewDelegate {
         }()
         
         let score = bundle.taskScores?.first(where: { $0.taskID == task.id })?.score ?? TaskScore.get(id: task.id, taskKind: task.kind, bundleID: bundle.info.id)
-        TaskScreenRoute(root: self).show(task: task, bundle: bundle.info, isTaskCompleted: score != nil, onClose: { _ in })
+        TaskScreenRoute(root: self).show(task: task, bundleID: bundle.info.id, isTaskCompleted: score != nil, onClose: { _ in })
         
         Analytics.log(
             "task_selected",

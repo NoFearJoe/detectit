@@ -21,7 +21,7 @@ final class ProfileTaskScreen: Screen {
     
     let topPanel = TaskScreenTopPanel()
     lazy var screenView = ProfileTaskScreenView(delegate: self)
-    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
+    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundleID)
     lazy var taskSharingViewController = TaskSharingViewController(task: task)
     
     let keyboardManager = KeyboardManager()
@@ -32,7 +32,7 @@ final class ProfileTaskScreen: Screen {
     // MARK: - State
     
     let task: ProfileTask
-    let bundle: TasksBundle.Info?
+    let bundleID: String?
     let isTaskCompleted: Bool
     let onClose: (_ isCompleted: Bool) -> Void
     
@@ -43,7 +43,7 @@ final class ProfileTaskScreen: Screen {
     
     var answers = Answers() {
         didSet {
-            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundle?.id)
+            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundleID)
             
             updateAnswerButtonState()
         }
@@ -59,12 +59,12 @@ final class ProfileTaskScreen: Screen {
     
     init(
         task: ProfileTask,
-        bundle: TasksBundle.Info?,
+        bundleID: String?,
         isTaskCompleted: Bool,
         onClose: @escaping (_ isCompleted: Bool) -> Void
     ) {
         self.task = task
-        self.bundle = bundle
+        self.bundleID = bundleID
         self.isTaskCompleted = isTaskCompleted
         self.onClose = onClose
         

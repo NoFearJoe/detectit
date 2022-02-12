@@ -37,7 +37,7 @@ extension QuestTaskScreen {
     }
     
     func loadAnswer(completion: @escaping (Bool) -> Void) {
-        if let answer = TaskAnswer.get(questTaskID: state.task.id, bundleID: state.bundle?.id) {
+        if let answer = TaskAnswer.get(questTaskID: state.task.id, bundleID: state.bundleID) {
             state.answer = answer
             
             return completion(true)
@@ -71,7 +71,7 @@ extension QuestTaskScreen {
                     return
                 }
                 
-                TaskAnswer.set(answer: answer, questTaskID: self.state.task.id, bundleID: self.state.bundle?.id)
+                TaskAnswer.set(answer: answer, questTaskID: self.state.task.id, bundleID: self.state.bundleID)
                 self.state.answer = answer
             case .failure:
                 isDataLoaded = false
@@ -84,8 +84,8 @@ extension QuestTaskScreen {
     }
     
     func saveScoreAndAnswer(score: Int, answer: TaskAnswer.QuestTaskAnswer, completion: @escaping (Bool) -> Void) {
-        TaskScore.set(value: score, id: state.task.id, taskKind: state.task.kind, bundleID: state.bundle?.id)
-        TaskAnswer.set(answer: answer, questTaskID: state.task.id, bundleID: state.bundle?.id)
+        TaskScore.set(value: score, id: state.task.id, taskKind: state.task.kind, bundleID: state.bundleID)
+        TaskAnswer.set(answer: answer, questTaskID: state.task.id, bundleID: state.bundleID)
         
         let dispatchGroup = DispatchGroup()
         
@@ -96,7 +96,7 @@ extension QuestTaskScreen {
             .setTaskScore(
                 taskID: state.task.id,
                 taskKind: state.task.kind.rawValue,
-                bundleID: state.bundle?.id,
+                bundleID: state.bundleID,
                 score: score
             )
         ) { result in

@@ -21,7 +21,7 @@ final class DecoderTaskScreen: Screen {
     
     let topPanel = TaskScreenTopPanel()
     let screenView = DecoderTaskScreenView()
-    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundle?.id)
+    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundleID)
     lazy var taskSharingViewController = TaskSharingViewController(task: task)
     
     let keyboardManager = KeyboardManager()
@@ -32,7 +32,7 @@ final class DecoderTaskScreen: Screen {
     // MARK: - State
     
     let task: DecoderTask
-    let bundle: TasksBundle.Info?
+    let bundleID: String?
     let isTaskCompleted: Bool
     let onClose: (_ isCompleted: Bool) -> Void
     
@@ -46,12 +46,12 @@ final class DecoderTaskScreen: Screen {
     
     init(
         task: DecoderTask,
-        bundle: TasksBundle.Info?,
+        bundleID: String?,
         isTaskCompleted: Bool,
         onClose: @escaping (_ isCompleted: Bool) -> Void
     ) {
         self.task = task
-        self.bundle = bundle
+        self.bundleID = bundleID
         self.isTaskCompleted = isTaskCompleted
         self.onClose = onClose
         
