@@ -25,6 +25,10 @@ extension BlitzTaskScreen {
             
             self.screenLoadingView.setVisible(false, animated: true)
             self.screenPlaceholderView.setVisible(!success, animated: false)
+            
+            if !success {
+                Analytics.logScreenError(screen: .blitzTask)
+            }
         }
     }
     

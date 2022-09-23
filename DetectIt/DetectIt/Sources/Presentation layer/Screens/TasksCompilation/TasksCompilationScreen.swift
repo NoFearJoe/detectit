@@ -209,26 +209,26 @@ private extension TasksCompilationScreen {
         ) { [weak self] result in
             guard let self = self else { return }
             
-            switch result {
-            case let .success(compilation):
-                self.screenLoadingView.setVisible(false, animated: true)
-                
-                self.compilationDetails = compilation
-                
-                self.tasksScoreCache.removeAll()
-                self.compilationDetails?.tasks.forEach {
-                    self.tasksScoreCache[$0.id] =
-                        $0.score ??
-                        TaskScore.get(
-                            id: $0.id,
-                            taskKind: TaskKind(rawValue: $0.kind.rawValue) ?? .cipher,
-                            bundleID: $0.bundle?.id
-                        )
-                }
-                
-                self.screenView.reloadData()
-            case .failure:
-                guard self.compilationDetails == nil || self.compilationDetails?.tasks.isEmpty == true else { return }
+//            switch result {
+//            case let .success(compilation):
+//                self.screenLoadingView.setVisible(false, animated: true)
+//
+//                self.compilationDetails = compilation
+//
+//                self.tasksScoreCache.removeAll()
+//                self.compilationDetails?.tasks.forEach {
+//                    self.tasksScoreCache[$0.id] =
+//                        $0.score ??
+//                        TaskScore.get(
+//                            id: $0.id,
+//                            taskKind: TaskKind(rawValue: $0.kind.rawValue) ?? .cipher,
+//                            bundleID: $0.bundle?.id
+//                        )
+//                }
+//
+//                self.screenView.reloadData()
+//            case .failure:
+//                guard self.compilationDetails == nil || self.compilationDetails?.tasks.isEmpty == true else { return }
                 
                 self.screenPlaceholderView.setVisible(true, animated: false)
                 self.screenLoadingView.setVisible(false, animated: true)
@@ -236,9 +236,12 @@ private extension TasksCompilationScreen {
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
                     onRetry: { [unowned self] in self.loadCompilation() },
-                    onClose: nil
+                    onClose: nil,
+                    onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
                 )
-            }
+                
+                Analytics.logScreenError(screen: .tasksCompilation)
+//            }
         }
     }
     

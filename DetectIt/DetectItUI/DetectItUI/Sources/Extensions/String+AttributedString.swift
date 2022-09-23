@@ -14,7 +14,7 @@ public extension String {
         NSAttributedString(string: self)
     }
     
-    func readableAttributedText(font: UIFont, color: UIColor = .white) -> NSAttributedString {
+    func readableAttributedText(font: UIFont, color: UIColor = .softWhite) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2
         paragraphStyle.paragraphSpacing = 4

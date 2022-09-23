@@ -219,8 +219,11 @@ private extension CompletedTasksScreen {
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
                     onRetry: { [unowned self] in self.loadFeed() },
-                    onClose: nil
+                    onClose: nil,
+                    onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
                 )
+                
+                Analytics.logScreenError(screen: .completedTasks)
             }
         }
     }

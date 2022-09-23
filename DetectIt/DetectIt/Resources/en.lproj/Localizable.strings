@@ -13,6 +13,7 @@
 "unknown_error_title" = "Oops";
 "unknown_error_message" = "Something went wrong";
 "retry_button_title" = "Retry";
+"report_button_title" = "Report a problem";
 
 // HUD messages
 

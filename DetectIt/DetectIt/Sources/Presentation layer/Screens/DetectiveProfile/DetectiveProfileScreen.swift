@@ -295,15 +295,7 @@ final class DetectiveProfileScreen: Screen {
     }
     
     private func showReportProblem() {
-        guard MFMailComposeViewController.canSendMail() else { return }
-        
-        let viewController = MFMailComposeViewController()
-        viewController.setPreferredSendingEmailAddress("mesterra.co@gmail.com")
-        viewController.setToRecipients(["mesterra.co@gmail.com"])
-        viewController.setSubject("report_problem_subject".localized)
-        viewController.mailComposeDelegate = self
-        
-        present(viewController, animated: true, completion: nil)
+        ReportProblemRoute(root: self).show()
     }
     
     private func navigateToAuth() {
@@ -313,14 +305,6 @@ final class DetectiveProfileScreen: Screen {
         ) as? SceneDelegate
         
         sceneDelegate?.logout()
-    }
-    
-}
-
-extension DetectiveProfileScreen: MFMailComposeViewControllerDelegate {
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
     }
     
 }

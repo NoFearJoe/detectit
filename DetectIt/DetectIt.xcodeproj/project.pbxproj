@@ -64,6 +64,7 @@
 		9675D0D025CE89AB00593CB9 /* MainScreen+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D0CF25CE89AB00593CB9 /* MainScreen+Banner.swift */; };
 		9675D0D525D16C1600593CB9 /* PushNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D0D425D16C1600593CB9 /* PushNotificationsService.swift */; };
 		9675D0D925D17BD100593CB9 /* TasksScoreSynchronizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D0D825D17BD100593CB9 /* TasksScoreSynchronizationService.swift */; };
+		9686068A27BD819900F47179 /* ReportProblemRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9686068927BD819900F47179 /* ReportProblemRoute.swift */; };
 		969C825A25B4CA52008D9E72 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969C825925B4CA52008D9E72 /* FullVersionManager.swift */; };
 		96A5C648274A2AE00056DC09 /* MainScreenFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5C63F274A2ADF0056DC09 /* MainScreenFiltersView.swift */; };
 		96A5C649274A2AE00056DC09 /* MainScreenBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5C640274A2ADF0056DC09 /* MainScreenBannerCell.swift */; };
@@ -112,6 +113,7 @@
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
 		96F0547C2444D2EC000742E4 /* OnboardingLastPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0547B2444D2EC000742E4 /* OnboardingLastPage.swift */; };
+		96FD78C227B8F4F4004FBEA5 /* YandexMobileMetrica in Frameworks */ = {isa = PBXBuildFile; productRef = 96FD78C127B8F4F4004FBEA5 /* YandexMobileMetrica */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +208,7 @@
 		9675D0CF25CE89AB00593CB9 /* MainScreen+Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+Banner.swift"; sourceTree = "<group>"; };
 		9675D0D425D16C1600593CB9 /* PushNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsService.swift; sourceTree = "<group>"; };
 		9675D0D825D17BD100593CB9 /* TasksScoreSynchronizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksScoreSynchronizationService.swift; sourceTree = "<group>"; };
+		9686068927BD819900F47179 /* ReportProblemRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportProblemRoute.swift; sourceTree = "<group>"; };
 		969C825925B4CA52008D9E72 /* FullVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullVersionManager.swift; sourceTree = "<group>"; };
 		96A5C63F274A2ADF0056DC09 /* MainScreenFiltersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenFiltersView.swift; sourceTree = "<group>"; };
 		96A5C640274A2ADF0056DC09 /* MainScreenBannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenBannerCell.swift; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 				965F2553267A6D5C00106F13 /* Amplitude in Frameworks */,
 				96054BF32455D2920083C217 /* DetectItAPI.framework in Frameworks */,
 				965F2559267A6EC900106F13 /* SwiftyStoreKit in Frameworks */,
+				96FD78C227B8F4F4004FBEA5 /* YandexMobileMetrica in Frameworks */,
 				96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */,
 				961B964B242600CF003EC992 /* DetectItCore.framework in Frameworks */,
 			);
@@ -300,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				96054C102458789A0083C217 /* TaskScreenRoute.swift */,
+				9686068927BD819900F47179 /* ReportProblemRoute.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -741,6 +746,7 @@
 				965F2552267A6D5C00106F13 /* Amplitude */,
 				965F2555267A6E8C00106F13 /* FirebaseMessaging */,
 				965F2558267A6EC900106F13 /* SwiftyStoreKit */,
+				96FD78C127B8F4F4004FBEA5 /* YandexMobileMetrica */,
 			);
 			productName = DetectIt;
 			productReference = 961B95E02425EE89003EC992 /* Detect.app */;
@@ -820,6 +826,7 @@
 				965F2551267A6D5C00106F13 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 				965F2554267A6E8C00106F13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				96FD78C027B8F4F4004FBEA5 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */,
 			);
 			productRefGroup = 961B95E12425EE89003EC992 /* Products */;
 			projectDirPath = "";
@@ -912,6 +919,7 @@
 				96A5C6DD274A34DB0056DC09 /* BlitzTaskScreenView.swift in Sources */,
 				961DE279247D380E00008AAB /* CommandLineArguments.swift in Sources */,
 				965AC7C92438B945003A3DC7 /* TasksBundleScreen+Section.swift in Sources */,
+				9686068A27BD819900F47179 /* ReportProblemRoute.swift in Sources */,
 				965AC7AC24387774003A3DC7 /* MainScreen.swift in Sources */,
 				969C825A25B4CA52008D9E72 /* FullVersionManager.swift in Sources */,
 				96A5C6C7274A2C9A0056DC09 /* ProfileTaskAnyAnswerCell.swift in Sources */,
@@ -1136,7 +1144,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DetectIt/Detect.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = "DetectIt/Support files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1144,7 +1152,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
 				SUPPORTS_MACCATALYST = YES;
@@ -1160,7 +1168,7 @@
 				CODE_SIGN_ENTITLEMENTS = DetectIt/Detect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = "DetectIt/Support files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1168,7 +1176,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1331,6 +1339,14 @@
 				version = 0.16.3;
 			};
 		};
+		96FD78C027B8F4F4004FBEA5 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yandexmobile/metrica-sdk-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1348,6 +1364,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
+		};
+		96FD78C127B8F4F4004FBEA5 /* YandexMobileMetrica */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96FD78C027B8F4F4004FBEA5 /* XCRemoteSwiftPackageReference "metrica-sdk-ios" */;
+			productName = YandexMobileMetrica;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

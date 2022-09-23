@@ -86,7 +86,7 @@ public final class QuestionAndAnswerView: UIView {
         addSubview(questionLabel)
         
         questionLabel.font = .heading4
-        questionLabel.textColor = .white
+        questionLabel.textColor = .softWhite
         questionLabel.numberOfLines = 0
         
         questionLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -11,6 +11,7 @@ import Amplitude
 import Firebase
 import UserNotifications
 import DetectItCore
+import YandexMobileMetrica
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
+        
+        if let configuration = YMMYandexMetricaConfiguration(apiKey: "d02b9a31-52c7-48cb-b8d6-79ef1d2a0942") {
+            YMMYandexMetrica.activate(with: configuration)
+        }
         
         application.applicationIconBadgeNumber = 0
                 

@@ -8,11 +8,10 @@
 
 // Errors
 
-"network_error_title" = "Проблема с соединением";
-"network_error_message" = "Проверьте ваше интернет-соединение и попробуйте снова";
-"unknown_error_title" = "Ой";
-"unknown_error_message" = "Что-то пошло не по плану";
+"network_error_title" = "Ошибка";
+"network_error_message" = "Кажется, что-то пошло не по плану и мы не смогли загрузить данные. Если проблема не в вашем интернет-соединении, сообщите нам о проблеме.";
 "retry_button_title" = "Попробовать снова";
+"report_button_title" = "Сообщить о проблеме";
 
 // HUD messages
 

@@ -105,21 +105,26 @@ final class LeaderboardScreen: Screen {
             target: .leaderboard,
             cacheKey: .init("leaderboard")
         ) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case let .success(leaderboard):
-                self?.leaderboard = leaderboard
-                self?.leaderboardView.reloadData()
+                self.leaderboard = leaderboard
+                self.leaderboardView.reloadData()
             case .failure:
-                self?.screenPlaceholderView.configure(
+                self.screenPlaceholderView.configure(
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
-                    onRetry: { [unowned self] in self?.loadLeaderboard() },
-                    onClose: { [unowned self] in self?.dismiss(animated: true, completion: nil) }
+                    onRetry: { [unowned self] in self.loadLeaderboard() },
+                    onClose: { [unowned self] in self.dismiss(animated: true, completion: nil) },
+                    onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
                 )
-                self?.screenPlaceholderView.setVisible(true, animated: false)
+                self.screenPlaceholderView.setVisible(true, animated: false)
+                
+                Analytics.logScreenError(screen: .leaderboard)
             }
             
-            self?.screenLoadingView.setVisible(false, animated: true)
+            self.screenLoadingView.setVisible(false, animated: true)
         }
     }
     

@@ -175,8 +175,11 @@ private extension TasksBundleScreen {
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
                     onRetry: { [unowned self] in self.loadTasksBundle() },
-                    onClose: { [unowned self] in self.dismiss(animated: true, completion: nil) }
+                    onClose: { [unowned self] in self.dismiss(animated: true, completion: nil) },
+                    onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
                 )
+                
+                Analytics.logScreenError(screen: .tasksBundle)
             }
         }
     }

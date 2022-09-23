@@ -28,6 +28,12 @@ struct Analytics {
         #endif
     }
     
+    static func logScreenError(screen: Screen) {
+        #if !DEBUG
+        log("error_showed", parameters: ["screen": screen.rawValue])
+        #endif
+    }
+    
     static func logRevenue(price: Double, productID: String) {
         #if !DEBUG
         let revenue = AMPRevenue()

@@ -16,21 +16,27 @@ extension DecoderTaskScreen {
         screenPlaceholderView.setVisible(false, animated: false)
         
         loadData { [weak self] success in
-            guard success, self?.checkIfContentLoaded() == true else {
-                self?.screenPlaceholderView.setVisible(true, animated: false)
-                self?.screenLoadingView.setVisible(false, animated: true)
-                self?.screenPlaceholderView.configure(
+            guard let self = self else { return }
+            
+            guard success, self.checkIfContentLoaded() == true else {
+                self.screenPlaceholderView.setVisible(true, animated: false)
+                self.screenLoadingView.setVisible(false, animated: true)
+                self.screenPlaceholderView.configure(
                     title: "network_error_title".localized,
                     message: "network_error_message".localized,
-                    onRetry: { [unowned self] in self?.loadTask() },
-                    onClose: { [unowned self] in self?.dismiss(animated: true, completion: nil) }
+                    onRetry: { [unowned self] in self.loadTask() },
+                    onClose: { [unowned self] in self.dismiss(animated: true, completion: nil) },
+                    onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
                 )
+                
+                Analytics.logScreenError(screen: .cipherTask)
+                
                 return
             }
             
-            self?.screenLoadingView.setVisible(false, animated: true)
-            self?.displayContent()
-            self?.updateContentState(animated: false)
+            self.screenLoadingView.setVisible(false, animated: true)
+            self.displayContent()
+            self.updateContentState(animated: false)
         }
     }
     

@@ -71,7 +71,7 @@ public final class BlitzTaskScreenView: NSObject {
         }
         
         scoreLabel.font = .score1
-        scoreLabel.textColor = .white
+        scoreLabel.textColor = .softWhite
         scoreLabel.textAlignment = .center
                 
         // Crime description

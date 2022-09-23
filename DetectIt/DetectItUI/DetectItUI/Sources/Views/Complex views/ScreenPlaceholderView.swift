@@ -11,6 +11,7 @@ import UIKit
 public final class ScreenPlaceholderView: UIView {
     
     var onRetry: (() -> Void)?
+    var onReport: (() -> Void)?
     var onClose: (() -> Void)?
     
     private let closeButton = SolidButton.closeButton()
@@ -18,6 +19,7 @@ public final class ScreenPlaceholderView: UIView {
     private let titleLabel = UILabel()
     private let messageLabel = UILabel()
     private let retryButton = UIButton()
+    private let reportButton = UIButton()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,17 +30,22 @@ public final class ScreenPlaceholderView: UIView {
     
     required init?(coder: NSCoder) { fatalError() }
     
-    public func configure(title: String,
-                          message: String?,
-                          onRetry: (() -> Void)?,
-                          onClose: (() -> Void)?) {
+    public func configure(
+        title: String,
+        message: String?,
+        onRetry: (() -> Void)?,
+        onClose: (() -> Void)?,
+        onReport: (() -> Void)?
+    ) {
         self.onRetry = onRetry
         self.onClose = onClose
+        self.onReport = onReport
         
         titleLabel.text = title
         messageLabel.text = message
         messageLabel.isHidden = message == nil
         retryButton.isHidden = onRetry == nil
+        reportButton.isHidden = onReport == nil
         
         closeButton.isHidden = onClose == nil
     }
@@ -95,9 +102,25 @@ public final class ScreenPlaceholderView: UIView {
         
         retryButton.titleLabel?.font = .text2
         retryButton.setTitleColor(.yellow, for: .normal)
+        retryButton.setTitleColor(UIColor.yellow.withAlphaComponent(0.75), for: .highlighted)
         retryButton.setTitle("retry_button_title".localized, for: .normal)
         retryButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         retryButton.addTarget(self, action: #selector(didTapRetryButton), for: .touchUpInside)
+        
+        addSubview(reportButton)
+        
+        reportButton.titleLabel?.font = .text3
+        reportButton.setTitleColor(.lightGray, for: .normal)
+        reportButton.setTitleColor(UIColor.lightGray.withAlphaComponent(0.75), for: .highlighted)
+        reportButton.setTitle("report_button_title".localized, for: .normal)
+        reportButton.contentEdgeInsets = UIEdgeInsets(top: 28, left: 16, bottom: 8, right: 16)
+        reportButton.translatesAutoresizingMaskIntoConstraints = false
+        reportButton.addTarget(self, action: #selector(didTapReportButton), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            reportButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            reportButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12)
+        ])
         
         addSubview(closeButton)
         
@@ -111,6 +134,10 @@ public final class ScreenPlaceholderView: UIView {
     
     @objc private func didTapRetryButton() {
         onRetry?()
+    }
+    
+    @objc private func didTapReportButton() {
+        onReport?()
     }
     
     @objc private func didTapCloseButton() {

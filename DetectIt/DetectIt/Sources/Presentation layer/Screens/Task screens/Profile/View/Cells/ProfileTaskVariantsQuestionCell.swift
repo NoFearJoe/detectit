@@ -72,7 +72,7 @@ public final class ProfileTaskVariantsQuestionCell: UIView {
         addSubview(titleLabel)
         
         titleLabel.font = .heading4
-        titleLabel.textColor = .white
+        titleLabel.textColor = .softWhite
         titleLabel.numberOfLines = 0
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

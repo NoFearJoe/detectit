@@ -37,7 +37,7 @@ final class TaskNotesScreen: Screen {
         
         view.addSubview(titleLabel)
         titleLabel.font = .heading1
-        titleLabel.textColor = .white
+        titleLabel.textColor = .softWhite
         titleLabel.numberOfLines = 0
         titleLabel.text = "task_notes_screen_title".localized
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +76,7 @@ final class TaskNotesScreen: Screen {
     override func prepare() {
         if let cacehdNotes = getCachedNotes(), !cacehdNotes.isEmpty {
             textView.text = cacehdNotes
-            textView.textColor = .white
+            textView.textColor = .softWhite
         } else {
             textView.text = "task_notes_screen_notes_placeholder".localized
             textView.textColor = .lightGray
@@ -116,7 +116,7 @@ extension TaskNotesScreen: UITextViewDelegate {
         guard textView.textColor == .lightGray else { return }
         
         textView.text = nil
-        textView.textColor = .white
+        textView.textColor = .softWhite
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

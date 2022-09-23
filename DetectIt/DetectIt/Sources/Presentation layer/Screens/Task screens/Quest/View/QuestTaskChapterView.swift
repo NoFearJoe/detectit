@@ -77,7 +77,7 @@ public final class QuestTaskChapterView: UIView {
         addSubview(actionsView)
         
         textLabel.font = .text3
-        textLabel.textColor = .white
+        textLabel.textColor = .softWhite
         textLabel.numberOfLines = 0
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false

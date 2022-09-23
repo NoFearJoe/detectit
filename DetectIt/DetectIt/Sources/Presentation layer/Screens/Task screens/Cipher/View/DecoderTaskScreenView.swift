@@ -33,7 +33,7 @@ public final class DecoderTaskScreenView {
     
     public func setupViews() {
         titleLabel.font = .heading1
-        titleLabel.textColor = .white
+        titleLabel.textColor = .softWhite
         titleLabel.numberOfLines = 0
         
         encodedPictureContainer.addSubview(encodedPictureSizingContainer)
@@ -79,7 +79,7 @@ public final class DecoderTaskScreenView {
         }
         
         scoreLabel.font = .score1
-        scoreLabel.textColor = .white
+        scoreLabel.textColor = .softWhite
         scoreLabel.textAlignment = .center
     }
     
@@ -108,7 +108,7 @@ public final class DecoderTaskRightAnswerView: UIView {
         addSubview(titleLabel)
         
         titleLabel.font = .text3
-        titleLabel.textColor = .white
+        titleLabel.textColor = .softWhite
         titleLabel.text = "decoder_task_screen_right_answer_title".localized
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

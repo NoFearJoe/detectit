@@ -58,7 +58,7 @@ public final class ProfileTaskAnswerCell: AutosizingCollectionViewCell {
         contentView.addSubview(answerLabel)
         
         answerLabel.font = .text2
-        answerLabel.textColor = .white
+        answerLabel.textColor = .softWhite
         answerLabel.numberOfLines = 0
         
         answerLabel.translatesAutoresizingMaskIntoConstraints = false

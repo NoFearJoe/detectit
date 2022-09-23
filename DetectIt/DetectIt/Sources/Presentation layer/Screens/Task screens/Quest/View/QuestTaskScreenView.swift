@@ -89,7 +89,7 @@ public final class QuestTaskScreenView: NSObject {
         // Score
         
         scoreLabel.font = .score1
-        scoreLabel.textColor = .white
+        scoreLabel.textColor = .softWhite
         scoreLabel.textAlignment = .center
         
         // Crime description
@@ -99,7 +99,7 @@ public final class QuestTaskScreenView: NSObject {
         endingTitleView.heightAnchor.constraint(equalToConstant: 52).isActive = true
         
         endingTextLabel.font = .text3
-        endingTextLabel.textColor = .white
+        endingTextLabel.textColor = .softWhite
         endingTextLabel.numberOfLines = 0
     }
     

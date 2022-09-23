@@ -122,7 +122,7 @@ public final class AnswerField: UIView {
         switch kind {
         case .textView:
             textView.maxNumberOfLines = 10
-            textView.textView.textColor = .white
+            textView.textView.textColor = .softWhite
             textView.textView.tintColor = .yellow
             textView.textView.font = .text2
             textView.textView.autocorrectionType = .no
@@ -140,7 +140,7 @@ public final class AnswerField: UIView {
                 object: textView.textView
             )
         case .textField:
-            textField.textColor = .white
+            textField.textColor = .softWhite
             textField.tintColor = .yellow
             textField.font = .text2
             textField.autocorrectionType = .no

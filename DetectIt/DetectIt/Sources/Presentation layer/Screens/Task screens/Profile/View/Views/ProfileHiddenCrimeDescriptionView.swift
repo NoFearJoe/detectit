@@ -35,7 +35,7 @@ public final class ProfileHiddenCrimeDescriptionView: UIView {
         addSubview(messageLabel)
         messageLabel.text = "profile_task_screen_hidden_description_title".localized
         messageLabel.font = .text3
-        messageLabel.textColor = .white
+        messageLabel.textColor = .softWhite
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -41,7 +41,7 @@ public final class ProfileTaskExactAnswerQuestionCell: UIView {
     private func setupViews() {
         addSubview(questionView)
         
-        questionView.questionLabel.textColor = .white
+        questionView.questionLabel.textColor = .softWhite
         
         questionView.pin(to: self)
     }

@@ -108,7 +108,8 @@ final class ProfileTaskScreen: Screen {
             },
             onClose: { [unowned self] in
                 self.dismiss(animated: true, completion: nil)
-            }
+            },
+            onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
         )
         
         loadTask()

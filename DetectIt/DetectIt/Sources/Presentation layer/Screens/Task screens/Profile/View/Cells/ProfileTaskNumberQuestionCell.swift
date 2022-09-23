@@ -44,7 +44,7 @@ public final class ProfileTaskNumberQuestionCell: UIView {
         addSubview(questionView)
         
         questionView.keyboardType = .numberPad
-        questionView.questionLabel.textColor = .white
+        questionView.questionLabel.textColor = .softWhite
         
         questionView.pin(to: self)
     }

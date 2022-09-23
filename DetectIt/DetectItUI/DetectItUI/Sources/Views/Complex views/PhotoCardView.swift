@@ -66,7 +66,7 @@ public final class PhotoCardView: UIView {
         
         layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         
-        backgroundColor = .photo
+        backgroundColor = .black
     }
     
     private func setupViews() {
@@ -79,7 +79,7 @@ public final class PhotoCardView: UIView {
         
         titleLabel.numberOfLines = 0
         titleLabel.font = .text3
-        titleLabel.textColor = .mainText
+        titleLabel.textColor = .lightGray
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

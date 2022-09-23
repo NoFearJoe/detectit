@@ -65,7 +65,7 @@ public final class ProfilePrepositionCell: AutosizingCollectionViewCell {
         ])
         
         titleLabel.font = .heading1
-        titleLabel.textColor = .white
+        titleLabel.textColor = .softWhite
         titleLabel.numberOfLines = 0
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         
