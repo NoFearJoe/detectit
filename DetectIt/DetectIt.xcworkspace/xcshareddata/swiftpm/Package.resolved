@@ -1,268 +1,77 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "abseil",
-        "repositoryURL": "https://github.com/firebase/abseil-cpp-SwiftPM.git",
-        "state": {
-          "branch": null,
-          "revision": "fffc3c2729be5747390ad02d5100291a0d9ad26a",
-          "version": "0.20200225.4"
-        }
-      },
-      {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
-        "state": {
-          "branch": null,
-          "revision": "fca036f7aeca07124067cb6e0c12b0ad6359e3d4",
-          "version": "5.1.0"
-        }
-      },
-      {
-        "package": "Amplitude",
-        "repositoryURL": "https://github.com/amplitude/Amplitude-iOS",
-        "state": {
-          "branch": null,
-          "revision": "68eea8100a84d26c3d81997851965ec3efbe61fc",
-          "version": "8.3.0"
-        }
-      },
-      {
-        "package": "BoringSSL-GRPC",
-        "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
-        "state": {
-          "branch": null,
-          "revision": "734a8247442fde37df4364c21f6a0085b6a36728",
-          "version": "0.7.2"
-        }
-      },
-      {
-        "package": "Firebase",
-        "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
-        "state": {
-          "branch": null,
-          "revision": "91cf599d0b6bcd4b2e92eecc6f8e57754ab16480",
-          "version": "8.1.1"
-        }
-      },
-      {
-        "package": "GoogleAppMeasurement",
-        "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
-        "state": {
-          "branch": null,
-          "revision": "8f2945122bef809c963a619a598c3ac390c2163a",
-          "version": "8.1.1"
-        }
-      },
-      {
-        "package": "GoogleDataTransport",
-        "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
-        "state": {
-          "branch": null,
-          "revision": "369716b8d7518a530ce3c3a251436d72546debd8",
-          "version": "8.4.0"
-        }
-      },
-      {
-        "package": "GoogleUtilities",
-        "repositoryURL": "https://github.com/google/GoogleUtilities.git",
-        "state": {
-          "branch": null,
-          "revision": "5b9fc55628b94740b9666a558570f3a89a626c3d",
-          "version": "7.4.2"
-        }
-      },
-      {
-        "package": "gRPC",
-        "repositoryURL": "https://github.com/firebase/grpc-SwiftPM.git",
-        "state": {
-          "branch": null,
-          "revision": "fb405dd2c7901485f7e158b24e3a0a47e4efd8b5",
-          "version": "1.28.4"
-        }
-      },
-      {
-        "package": "GTMSessionFetcher",
-        "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
-        "state": {
-          "branch": null,
-          "revision": "91ed3d188eb95705fef3c249453b81f32dc557d1",
-          "version": "1.5.0"
-        }
-      },
-      {
-        "package": "JGProgressHUD",
-        "repositoryURL": "https://github.com/JonasGessner/JGProgressHUD",
-        "state": {
-          "branch": null,
-          "revision": "78d7cd35f1d90ff74fd82e486f2cbe4b24be8cf9",
-          "version": "2.2.0"
-        }
-      },
-      {
-        "package": "leveldb",
-        "repositoryURL": "https://github.com/firebase/leveldb.git",
-        "state": {
-          "branch": null,
-          "revision": "0706abcc6b0bd9cedfbb015ba840e4a780b5159b",
-          "version": "1.22.2"
-        }
-      },
-      {
-        "package": "Logger",
-        "repositoryURL": "https://github.com/shibapm/Logger",
-        "state": {
-          "branch": null,
-          "revision": "53c3ecca5abe8cf46697e33901ee774236d94cce",
-          "version": "0.2.3"
-        }
-      },
-      {
-        "package": "YandexMobileMetrica",
-        "repositoryURL": "https://github.com/yandexmobile/metrica-sdk-ios",
-        "state": {
-          "branch": null,
-          "revision": "8be51a74e2f4449e2f3d4e69824c5feba2787584",
-          "version": "4.0.0"
-        }
-      },
-      {
-        "package": "Moya",
-        "repositoryURL": "https://github.com/Moya/Moya.git",
-        "state": {
-          "branch": null,
-          "revision": "d27767c3624cc64a45bb371b267b89c92d70c670",
-          "version": "14.0.1"
-        }
-      },
-      {
-        "package": "nanopb",
-        "repositoryURL": "https://github.com/firebase/nanopb.git",
-        "state": {
-          "branch": null,
-          "revision": "7ee9ef9f627d85cbe1b8c4f49a3ed26eed216c77",
-          "version": "2.30908.0"
-        }
-      },
-      {
-        "package": "NextGrowingTextView",
-        "repositoryURL": "https://github.com/muukii/NextGrowingTextView",
-        "state": {
-          "branch": null,
-          "revision": "c2fe58421d171dde28c1e131cb92966d63e54020",
-          "version": "1.6.1"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble.git",
-        "state": {
-          "branch": null,
-          "revision": "7a46a5fc86cb917f69e3daf79fcb045283d8f008",
-          "version": "8.1.2"
-        }
-      },
-      {
-        "package": "OHHTTPStubs",
-        "repositoryURL": "https://github.com/AliSoftware/OHHTTPStubs.git",
-        "state": {
-          "branch": null,
-          "revision": "12f19662426d0434d6c330c6974d53e2eb10ecd9",
-          "version": "9.1.0"
-        }
-      },
-      {
-        "package": "PackageConfig",
-        "repositoryURL": "https://github.com/shibapm/PackageConfig.git",
-        "state": {
-          "branch": null,
-          "revision": "bf90dc69fa0792894b08a0b74cf34029694ae486",
-          "version": "0.13.0"
-        }
-      },
-      {
-        "package": "Promises",
-        "repositoryURL": "https://github.com/google/promises.git",
-        "state": {
-          "branch": null,
-          "revision": "afa9a1ace74e116848d4f743599ab83e584ff8cb",
-          "version": "1.2.12"
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick.git",
-        "state": {
-          "branch": null,
-          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
-          "version": "2.2.1"
-        }
-      },
-      {
-        "package": "ReactiveSwift",
-        "repositoryURL": "https://github.com/Moya/ReactiveSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "f195d82bb30e412e70446e2b4a77e1b514099e88",
-          "version": "6.1.0"
-        }
-      },
-      {
-        "package": "Rocket",
-        "repositoryURL": "https://github.com/shibapm/Rocket",
-        "state": {
-          "branch": null,
-          "revision": "51a77ce5fa66c42715c14dcc542c01cd7a60fb27",
-          "version": "1.2.0"
-        }
-      },
-      {
-        "package": "RxSwift",
-        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "002d325b0bdee94e7882e1114af5ff4fe1e96afa",
-          "version": "5.1.1"
-        }
-      },
-      {
-        "package": "SwiftProtobuf",
-        "repositoryURL": "https://github.com/apple/swift-protobuf.git",
-        "state": {
-          "branch": null,
-          "revision": "1f62db409f2c9b0223a3f68567b4a01333aae778",
-          "version": "1.17.0"
-        }
-      },
-      {
-        "package": "SwiftShell",
-        "repositoryURL": "https://github.com/kareman/SwiftShell",
-        "state": {
-          "branch": null,
-          "revision": "a6014fe94c3dbff0ad500e8da4f251a5d336530b",
-          "version": "5.1.0-beta.1"
-        }
-      },
-      {
-        "package": "SwiftyStoreKit",
-        "repositoryURL": "https://github.com/bizz84/SwiftyStoreKit.git",
-        "state": {
-          "branch": null,
-          "revision": "3b54c8eac2840b0cdd576634e83d9ebeb70f847c",
-          "version": "0.16.3"
-        }
-      },
-      {
-        "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams",
-        "state": {
-          "branch": null,
-          "revision": "9ff1cc9327586db4e0c8f46f064b6a82ec1566fa",
-          "version": "4.0.6"
-        }
+  "pins" : [
+    {
+      "identity" : "amplitude-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/Amplitude-iOS",
+      "state" : {
+        "revision" : "68eea8100a84d26c3d81997851965ec3efbe61fc",
+        "version" : "8.3.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "divkit-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divkit/divkit-ios",
+      "state" : {
+        "revision" : "022da5abc5f30b02695c08084036b0a5dd060334",
+        "version" : "24.3.0"
+      }
+    },
+    {
+      "identity" : "jgprogresshud",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JonasGessner/JGProgressHUD",
+      "state" : {
+        "revision" : "78d7cd35f1d90ff74fd82e486f2cbe4b24be8cf9",
+        "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "jgprogresshud-swiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JonasGessner/JGProgressHUD-SwiftUI.git",
+      "state" : {
+        "revision" : "a173f018132a48e11b5e0bbca9a3dac30ce3f0ae",
+        "version" : "0.1.1"
+      }
+    },
+    {
+      "identity" : "metrica-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yandexmobile/metrica-sdk-ios",
+      "state" : {
+        "revision" : "13d8b11181a33938ef42759d49466a621df5e7db",
+        "version" : "4.5.2"
+      }
+    },
+    {
+      "identity" : "nextgrowingtextview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/muukii/NextGrowingTextView",
+      "state" : {
+        "revision" : "c2fe58421d171dde28c1e131cb92966d63e54020",
+        "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "swiftystorekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bizz84/SwiftyStoreKit.git",
+      "state" : {
+        "revision" : "3b54c8eac2840b0cdd576634e83d9ebeb70f847c",
+        "version" : "0.16.3"
+      }
+    },
+    {
+      "identity" : "yandex-ads-sdk-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yandexmobile/yandex-ads-sdk-swift",
+      "state" : {
+        "revision" : "d1e35d7b197da9cdc95a0dfc1328dd7f14899924",
+        "version" : "5.8.0"
+      }
+    }
+  ],
+  "version" : 2
 }

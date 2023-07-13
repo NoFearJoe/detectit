@@ -18,10 +18,10 @@ public extension ProfileTask {
         public let title: String
         
         /// Название изображения.
-        public let pictureName: String?
+        public var pictureName: String?
         
         /// Название аудиофайла.
-        public let audioFileName: String?
+        public var audioFileName: String?
         
     }
     

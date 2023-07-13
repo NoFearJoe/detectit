@@ -41,9 +41,7 @@ extension BlitzTaskScreen {
         }
         
         if let answer = answer.answer {
-            saveScoreAndAnswer(score ?? 0, answer: answer) { success in
-                print(success)
-            }
+            saveScoreAndAnswer(score ?? 0, answer: answer)
         }
     }
     
@@ -62,7 +60,6 @@ extension BlitzTaskScreen {
         if !isSolved {
             contentContainer.setChildHidden(screenView.rightAnswerView, hidden: true, animated: animated, animationDuration: 2)
         }
-        contentContainer.setChildHidden(rateTaskViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(taskSharingViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }

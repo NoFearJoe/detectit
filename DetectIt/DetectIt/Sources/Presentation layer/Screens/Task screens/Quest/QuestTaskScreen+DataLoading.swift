@@ -1,11 +1,3 @@
-//
-//  QuestTaskScreen+DataLoading.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 19.07.2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
 import UIKit
 import DetectItCore
 
@@ -35,105 +27,17 @@ extension QuestTaskScreen {
         task: QuestTask,
         completion: @escaping (Bool) -> Void
     ) {
-        loadAnswer { success in
-            completion(success)
-        }
+        loadAnswer()
+        completion(true)
     }
     
-    func loadAnswer(completion: @escaping (Bool) -> Void) {
-        if let answer = TaskAnswer.get(questTaskID: state.task.id, bundleID: state.bundleID) {
-            state.answer = answer
-            
-            return completion(true)
-        }
-        
-        guard state.isTaskCompleted else {
-            return completion(true)
-        }
-        
-        let dispatchGroup = DispatchGroup()
-        
-        var isDataLoaded = true
-        
-        dispatchGroup.enter()
-        api.request(
-            .questAnswer(taskID: state.task.id)
-        ) { [weak self] result in
-            defer { dispatchGroup.leave() }
-            
-            guard let self = self else { return }
-            
-            switch result {
-            case let .success(response):
-                guard
-                    let json = try? response.mapJSON() as? [String: Any],
-                    let answerJSON = json["answer"],
-                    let data = try? JSONSerialization.data(withJSONObject: answerJSON, options: .fragmentsAllowed),
-                    let answer = try? JSONDecoder().decode(TaskAnswer.QuestTaskAnswer.self, from: data)
-                else {
-                    isDataLoaded = response.statusCode == 404 ? isDataLoaded : false
-                    return
-                }
-                
-                TaskAnswer.set(answer: answer, questTaskID: self.state.task.id, bundleID: self.state.bundleID)
-                self.state.answer = answer
-            case .failure:
-                isDataLoaded = false
-            }
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            completion(isDataLoaded)
-        }
+    func loadAnswer() {
+        state.answer = TaskAnswer.get(questTaskID: state.task.id)
     }
     
-    func saveScoreAndAnswer(score: Int, answer: TaskAnswer.QuestTaskAnswer, completion: @escaping (Bool) -> Void) {
-        TaskScore.set(value: score, id: state.task.id, taskKind: state.task.kind, bundleID: state.bundleID)
-        TaskAnswer.set(answer: answer, questTaskID: state.task.id, bundleID: state.bundleID)
-        
-        let dispatchGroup = DispatchGroup()
-        
-        var isDataSaved = true
-        
-        dispatchGroup.enter()
-        api.request(
-            .setTaskScore(
-                taskID: state.task.id,
-                taskKind: state.task.kind.rawValue,
-                bundleID: state.bundleID,
-                score: score
-            )
-        ) { result in
-            switch result {
-            case .success:
-                break
-            case .failure:
-                isDataSaved = false
-            }
-            dispatchGroup.leave()
-        }
-        
-        if let answersJSON = try? JSONSerialization.jsonObject(with: try! JSONEncoder().encode(answer), options: .allowFragments) as? [String: Any] {
-            dispatchGroup.enter()
-            api.request(
-                .setQuestAnswer(
-                    taskID: state.task.id,
-                    answer: answersJSON
-                )
-            ) { result in
-                switch result {
-                case .success:
-                    break
-                case .failure:
-                    isDataSaved = false
-                }
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            completion(isDataSaved)
-        }
+    func saveScoreAndAnswer(score: Int, answer: TaskAnswer.QuestTaskAnswer) {
+        TaskScore.set(value: score, id: state.task.id, taskKind: state.task.kind)
+        TaskAnswer.set(answer: answer, questTaskID: state.task.id)
     }
     
 }

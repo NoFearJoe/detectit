@@ -27,8 +27,6 @@ extension QuestTaskScreen {
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.endingTextLabel)
         contentContainer.appendSpacing(28)
-        contentContainer.appendChild(rateTaskViewController)
-        contentContainer.appendSpacing(28)
         contentContainer.appendChild(taskSharingViewController)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         
@@ -45,8 +43,9 @@ extension QuestTaskScreen {
         view.addSubview(topPanel)
         
         topPanel.onClose = { [unowned self] in
-            self.state.onClose(self.state.isTaskCompleted || self.state.isSolved)
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                self.state.onClose(self.state.isTaskCompleted || self.state.isSolved, self.state.score ?? 0)
+            }
         }
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.state.task), animated: true, completion: nil)

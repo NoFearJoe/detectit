@@ -1,15 +1,31 @@
-//
-//  DecoderTaskScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 04/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
 import DetectItCore
-import DetectItAPI
+
+struct DecoderTaskScreenSUI: UIViewControllerRepresentable {
+    let task: DecoderTask
+    let isTaskCompleted: Bool
+    let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
+    
+    init(
+        task: DecoderTask,
+        isTaskCompleted: Bool,
+        onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
+    ) {
+        self.task = task
+        self.isTaskCompleted = isTaskCompleted
+        self.onClose = onClose
+    }
+    
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let screen = DecoderTaskScreen(task: task, isTaskCompleted: isTaskCompleted, onClose: onClose)
+        let nav = UINavigationController(rootViewController: screen)
+        nav.isNavigationBarHidden = true
+        return nav
+    }
+    
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+}
 
 final class DecoderTaskScreen: Screen {
     
@@ -21,20 +37,16 @@ final class DecoderTaskScreen: Screen {
     
     let topPanel = TaskScreenTopPanel()
     let screenView = DecoderTaskScreenView()
-    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundleID)
     lazy var taskSharingViewController = TaskSharingViewController(task: task)
     
     let keyboardManager = KeyboardManager()
     var contentScrollViewOffset: CGFloat?
-    
-    let api = DetectItAPI()
-    
+        
     // MARK: - State
     
     let task: DecoderTask
-    let bundleID: String?
     let isTaskCompleted: Bool
-    let onClose: (_ isCompleted: Bool) -> Void
+    let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
     
     var encodedImage: UIImage?
     var encodedAudio: Data?
@@ -46,12 +58,10 @@ final class DecoderTaskScreen: Screen {
     
     init(
         task: DecoderTask,
-        bundleID: String?,
         isTaskCompleted: Bool,
-        onClose: @escaping (_ isCompleted: Bool) -> Void
+        onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
     ) {
         self.task = task
-        self.bundleID = bundleID
         self.isTaskCompleted = isTaskCompleted
         self.onClose = onClose
         
@@ -87,9 +97,16 @@ final class DecoderTaskScreen: Screen {
         
         loadTask()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if !HelpScreen.isShown(taskKind: task.kind) {
+            let s = HelpScreen(taskKind: task.kind)
+            s.modalPresentationStyle = .pageSheet
+            s.modalTransitionStyle = .coverVertical
+            present(s, animated: true)
+        }
         
         Analytics.logScreenShow(
             .cipherTask,

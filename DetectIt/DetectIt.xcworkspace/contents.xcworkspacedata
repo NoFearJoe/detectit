@@ -5,9 +5,6 @@
       location = "group:DetectIt.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DetectItAPI/DetectItAPI.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:DetectItUI/DetectItUI.xcodeproj">
    </FileRef>
    <FileRef

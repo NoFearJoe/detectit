@@ -1,52 +1,34 @@
-//
-//  SceneDelegate.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 21/03/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import Amplitude
 import DetectItCore
-import DetectItAPI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-    let api = DetectItAPI()
     
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         guard let scene = scene as? UIWindowScene else { return }
         
         let window = UIWindow(windowScene: scene)
         self.window = window
+        
+        AuthService.shared.startAuth()
 
-        if User.shared.isAuthorized {
-            window.rootViewController = SplashScreen()
-            api.chechAuthentication { isAuthorized, user in
-                if isAuthorized {
-                    user?.id.map { Amplitude.instance().setUserId("\($0)") }
-                    
-                    self.performTransition(to: MainScreen())
-                } else {
-                    self.showAuth()
-                }
-            }
-        } else if User.shared.isOnboardingShown {
-            showAuth()
-        } else {
+        if !User.shared.isOnboardingShown {
             showOnboarding()
+        } else {
+            showMainScreen()
         }
         
         window.makeKeyAndVisible()
         
         handleUniversalLink(options: connectionOptions)
-    }
-    
-    func logout() {
-        showAuth()
+        
+        Amplitude.instance().setUserId(UIDevice.current.identifierForVendor?.uuidString ?? "")
     }
     
     private func performTransition(to screen: UIViewController) {
@@ -70,26 +52,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
     }
     
-    private func showAuth() {
-        let screen = AuthNavigationScreen()
-        
-        screen.onFinish = { [unowned self] in
-            self.performTransition(to: MainScreen())
-        }
-        
-        performTransition(to: screen)
-    }
-    
     private func showOnboarding() {
         let screen = OnboardingScreen()
         
         screen.onFinish = { [unowned self] in
             User.shared.isOnboardingShown = true
             
-            self.showAuth()
+            self.showMainScreen()
         }
         
         performTransition(to: screen)
+    }
+    
+    private func showMainScreen() {
+        performTransition(
+            to: UIHostingController(rootView: NewMainScreen())
+        )
     }
 
 }

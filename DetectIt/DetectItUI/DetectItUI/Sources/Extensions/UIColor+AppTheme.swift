@@ -1,12 +1,13 @@
-//
-//  UIColor+AppTheme.swift
-//  DetectItUI
-//
-//  Created by Илья Харабет on 28/03/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
+import SwiftUI
 
-import UIKit
+public extension Color {
+    static let darkBackground = Color(white: 0.1)
+    static let cardBackground = Color(white: 0.1)
+    
+    static let primaryText = Color(white: 0.95)
+    static let secondaryText = Color(white: 0.7)
+    static let headlineText = Color(red: 0.95, green: 0.95, blue: 0)
+}
 
 public extension UIColor {
     

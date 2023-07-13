@@ -1,16 +1,8 @@
-//
-//  Keychain.swift
-//  DetectItCore
-//
-//  Created by Илья Харабет on 30/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
 import Foundation
 
 public class Keychain {
     
-    public static func read(_ key: String, groupName: String? = nil) -> String? {
+    public static func read(_ key: String, groupName: String? = nil) -> Data? {
         var keychainQuery: [AnyHashable: Any] = [
             kSecClass as AnyHashable: kSecClassGenericPassword,
             kSecAttrAccount as AnyHashable: key,
@@ -26,12 +18,11 @@ public class Keychain {
         let status = withUnsafeMutablePointer(to: &result) {
             SecItemCopyMatching(keychainQuery as CFDictionary, UnsafeMutablePointer($0))
         }
-        
+                
         guard status == errSecSuccess else { return nil }
         guard let data = result as? Data else { return nil }
-        guard let value = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
         
-        return value as String
+        return data
     }
     
     public static func delete(_ key: String, groupName: String? = nil) {
@@ -48,18 +39,16 @@ public class Keychain {
     }
     
     public static func save(_ key: String,
-                            value: String,
+                            value: Data,
                             groupName: String? = nil,
                             accessibleAttribute: CFString = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly) {
         self.delete(key, groupName: groupName)
-        
-        guard let dataFromString = value.data(using: String.Encoding.utf8, allowLossyConversion: false) else { return }
-        
+                
         var keychainQuery: [AnyHashable: Any] = [
             kSecClass as AnyHashable: kSecClassGenericPassword,
             kSecAttrAccessible as AnyHashable: accessibleAttribute,
             kSecAttrAccount as AnyHashable: key,
-            kSecValueData as AnyHashable: dataFromString
+            kSecValueData as AnyHashable: value
         ]
         
         if let groupName = groupName {

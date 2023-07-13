@@ -1,13 +1,6 @@
-//
-//  SplashScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 23.01.2021.
-//  Copyright © 2021 Mesterra. All rights reserved.
-//
-
 import UIKit
 import DetectItUI
+import DetectItCore
 
 final class SplashScreen: Screen {
     
@@ -27,6 +20,8 @@ final class SplashScreen: Screen {
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        
+        AuthService.shared.startAuth()
     }
     
 }

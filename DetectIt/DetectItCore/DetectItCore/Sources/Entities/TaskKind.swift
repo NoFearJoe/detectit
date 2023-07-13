@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum TaskKind: String {
+public enum TaskKind: String, Codable {
     case cipher, profile, blitz, quest
     
     public var title: String {

@@ -22,13 +22,13 @@ extension BlitzTaskScreen {
             answer = nil
         }
         
-        mutating func load(taskID: String, bundleID: String?) {
-            answer = TaskAnswer.get(blitzTaskID: taskID, bundleID: bundleID)
+        mutating func load(taskID: String) {
+            answer = TaskAnswer.get(blitzTaskID: taskID)
         }
         
-        func save(taskID: String, bundleID: String?) {
+        func save(taskID: String) {
             guard let answer = answer else { return }
-            TaskAnswer.set(answer: answer, blitzTaskID: taskID, bundleID: bundleID)
+            TaskAnswer.set(answer: answer, blitzTaskID: taskID)
         }
         
     }

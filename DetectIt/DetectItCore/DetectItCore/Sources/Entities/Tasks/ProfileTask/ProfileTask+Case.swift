@@ -23,7 +23,7 @@ public extension ProfileTask {
         public let text: String
         
         /// Фото улики (опционально).
-        public let evidencePicture: EvidencePicture?
+        public var evidencePicture: EvidencePicture?
         
     }
     
@@ -38,7 +38,7 @@ public extension ProfileTask.Case {
         public let title: String
         
         /// Название изображения.
-        public let pictureName: String
+        public var pictureName: String
         
     }
     

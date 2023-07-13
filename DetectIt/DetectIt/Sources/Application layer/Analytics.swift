@@ -85,6 +85,8 @@ extension Analytics {
         case questTask = "quest_task"
         case tasksBundle = "tasks_bundle"
         case tasksCompilation = "tasks_compilation"
+        case dailyLimitExceeded = "daily_limit_exceeded"
+        case ad
     }
     
 }

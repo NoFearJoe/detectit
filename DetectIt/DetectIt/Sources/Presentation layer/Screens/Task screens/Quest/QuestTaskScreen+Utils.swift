@@ -37,16 +37,13 @@ extension QuestTaskScreen {
     func commitAnswers() {
         guard let score = state.score, let answer = state.answer else { return }
         
-        saveScoreAndAnswer(score: score, answer: answer) { success in
-            print(success)
-        }
+        saveScoreAndAnswer(score: score, answer: answer)
     }
     
     func updateContentState(animated: Bool) {
         contentContainer.setChildHidden(screenView.scoreLabel, hidden: !state.isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.endingTitleView, hidden: !state.isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.endingTextLabel, hidden: !state.isSolved, animated: animated, animationDuration: 2)
-        contentContainer.setChildHidden(rateTaskViewController, hidden: !state.isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(taskSharingViewController, hidden: !state.isSolved, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = state.score.map { "\($0)/\(state.task.maxScore)" }

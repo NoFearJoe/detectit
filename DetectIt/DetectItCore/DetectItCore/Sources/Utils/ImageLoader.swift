@@ -51,7 +51,7 @@ public final class ImageLoader {
                 #if DEBUG
                 return "http://localhost:8080"
                 #else
-                return "https://detect-api.herokuapp.com"
+                return "https://detect-mobile-api.herokuapp.com"
                 #endif
             }()
             
@@ -104,16 +104,18 @@ public final class ImageLoader {
     }
     
     private func getCachedImage(url: URL) -> UIImage? {
-        let key = url.pathComponents.suffix(3).joined(separator: "_")
-        
-        if let inMemoryImage = inMemoryCache[key] {
-            return inMemoryImage
-        } else if let persistantImage = persistantCache.get(key: key) {
-            inMemoryCache[key] = persistantImage
-            return persistantImage
+        cacheQueue.sync {
+            let key = url.pathComponents.suffix(3).joined(separator: "_")
+            
+            if let inMemoryImage = inMemoryCache[key] {
+                return inMemoryImage
+            } else if let persistantImage = persistantCache.get(key: key) {
+                inMemoryCache[key] = persistantImage
+                return persistantImage
+            }
+            
+            return nil
         }
-        
-        return nil
     }
     
     private func saveImageToCache(image: UIImage?, url: URL) {

@@ -1,14 +1,20 @@
-//
-//  HelpScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 21/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
 import DetectItCore
+
+struct HelpScreenSUI: UIViewControllerRepresentable {
+    let taskKind: TaskKind
+    
+    func makeUIViewController(context: Context) -> HelpScreen {
+        HelpScreen(taskKind: taskKind)
+    }
+    
+    func updateUIViewController(_ uiViewController: HelpScreen, context: Context) {}
+    
+    static func isShown(taskKind: TaskKind) -> Bool {
+        HelpScreen.isShown(taskKind: taskKind)
+    }
+}
 
 final class HelpScreen: Screen {
     
@@ -36,6 +42,10 @@ final class HelpScreen: Screen {
         true
     }
     
+    static func isShown(taskKind: TaskKind) -> Bool {
+        UserDefaults.standard.bool(forKey: "is_help_shown_for_\(taskKind.rawValue)")
+    }
+    
     override func loadView() {
         super.loadView()
         
@@ -47,7 +57,7 @@ final class HelpScreen: Screen {
     override func prepare() {
         super.prepare()
         
-        titleLabel.text = taskKind.title
+        titleLabel.text = "help_screen_title".localized(taskKind.title)
         
         switch taskKind {
         case .cipher:
@@ -59,6 +69,15 @@ final class HelpScreen: Screen {
         case .quest:
             textLabel.attributedText = questTaskText.readableAttributedText(font: textLabel.font)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UserDefaults.standard.set(
+            true,
+            forKey: "is_help_shown_for_\(taskKind.rawValue)"
+        )
     }
     
     @objc private func didTapCloseButton() {
@@ -105,8 +124,6 @@ final class HelpScreen: Screen {
     Внимательно читайте задание - в нем содержится очень важная информация.
 
     Учтите, что ответ нужно записывать так, как требуется в задании, без ошибок и соблюдая пунктуацию.
-
-    И самое главное - второго шанса у вас нет. Тщательно обдумывайте и проверяйте ответ.
     """
     
     private let profileTaskText =
@@ -120,8 +137,6 @@ final class HelpScreen: Screen {
     Верных ответов в интернете не найти, но можно узнать некоторую полезную информацию. Если вам встретится непонятное обозначение - поищите в сети.
 
     Будьте внимательны при написании текстовых ответов. Важно придерживаться формата, указанного в вопросе, не писать ничего лишнего и не делать ошибок.
-
-    И самое главное - второго шанса у вас нет. Тщательно обдумывайте и проверяйте ответы.
     """
     
     private let blitzTaskText =
@@ -129,8 +144,6 @@ final class HelpScreen: Screen {
     Блиц – это короткое расследование, содержащее всего один вопрос. Но от этого оно не становится легче обычного расследования.
     
     Ищите ответ на вопрос где угодно – в тексте задания, интернете, между строк. Любые средства могут дать наводку.
-    
-    И самое главное - второго шанса у вас нет. Тщательно обдумывайте и проверяйте ответ.
     """
     
     private let questTaskText =

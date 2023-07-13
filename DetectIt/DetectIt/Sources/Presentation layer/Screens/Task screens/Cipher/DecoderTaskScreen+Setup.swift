@@ -38,8 +38,6 @@ extension DecoderTaskScreen {
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.crimeDescriptionView)
         contentContainer.appendSpacing(28)
-        contentContainer.appendChild(rateTaskViewController)
-        contentContainer.appendSpacing(28)
         contentContainer.appendChild(taskSharingViewController)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         
@@ -56,8 +54,9 @@ extension DecoderTaskScreen {
         view.addSubview(topPanel)
         
         topPanel.onClose = { [unowned self] in
-            self.onClose(self.isTaskCompleted || self.score != nil || self.answer != nil)
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                self.onClose(self.isTaskCompleted || self.score != nil || self.answer != nil, self.score ?? 0)
+            }
         }
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.task), animated: true, completion: nil)

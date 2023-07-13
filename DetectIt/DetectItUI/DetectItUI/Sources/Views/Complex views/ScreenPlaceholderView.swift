@@ -1,12 +1,39 @@
-//
-//  ScreenPlaceholderView.swift
-//  DetectItUI
-//
-//  Created by Илья Харабет on 29/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
+import SwiftUI
 
-import UIKit
+public struct ScreenPlaceholderViewSUI: View {
+    let title: String
+    let message: String?
+    
+    public init(title: String, message: String?) {
+        self.title = title
+        self.message = message
+    }
+    
+    public var body: some View {
+        VStack(spacing: 0) {
+            Spacer()
+            
+            Text(title)
+                .font(.heading4)
+                .foregroundColor(.primaryText)
+                .multilineTextAlignment(.center)
+                .lineLimit(nil)
+            
+            if let message {
+                Spacer().frame(height: 12)
+                
+                Text(message)
+                    .font(.text3)
+                    .foregroundColor(.primaryText)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(nil)
+            }
+            
+            Spacer()
+        }
+        .padding()
+    }
+}
 
 public final class ScreenPlaceholderView: UIView {
     

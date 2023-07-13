@@ -14,18 +14,15 @@ extension QuestTaskScreen {
     final class State {
         
         let task: QuestTask
-        let bundleID: String?
         let isTaskCompleted: Bool
-        let onClose: (_ isCompleted: Bool) -> Void
+        let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
         
         init(
             task: QuestTask,
-            bundleID: String?,
             isTaskCompleted: Bool,
-            onClose: @escaping (_ isCompleted: Bool) -> Void
+            onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
         ) {
             self.task = task
-            self.bundleID = bundleID
             self.isTaskCompleted = isTaskCompleted
             self.onClose = onClose
         }
@@ -50,7 +47,7 @@ extension QuestTaskScreen {
             answer?.ending.flatMap { ending in task.endings.first(where: { $0.id == ending.toChapter }) }
         }
         
-        lazy var answer = TaskAnswer.get(questTaskID: task.id, bundleID: bundleID)
+        lazy var answer = TaskAnswer.get(questTaskID: task.id)
         
         var score: Int? {
             guard let playerEnding = answer?.ending else { return nil }

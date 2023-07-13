@@ -35,12 +35,12 @@ extension ProfileTaskScreen {
             answers.removeAll { $0.questionID == questionID }
         }
         
-        mutating func load(taskID: String, bundleID: String?) {
-            answers = TaskAnswer.get(profileTaskID: taskID, bundleID: bundleID) ?? []
+        mutating func load(taskID: String) {
+            answers = TaskAnswer.get(profileTaskID: taskID) ?? []
         }
         
-        func save(taskID: String, bundleID: String?) {
-            TaskAnswer.set(answers: answers, profileTaskID: taskID, bundleID: bundleID)
+        func save(taskID: String) {
+            TaskAnswer.set(answers: answers, profileTaskID: taskID)
         }
         
     }

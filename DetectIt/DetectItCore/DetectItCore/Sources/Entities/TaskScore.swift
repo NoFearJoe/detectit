@@ -1,44 +1,28 @@
-//
-//  TaskScore.swift
-//  DetectItCore
-//
-//  Created by Илья Харабет on 05/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
 import Foundation
 
 public struct TaskScore {
     
-    private static let storage = UserDefaults.standard
+    #if RELEASE
+    private static let storage: Storage = Keychain()
+    #else
+    private static let storage: Storage = UserDefaults.standard
+    #endif
     
-    // MARK: - Get score
-    
-    public static func get(bundleID: String) -> Int? {
-        storage.dictionaryRepresentation()
-            .filter { $0.key.contains(keyPrefix + "_" + bundleID) }
-            .reduce(0, { $0 + ($1.value as? Int ?? 0) })
-    }
-    
-    public static func get(id: String, taskKind: TaskKind, bundleID: String?) -> Int? {
-        storage.object(
-            forKey: makeKey(
+    public static func get(id: String, taskKind: TaskKind) -> Int? {
+        storage.get(
+            key: makeKey(
                 for: id,
-                taskKind: taskKind,
-                bundleID: bundleID
+                taskKind: taskKind
             )
-        ) as? Int
+        )
     }
     
-    // MARK: - Set score
-    
-    public static func set(value: Int, id: String, taskKind: TaskKind, bundleID: String?) {
-        storage.set(
+    public static func set(value: Int, id: String, taskKind: TaskKind) {
+        storage.save(
             value,
-            forKey: makeKey(
+            key: makeKey(
                 for: id,
-                taskKind: taskKind,
-                bundleID: bundleID
+                taskKind: taskKind
             )
         )
     }
@@ -46,37 +30,40 @@ public struct TaskScore {
     // MARK: - Utils
     
     public static func clear() {
+        #if DEBUG
+        let storage = self.storage as! UserDefaults
         storage.dictionaryRepresentation().forEach { key, value in
             guard key.hasPrefix(keyPrefix) else { return }
             
             storage.removeObject(forKey: key)
         }
+        #endif
     }
     
     private static let keyPrefix = "task_score"
     
-    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String?) -> String {
-        if let bundleID = bundleID {
-            return "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
-        } else {
-            return "\(keyPrefix)_\(taskKind)_\(id)"
-        }
+    private static func makeKey(for id: String, taskKind: TaskKind) -> String {
+        "\(keyPrefix)_\(taskKind)_\(id)"
     }
     
 }
 
 public struct TaskAnswer {
     
-    private static let storage = UserDefaults.standard
+    #if RELEASE
+    private static let storage: Storage = Keychain()
+    #else
+    private static let storage: Storage = UserDefaults.standard
+    #endif
     
     // MARK: Cipher
         
-    public static func get(decoderTaskID id: String, bundleID: String?) -> String? {
-        storage.object(forKey: makeKey(for: id, taskKind: .cipher, bundleID: bundleID)) as? String
+    public static func get(decoderTaskID id: String) -> String? {
+        storage.get(key: makeKey(for: id, taskKind: .cipher))
     }
     
-    public static func set(answer: String, decoderTaskID id: String, bundleID: String?) {
-        storage.set(answer, forKey: makeKey(for: id, taskKind: .cipher, bundleID: bundleID))
+    public static func set(answer: String, decoderTaskID id: String) {
+        storage.save(answer, key: makeKey(for: id, taskKind: .cipher))
     }
     
     // MARK: Profile
@@ -139,24 +126,24 @@ public struct TaskAnswer {
         }
     }
     
-    public static func get(profileTaskID id: String, bundleID: String?) -> [ProfileTaskAnswer]? {
-        get(id: id, taskKind: .profile, bundleID: bundleID)
+    public static func get(profileTaskID id: String) -> [ProfileTaskAnswer]? {
+        get(id: id, taskKind: .profile)
     }
     
-    public static func set(answers: [ProfileTaskAnswer], profileTaskID id: String, bundleID: String?) {
-        set(value: answers, id: id, taskKind: .profile, bundleID: bundleID)
+    public static func set(answers: [ProfileTaskAnswer], profileTaskID id: String) {
+        set(value: answers, id: id, taskKind: .profile)
     }
     
     // MARK: Blitz
     
     public typealias BlitzTaskAnswer = ProfileTaskAnswer
     
-    public static func get(blitzTaskID id: String, bundleID: String?) -> BlitzTaskAnswer? {
-        get(id: id, taskKind: .profile, bundleID: bundleID)
+    public static func get(blitzTaskID id: String) -> BlitzTaskAnswer? {
+        get(id: id, taskKind: .profile)
     }
     
-    public static func set(answer: BlitzTaskAnswer, blitzTaskID id: String, bundleID: String?) {
-        set(value: answer, id: id, taskKind: .profile, bundleID: bundleID)
+    public static func set(answer: BlitzTaskAnswer, blitzTaskID id: String) {
+        set(value: answer, id: id, taskKind: .profile)
     }
     
     // MARK: Quest
@@ -182,58 +169,39 @@ public struct TaskAnswer {
         }
     }
     
-    public static func get(questTaskID id: String, bundleID: String?) -> QuestTaskAnswer? {
-        get(id: id, taskKind: .quest, bundleID: bundleID)
+    public static func get(questTaskID id: String) -> QuestTaskAnswer? {
+        get(id: id, taskKind: .quest)
     }
     
-    public static func set(answer: QuestTaskAnswer, questTaskID id: String, bundleID: String?) {
-        set(value: answer, id: id, taskKind: .quest, bundleID: bundleID)
+    public static func set(answer: QuestTaskAnswer, questTaskID id: String) {
+        set(value: answer, id: id, taskKind: .quest)
     }
     
     // MARK: Utils
     
     public static func clear() {
+        #if DEBUG
+        let storage = self.storage as! UserDefaults
         storage.dictionaryRepresentation().forEach { key, value in
             guard key.hasPrefix(keyPrefix) else { return }
             
             storage.removeObject(forKey: key)
         }
+        #endif
     }
     
-    private static func get<T: Decodable>(id: String, taskKind: TaskKind, bundleID: String?) -> T? {
-        storage.decodable(forKey: makeKey(for: id, taskKind: taskKind, bundleID: bundleID))
+    private static func get<T: Decodable>(id: String, taskKind: TaskKind) -> T? {
+        storage.getDecodable(key: makeKey(for: id, taskKind: taskKind))
     }
     
-    private static func set<T: Encodable>(value: T, id: String, taskKind: TaskKind, bundleID: String?) {
-        storage.setEncodable(value, forKey: makeKey(for: id, taskKind: taskKind, bundleID: bundleID))
+    private static func set<T: Encodable>(value: T, id: String, taskKind: TaskKind) {
+        storage.saveEncodable(value, key: makeKey(for: id, taskKind: taskKind))
     }
     
     private static let keyPrefix = "task_answer"
     
-    private static func makeKey(for id: String, taskKind: TaskKind, bundleID: String?) -> String {
-        if let bundleID = bundleID {
-            return "\(keyPrefix)_\(bundleID)_\(taskKind)_\(id)"
-        } else {
-            return "\(keyPrefix)_\(taskKind)_\(id)"
-        }
-    }
-    
-}
-
-private extension UserDefaults {
-    
-    func setEncodable<T: Encodable>(_ value: T, forKey key: String) {
-        guard let data = try? JSONEncoder().encode(value) else {
-            return
-        }
-        
-        set(data, forKey: key)
-    }
-    
-    func decodable<T: Decodable>(forKey key: String) -> T? {
-        guard let data = self.object(forKey: key) as? Data else { return nil }
-        
-        return try? JSONDecoder().decode(T.self, from: data)
+    private static func makeKey(for id: String, taskKind: TaskKind) -> String {
+        "\(keyPrefix)_\(taskKind)_\(id)"
     }
     
 }

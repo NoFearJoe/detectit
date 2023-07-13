@@ -22,9 +22,7 @@ extension DecoderTaskScreen {
         
         updateContentState(animated: true)
         
-        saveScoreAndAnswer(score, answer: answer) { success in
-            print(success)
-        }
+        saveScoreAndAnswer(score, answer: answer)
     }
         
     func displayContent() {
@@ -55,7 +53,6 @@ extension DecoderTaskScreen {
         contentContainer.setChildHidden(screenView.scoreLabel, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.crimeDescriptionView, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.rightAnswerView, hidden: !isSolved || isSolvedCorrectly, animated: animated, animationDuration: 2)
-        contentContainer.setChildHidden(rateTaskViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(taskSharingViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }

@@ -9,7 +9,6 @@
 import UIKit
 import DetectItUI
 import DetectItCore
-import DetectItAPI
 import MessageUI
 
 final class MainScreen: Screen {
@@ -206,7 +205,7 @@ extension MainScreen: MainScreenViewDelegate {
     func didSelectFeedItem(at index: Int) {
         guard let item = feed?.items.item(at: index) else { return }
         
-        func onCloseTaskScreen(isTaskCompleted: Bool) {
+        func onCloseTaskScreen(isTaskCompleted: Bool, score: Int) {
             guard isTaskCompleted else { return }
             
             self.feedItemModels.removeAll {
@@ -219,19 +218,19 @@ extension MainScreen: MainScreenViewDelegate {
         case .cipher:
             guard let cipher = item.cipher else { return }
             TaskScreenRoute(root: self)
-                .show(task: cipher, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: cipher, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .profile:
             guard let profile = item.profile else { return }
             TaskScreenRoute(root: self)
-                .show(task: profile, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: profile, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .blitz:
             guard let blitz = item.blitz else { return }
             TaskScreenRoute(root: self)
-                .show(task: blitz, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: blitz, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .quest:
             guard let quest = item.quest else { return }
             TaskScreenRoute(root: self)
-                .show(task: quest, bundleID: nil, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
+                .show(task: quest, isTaskCompleted: item.completed, onClose: onCloseTaskScreen)
         case .bundle:
             guard let tasksBundle = item.bundle else { return }
             showTasksBundle(bundle: tasksBundle, imageName: item.picture)

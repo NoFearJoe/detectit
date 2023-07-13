@@ -24,10 +24,10 @@ public struct ProfileTask: Codable {
     public let crimeDescription: String
     
     /// Список случаев.
-    public let cases: [Case]
+    public var cases: [Case]
     
     /// Список приложений.
-    public let attachments: [Attachment]?
+    public var attachments: [Attachment]?
     
     /// Список вопросов.
     public let questions: [Question]

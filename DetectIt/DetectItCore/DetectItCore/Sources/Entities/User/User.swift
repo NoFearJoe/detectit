@@ -1,68 +1,41 @@
-//
-//  User.swift
-//  DetectItCore
-//
-//  Created by Илья Харабет on 14/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
 import Foundation
 
 public final class User {
     
     public static let shared = User()
     
-    public var isAuthorized: Bool {
-        alias != nil && password != nil
+    #if RELEASE
+    private let storage: Storage = Keychain()
+    #else
+    private let storage: Storage = UserDefaults.standard
+    #endif
+    
+    public struct Score: Codable {
+        public let total: Int
+        public let max: Int
+        
+        static let zero = Score(total: 0, max: 0)
+        
+        public var relative: Double {
+            if max == 0 {
+                return 0
+            } else {
+                return Double(total) / Double(max)
+            }
+        }
+        
+        public func increased(total: Int, max: Int) -> Score {
+            Score(total: self.total + total, max: self.max + max)
+        }
     }
     
-    public var alias: String? {
+    private var scoreKey: String { "user_score" }
+    public var score: Score {
         get {
-            UserDefaults.standard.object(forKey: "user_alias") as? String
+            storage.getDecodable(key: scoreKey) ?? .zero
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "user_alias")
-        }
-    }
-    
-    public var email: String? {
-        get {
-            UserDefaults.standard.object(forKey: "user_email") as? String
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "user_email")
-        }
-    }
-    
-    public var password: String? {
-        get {
-            UserDefaults.standard.object(forKey: "user_password") as? String
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "user_password")
-        }
-    }
-    
-    public var abTestIDs: [String]? {
-        get {
-            UserDefaults.standard.object(forKey: "ab_test_ids") as? [String]
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "ab_test_ids")
-        }
-    }
-    
-    public var rank: UserRank {
-        UserRank(score: totalScore)
-    }
-    
-    private var totalScoreKey: String { "\(alias ?? "")_total_score" }
-    public var totalScore: Int {
-        get {
-            UserDefaults.standard.integer(forKey: totalScoreKey)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: totalScoreKey)
+            storage.saveEncodable(newValue, key: scoreKey)
         }
     }
     
@@ -101,11 +74,4 @@ public final class User {
             UserDefaults.standard.set(newValue, forKey: "is_onboarding_shown")
         }
     }
-    
-    public func clearCredentials() {
-        alias = nil
-        email = nil
-        password = nil
-    }
-    
 }

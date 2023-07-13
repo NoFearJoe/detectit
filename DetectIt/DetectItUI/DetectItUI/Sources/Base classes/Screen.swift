@@ -68,34 +68,34 @@ open class Screen: UIViewController {
     
     public var isStatusBarBlurred: Bool = false {
         didSet {
-            setStatusBarBlurred(isStatusBarBlurred)
+//            setStatusBarBlurred(isStatusBarBlurred)
         }
     }
     
-    private var statusBarBlurView: UIView?
+    private var statusBarView: UIView?
     
     private func setStatusBarBlurred(_ isBlurred: Bool) {
         if isBlurred {
-            guard statusBarBlurView == nil else { return }
+            guard statusBarView == nil else { return }
             
-            let blurView = BlurView(style: .dark)
-            blurView.blurRadius = 28
-            blurView.colorTint = UIColor.black.withAlphaComponent(0.5)
+            let gradient = GradientView()
+            gradient.startColor = .black
+            gradient.endColor = .black.withAlphaComponent(0)
             
-            view.addSubview(blurView)
+            view.addSubview(gradient)
             
-            statusBarBlurView = blurView
+            statusBarView = gradient
         } else {
-            statusBarBlurView?.removeFromSuperview()
-            statusBarBlurView = nil
+            statusBarView?.removeFromSuperview()
+            statusBarView = nil
         }
     }
     
     private func updateStatusBarBlurView() {
-        guard let statusBarBlurView = statusBarBlurView else { return }
+        guard let statusBarView = statusBarView else { return }
         
-        statusBarBlurView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.safeAreaInsets.top)
-        view.bringSubviewToFront(statusBarBlurView)
+        statusBarView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.safeAreaInsets.top)
+        view.bringSubviewToFront(statusBarView)
     }
     
     // HUD

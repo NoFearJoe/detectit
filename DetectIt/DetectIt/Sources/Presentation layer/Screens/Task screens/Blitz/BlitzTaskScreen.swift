@@ -1,15 +1,31 @@
-//
-//  BlitzTaskScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 21.11.2021.
-//  Copyright © 2021 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
-import DetectItAPI
 import DetectItCore
+
+struct BlitzTaskScreenSUI: UIViewControllerRepresentable {
+    let task: BlitzTask
+    let isTaskCompleted: Bool
+    let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
+    
+    init(
+        task: BlitzTask,
+        isTaskCompleted: Bool,
+        onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
+    ) {
+        self.task = task
+        self.isTaskCompleted = isTaskCompleted
+        self.onClose = onClose
+    }
+    
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let screen = BlitzTaskScreen(task: task, isTaskCompleted: isTaskCompleted, onClose: onClose)
+        let nav = UINavigationController(rootViewController: screen)
+        nav.isNavigationBarHidden = true
+        return nav
+    }
+    
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+}
 
 final class BlitzTaskScreen: Screen {
     
@@ -21,20 +37,16 @@ final class BlitzTaskScreen: Screen {
     
     let topPanel = TaskScreenTopPanel()
     lazy var screenView = BlitzTaskScreenView(delegate: self)
-    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundleID)
     lazy var taskSharingViewController = TaskSharingViewController(task: task)
     
     let keyboardManager = KeyboardManager()
     var contentScrollViewOffset: CGFloat?
-    
-    var api = DetectItAPI()
-    
+        
     // MARK: - State
     
     let task: BlitzTask
-    let bundleID: String?
     let isTaskCompleted: Bool
-    let onClose: (_ isCompleted: Bool) -> Void
+    let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
     
     var isDataLoaded = false
     
@@ -43,7 +55,7 @@ final class BlitzTaskScreen: Screen {
     
     var answer = Answer() {
         didSet {
-            answer.save(taskID: task.id, bundleID: bundleID)
+            answer.save(taskID: task.id)
             
             updateAnswerButtonState()
         }
@@ -59,12 +71,10 @@ final class BlitzTaskScreen: Screen {
     
     init(
         task: BlitzTask,
-        bundleID: String?,
         isTaskCompleted: Bool,
-        onClose: @escaping (_ isCompleted: Bool) -> Void
+        onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
     ) {
         self.task = task
-        self.bundleID = bundleID
         self.isTaskCompleted = isTaskCompleted
         self.onClose = onClose
         
@@ -109,7 +119,7 @@ final class BlitzTaskScreen: Screen {
             onClose: { [unowned self] in
                 self.dismiss(animated: true, completion: nil)
             },
-            onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
+            onReport: nil
         )
         
         loadTask()
@@ -117,6 +127,13 @@ final class BlitzTaskScreen: Screen {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if !HelpScreen.isShown(taskKind: task.kind) {
+            let s = HelpScreen(taskKind: task.kind)
+            s.modalPresentationStyle = .pageSheet
+            s.modalTransitionStyle = .coverVertical
+            present(s, animated: true)
+        }
         
         Analytics.logScreenShow(
             .blitzTask,
@@ -318,9 +335,10 @@ extension BlitzTaskScreen: BlitzTaskScreenViewDelegate {
     
     func didTapGetStatusButton() {
         let screen = FullVersionPurchaseScreen()
-        screen.presentationController?.delegate = self
+        let controller = UIHostingController(rootView: screen)
+        controller.presentationController?.delegate = self
         
-        present(screen, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
         
         Analytics.logButtonTap(title: "blitz_task_screen_get_status_button_title".localized, screen: .blitzTask)
     }

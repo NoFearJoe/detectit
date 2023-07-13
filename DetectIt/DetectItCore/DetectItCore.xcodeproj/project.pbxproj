@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372DFE012A4F1DAC0024A32F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DFE002A4F1DAC0024A32F /* Task.swift */; };
+		37420A782A555E88001647F4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A772A555E88001647F4 /* Storage.swift */; };
+		37A8BE612A407F2F00257D8C /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE602A407F2F00257D8C /* Feed.swift */; };
+		37A8BE642A407F6100257D8C /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE632A407F6100257D8C /* FeedService.swift */; };
+		37A8BE662A40955C00257D8C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE652A40955C00257D8C /* AuthService.swift */; };
+		37D7DD3C2A36269D00AFDB2B /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7DD3B2A36269D00AFDB2B /* FeedItem.swift */; };
 		96054327244F10D20083C217 /* NSObjectWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054326244F10D20083C217 /* NSObjectWrapper.swift */; };
 		96054C05245616950083C217 /* ScoreStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C04245616950083C217 /* ScoreStringBuilder.swift */; };
 		96054C202459A33B0083C217 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054C1F2459A33B0083C217 /* String+Localization.swift */; };
@@ -22,8 +28,6 @@
 		96200CBD2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */; };
 		963F56C924E9838E002B949F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56C824E9838E002B949F /* AppInfo.swift */; };
 		964E2E5624A32BA70027F738 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5524A32BA70027F738 /* Double+Round.swift */; };
-		964E2E5A24A396A80027F738 /* FeedFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964E2E5924A396A80027F738 /* FeedFilter.swift */; };
-		96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E0E2429FAD8005FFC7A /* TasksBundle.swift */; };
 		96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E19242BC489005FFC7A /* ProfileTask+Case.swift */; };
 		96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */; };
 		96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96500E1D242BC4C1005FFC7A /* ProfileTask+Questions.swift */; };
@@ -36,7 +40,6 @@
 		96AAAFF3243B174600F61443 /* TaskDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF2243B174600F61443 /* TaskDifficulty.swift */; };
 		96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF5243B19CB00F61443 /* TaskScoring.swift */; };
 		96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFF9243B5ACE00F61443 /* TaskKind.swift */; };
-		96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAAFFB243B5B5B00F61443 /* Task.swift */; };
 		96B334A425B98F4000D0814F /* Array+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B334A325B98F4000D0814F /* Array+Unique.swift */; };
 		96B334A825B9919500D0814F /* Double+SafeDivide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B334A725B9919500D0814F /* Double+SafeDivide.swift */; };
 		96B334AC25B9AE7400D0814F /* Date+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B334AB25B9AE7400D0814F /* Date+Init.swift */; };
@@ -62,6 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		372DFE002A4F1DAC0024A32F /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		37420A772A555E88001647F4 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		37A8BE602A407F2F00257D8C /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		37A8BE632A407F6100257D8C /* FeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
+		37A8BE652A40955C00257D8C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		37D7DD3B2A36269D00AFDB2B /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		96054326244F10D20083C217 /* NSObjectWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectWrapper.swift; sourceTree = "<group>"; };
 		96054C04245616950083C217 /* ScoreStringBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreStringBuilder.swift; sourceTree = "<group>"; };
 		96054C1F2459A33B0083C217 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
@@ -81,8 +90,6 @@
 		96200CBC2443114700A3C720 /* DecoderTaskAnswerComparisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderTaskAnswerComparisionTests.swift; sourceTree = "<group>"; };
 		963F56C824E9838E002B949F /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		964E2E5524A32BA70027F738 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
-		964E2E5924A396A80027F738 /* FeedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilter.swift; sourceTree = "<group>"; };
-		96500E0E2429FAD8005FFC7A /* TasksBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBundle.swift; sourceTree = "<group>"; };
 		96500E19242BC489005FFC7A /* ProfileTask+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Case.swift"; sourceTree = "<group>"; };
 		96500E1B242BC4A3005FFC7A /* ProfileTask+Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Attachment.swift"; sourceTree = "<group>"; };
 		96500E1D242BC4C1005FFC7A /* ProfileTask+Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTask+Questions.swift"; sourceTree = "<group>"; };
@@ -95,7 +102,6 @@
 		96AAAFF2243B174600F61443 /* TaskDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDifficulty.swift; sourceTree = "<group>"; };
 		96AAAFF5243B19CB00F61443 /* TaskScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScoring.swift; sourceTree = "<group>"; };
 		96AAAFF9243B5ACE00F61443 /* TaskKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskKind.swift; sourceTree = "<group>"; };
-		96AAAFFB243B5B5B00F61443 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		96B334A325B98F4000D0814F /* Array+Unique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Unique.swift"; sourceTree = "<group>"; };
 		96B334A725B9919500D0814F /* Double+SafeDivide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+SafeDivide.swift"; sourceTree = "<group>"; };
 		96B334AB25B9AE7400D0814F /* Date+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Init.swift"; sourceTree = "<group>"; };
@@ -129,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37A8BE622A407F5600257D8C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				37A8BE632A407F6100257D8C /* FeedService.swift */,
+				37A8BE652A40955C00257D8C /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		96054C1E2459A3210083C217 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +208,7 @@
 		961B964F24260134003EC992 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				37A8BE622A407F5600257D8C /* Services */,
 				96054C1E2459A3210083C217 /* Extensions */,
 				96500E14242BB194005FFC7A /* Utils */,
 				961B96502426013A003EC992 /* Entities */,
@@ -203,12 +219,12 @@
 		961B96502426013A003EC992 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				37A8BE602A407F2F00257D8C /* Feed.swift */,
 				96F85C16244718A000F5CD22 /* User */,
 				96500E17242BC450005FFC7A /* Tasks */,
-				96500E0E2429FAD8005FFC7A /* TasksBundle.swift */,
 				965AC7F02439A240003A3DC7 /* TaskScore.swift */,
 				96AAAFF9243B5ACE00F61443 /* TaskKind.swift */,
-				964E2E5924A396A80027F738 /* FeedFilter.swift */,
+				37D7DD3B2A36269D00AFDB2B /* FeedItem.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -226,6 +242,7 @@
 				9615F95524609E340070E2D3 /* Cache.swift */,
 				961DE26D2476B60300008AAB /* AppRateManager.swift */,
 				963F56C824E9838E002B949F /* AppInfo.swift */,
+				37420A772A555E88001647F4 /* Storage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -257,8 +274,8 @@
 		96AAAFF4243B19B100F61443 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				372DFE002A4F1DAC0024A32F /* Task.swift */,
 				96AAAFF5243B19CB00F61443 /* TaskScoring.swift */,
-				96AAAFFB243B5B5B00F61443 /* Task.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -411,9 +428,9 @@
 				961B965F24274C79003EC992 /* QuestTask.swift in Sources */,
 				96054C05245616950083C217 /* ScoreStringBuilder.swift in Sources */,
 				96AAAFF6243B19CB00F61443 /* TaskScoring.swift in Sources */,
-				964E2E5A24A396A80027F738 /* FeedFilter.swift in Sources */,
 				96B334B625BA119800D0814F /* ExactAnswerValidator.swift in Sources */,
 				96B334CE25BB675300D0814F /* DateMatcher.swift in Sources */,
+				37A8BE662A40955C00257D8C /* AuthService.swift in Sources */,
 				96AAAFFA243B5ACE00F61443 /* TaskKind.swift in Sources */,
 				9615F95624609E340070E2D3 /* Cache.swift in Sources */,
 				96B334BB25BB605F00D0814F /* NumberMatcher.swift in Sources */,
@@ -423,27 +440,30 @@
 				96B334D225BB67CB00D0814F /* TimeMatcher.swift in Sources */,
 				963F56C924E9838E002B949F /* AppInfo.swift in Sources */,
 				96054C25245AF0D40083C217 /* Keychain.swift in Sources */,
+				37A8BE642A407F6100257D8C /* FeedService.swift in Sources */,
 				961DE26E2476B60300008AAB /* AppRateManager.swift in Sources */,
 				96200CBB2443035700A3C720 /* PluralLocalizations.swift in Sources */,
 				965AC7E12438CAA1003A3DC7 /* ImageLoader.swift in Sources */,
 				96A5C63C274989260056DC09 /* BlitzTask.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
 				961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */,
-				96500E0F2429FAD8005FFC7A /* TasksBundle.swift in Sources */,
 				96B334A825B9919500D0814F /* Double+SafeDivide.swift in Sources */,
 				96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */,
 				96054327244F10D20083C217 /* NSObjectWrapper.swift in Sources */,
 				96B3353E25C08C2000D0814F /* Codable+JSONString.swift in Sources */,
 				96B334A425B98F4000D0814F /* Array+Unique.swift in Sources */,
 				96054C202459A33B0083C217 /* String+Localization.swift in Sources */,
+				37420A782A555E88001647F4 /* Storage.swift in Sources */,
 				965AC7F12439A240003A3DC7 /* TaskScore.swift in Sources */,
 				96F85C18244718B100F5CD22 /* UserRank.swift in Sources */,
+				37D7DD3C2A36269D00AFDB2B /* FeedItem.swift in Sources */,
+				37A8BE612A407F2F00257D8C /* Feed.swift in Sources */,
 				964E2E5624A32BA70027F738 /* Double+Round.swift in Sources */,
+				372DFE012A4F1DAC0024A32F /* Task.swift in Sources */,
 				96500E1E242BC4C1005FFC7A /* ProfileTask+Questions.swift in Sources */,
 				96500E1C242BC4A3005FFC7A /* ProfileTask+Attachment.swift in Sources */,
 				96B334AC25B9AE7400D0814F /* Date+Init.swift in Sources */,
 				96F0547E2445EA2E000742E4 /* User.swift in Sources */,
-				96AAAFFC243B5B5B00F61443 /* Task.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +604,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -607,7 +628,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItCore/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -634,7 +655,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItCore/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -643,7 +664,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.DetectItCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -657,6 +678,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = DetectItCoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -678,6 +700,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 485UNLA592;
 				INFOPLIST_FILE = DetectItCoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

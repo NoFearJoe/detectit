@@ -21,9 +21,9 @@ final class TaskAnswerTests: XCTestCase {
         let id = "test_cipher"
         let answer = "decoded_message"
         
-        TaskAnswer.set(answer: answer, decoderTaskID: id, bundleID: nil)
+        TaskAnswer.set(answer: answer, decoderTaskID: id)
         
-        let savedAnswer = TaskAnswer.get(decoderTaskID: id, bundleID: nil)
+        let savedAnswer = TaskAnswer.get(decoderTaskID: id)
         XCTAssertEqual(answer, savedAnswer)
     }
     
@@ -35,9 +35,9 @@ final class TaskAnswerTests: XCTestCase {
             TaskAnswer.ProfileTaskAnswer(questingID: "q3", answer: .bool(true))
         ]
         
-        TaskAnswer.set(answers: answers, profileTaskID: id, bundleID: nil)
+        TaskAnswer.set(answers: answers, profileTaskID: id)
         
-        guard let savedAnswers = TaskAnswer.get(profileTaskID: id, bundleID: nil) else {
+        guard let savedAnswers = TaskAnswer.get(profileTaskID: id) else {
             return XCTFail()
         }
         
@@ -54,9 +54,9 @@ final class TaskAnswerTests: XCTestCase {
 //            ending: .init(fromChapter: "chap2", toChapter: "end1")
 //        )
 //        
-//        TaskAnswer.set(answer: answer, questTaskID: id, bundleID: nil)
+//        TaskAnswer.set(answer: answer, questTaskID: id)
 //        
-//        let savedAnswer = TaskAnswer.get(questTaskID: id, bundleID: nil)
+//        let savedAnswer = TaskAnswer.get(questTaskID: id)
 //        XCTAssertEqual(answer.routes, savedAnswer?.routes)
 //        XCTAssertEqual(answer.ending, savedAnswer?.ending)
 //    }

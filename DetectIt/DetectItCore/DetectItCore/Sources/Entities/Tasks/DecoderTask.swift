@@ -9,7 +9,7 @@
 import Foundation
 
 /// Задание "Дешифратор".
-public struct DecoderTask: Codable {
+public struct DecoderTask: Codable, Identifiable {
     
     /// Идентификатор задания.
     public let id: String
@@ -26,13 +26,24 @@ public struct DecoderTask: Codable {
     let score: Int
     
     /// Название закодированного изображения.
-    let encodedPictureName: String?
+    public var encodedPictureName: String?
     
     /// Название аудиофайла
-    let encodedAudioName: String?
+    public var encodedAudioName: String?
     
     /// Ответ.
     public let answer: Answer
+    
+    public init(id: String, title: String, preposition: String, difficulty: Int, score: Int, encodedPictureName: String?, encodedAudioName: String?, answer: Answer) {
+        self.id = id
+        self.title = title
+        self.preposition = preposition
+        self.difficulty = difficulty
+        self.score = score
+        self.encodedPictureName = encodedPictureName
+        self.encodedAudioName = encodedAudioName
+        self.answer = answer
+    }
     
 }
 
@@ -48,6 +59,12 @@ public extension DecoderTask {
         
         /// Ответы в зачет.
         public let possibleAnswers: [String]?
+        
+        public init(crimeDescription: String, decodedMessage: String, possibleAnswers: [String]?) {
+            self.crimeDescription = crimeDescription
+            self.decodedMessage = decodedMessage
+            self.possibleAnswers = possibleAnswers
+        }
         
     }
     

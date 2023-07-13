@@ -14,7 +14,7 @@ public final class TaskScreenTopPanel: UIView {
     public var onNotes: (() -> Void)?
     public var onShare: (() -> Void)?
     
-    private var blurView = BlurView(style: .dark)
+    private var gradientView = GradientView()
     
     public let closeButton = SolidButton.closeButton()
     
@@ -43,10 +43,10 @@ public final class TaskScreenTopPanel: UIView {
     }
     
     private func setupViews() {
-        addSubview(blurView)
-        blurView.blurRadius = 20
-        blurView.colorTint = UIColor.black.withAlphaComponent(0.5)
-        blurView.pin(to: self)
+        addSubview(gradientView)
+        gradientView.startColor = .black
+        gradientView.endColor = .black.withAlphaComponent(0)
+        gradientView.pin(to: self, insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
         
         addSubview(closeButton)
         

@@ -19,21 +19,7 @@
 
 "purchases_restoring_hud_title" = "Restoring purchases...";
 "error_hud_title" = "Error";
-
-"auth_email_busy_error_title" = "An user with the given email has already started an investigation";
-"auth_alias_busy_error_title" = "An user with the given alias has already started an investigation";
-"auth_wrong_password_error_title" = "Wrong password";
-"auth_401_error_title" = "There is a problem with your credentials";
-
-// User ranks
-
-"user_rank_trainee" = "Trainee";
-"user_rank_junior_detective" = "Junior detective";
-"user_rank_midle_detective" = "Detective";
-"user_rank_senior_detective" = "Chef";
-"user_rank_father_brown" = "Father Brown";
-"user_rank_hercule_poirot" = "Hercule Poirot";
-"user_rank_sherlok_holmes" = "Sherlok Holmes";
+"hud_failed_to_load_ad_message" = "Can't load an Ad. Try again later";
 
 // Onboarding
 
@@ -44,40 +30,18 @@
 "onboarding_tasks_page_details_button_title" = "Details...";
 "onboarding_second_page_title" = "Investigate wisely";
 "onboarding_second_page_subtitle" = "Use any means to search for truth - deduction, cunning, and even the Internet";
+"onboarding_third_page_title" = "Remember the main thing";
+"onboarding_third_page_subtitle" = "There is no second chance. Check your answers before submitting.";
 "onboarding_last_page_title" = "Start simple";
 "onboarding_last_page_subtitle" = "Try to use the button, which is used to send replies";
 "onboarding_last_page_button_title" = "Continue";
 
-// Auth
-
-"auth_prepare_title" = "It is time for the first task!";
-"auth_prepare_subtitle" = "You must be logged in to access the Detect system.\nDo not worry, we store your data securely and do not share it with third parties.";
-"auth_prepare_privacy_policy_button" = "Privacy policy";
-"auth_prepare_continue_button_title" = "Continue";
-
-"auth_title" = "Mission \"Enter\"";
-"auth_alias_title" = "Pseudonym";
-"auth_alias_hint" = "Needed to distinguish detectives";
-"auth_email_title" = "Email";
-"auth_email_hint" = "If you forget the login details, we will send them to this address (without spam and mailings)";
-"auth_password_title" = "Password";
-"auth_password_hint" = "At least 6 characters";
-"auth_problems_button_title" = "I have problems with log-in";
-"auth_continue_button_title" = "Enter";
-
-"auth_problems_title" = "Problems with authorization";
-"auth_problems_text" = "During authorization, the following errors may occur:
-– Introduced a pseudonym, which is already used by another detective. Just try to come up with a different alias.
-– Introduced email, which is already used by another detective. If you have not previously registered in the game, write to support to solve the problem.
-– Incorrect password entered. You have an infinite number of attempts to enter, but if you do not remember your password at all, click the \"Recover password\" button.
-– If you get an error without a clear description, check your internet connection or write to support.";
-"auth_problems_write_to_support_button_title" = "Write to support";
-"auth_problems_restore_password_button_title" = "Restore password";
-
-"restore_password_title" = "Password recovery";
-"restore_password_continue_button_title" = "Restore";
-
 // Main screen
+
+"main_screen_profile_title" = "Profile";
+"main_screen_current_task_title" = "Task #%d";
+"main_screen_task_difficulty_title" = "Difficulty:";
+"main_screen_play_button_title" = "Start";
 
 "main_screen_report_problem_action_title" = "Report a problem";
 "main_screen_restore_purchases_action_title" = "Restore purchases";
@@ -86,26 +50,17 @@
 "main_screen_tasks_bundle_cell_kind_title" = "Bundle";
 "main_screen_empty_placeholder_message" = "You've done all tasks. Great job!\nWe'll add new tasks very soon";
 
-"feed_filter_ciphers" = "Ciphers";
-"feed_filter_blitz" = "Blitz";
-"feed_filter_profiles" = "Profiles";
-"feed_filter_bundles" = "Bundles";
-"feed_filter_easy" = "Easy";
-"feed_filter_normal" = "Normal";
-"feed_filter_hard" = "Hard";
-"feed_filter_nightmare" = "Nightmare";
-"feed_filter_notSolved" = "Not solved";
+"main_screen_no_tasks_title" = "All tasks are finished";
+"main_screen_no_tasks_subtitle" = "You've done a great job and now can rest in anticipation of new tasks";
 
 "main_screen_banner_app_review_title" = "You are showing good results!";
 "main_screen_banner_app_review_subtitle" = "We would be interested in a review of the application from such an experienced detective. Share your impressions with future players and help the developers make the game better.";
 "main_screen_banner_subscribe_to_notifications_title" = "Are you waiting for new tasks?";
 "main_screen_banner_subscribe_to_notifications_subtitle" = "Tap on this message to subscribe to notifications";
 
-"main_screen_completed_tasks_title" = "Completed tasks";
-
 // Completed tasks
 
-"completed_tasks_screen_title" = "Completed tasks";
+"completed_tasks_screen_title" = "Tasks history";
 "completed_tasks_screen_empty_placeholder_message" = "There are no completed tasks";
 
 // Decoder task
@@ -132,36 +87,20 @@
 
 "quest_task_screen_ending_title" = "The ending";
 
-// Tasks bundle
-
-"tasks_bundle_screen_ciphers_section_title" = "Ciphers";
-"tasks_bundle_screen_profiles_section_title" = "Profiles";
-"tasks_bundle_screen_blitz_section_title" = "Blitz";
-"tasks_bundle_screen_quests_section_title" = "Quests";
-
-// Tasks compilation
-
-"tasks_compilation_screen_empty_placeholder_message" = "Tasks are missing :(\nCheck your internet connection and try again";
-
 // PRO status
 
-"pro_status_title" = "Professional detective status";
-"pro_status_subtitle" = "Each detective should make a contribution to enter the professional detectives club. **Learn more**";
-"pro_status_contribution_title" = "Choose a contribution";
-"pro_status_price_0_text" = "This contribution will help the application to work for 1 hour";
-"pro_status_price_1_text" = "This contribution will allow us to do without ads for 1 day";
-"pro_status_price_2_text" = "This contribution will help us write 1 cipher task";
-"pro_status_price_3_text" = "This contribution will help us write one profile task";
-"pro_status_price_4_text" = "This contribution will help us to add something new into to game";
-"pro_status_why_should_i_pay_text" = "A contribution opens the most difficult tasks and crime stories.";
-"pro_status_why_should_i_pay" = "Why should I pay?";
-"pro_status_buy" = "Buy for ";
-"pro_status_blocked_task_message" = "Need a professional detective status";
+"pro_status_title" = "PRO version";
+"pro_status_subtitle" = "🙅🏻‍♂️ No Ads\n\n🕵🏻‍♂️ Unlimited tasks per day\n\n🥷🏻 Profile and Blitz stories";
+"pro_status_buy_button_title" = "Buy for %@";
+"pro_status_blocked_task_message" = "PRO version is required";
 "pro_status_restore" = "Restore";
 
 // Detective profile
 
 "detective_profile_notifications_title" = "Notify about new tasks";
+"settings_screen_title" = "Профиль";
+"settings_screen_pro_version_action_title" = "PRO version";
+"settings_screen_completed_tasks_action_title" = "Tasks history";
 "main_screen_leaderboard_action_title" = "Leaderboard";
 "detective_profile_rate_app_action_title" = "Rate the App";
 "detective_profile_invite_friend_button_title" = "Recruit a friend";
@@ -196,6 +135,17 @@
 
 "task_sharing_title" = "Invite your friends to solve this task";
 
+// Daily limit exceeded
+
+"daily_limit_exceeded_title" = "";
+"daily_limit_exceeded_subtitle" = "";
+"daily_limit_exceeded_buy_pro_version_title" = "";
+"daily_limit_exceeded_watch_ad_title" = "";
+
+// Help screen
+
+"help_screen_title" = "Help: %@";
+
 // Other
 
 "answer_button_default_title" = "Send the answer";
@@ -211,10 +161,6 @@
 "task_difficulty_normal" = "Normal";
 "task_difficulty_hard" = "Hard";
 "task_difficulty_nightmare" = "Nightmare";
-
-"total_score" = "Total score  ";
-
-"professional_detective" = "Professional detective";
 
 "report_problem_subject" = "There is a problem in Detect";
 

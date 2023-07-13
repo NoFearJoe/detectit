@@ -1,243 +1,101 @@
-//
-//  CompletedTasksScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 16.06.2021.
-//  Copyright © 2021 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
-import DetectItAPI
 import DetectItCore
 
-final class CompletedTasksScreen: Screen {
+struct CompletedTasksScreen: View {
+    private let feedService = FeedService()
     
-    private let topPanel = ScreenHeaderView()
-    private let titleLabel = UILabel()
-    private lazy var screenView = MainScreenView(sections: [.tasks], delegate: self)
+    @State private var tasks = [Feed.Item]()
+    @State private var selectedTask: Feed.Item?
     
-    private let screenLoadingView = ScreenLoadingView(isInitiallyHidden: true)
-    
-    private let api = DetectItAPI()
-    
-    private var feedItems: [Feed.Item] = []
-    private var tasksScoreCache = [String: Int]()
-    
-    // MARK: - Overrides
-    
-    override func loadView() {
-        view = screenView
-        
-        view.addSubview(screenLoadingView)
-        screenLoadingView.pin(to: view)
-        
-        view.addSubview(topPanel)
-        
-        topPanel.titleLabel.text = "completed_tasks_screen_title".localized
-        topPanel.onClose = { [unowned self] in
-            self.dismiss(animated: true, completion: nil)
+    var body: some View {
+        NavigationView {
+            Group {
+                if tasks.isEmpty {
+                    ScreenPlaceholderViewSUI(
+                        title: "completed_tasks_screen_empty_placeholder_message".localized,
+                        message: nil
+                    )
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 12) {
+                            ForEach(tasks, id: \.id) { task in
+                                Button {
+                                    selectedTask = task
+                                } label: {
+                                    TaskCell(
+                                        kind: TaskKind(rawValue: task.kind.rawValue)?.title ?? "",
+                                        title: task.title,
+                                        score: task.score ?? 0,
+                                        maxScore: task.maxScore
+                                    )
+                                }
+                            }
+                            
+                        }
+                        .padding()
+                    }
+                    .showTask($selectedTask, completion: { _, _ in })
+                }
+            }
+            .navigationTitle("completed_tasks_screen_title".localized)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        
-        topPanel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            topPanel.topAnchor.constraint(equalTo: view.topAnchor),
-            topPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            topPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
-    
-    override func refresh() {
-        super.refresh()
-        
-        loadFeed()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Analytics.logScreenShow(.completedTasks)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        screenView.setTopInset(topPanel.bounds.height - view.safeAreaInsets.top + 4)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { _ in
-            self.screenView.reloadData()
-        })
-    }
-    
-}
-
-extension CompletedTasksScreen: MainScreenViewDelegate {
-    
-    func header() -> MainScreenHeaderView.Model? { nil }
-    func didTapProfileButton() {}
-    func filters() -> [MainScreenFiltersView.Model] { [] }
-    func didSelectFilter(at index: Int) {}
-    func banner() -> MainScreenBannerCell.Model? { nil }
-    func didSelectBanner() {}
-    func didCloseBanner() {}
-    func shouldShowCompletedTasksCell() -> Bool { false }
-    func didSelectCompletedTasksCell() {}
-    func numberOfCompilations() -> Int { 0 }
-    func compilations() -> [MainScreenCompilationCell.Model] { [] }
-    func didSelectCompilation(at index: Int) {}
-    
-    func numberOfFeedItems() -> Int {
-        if feedItems.isEmpty == true {
-            return 1
-        } else {
-            return feedItems.count
+        .onAppear {
+            Analytics.logScreenShow(.completedTasks)
         }
-    }
-    
-    func feedItem(at index: Int) -> Any? {
-        if feedItems.isEmpty {
-            return MainScreenPlaceholderCell.Model(message: "completed_tasks_screen_empty_placeholder_message".localized)
-        }
-        
-        guard let item = feedItems.item(at: index) else { return nil }
-        
-        switch item.kind {
-        case .profile, .blitz, .cipher, .quest:
-            let kind = TaskKind(rawValue: item.kind.rawValue)
-            let difficulty = TaskDifficulty(rawValue: item.difficulty)
-            let score = tasksScoreCache[item.id]
-            return MainScreenTaskCell.Model(
-                id: item.id,
-                backgroundImagePath: item.picture,
-                kindIcon: kind?.icon,
-                kind: kind?.title ?? "",
-                title: item.title,
-                description: item.subtitle ?? "",
-                difficulty: difficulty.localizedTitle,
-                difficultyColor: difficulty.color,
-                score: score.map { ScoreStringBuilder.makeScoreString(score: $0, max: item.maxScore) },
-                scoreColor: UIColor.score(value: score, max: item.maxScore),
-                rating: item.rating,
-                isLocked: !FullVersionManager.hasBought && item.difficulty >= 3,
-                isFocused: false
-            )
-        case .bundle:
-            return MainScreenTasksBundleCell.Model(
-                backgroundImagePath: item.picture,
-                title: item.title,
-                description: item.subtitle ?? ""
-            )
-        }
-    }
-    
-    func didSelectFeedItem(at index: Int) {
-        guard let item = feedItems.item(at: index) else { return }
-        
-        switch item.kind {
-        case .cipher:
-            guard let cipher = item.cipher else { return }
-            TaskScreenRoute(root: self)
-                .show(task: cipher, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
-        case .profile:
-            guard let profile = item.profile else { return }
-            TaskScreenRoute(root: self)
-                .show(task: profile, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
-        case .blitz:
-            guard let blitz = item.blitz else { return }
-            TaskScreenRoute(root: self)
-                .show(task: blitz, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
-        case .quest:
-            guard let quest = item.quest else { return }
-            TaskScreenRoute(root: self)
-                .show(task: quest, bundleID: nil, isTaskCompleted: item.completed, onClose: { _ in })
-        case .bundle:
-            guard let tasksBundle = item.bundle else { return }
-            showTasksBundle(bundle: tasksBundle, imageName: item.picture)
-        }
-        
-        Analytics.log(
-            "task_selected",
-            parameters: [
-                "id": item.id,
-                "kind": item.kind.rawValue,
-                "difficulty": item.difficulty,
-                "score": item.score ?? 0,
-                "screen": Analytics.Screen.main.rawValue
-            ]
-        )
-    }
-    
-    func numberOfActions() -> Int { 0 }
-    func action(at index: Int) -> String? { nil }
-    func didSelectAction(at index: Int) {}
-    
-}
-
-private extension CompletedTasksScreen {
-    
-    func loadFeed() {
-        if feedItems.isEmpty {
-            screenLoadingView.setVisible(true, animated: false)
-            screenPlaceholderView.setVisible(false, animated: false)
-        }
-                
-       api.obtain(
-            Feed.self,
-            target: .completedTasks,
-            cacheKey: Cache.Key("completedTasks")
-        ) { [weak self] result in
-            guard let self = self else { return }
+        .task {
+            let feedItems = await feedService.obtainFeed()
             
-            switch result {
-            case let .success(feed):
-                self.screenLoadingView.setVisible(false, animated: true)
-                
-                self.feedItems = feed.items
-                
-                self.tasksScoreCache.removeAll()
-                self.feedItems.forEach {
-                    self.tasksScoreCache[$0.id] =
-                        $0.score ??
-                        TaskScore.get(
-                            id: $0.id,
-                            taskKind: TaskKind(rawValue: $0.kind.rawValue) ?? .cipher,
-                            bundleID: $0.bundle?.id
-                        )
+            var tasks = [Feed.Item]()
+            for item in feedItems {
+                guard
+                    let task = await feedService.obtainFeedItem(meta: item),
+                    task.completed
+                else {
+                    break
                 }
                 
-                self.screenView.reloadData()
-            case .failure:
-                guard self.feedItems.isEmpty else { return }
-                
-                self.screenPlaceholderView.setVisible(true, animated: false)
-                self.screenLoadingView.setVisible(false, animated: true)
-                self.screenPlaceholderView.configure(
-                    title: "network_error_title".localized,
-                    message: "network_error_message".localized,
-                    onRetry: { [unowned self] in self.loadFeed() },
-                    onClose: nil,
-                    onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
-                )
-                
-                Analytics.logScreenError(screen: .completedTasks)
+                tasks.append(task)
             }
+            self.tasks = tasks
         }
     }
+}
+
+private struct TaskCell: View {
+    let kind: String
+    let title: String
+    let score: Int
+    let maxScore: Int
     
-    func showTasksBundle(bundle: TasksBundle.Info, imageName: String?) {
-        let tasksBundleScreen = TasksBundleScreen(
-            tasksBundle: bundle,
-            tasksBundleImageName: imageName ?? ""
-        )
-        
-        tasksBundleScreen.modalTransitionStyle = .coverVertical
-        tasksBundleScreen.modalPresentationStyle = .fullScreen
-        
-        present(tasksBundleScreen, animated: true, completion: nil)
+    var body: some View {
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(kind)
+                    .font(.text5)
+                    .foregroundColor(.secondaryText)
+                Text(title)
+                    .font(.text2)
+                    .foregroundColor(.primaryText)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+            }
+            
+            Spacer(minLength: 8)
+            
+            Text("\(score)/\(maxScore)")
+                .font(.score2)
+                .foregroundColor(
+                    Color(
+                        uiColor: UIColor.score(
+                            value: score,
+                            max: maxScore
+                        )
+                    )
+                )
+        }
+        .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+        .contentShape(Rectangle())
     }
-    
 }

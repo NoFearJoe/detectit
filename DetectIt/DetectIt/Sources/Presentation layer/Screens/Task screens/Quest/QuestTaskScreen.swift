@@ -1,15 +1,31 @@
-//
-//  QuestTaskScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 04/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
 import DetectItCore
-import DetectItAPI
+
+struct QuestTaskScreenSUI: UIViewControllerRepresentable {
+    let task: QuestTask
+    let isTaskCompleted: Bool
+    let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
+    
+    init(
+        task: QuestTask,
+        isTaskCompleted: Bool,
+        onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
+    ) {
+        self.task = task
+        self.isTaskCompleted = isTaskCompleted
+        self.onClose = onClose
+    }
+    
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let screen = QuestTaskScreen(task: task, isTaskCompleted: isTaskCompleted, onClose: onClose)
+        let nav = UINavigationController(rootViewController: screen)
+        nav.isNavigationBarHidden = true
+        return nav
+    }
+    
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+}
 
 final class QuestTaskScreen: Screen {
     
@@ -21,10 +37,7 @@ final class QuestTaskScreen: Screen {
     
     let topPanel = TaskScreenTopPanel()
     lazy var screenView = QuestTaskScreenView(delegate: self)
-    lazy var rateTaskViewController = RateTaskViewController(task: state.task, bundleID: state.bundleID)
     lazy var taskSharingViewController = TaskSharingViewController(task: state.task)
-        
-    var api = DetectItAPI()
     
     // MARK: - State
     
@@ -34,13 +47,11 @@ final class QuestTaskScreen: Screen {
     
     init(
         task: QuestTask,
-        bundleID: String?,
         isTaskCompleted: Bool,
-        onClose: @escaping (Bool) -> Void
+        onClose: @escaping (Bool, Int) -> Void
     ) {
         self.state = State(
             task: task,
-            bundleID: bundleID,
             isTaskCompleted: isTaskCompleted,
             onClose: onClose
         )
@@ -81,7 +92,7 @@ final class QuestTaskScreen: Screen {
             onClose: { [unowned self] in
                 self.dismiss(animated: true, completion: nil)
             },
-            onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
+            onReport: nil
         )
         
         loadTask()
@@ -102,6 +113,13 @@ final class QuestTaskScreen: Screen {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if !HelpScreen.isShown(taskKind: state.task.kind) {
+            let s = HelpScreen(taskKind: state.task.kind)
+            s.modalPresentationStyle = .pageSheet
+            s.modalTransitionStyle = .coverVertical
+            present(s, animated: true)
+        }
         
         Analytics.logScreenShow(
             .questTask,

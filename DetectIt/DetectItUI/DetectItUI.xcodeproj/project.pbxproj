@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37420A742A5456AD001647F4 /* JGProgressHUD-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 37420A732A5456AD001647F4 /* JGProgressHUD-SwiftUI */; };
+		37420A762A5456D6001647F4 /* View+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A752A5456D6001647F4 /* View+ProgressHUD.swift */; };
+		37420A8B2A570133001647F4 /* View+appear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A8A2A570133001647F4 /* View+appear.swift */; };
+		37A8BE592A3C904B00257D8C /* Font+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE582A3C904B00257D8C /* Font+AppTheme.swift */; };
+		37A8BE6E2A42291A00257D8C /* View+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE6D2A42291A00257D8C /* View+extensions.swift */; };
 		96054329244F25B60083C217 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054328244F25B60083C217 /* GradientView.swift */; };
 		9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605432A244F33EE0083C217 /* UIView+frameLayout.swift */; };
 		960543302451D38C0083C217 /* CGFloat+layoutInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605432F2451D38C0083C217 /* CGFloat+layoutInsets.swift */; };
@@ -25,8 +30,6 @@
 		96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96346F1324969D7100A815F2 /* LockedTaskView.swift */; };
 		963F56D424F10BA9002B949F /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D324F10BA9002B949F /* RatingView.swift */; };
 		963F56D624F24527002B949F /* RateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D524F24527002B949F /* RateTaskView.swift */; };
-		963F56D824F24574002B949F /* RateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F56D724F24574002B949F /* RateTaskViewController.swift */; };
-		963F56DA24F248AC002B949F /* DetectItAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963F56D924F248AC002B949F /* DetectItAPI.framework */; };
 		964511852533898400504D62 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964511842533898400504D62 /* TextView.swift */; };
 		964511882533A2BF00504D62 /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964511872533A2BF00504D62 /* UIColor+HEX.swift */; };
 		96500E2E242F0F92005FFC7A /* DetectItUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 96500E2C242F0F92005FFC7A /* DetectItUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -83,6 +86,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37420A752A5456D6001647F4 /* View+ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ProgressHUD.swift"; sourceTree = "<group>"; };
+		37420A8A2A570133001647F4 /* View+appear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+appear.swift"; sourceTree = "<group>"; };
+		37A8BE582A3C904B00257D8C /* Font+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+AppTheme.swift"; sourceTree = "<group>"; };
+		37A8BE6D2A42291A00257D8C /* View+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extensions.swift"; sourceTree = "<group>"; };
 		96054328244F25B60083C217 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9605432A244F33EE0083C217 /* UIView+frameLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+frameLayout.swift"; sourceTree = "<group>"; };
 		9605432F2451D38C0083C217 /* CGFloat+layoutInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+layoutInsets.swift"; sourceTree = "<group>"; };
@@ -101,7 +108,6 @@
 		96346F1324969D7100A815F2 /* LockedTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedTaskView.swift; sourceTree = "<group>"; };
 		963F56D324F10BA9002B949F /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		963F56D524F24527002B949F /* RateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTaskView.swift; sourceTree = "<group>"; };
-		963F56D724F24574002B949F /* RateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTaskViewController.swift; sourceTree = "<group>"; };
 		963F56D924F248AC002B949F /* DetectItAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		964511842533898400504D62 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		964511872533A2BF00504D62 /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
@@ -163,8 +169,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37420A742A5456AD001647F4 /* JGProgressHUD-SwiftUI in Frameworks */,
 				965F2562267A6F9B00106F13 /* JGProgressHUD in Frameworks */,
-				963F56DA24F248AC002B949F /* DetectItAPI.framework in Frameworks */,
 				96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */,
 				965F255F267A6F6700106F13 /* NextGrowingTextView in Frameworks */,
 			);
@@ -272,6 +278,10 @@
 				9627E7CE250F9252007ACEBA /* NSObject+Extensions.m */,
 				964511872533A2BF00504D62 /* UIColor+HEX.swift */,
 				96B3353A25C078EA00D0814F /* UIButton+title.swift */,
+				37A8BE582A3C904B00257D8C /* Font+AppTheme.swift */,
+				37A8BE6D2A42291A00257D8C /* View+extensions.swift */,
+				37420A752A5456D6001647F4 /* View+ProgressHUD.swift */,
+				37420A8A2A570133001647F4 /* View+appear.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				96500E8B2435F2ED005FFC7A /* Base */,
-				96500E8A2435F2D5005FFC7A /* Tasks */,
 				965AC7B324388B03003A3DC7 /* Headers */,
 			);
 			path = Cells;
@@ -300,13 +309,6 @@
 				96500E882435F1A6005FFC7A /* Screen.swift */,
 			);
 			path = "Base classes";
-			sourceTree = "<group>";
-		};
-		96500E8A2435F2D5005FFC7A /* Tasks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tasks;
 			sourceTree = "<group>";
 		};
 		96500E8B2435F2ED005FFC7A /* Base */ = {
@@ -368,7 +370,6 @@
 			children = (
 				965AC7D72438C704003A3DC7 /* StackViewController */,
 				967B54C924E00912009EEF3E /* AudioPlayerController.swift */,
-				963F56D724F24574002B949F /* RateTaskViewController.swift */,
 				965F256A267D0C7100106F13 /* TaskSharingViewController.swift */,
 			);
 			path = "View controllers";
@@ -436,6 +437,7 @@
 			packageProductDependencies = (
 				965F255E267A6F6700106F13 /* NextGrowingTextView */,
 				965F2561267A6F9B00106F13 /* JGProgressHUD */,
+				37420A732A5456AD001647F4 /* JGProgressHUD-SwiftUI */,
 			);
 			productName = DetectItUI;
 			productReference = 96500E29242F0F92005FFC7A /* DetectItUI.framework */;
@@ -468,6 +470,7 @@
 			packageReferences = (
 				965F255D267A6F6600106F13 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */,
 				965F2560267A6F9B00106F13 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				37420A722A5456AD001647F4 /* XCRemoteSwiftPackageReference "JGProgressHUD-SwiftUI" */,
 			);
 			productRefGroup = 96500E2A242F0F92005FFC7A /* Products */;
 			projectDirPath = "";
@@ -495,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				965AC7B92438A017003A3DC7 /* FloatingViewVisibilityManager.swift in Sources */,
+				37A8BE592A3C904B00257D8C /* Font+AppTheme.swift in Sources */,
 				965AC7E82438E611003A3DC7 /* QuestionAndAnswerView.swift in Sources */,
 				96200CB12441B22300A3C720 /* CGPoint+Operators.swift in Sources */,
 				96500E672430BE09005FFC7A /* ItemsOnTableLayout.swift in Sources */,
@@ -502,6 +506,7 @@
 				964511882533A2BF00504D62 /* UIColor+HEX.swift in Sources */,
 				964511852533898400504D62 /* TextView.swift in Sources */,
 				966B6E4B25C57F9D00FEBB51 /* TitleAndToggleView.swift in Sources */,
+				37A8BE6E2A42291A00257D8C /* View+extensions.swift in Sources */,
 				965AC79624364F8B003A3DC7 /* TouchAnimatable.swift in Sources */,
 				96DE6F4127AC5B2D001266DE /* ScreenHeaderView.swift in Sources */,
 				9627E7D325100367007ACEBA /* TaskScreenTransitionAnimator.swift in Sources */,
@@ -522,18 +527,19 @@
 				965AC7EF2438FEBE003A3DC7 /* UIView+CurrentFirstResponder.swift in Sources */,
 				9627E7CC250E0206007ACEBA /* TaskScreenTopPanel.swift in Sources */,
 				96500E892435F1A6005FFC7A /* Screen.swift in Sources */,
+				37420A8B2A570133001647F4 /* View+appear.swift in Sources */,
 				960543302451D38C0083C217 /* CGFloat+layoutInsets.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
 				96AAADF324DFFDBB00388404 /* AudioPlayerView.swift in Sources */,
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
 				9605432B244F33EE0083C217 /* UIView+frameLayout.swift in Sources */,
-				963F56D824F24574002B949F /* RateTaskViewController.swift in Sources */,
 				963F56D624F24527002B949F /* RateTaskView.swift in Sources */,
 				965AC7DC2438C704003A3DC7 /* StackChildControllerProtocols.swift in Sources */,
 				96346F1424969D7100A815F2 /* LockedTaskView.swift in Sources */,
 				96500E6C2430C0F9005FFC7A /* UIView+Shadow.swift in Sources */,
 				965AC7ED2438FDB6003A3DC7 /* KeyboardManager.swift in Sources */,
+				37420A762A5456D6001647F4 /* View+ProgressHUD.swift in Sources */,
 				96200CB32441DECA00A3C720 /* AutosizingImageView.swift in Sources */,
 				96A5C6EB275B68B40056DC09 /* TaskKind+Icon.swift in Sources */,
 				96162677243F73700097A4EE /* AnswerVariantView.swift in Sources */,
@@ -680,6 +686,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -700,7 +707,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItUI/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -728,7 +735,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItUI/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -767,6 +774,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		37420A722A5456AD001647F4 /* XCRemoteSwiftPackageReference "JGProgressHUD-SwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD-SwiftUI.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.1;
+			};
+		};
 		965F255D267A6F6600106F13 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/muukii/NextGrowingTextView";
@@ -786,6 +801,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		37420A732A5456AD001647F4 /* JGProgressHUD-SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37420A722A5456AD001647F4 /* XCRemoteSwiftPackageReference "JGProgressHUD-SwiftUI" */;
+			productName = "JGProgressHUD-SwiftUI";
+		};
 		965F255E267A6F6700106F13 /* NextGrowingTextView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 965F255D267A6F6600106F13 /* XCRemoteSwiftPackageReference "NextGrowingTextView" */;

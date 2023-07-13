@@ -1,11 +1,3 @@
-//
-//  BlurView.swift
-//  DetectItUI
-//
-//  Created by Илья Харабет on 04/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
 import UIKit
 
 open class BlurView: UIVisualEffectView {
@@ -36,6 +28,8 @@ open class BlurView: UIVisualEffectView {
             sourceOverEffect?.setValueUsingSetter(value: newValue, getter: "color")
             sourceOverEffect?.callMethod(named: "applyRequestedEffectToView:", with: overlayView)
             applyChanges()
+            backgroundColor = newValue
+            backdropView?.backgroundColor = newValue
         }
     }
     

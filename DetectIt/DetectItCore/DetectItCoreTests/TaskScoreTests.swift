@@ -21,9 +21,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 3
         let id = "test_cipher"
         
-        TaskScore.set(value: score, id: id, taskKind: .cipher, bundleID: "test")
+        TaskScore.set(value: score, id: id, taskKind: .cipher)
         
-        let savedScore = TaskScore.get(id: id, taskKind: .cipher, bundleID: "test")
+        let savedScore = TaskScore.get(id: id, taskKind: .cipher)
         XCTAssertEqual(score, savedScore)
     }
     
@@ -31,9 +31,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 4
         let id = "test_profile"
         
-        TaskScore.set(value: score, id: id, taskKind: .profile, bundleID: "test")
+        TaskScore.set(value: score, id: id, taskKind: .profile)
         
-        let savedScore = TaskScore.get(id: id, taskKind: .profile, bundleID: "test")
+        let savedScore = TaskScore.get(id: id, taskKind: .profile)
         XCTAssertEqual(score, savedScore)
     }
     
@@ -41,9 +41,9 @@ final class TaskScoreTests: XCTestCase {
         let score = 5
         let id = "test_quest"
         
-        TaskScore.set(value: score, id: id, taskKind: .quest, bundleID: "test")
+        TaskScore.set(value: score, id: id, taskKind: .quest)
         
-        let savedScore = TaskScore.get(id: id, taskKind: .quest, bundleID: "test")
+        let savedScore = TaskScore.get(id: id, taskKind: .quest)
         XCTAssertEqual(score, savedScore)
     }
     

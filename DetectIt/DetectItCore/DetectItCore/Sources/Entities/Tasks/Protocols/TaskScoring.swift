@@ -9,8 +9,6 @@
 import Foundation
 
 public protocol TaskScoring {
-    
     /// Максимальное количество очков за абсолютно верное решение задания.
     var maxScore: Int { get }
-    
 }

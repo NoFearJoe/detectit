@@ -49,9 +49,7 @@ extension ProfileTaskScreen {
         
         score = totalScore
         
-        saveScoreAndAnswer(totalScore, answers: answers.answers) { success in
-            print(success)
-        }
+        saveScoreAndAnswer(totalScore, answers: answers.answers)
     }
     
     func updateContentState(animated: Bool) {
@@ -62,7 +60,6 @@ extension ProfileTaskScreen {
         contentContainer.setChildHidden(screenView.hiddenCrimeDescriptionView, hidden: !isSolved || FullVersionManager.hasBought, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.answersTitleView, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(screenView.answersView, hidden: !isSolved, animated: animated, animationDuration: 2)
-        contentContainer.setChildHidden(rateTaskViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         contentContainer.setChildHidden(taskSharingViewController, hidden: !isSolved, animated: animated, animationDuration: 2)
         
         screenView.scoreLabel.text = score.map { "\($0)/\(task.maxScore)" }

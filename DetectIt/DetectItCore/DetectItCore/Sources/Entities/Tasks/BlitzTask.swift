@@ -26,7 +26,7 @@ public struct BlitzTask: Codable {
     public let taskText: String
     
     /// Список приложений.
-    public let attachments: [ProfileTask.Attachment]?
+    public var attachments: [ProfileTask.Attachment]?
     
     /// Список вопросов.
     public let question: ProfileTask.Question
@@ -35,7 +35,7 @@ public struct BlitzTask: Codable {
     public let crimeDescription: String
     
     /// Список приложений к объяснению задания.
-    public let crimeDescriptionAttachments: [ProfileTask.Attachment]?
+    public var crimeDescriptionAttachments: [ProfileTask.Attachment]?
         
 }
 

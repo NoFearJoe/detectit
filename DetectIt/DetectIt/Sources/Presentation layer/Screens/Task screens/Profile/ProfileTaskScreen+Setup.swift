@@ -38,8 +38,6 @@ extension ProfileTaskScreen {
         contentContainer.appendSpacing(20)
         contentContainer.appendChild(screenView.answersView)
         contentContainer.appendSpacing(28)
-        contentContainer.appendChild(rateTaskViewController)
-        contentContainer.appendSpacing(28)
         contentContainer.appendChild(taskSharingViewController)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         
@@ -60,8 +58,9 @@ extension ProfileTaskScreen {
         view.addSubview(topPanel)
         
         topPanel.onClose = { [unowned self] in
-            self.onClose(self.isTaskCompleted || self.score != nil)
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                self.onClose(self.isTaskCompleted || self.score != nil, self.score ?? 0)
+            }
         }
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.task), animated: true, completion: nil)

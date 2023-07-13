@@ -1,11 +1,3 @@
-//
-//  FullVersionManager.swift
-//  DetectItCore
-//
-//  Created by Илья Харабет on 14/06/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
 import StoreKit
 import SwiftyStoreKit
 import DetectItCore
@@ -15,7 +7,7 @@ public struct FullVersionManager {
     public typealias LoadingCompletion = () -> Void
     
     public enum Product: String, CaseIterable {
-        case pro1, pro2, pro3, pro4, pro5
+        case pro
         
         public var id: String {
             "com.mesterra.detectit.\(rawValue)"

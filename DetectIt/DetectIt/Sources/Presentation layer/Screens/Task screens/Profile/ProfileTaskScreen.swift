@@ -1,15 +1,31 @@
-//
-//  ProfileTaskScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 04/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
 import DetectItCore
-import DetectItAPI
+
+struct ProfileTaskScreenSUI: UIViewControllerRepresentable {
+    let task: ProfileTask
+    let isTaskCompleted: Bool
+    let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
+    
+    init(
+        task: ProfileTask,
+        isTaskCompleted: Bool,
+        onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
+    ) {
+        self.task = task
+        self.isTaskCompleted = isTaskCompleted
+        self.onClose = onClose
+    }
+    
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let screen = ProfileTaskScreen(task: task, isTaskCompleted: isTaskCompleted, onClose: onClose)
+        let nav = UINavigationController(rootViewController: screen)
+        nav.isNavigationBarHidden = true
+        return nav
+    }
+    
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+}
 
 final class ProfileTaskScreen: Screen {
     
@@ -21,20 +37,16 @@ final class ProfileTaskScreen: Screen {
     
     let topPanel = TaskScreenTopPanel()
     lazy var screenView = ProfileTaskScreenView(delegate: self)
-    lazy var rateTaskViewController = RateTaskViewController(task: task, bundleID: bundleID)
     lazy var taskSharingViewController = TaskSharingViewController(task: task)
     
     let keyboardManager = KeyboardManager()
     var contentScrollViewOffset: CGFloat?
-    
-    var api = DetectItAPI()
-    
+        
     // MARK: - State
     
     let task: ProfileTask
-    let bundleID: String?
     let isTaskCompleted: Bool
-    let onClose: (_ isCompleted: Bool) -> Void
+    let onClose: (_ isCompleted: Bool, _ score: Int) -> Void
     
     var isDataLoaded = false
     
@@ -43,7 +55,7 @@ final class ProfileTaskScreen: Screen {
     
     var answers = Answers() {
         didSet {
-            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id, bundleID: bundleID)
+            TaskAnswer.set(answers: answers.answers, profileTaskID: task.id)
             
             updateAnswerButtonState()
         }
@@ -59,12 +71,10 @@ final class ProfileTaskScreen: Screen {
     
     init(
         task: ProfileTask,
-        bundleID: String?,
         isTaskCompleted: Bool,
-        onClose: @escaping (_ isCompleted: Bool) -> Void
+        onClose: @escaping (_ isCompleted: Bool, _ score: Int) -> Void
     ) {
         self.task = task
-        self.bundleID = bundleID
         self.isTaskCompleted = isTaskCompleted
         self.onClose = onClose
         
@@ -109,7 +119,7 @@ final class ProfileTaskScreen: Screen {
             onClose: { [unowned self] in
                 self.dismiss(animated: true, completion: nil)
             },
-            onReport: { [unowned self] in ReportProblemRoute(root: self).show() }
+            onReport: nil
         )
         
         loadTask()
@@ -117,6 +127,13 @@ final class ProfileTaskScreen: Screen {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if !HelpScreen.isShown(taskKind: task.kind) {
+            let s = HelpScreen(taskKind: task.kind)
+            s.modalPresentationStyle = .pageSheet
+            s.modalTransitionStyle = .coverVertical
+            present(s, animated: true)
+        }
         
         Analytics.logScreenShow(
             .profileTask,
@@ -319,9 +336,10 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
     
     func didTapGetStatusButton() {
         let screen = FullVersionPurchaseScreen()
-        screen.presentationController?.delegate = self
+        let controller = UIHostingController(rootView: screen)
+        controller.presentationController?.delegate = self
         
-        present(screen, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
         
         Analytics.logButtonTap(title: "profile_task_screen_get_status_button_title".localized, screen: .profileTask)
     }

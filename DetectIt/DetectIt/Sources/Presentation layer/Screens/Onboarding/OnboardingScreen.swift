@@ -81,8 +81,9 @@ private extension OnboardingScreen {
     enum Page: Int, CaseIterable {
         case welcome
         case tasks
-        case noChance
-        case enterName
+        case beWisely
+        case noSecondChance
+        case startSimple
     }
     
     func makeScreen(for page: Page) -> UIViewController {
@@ -104,13 +105,19 @@ private extension OnboardingScreen {
                 buttonTitle: "onboarding_tasks_page_details_button_title".localized,
                 onTapButton: { [unowned self] in self.showTasksOnboarding() }
             )
-        case .noChance:
+        case .beWisely:
             screen.configure(
                 icon: nil,
                 title: "onboarding_second_page_title".localized,
                 subtitle: "onboarding_second_page_subtitle".localized
             )
-        case .enterName:
+        case .noSecondChance:
+            screen.configure(
+                icon: nil,
+                title: "onboarding_third_page_title".localized,
+                subtitle: "onboarding_third_page_subtitle".localized
+            )
+        case .startSimple:
             let screen = OnboardingLastPage()
             screen.configure(
                 icon: nil,
