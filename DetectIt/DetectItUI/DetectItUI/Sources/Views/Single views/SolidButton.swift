@@ -110,7 +110,7 @@ public extension SolidButton {
     static func primaryButton() -> SolidButton {
         let button = SolidButton()
         
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = 12
         button.layer.cornerCurve = .continuous
         button.fill = .color(.yellow)
         button.setTitleColor(.black, for: .normal)

@@ -2,7 +2,7 @@ import SwiftUI
 import DetectItUI
 import DetectItCore
 
-struct NewTaskCell: View {
+struct MainScreenTaskView: View {
     let task: Feed.Item
     let isBlocked: Bool
     let onTap: () -> Void

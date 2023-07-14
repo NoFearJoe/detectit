@@ -66,7 +66,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func showMainScreen() {
         performTransition(
-            to: UIHostingController(rootView: NewMainScreen())
+            to: UIHostingController(rootView: MainScreen())
         )
     }
 

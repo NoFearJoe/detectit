@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		372DFE012A4F1DAC0024A32F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DFE002A4F1DAC0024A32F /* Task.swift */; };
 		37420A782A555E88001647F4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A772A555E88001647F4 /* Storage.swift */; };
+		3782ED552A6032E8000C46F4 /* PublishedAppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782ED542A6032E8000C46F4 /* PublishedAppStorage.swift */; };
 		37A8BE612A407F2F00257D8C /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE602A407F2F00257D8C /* Feed.swift */; };
 		37A8BE642A407F6100257D8C /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE632A407F6100257D8C /* FeedService.swift */; };
 		37A8BE662A40955C00257D8C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE652A40955C00257D8C /* AuthService.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		372DFE002A4F1DAC0024A32F /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		37420A772A555E88001647F4 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		3782ED542A6032E8000C46F4 /* PublishedAppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedAppStorage.swift; sourceTree = "<group>"; };
 		37A8BE602A407F2F00257D8C /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		37A8BE632A407F6100257D8C /* FeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
 		37A8BE652A40955C00257D8C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				961DE26D2476B60300008AAB /* AppRateManager.swift */,
 				963F56C824E9838E002B949F /* AppInfo.swift */,
 				37420A772A555E88001647F4 /* Storage.swift */,
+				3782ED542A6032E8000C46F4 /* PublishedAppStorage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				965AC7E12438CAA1003A3DC7 /* ImageLoader.swift in Sources */,
 				96A5C63C274989260056DC09 /* BlitzTask.swift in Sources */,
 				961B966124275009003EC992 /* ProfileTask.swift in Sources */,
+				3782ED552A6032E8000C46F4 /* PublishedAppStorage.swift in Sources */,
 				961B965D24274ABA003EC992 /* DecoderTask.swift in Sources */,
 				96B334A825B9919500D0814F /* Double+SafeDivide.swift in Sources */,
 				96500E1A242BC489005FFC7A /* ProfileTask+Case.swift in Sources */,

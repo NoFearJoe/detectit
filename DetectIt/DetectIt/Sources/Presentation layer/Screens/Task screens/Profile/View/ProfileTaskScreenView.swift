@@ -18,6 +18,7 @@ public protocol ProfileTaskScreenViewDelegate: ProfileViewDelegate, AttachmentsV
     
     func didTapGetStatusButton()
     
+    func didTapContinueButton()
 }
 
 public final class ProfileTaskScreenView: NSObject {
@@ -42,6 +43,8 @@ public final class ProfileTaskScreenView: NSObject {
         frame: .zero,
         collectionViewLayout: listLayout
     )
+    
+    public let continueButton = SolidButton.primaryButton()
     
     private unowned let delegate: ProfileTaskScreenViewDelegate
     
@@ -95,6 +98,13 @@ public final class ProfileTaskScreenView: NSObject {
         answersView.dataSource = self
         answersView.showsVerticalScrollIndicator = false
         answersView.register(ProfileTaskAnswerCell.self, forCellWithReuseIdentifier: ProfileTaskAnswerCell.identifier)
+        
+        continueButton.setTitle("continue".localized, for: .normal)
+        continueButton.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapContinueButton() {
+        delegate.didTapContinueButton()
     }
     
 }

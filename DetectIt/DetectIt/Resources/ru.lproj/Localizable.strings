@@ -128,7 +128,7 @@
 // Daily limit exceeded
 
 "daily_limit_exceeded_title" = "На сегодня все";
-"daily_limit_exceeded_subtitle" = "Каждый день ты можешь пройти не более 3 заданий.\nЧтобы продлить удовольствие, можно посмотреть рекламу или купить PRO версию.";
+"daily_limit_exceeded_subtitle" = "Каждый день ты можешь пройти не более 3 заданий.\nЧтобы продлить удовольствие, можно посмотреть рекламу или приобрести полную версию игры.";
 "daily_limit_exceeded_buy_pro_version_title" = "Купить полную версию";
 "daily_limit_exceeded_watch_ad_title" = "Посмотреть рекламу";
 
@@ -137,6 +137,8 @@
 "help_screen_title" = "Справка: %@";
 
 // Other
+
+"continue" = "Продолжить";
 
 "answer_button_default_title" = "Отправить ответ";
 "buy_button_title" = "Сделать взнос";

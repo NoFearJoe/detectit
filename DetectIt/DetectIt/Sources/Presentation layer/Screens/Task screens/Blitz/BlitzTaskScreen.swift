@@ -150,6 +150,12 @@ final class BlitzTaskScreen: Screen {
         view.endEditing(true)
     }
     
+    func close() {
+        dismiss(animated: true) {
+            self.onClose(self.isTaskCompleted || self.score != nil, self.score ?? 0)
+        }
+    }
+    
 }
 
 extension BlitzTaskScreen: BlitzTaskScreenViewDelegate {
@@ -343,6 +349,9 @@ extension BlitzTaskScreen: BlitzTaskScreenViewDelegate {
         Analytics.logButtonTap(title: "blitz_task_screen_get_status_button_title".localized, screen: .blitzTask)
     }
     
+    func didTapContinueButton() {
+        close()
+    }
 }
 
 extension BlitzTaskScreen: UIViewControllerTransitioningDelegate {

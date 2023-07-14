@@ -1,7 +1,7 @@
 import SwiftUI
 
 final class DailyTaskLimitModel: ObservableObject {
-    @Published var isDailyLimitExceeded = false
+    @Published private(set) var isDailyLimitExceeded = false
     
     @AppStorage("daily_played_tasks") private var dailyPlayedTasks = 0
     @AppStorage("last_play_date") private var lastPlayDate: String?

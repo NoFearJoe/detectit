@@ -4,15 +4,16 @@ import GameKit
 import DetectItCore
 
 @MainActor
-final class NewMainModel: NSObject, ObservableObject {
-    @Published var currentTask: Feed.Item?
-    @Published var areAllTasksDone = false
+final class MainFeedModel: NSObject, ObservableObject {
+    @Published private(set) var currentTask: Feed.Item?
+    @Published private(set) var areAllTasksDone = false
     
     @Published private var leaderboard: GKLeaderboard?
     
     @MainActor private var feedItems: [FeedItem] = []
     
-    @AppStorage("current_task_index") private(set) var currentTaskIndex = 0
+    @PublishedAppStorage("current_task_index")
+    private(set) var currentTaskIndex = 0
         
     private let feedService = FeedService()
         
@@ -46,6 +47,7 @@ final class NewMainModel: NSObject, ObservableObject {
         currentTaskIndex += 1
         currentTask = await loadCurrentTask()
         
+        #if !DEBUG
         SwiftUI.Task {
             do {
                 try await leaderboard?.submitScore(
@@ -57,6 +59,7 @@ final class NewMainModel: NSObject, ObservableObject {
                 print(":::", error)
             }
         }
+        #endif
     }
     
     private func loadCurrentTask() async -> Feed.Item? {
@@ -85,13 +88,4 @@ final class NewMainModel: NSObject, ObservableObject {
         
         return await getUncompletedTask(index: currentTaskIndex)
     }
-}
-
-@MainActor
-final class NewMainRoutingModel: ObservableObject {
-    @Published var selectedTask: Feed.Item?
-    @Published var isProfileShown = false
-    @Published var isCompletedTasksShown = false
-    @Published var isProVersionPaywallShown = false
-    @Published var isDailyTasksLimitExceededScreenShown = false
 }

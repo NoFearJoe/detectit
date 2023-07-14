@@ -10,6 +10,7 @@
 		37420A742A5456AD001647F4 /* JGProgressHUD-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 37420A732A5456AD001647F4 /* JGProgressHUD-SwiftUI */; };
 		37420A762A5456D6001647F4 /* View+ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A752A5456D6001647F4 /* View+ProgressHUD.swift */; };
 		37420A8B2A570133001647F4 /* View+appear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A8A2A570133001647F4 /* View+appear.swift */; };
+		3782ED532A602D63000C46F4 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782ED522A602D63000C46F4 /* ActionButton.swift */; };
 		37A8BE592A3C904B00257D8C /* Font+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE582A3C904B00257D8C /* Font+AppTheme.swift */; };
 		37A8BE6E2A42291A00257D8C /* View+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE6D2A42291A00257D8C /* View+extensions.swift */; };
 		96054329244F25B60083C217 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96054328244F25B60083C217 /* GradientView.swift */; };
@@ -88,6 +89,7 @@
 /* Begin PBXFileReference section */
 		37420A752A5456D6001647F4 /* View+ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+ProgressHUD.swift"; sourceTree = "<group>"; };
 		37420A8A2A570133001647F4 /* View+appear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+appear.swift"; sourceTree = "<group>"; };
+		3782ED522A602D63000C46F4 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		37A8BE582A3C904B00257D8C /* Font+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+AppTheme.swift"; sourceTree = "<group>"; };
 		37A8BE6D2A42291A00257D8C /* View+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extensions.swift"; sourceTree = "<group>"; };
 		96054328244F25B60083C217 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		965AC79124364E62003A3DC7 /* Single views */ = {
 			isa = PBXGroup;
 			children = (
+				3782ED522A602D63000C46F4 /* ActionButton.swift */,
 				965AC79324364E86003A3DC7 /* SolidButton.swift */,
 				965AC7A424387031003A3DC7 /* BlurView.swift */,
 				965AC7E52438E431003A3DC7 /* AnswerField.swift */,
@@ -566,6 +569,7 @@
 				965F256B267D0C7100106F13 /* TaskSharingViewController.swift in Sources */,
 				96A5C6F0275B7E960056DC09 /* PhotoAttachmentCell.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,
+				3782ED532A602D63000C46F4 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

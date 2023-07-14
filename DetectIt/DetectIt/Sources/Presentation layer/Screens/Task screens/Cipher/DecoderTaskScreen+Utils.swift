@@ -59,6 +59,7 @@ extension DecoderTaskScreen {
         screenView.scoreLabel.textColor = .score(value: score, max: task.maxScore, defaultColor: .white)
         
         screenView.questionAndAnswerView.isUserInteractionEnabled = !isSolved
+        contentContainer.setChildHidden(screenView.continueButton, hidden: !isSolved, animated: animated, animationDuration: 2)
         
         guard isSolved else { return }
         
@@ -73,7 +74,7 @@ extension DecoderTaskScreen {
             let bottomInset = self.view.safeAreaInsets.bottom + Constants.bottomInset
             
             let minY = self.screenView.scoreLabel.frame.minY - topInset
-            let maxY = self.taskSharingViewController.view.frame.maxY + bottomInset
+            let maxY = self.screenView.continueButton.frame.maxY + bottomInset
             
             let targetY = maxY - minY > self.view.bounds.height ? minY : max(0, maxY - self.view.bounds.height)
             

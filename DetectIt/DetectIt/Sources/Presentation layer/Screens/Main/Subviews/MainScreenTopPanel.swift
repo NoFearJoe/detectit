@@ -2,7 +2,7 @@ import SwiftUI
 import DetectItUI
 import DetectItCore
 
-struct NewProfileView: View {
+struct MainScreenTopPanel: View {
     let accuracy: Double
     let onTap: () -> Void
     

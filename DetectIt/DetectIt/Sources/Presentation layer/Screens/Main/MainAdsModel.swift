@@ -4,8 +4,8 @@ import YandexMobileAds
 import DetectItCore
 
 final class MainAdsModel: NSObject, ObservableObject {
-    var currentTaskIndex = 0
-    var isDailyTaskLimitExceeded = false
+    @Published var currentTaskIndex = 0
+    @Published var isDailyTaskLimitExceeded = false
     
     @Published private var adState = AdState.notLoaded
     @Published private var rewarded = false

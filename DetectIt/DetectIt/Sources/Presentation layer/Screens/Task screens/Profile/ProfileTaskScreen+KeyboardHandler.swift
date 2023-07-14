@@ -1,11 +1,3 @@
-//
-//  ProfileTaskScreen+KeyboardHandler.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 06/05/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
 import UIKit
 
 extension ProfileTaskScreen {

@@ -112,7 +112,7 @@ public final class AnswerButton: UIControl {
     public override var isEnabled: Bool {
         didSet {
             fillView.backgroundColor = isEnabled ? .yellow : UIColor.yellow.withAlphaComponent(0.5)
-            backgroundColor = isEnabled ? .gray : .darkGray
+            backgroundColor = isEnabled ? .gray : .darkGray.withAlphaComponent(0.5)
         }
     }
     

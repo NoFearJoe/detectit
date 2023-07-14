@@ -39,6 +39,8 @@ extension DecoderTaskScreen {
         contentContainer.appendChild(screenView.crimeDescriptionView)
         contentContainer.appendSpacing(28)
         contentContainer.appendChild(taskSharingViewController)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(screenView.continueButton)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
@@ -54,9 +56,7 @@ extension DecoderTaskScreen {
         view.addSubview(topPanel)
         
         topPanel.onClose = { [unowned self] in
-            self.dismiss(animated: true) {
-                self.onClose(self.isTaskCompleted || self.score != nil || self.answer != nil, self.score ?? 0)
-            }
+            self.close()
         }
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.task), animated: true, completion: nil)
@@ -80,6 +80,9 @@ extension DecoderTaskScreen {
         screenView.onTapAnswerButton = { [unowned self] in
             self.didTapAnswerButton()
         }
+        screenView.onTapContinueButton = { [unowned self] in
+            self.close()
+        }
         
         taskSharingViewController.onShare = { task in
             Analytics.log(
@@ -95,6 +98,15 @@ extension DecoderTaskScreen {
     func setupScreenLoadingView() {
         view.addSubview(screenLoadingView)
         screenLoadingView.pin(to: view)
+    }
+    
+    private func close() {
+        dismiss(animated: true) {
+            self.onClose(
+                self.isTaskCompleted || self.score != nil || self.answer != nil,
+                self.score ?? 0
+            )
+        }
     }
     
 }

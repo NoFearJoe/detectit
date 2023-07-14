@@ -150,6 +150,12 @@ final class ProfileTaskScreen: Screen {
         view.endEditing(true)
     }
     
+    func close() {
+        dismiss(animated: true) {
+            self.onClose(self.isTaskCompleted || self.score != nil, self.score ?? 0)
+        }
+    }
+    
 }
 
 extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
@@ -342,6 +348,10 @@ extension ProfileTaskScreen: ProfileTaskScreenViewDelegate {
         present(controller, animated: true, completion: nil)
         
         Analytics.logButtonTap(title: "profile_task_screen_get_status_button_title".localized, screen: .profileTask)
+    }
+    
+    func didTapContinueButton() {
+        close()
     }
     
 }

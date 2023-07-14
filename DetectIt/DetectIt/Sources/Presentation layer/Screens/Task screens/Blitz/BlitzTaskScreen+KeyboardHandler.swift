@@ -39,7 +39,7 @@ extension BlitzTaskScreen {
     func calculateTargetScrollViewYOffset(keyboardFrame: CGRect) -> CGFloat? {
         guard var focusedView = contentContainer.stackView.currentFirstResponder() as? UIView else { return nil }
         
-        focusedView = focusedView.superview ?? focusedView
+        focusedView = screenView.answerButton
         
         let convertedFocusedViewFrame = focusedView.convert(focusedView.bounds, to: view)
         

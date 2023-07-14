@@ -16,7 +16,7 @@ public protocol BlitzTaskScreenViewDelegate: ProfileViewDelegate, AttachmentsVie
     func answerModel() -> ProfileTaskAnswerCell.Model?
     
     func didTapGetStatusButton()
-    
+    func didTapContinueButton()
 }
 
 public final class BlitzTaskScreenView: NSObject {
@@ -37,6 +37,8 @@ public final class BlitzTaskScreenView: NSObject {
     public let crimeDescriptionAttachmentsView: AttachmentsView
     
     public let rightAnswerView = DecoderTaskRightAnswerView()
+    
+    public let continueButton = SolidButton.primaryButton()
     
     private unowned let delegate: BlitzTaskScreenViewDelegate
     
@@ -83,6 +85,13 @@ public final class BlitzTaskScreenView: NSObject {
         hiddenCrimeDescriptionView.onTapGetStatusButton = { [unowned delegate] in
             delegate.didTapGetStatusButton()
         }
+        
+        continueButton.setTitle("continue".localized, for: .normal)
+        continueButton.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapContinueButton() {
+        delegate.didTapContinueButton()
     }
     
 }

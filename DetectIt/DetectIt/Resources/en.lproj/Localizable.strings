@@ -137,16 +137,18 @@
 
 // Daily limit exceeded
 
-"daily_limit_exceeded_title" = "";
-"daily_limit_exceeded_subtitle" = "";
-"daily_limit_exceeded_buy_pro_version_title" = "";
-"daily_limit_exceeded_watch_ad_title" = "";
+"daily_limit_exceeded_title" = "That is all for today";
+"daily_limit_exceeded_subtitle" = "Every day you can play 3 games.\nTo get more, watch an Ad or buy the full version.";
+"daily_limit_exceeded_buy_pro_version_title" = "Buy the full version";
+"daily_limit_exceeded_watch_ad_title" = "Watch Ad";
 
 // Help screen
 
 "help_screen_title" = "Help: %@";
 
 // Other
+
+"continue" = "Continue";
 
 "answer_button_default_title" = "Send the answer";
 "buy_button_title" = "Make the contribution";

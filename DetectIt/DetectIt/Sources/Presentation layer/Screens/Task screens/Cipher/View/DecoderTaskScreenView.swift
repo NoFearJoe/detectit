@@ -13,6 +13,7 @@ public final class DecoderTaskScreenView {
     
     public var onTapEncodedPicture: (() -> Void)?
     public var onTapAnswerButton: (() -> Void)?
+    public var onTapContinueButton: (() -> Void)?
     
     public let titleLabel = UILabel()
     public let prepositionView = TextView()
@@ -30,6 +31,8 @@ public final class DecoderTaskScreenView {
     public let scoreLabel = UILabel()
     public let rightAnswerView = DecoderTaskRightAnswerView()
     public let crimeDescriptionView = TextView()
+    
+    public let continueButton = SolidButton.primaryButton()
     
     public func setupViews() {
         titleLabel.font = .heading1
@@ -81,10 +84,17 @@ public final class DecoderTaskScreenView {
         scoreLabel.font = .score1
         scoreLabel.textColor = .softWhite
         scoreLabel.textAlignment = .center
+        
+        continueButton.setTitle("continue".localized, for: .normal)
+        continueButton.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside)
     }
     
     @objc private func didTapEncodedPicture() {
         onTapEncodedPicture?()
+    }
+    
+    @objc private func didTapContinueButton() {
+        onTapContinueButton?()
     }
     
     public init() {}

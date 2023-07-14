@@ -39,6 +39,8 @@ extension BlitzTaskScreen {
         contentContainer.appendChild(screenView.hiddenCrimeDescriptionView)
         contentContainer.appendSpacing(32)
         contentContainer.appendChild(taskSharingViewController)
+        contentContainer.appendSpacing(32)
+        contentContainer.appendChild(screenView.continueButton)
         contentContainer.setBottomSpacing(Constants.bottomInset)
         
         let backgroundTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapBackground))
@@ -58,9 +60,7 @@ extension BlitzTaskScreen {
         view.addSubview(topPanel)
         
         topPanel.onClose = { [unowned self] in
-            self.dismiss(animated: true) {
-                self.onClose(self.isTaskCompleted || self.score != nil, self.score ?? 0)
-            }
+            self.close()
         }
         topPanel.onNotes = { [unowned self] in
             self.present(TaskNotesScreen(task: self.task), animated: true, completion: nil)
