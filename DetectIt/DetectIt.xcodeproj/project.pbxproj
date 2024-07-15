@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -85,6 +85,7 @@
 		96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */; };
 		96B3352C25BC63F800D0814F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3352B25BC63F800D0814F /* SplashScreen.swift */; };
 		96B3353725C0770500D0814F /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353625C0770500D0814F /* Analytics.swift */; };
+		96CE5B312C445C8A00272677 /* CipherTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
@@ -206,6 +207,7 @@
 		96B32E5C25B4D2CF00D0814F /* Detect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Detect.entitlements; sourceTree = "<group>"; };
 		96B3352B25BC63F800D0814F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		96B3353625C0770500D0814F /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CipherTaskScreen.swift; sourceTree = "<group>"; };
 		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
 		96F054772444C60E000742E4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		96F054792444CD77000742E4 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		96054C212459CA980083C217 /* Cipher */ = {
 			isa = PBXGroup;
 			children = (
+				96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */,
 				96A5C658274A2B390056DC09 /* View */,
 				965AC7D02438BA09003A3DC7 /* DecoderTaskScreen.swift */,
 				9615F9592463045A0070E2D3 /* DecoderTaskScreen+Setup.swift */,
@@ -704,7 +707,7 @@
 			packageReferences = (
 				965F2551267A6D5C00106F13 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 				965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
-				37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-swift" */,
+				37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
 			);
 			productRefGroup = 961B95E12425EE89003EC992 /* Products */;
 			projectDirPath = "";
@@ -752,6 +755,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96A5C6DA274A34900056DC09 /* BlitzTaskScreen+Setup.swift in Sources */,
+				96CE5B312C445C8A00272677 /* CipherTaskScreen.swift in Sources */,
 				96A5C6D8274A328B0056DC09 /* BlitzTaskScreen+State.swift in Sources */,
 				96A5C6D2274A2C9A0056DC09 /* ProfileHiddenCrimeDescriptionView.swift in Sources */,
 				965F2567267A7D2A00106F13 /* CompletedTasksScreen.swift in Sources */,
@@ -1180,12 +1184,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-swift" */ = {
+		37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yandexmobile/yandex-ads-sdk-swift";
+			repositoryURL = "https://github.com/yandexmobile/yandex-ads-sdk-ios";
 			requirement = {
 				kind = exactVersion;
-				version = 5.8.0;
+				version = 7.1.1;
 			};
 		};
 		965F2551267A6D5C00106F13 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
@@ -1209,7 +1213,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		37420A7D2A55B823001647F4 /* YandexMobileAdsPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-swift" */;
+			package = 37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
 			productName = YandexMobileAdsPackage;
 		};
 		965F2552267A6D5C00106F13 /* Amplitude */ = {

@@ -10,8 +10,14 @@ final class MainAdsModel: NSObject, ObservableObject {
     @Published private var adState = AdState.notLoaded
     @Published private var rewarded = false
     
-    private var interstitialAd = YMAInterstitialAd(adUnitID: interstitialAdID)
-    private var rewardedAd = YMARewardedAd(adUnitID: rewardedAdID)
+    private var interstitialAd: InterstitialAd?
+    private let interstitialAdLoader = InterstitialAdLoader()
+    private var rewardedAd: RewardedAd?
+    private let rewardedAdLoader = RewardedAdLoader()
+    
+    private var hasBeenPresented = false
+    
+    private var presentationCompletion: (() -> Void)?
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -31,27 +37,24 @@ final class MainAdsModel: NSObject, ObservableObject {
         switch currentAdType {
         case .interstitial:
             adState = .loading
-            interstitialAd = YMAInterstitialAd(adUnitID: Self.interstitialAdID)
-            interstitialAd.delegate = self
-            interstitialAd.load()
+            hasBeenPresented = false
+            interstitialAdLoader.delegate = self
+            interstitialAdLoader.loadAd(with: AdRequestConfiguration(adUnitID: Self.interstitialAdID))
         case .rewarded:
             adState = .loading
-            rewardedAd = YMARewardedAd(adUnitID: Self.rewardedAdID)
-            rewardedAd.delegate = self
-            rewardedAd.load()
+            hasBeenPresented = false
+            rewardedAdLoader.delegate = self
+            rewardedAdLoader.loadAd(with: AdRequestConfiguration(adUnitID: Self.rewardedAdID))
         default:
             break
         }
     }
     
     var needToShowAd: Bool {
-        switch currentAdType {
-        case .interstitial:
-            return !interstitialAd.hasBeenPresented
-        case .rewarded:
-            return !rewardedAd.hasBeenPresented
-        default:
+        if currentAdType == .none {
             return false
+        } else {
+            return !hasBeenPresented
         }
     }
     
@@ -82,7 +85,13 @@ final class MainAdsModel: NSObject, ObservableObject {
     ) {
         switch state {
         case .notLoaded:
-            break
+            loadAds() // TODO
+            present(
+                state: adState,
+                allowFailure: allowFailure,
+                attempt: attempt,
+                onStateChange: onStateChange
+            )
         case .loading:
             onStateChange(.loading)
             
@@ -137,18 +146,11 @@ final class MainAdsModel: NSObject, ObservableObject {
     private func presentAd(from vc: UIViewController, completion: @escaping () -> Void) {
         switch currentAdType {
         case .interstitial:
-            interstitialAd.present(from: vc) { [weak self] in
-                completion()
-                
-                self?.adState = .notLoaded
-            }
+            self.presentationCompletion = completion
+            interstitialAd?.show(from: vc)
         case .rewarded:
-            rewardedAd.present(from: vc) { [weak self] in
-                completion()
-                
-                self?.rewarded = false
-                self?.adState = .notLoaded
-            }
+            self.presentationCompletion = completion
+            rewardedAd?.show(from: vc)
         default:
             break
         }
@@ -184,38 +186,59 @@ private extension MainAdsModel {
     }
 }
 
-extension MainAdsModel: YMAInterstitialAdDelegate {
-    func interstitialAdDidLoad(_ interstitialAd: YMAInterstitialAd) {
+extension MainAdsModel: InterstitialAdLoaderDelegate, InterstitialAdDelegate {
+    func interstitialAdLoader(_ adLoader: YandexMobileAds.InterstitialAdLoader, didLoad interstitialAd: YandexMobileAds.InterstitialAd) {
+        self.interstitialAd = interstitialAd
+        interstitialAd.delegate = self
+        
         adState = .loaded
     }
     
-    func interstitialAdDidFail(toLoad interstitialAd: YMAInterstitialAd, error: Error) {
+    func interstitialAdLoader(_ adLoader: YandexMobileAds.InterstitialAdLoader, didFailToLoadWithError error: YandexMobileAds.AdRequestError) {
         adState = .failedToLoad
     }
     
-    func interstitialAdDidFail(toPresent interstitialAd: YMAInterstitialAd, error: Error) {
+    func interstitialAdDidShow(_ interstitialAd: InterstitialAd) {
+        hasBeenPresented = true
+    }
+    
+    func interstitialAdDidDismiss(_ interstitialAd: InterstitialAd) {
+        adState = .notLoaded
+        presentationCompletion?()
+    }
+    
+    func interstitialAd(_ interstitialAd: InterstitialAd, didFailToShowWithError error: any Error) {
         adState = .failedToPresent
     }
 }
 
-extension MainAdsModel: YMARewardedAdDelegate {
-    func rewardedAd(_ rewardedAd: YMARewardedAd, didReward reward: YMAReward) {
-        rewarded = true
-    }
-    
-    func rewardedAdDidLoad(_ rewardedAd: YMARewardedAd) {
+extension MainAdsModel: RewardedAdLoaderDelegate, RewardedAdDelegate {
+    func rewardedAdLoader(_ adLoader: YandexMobileAds.RewardedAdLoader, didLoad rewardedAd: YandexMobileAds.RewardedAd) {
+        self.rewardedAd = rewardedAd
+        rewardedAd.delegate = self
+        
         adState = .loaded
     }
     
-    func rewardedAdDidFail(toLoad rewardedAd: YMARewardedAd, error: Error) {
+    func rewardedAdLoader(_ adLoader: YandexMobileAds.RewardedAdLoader, didFailToLoadWithError error: YandexMobileAds.AdRequestError) {
         adState = .failedToLoad
     }
     
-    func rewardedAdDidFail(toPresent rewardedAd: YMARewardedAd, error: Error) {
+    func rewardedAdDidShow(_ rewardedAd: RewardedAd) {
+        hasBeenPresented = true
+    }
+    
+    func rewardedAdDidDismiss(_ rewardedAd: RewardedAd) {
+        adState = .notLoaded
+        presentationCompletion?()
+        rewarded = false
+    }
+    
+    func rewardedAd(_ rewardedAd: RewardedAd, didFailToShowWithError error: any Error) {
         adState = .failedToPresent
     }
     
-    func rewardedAdDidDisappear(_ rewardedAd: YMARewardedAd) {
-        adState = .notLoaded
+    func rewardedAd(_ rewardedAd: RewardedAd, didReward reward: Reward) {
+        rewarded = true
     }
 }

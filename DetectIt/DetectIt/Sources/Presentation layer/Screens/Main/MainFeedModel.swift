@@ -21,7 +21,7 @@ final class MainFeedModel: NSObject, ObservableObject {
         feedItems = await feedService.obtainFeed()
         currentTask = await loadCurrentTask()
         
-        SwiftUI.Task {
+        _Concurrency.Task {
             do {
                 leaderboard = try await GKLeaderboard
                     .loadLeaderboards(IDs: ["detect_leaderboard"])
@@ -48,7 +48,7 @@ final class MainFeedModel: NSObject, ObservableObject {
         currentTask = await loadCurrentTask()
         
         #if !DEBUG
-        SwiftUI.Task {
+        _Concurrency.Task {
             do {
                 try await leaderboard?.submitScore(
                     score,

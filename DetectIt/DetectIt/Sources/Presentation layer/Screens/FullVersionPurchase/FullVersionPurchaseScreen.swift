@@ -98,7 +98,7 @@ struct FullVersionPurchaseScreen: View {
     private func buy() {
         Analytics.logButtonTap(title: "buy_pro_version", screen: .fullVersionPurchase)
         
-        SwiftUI.Task {
+        _Concurrency.Task {
             hudState = .loading
             
             do {
@@ -121,7 +121,7 @@ struct FullVersionPurchaseScreen: View {
     private func restore() {
         Analytics.logButtonTap(title: "restore_purchases", screen: .fullVersionPurchase)
         
-        SwiftUI.Task {
+        _Concurrency.Task {
             hudState = .loading
             
             if await model.restore() {

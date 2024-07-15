@@ -48,9 +48,7 @@ final class HelpScreen: Screen {
     
     override func loadView() {
         super.loadView()
-        
-        isStatusBarBlurred = true
-        
+                
         setupViews()
     }
     

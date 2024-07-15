@@ -84,6 +84,8 @@ final class DecoderTaskScreen: Screen {
     override func loadView() {
         super.loadView()
         
+        view.backgroundColor = .darkBackground
+        
         setupScreenLoadingView()
         setupContentView()
         setupViews()

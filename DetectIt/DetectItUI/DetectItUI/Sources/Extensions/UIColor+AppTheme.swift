@@ -4,7 +4,7 @@ public extension Color {
     static let darkBackground = Color(white: 0.1)
     static let cardBackground = Color(white: 0.1)
     
-    static let primaryText = Color(white: 0.95)
+    static let primaryText = Color(white: 0.92)
     static let secondaryText = Color(white: 0.7)
     static let headlineText = Color(red: 0.95, green: 0.95, blue: 0)
 }

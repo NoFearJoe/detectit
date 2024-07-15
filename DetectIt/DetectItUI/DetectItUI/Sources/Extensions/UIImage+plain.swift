@@ -34,6 +34,8 @@ public extension UIImage {
     }
     
     class func plainRounded(color: UIColor, size: CGSize = CGSize(width: 1, height: 1), cornerRadius: CGFloat) -> UIImage? {
+        guard size.width > 0, size.height > 0 else { return nil }
+        
         let scale = UIScreen.main.scale
         let scaledSize = CGSize(width: size.width * scale, height: size.height * scale)
         let rect = CGRect(origin: .zero, size: scaledSize)

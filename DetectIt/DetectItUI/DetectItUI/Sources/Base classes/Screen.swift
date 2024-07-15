@@ -14,10 +14,6 @@ open class Screen: UIViewController {
     
     // MARK: - Public methods
     
-    public var statusBarFrame: CGRect {
-        view.window?.windowScene?.statusBarManager?.statusBarFrame ?? .zero
-    }
-    
     public let screenPlaceholderView = ScreenPlaceholderView()
     
     open func prepare() {}
@@ -48,54 +44,6 @@ open class Screen: UIViewController {
         super.viewWillAppear(animated)
         
         refresh()
-        
-        updateStatusBarBlurView()
-    }
-    
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        updateStatusBarBlurView()
-    }
-    
-    open override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
-        
-        updateStatusBarBlurView()
-    }
-    
-    // MARK: - Status bar blur
-    
-    public var isStatusBarBlurred: Bool = false {
-        didSet {
-//            setStatusBarBlurred(isStatusBarBlurred)
-        }
-    }
-    
-    private var statusBarView: UIView?
-    
-    private func setStatusBarBlurred(_ isBlurred: Bool) {
-        if isBlurred {
-            guard statusBarView == nil else { return }
-            
-            let gradient = GradientView()
-            gradient.startColor = .black
-            gradient.endColor = .black.withAlphaComponent(0)
-            
-            view.addSubview(gradient)
-            
-            statusBarView = gradient
-        } else {
-            statusBarView?.removeFromSuperview()
-            statusBarView = nil
-        }
-    }
-    
-    private func updateStatusBarBlurView() {
-        guard let statusBarView = statusBarView else { return }
-        
-        statusBarView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.safeAreaInsets.top)
-        view.bringSubviewToFront(statusBarView)
     }
     
     // HUD

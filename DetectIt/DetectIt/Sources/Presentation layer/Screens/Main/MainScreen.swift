@@ -65,7 +65,7 @@ struct MainScreen: View {
                 model: router,
                 onTaskCompleted: { isCompleted, score in
                     guard isCompleted else { return }
-                    SwiftUI.Task {
+                    _Concurrency.Task {
                         await feedModel.taskCompleted(score: score)
                         dailyTaskLimitModel.commitTaskCompletion()
                     }
@@ -105,17 +105,19 @@ struct MainScreen: View {
                     task: task,
                     isBlocked: dailyTaskLimitModel.isDailyLimitExceeded
                 ) {
-//                    model.changeCurrentTask(shift: 1)
-                    
-                    if dailyTaskLimitModel.isDailyLimitExceeded {
-                        router.isDailyTasksLimitExceededScreenShown = true
-                    } else if adsModel.needToShowAd {
-                        showAd(allowFailure: true) { _ in
+//                    _Concurrency.Task {
+//                        await feedModel.changeCurrentTask(shift: 1)
+                        
+                        if dailyTaskLimitModel.isDailyLimitExceeded {
+                            router.isDailyTasksLimitExceededScreenShown = true
+                        } else if adsModel.needToShowAd {
+                            showAd(allowFailure: true) { _ in
+                                router.selectedTask = task
+                            }
+                        } else {
                             router.selectedTask = task
                         }
-                    } else {
-                        router.selectedTask = task
-                    }
+//                    }
                     
                     Analytics.log(
                         "task_selected",

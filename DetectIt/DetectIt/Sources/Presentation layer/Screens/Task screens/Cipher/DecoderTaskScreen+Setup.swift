@@ -16,7 +16,7 @@ extension DecoderTaskScreen {
             $0.pin(to: self.view, insets: UIEdgeInsets(top: 0, left: .hInset, bottom: 0, right: -.hInset))
         }
         
-        contentContainer.view.backgroundColor = .systemBackground
+        contentContainer.view.backgroundColor = .clear
                 
         contentContainer.scrollView.clipsToBounds = false
         
