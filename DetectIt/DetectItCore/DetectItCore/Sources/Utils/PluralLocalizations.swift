@@ -25,4 +25,18 @@ public struct Plurals {
         }
     }
     
+    public static func attempts(_ count: Int) -> String {
+        if (11...14).contains(count % 100) {
+            return "Осталось \(count) попыток"
+        }
+        
+        switch count % 10 {
+        case 1:
+            return "Последняя попытка"
+        case 2...4:
+            return "Осталось \(count) попытки"
+        default:
+            return "Осталось \(count) попыток"
+        }
+    }
 }

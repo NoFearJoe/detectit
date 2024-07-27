@@ -29,7 +29,7 @@
 "onboarding_second_page_title" = "Расследуй с умом";
 "onboarding_second_page_subtitle" = "Используй любые средства для поиска истины - дедукцию, хитрость и даже интернет.";
 "onboarding_third_page_title" = "Запомни главное";
-"onboarding_third_page_subtitle" = "В этой игре нет второго шанса. Поэтому, отправляя ответы, будь предельно внимателен.";
+"onboarding_third_page_subtitle" = "Отправляя ответы, будь предельно внимателен – нужно не делать ошибок и соблюдать формат ответа.";
 "onboarding_last_page_title" = "Начни с простого";
 "onboarding_last_page_subtitle" = "Попробуй воспользоваться кнопкой, которая служит для отправки ответов.";
 "onboarding_last_page_button_title" = "Продолжить";
@@ -66,6 +66,7 @@
 "decoder_task_screen_answer_title" = "Ответ:";
 "decoder_task_screen_send_answer_button_title" = "Отправить ответ";
 "decoder_task_screen_right_answer_title" = "Правильный ответ:";
+"decoder_task_screen_score_title" = "Очки:";
 
 // Profile task
 
@@ -140,7 +141,7 @@
 
 "continue" = "Продолжить";
 
-"answer_button_default_title" = "Отправить ответ";
+"answer_button_default_title" = "Проверить ответ";
 "buy_button_title" = "Сделать взнос";
 "attachments_title" = "Дополнения";
 

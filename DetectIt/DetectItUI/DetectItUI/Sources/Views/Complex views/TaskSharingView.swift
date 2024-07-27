@@ -1,12 +1,64 @@
-//
-//  TaskSharingView.swift
-//  DetectItUI
-//
-//  Created by Илья Харабет on 18.06.2021.
-//  Copyright © 2021 Mesterra. All rights reserved.
-//
+import SwiftUI
+import DetectItCore
 
-import UIKit
+public struct TaskSharingViewSUI: View {
+    let task: Task
+    let onShare: () -> Void
+    
+    @State private var isSharingPresented = false
+    
+    public init(task: Task, onShare: @escaping () -> Void) {
+        self.task = task
+        self.onShare = onShare
+    }
+    
+    public var body: some View {
+        HStack {
+            Text("task_sharing_title".localized)
+                .font(.text3)
+                .foregroundStyle(.white)
+                .lineLimit(nil)
+                .multilineTextAlignment(.leading)
+            
+            Spacer()
+            
+            Image("share", bundle: .ui)
+                .resizable()
+                .frame(width: 24, height: 24)
+                .foregroundStyle(.yellow)
+        }
+        .padding(.horizontal, .hInset)
+        .padding(.vertical, 16)
+        .background(Color.darkBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .onTapGesture {
+            onShare()
+            isSharingPresented = true
+        }
+        .overlay {
+            if isSharingPresented {
+                ActivityPopover(items: [Self.makeSharingContent(task: task)]) { _, _, _, _ in
+                    isSharingPresented = false
+                }
+            }
+        }
+    }
+    
+    public static func makeSharingContent(task: Task) -> String {
+        let taskLink = AppRateManager.appStoreLink.absoluteString
+        
+        switch task.kind {
+        case .cipher:
+            return String(format: "task_sharing_text_for_cipher".localized, task.title, taskLink)
+        case .profile:
+            return String(format: "task_sharing_text_for_profile".localized, task.title, taskLink)
+        case .blitz:
+            return String(format: "task_sharing_text_for_blitz".localized, task.title, taskLink)
+        case .quest:
+            return String(format: "task_sharing_text_for_quest".localized, task.title, taskLink)
+        }
+    }
+}
 
 public final class TaskSharingView: UIView, TouchAnimatable {
     

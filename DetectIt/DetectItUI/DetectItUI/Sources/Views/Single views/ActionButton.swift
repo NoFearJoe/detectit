@@ -1,5 +1,4 @@
 import SwiftUI
-import DetectItUI
 
 public struct ActionButton: View {
     public let icon: Image?
@@ -33,7 +32,8 @@ public struct ActionButton: View {
                 
                 Label {
                     Text(title)
-                        .font(.text2Bold)
+                        .font(.text2.weight(.medium))
+                        .kerning(0.5)
                         .foregroundColor(foreground)
                 } icon: {
                     icon?

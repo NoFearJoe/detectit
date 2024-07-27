@@ -6,8 +6,24 @@
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 import AVFoundation
+
+public struct AudioPlayerSUI: UIViewControllerRepresentable {
+    let data: Data
+    
+    public init(data: Data) {
+        self.data = data
+    }
+    
+    public func makeUIViewController(context: Context) -> AudioPlayerController {
+        AudioPlayerController()
+    }
+    
+    public func updateUIViewController(_ uiViewController: AudioPlayerController, context: Context) {
+        uiViewController.configure(audio: data)
+    }
+}
 
 public final class AudioPlayerController: UIViewController {
     

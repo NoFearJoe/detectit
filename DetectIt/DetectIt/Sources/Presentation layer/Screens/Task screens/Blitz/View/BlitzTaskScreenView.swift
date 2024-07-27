@@ -36,7 +36,7 @@ public final class BlitzTaskScreenView: NSObject {
     public let hiddenCrimeDescriptionView = ProfileHiddenCrimeDescriptionView()
     public let crimeDescriptionAttachmentsView: AttachmentsView
     
-    public let rightAnswerView = DecoderTaskRightAnswerView()
+    public let rightAnswerView = RightAnswerView()
     
     public let continueButton = SolidButton.primaryButton()
     
@@ -93,5 +93,58 @@ public final class BlitzTaskScreenView: NSObject {
     @objc private func didTapContinueButton() {
         delegate.didTapContinueButton()
     }
+    
+}
+
+public final class RightAnswerView: UIView {
+    
+    public var answer: String? {
+        didSet {
+            answerLabel.text = answer
+        }
+    }
+    
+    private let titleLabel = UILabel()
+    private let answerLabel = UILabel()
+    
+    private func setupViews() {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(titleLabel)
+        
+        titleLabel.font = .text3
+        titleLabel.textColor = .softWhite
+        titleLabel.text = "decoder_task_screen_right_answer_title".localized
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+        
+        addSubview(answerLabel)
+        
+        answerLabel.font = .heading3
+        answerLabel.textColor = .green
+        answerLabel.numberOfLines = 0
+        
+        answerLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            answerLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
+            answerLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            answerLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            answerLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupViews()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) { fatalError() }
     
 }

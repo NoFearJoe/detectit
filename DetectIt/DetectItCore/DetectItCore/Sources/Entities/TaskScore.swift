@@ -66,6 +66,14 @@ public struct TaskAnswer {
         storage.save(answer, key: makeKey(for: id, taskKind: .cipher))
     }
     
+    public static func getAttempt(decoderTaskID id: String) -> Int {
+        storage.get(key: makeAttemptKey(for: id, taskKind: .cipher)) ?? 0
+    }
+    
+    public static func setAttempt(_ attempt: Int, decoderTaskID id: String) {
+        storage.save(attempt, key: makeAttemptKey(for: id, taskKind: .cipher))
+    }
+    
     // MARK: Profile
     
     public enum ProfileAnswer: Codable {
@@ -204,4 +212,7 @@ public struct TaskAnswer {
         "\(keyPrefix)_\(taskKind)_\(id)"
     }
     
+    private static func makeAttemptKey(for id: String, taskKind: TaskKind) -> String {
+        "task_attempt_number_\(taskKind)_\(id)"
+    }
 }

@@ -68,6 +68,7 @@
 "decoder_task_screen_answer_title" = "Answer:";
 "decoder_task_screen_send_answer_button_title" = "Send the answer";
 "decoder_task_screen_right_answer_title" = "Right answer:";
+"decoder_task_screen_score_title" = "Score:";
 
 // Profile task
 
@@ -150,7 +151,7 @@
 
 "continue" = "Continue";
 
-"answer_button_default_title" = "Send the answer";
+"answer_button_default_title" = "Check the answer";
 "buy_button_title" = "Make the contribution";
 "attachments_title" = "Attachments";
 

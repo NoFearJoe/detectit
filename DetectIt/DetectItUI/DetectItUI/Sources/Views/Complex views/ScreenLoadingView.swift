@@ -6,7 +6,25 @@
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
+
+public struct ScreenLoadingViewSUI: UIViewRepresentable {
+    let isInitiallyHidden: Bool
+    let isVisible: Bool
+    
+    public init(isInitiallyHidden: Bool, isVisible: Bool) {
+        self.isInitiallyHidden = isInitiallyHidden
+        self.isVisible = isVisible
+    }
+    
+    public func makeUIView(context: Context) -> ScreenLoadingView {
+        ScreenLoadingView(isInitiallyHidden: isInitiallyHidden)
+    }
+    
+    public func updateUIView(_ uiView: ScreenLoadingView, context: Context) {
+        uiView.setVisible(isVisible, animated: context.transaction.animation != nil)
+    }
+}
 
 public final class ScreenLoadingView: UIView {
     

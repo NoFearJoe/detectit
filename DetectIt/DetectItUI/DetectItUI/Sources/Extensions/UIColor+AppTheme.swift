@@ -7,6 +7,8 @@ public extension Color {
     static let primaryText = Color(white: 0.92)
     static let secondaryText = Color(white: 0.7)
     static let headlineText = Color(red: 0.95, green: 0.95, blue: 0)
+    
+    static let systemBackground = Color(uiColor: .systemBackground)
 }
 
 public extension UIColor {

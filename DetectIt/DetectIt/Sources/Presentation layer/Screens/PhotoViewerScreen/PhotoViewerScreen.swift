@@ -1,13 +1,18 @@
-//
-//  PhotoViewerScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 11/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
+
+struct PhotoViewerScreenSUI: UIViewControllerRepresentable {
+    let image: UIImage
+    let title: String?
+    
+    func makeUIViewController(context: Context) -> PhotoViewerScreen {
+        PhotoViewerScreen(image: image, title: title)
+    }
+    
+    func updateUIViewController(_ uiViewController: PhotoViewerScreen, context: Context) {
+        
+    }
+}
 
 final class PhotoViewerScreen: Screen {
     

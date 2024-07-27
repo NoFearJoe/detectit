@@ -67,6 +67,17 @@ public final class ImageLoader {
         }
     }
     
+    public func load(
+        _ source: ImageSource,
+        postprocessing: ((UIImage) -> UIImage)? = nil
+    ) async -> (UIImage?, cached: Bool) {
+        await withCheckedContinuation { continuation in
+            load(source, postprocessing: postprocessing) { image, cached in
+                continuation.resume(returning: (image, cached))
+            }
+        }
+    }
+    
     private func loadFile(
         url: URL,
         postprocessing: ((UIImage) -> UIImage)? = nil,

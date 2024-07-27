@@ -6,7 +6,23 @@
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
+
+public struct TextViewSUI: UIViewRepresentable {
+    let text: NSAttributedString
+    
+    public init(_ text: NSAttributedString) {
+        self.text = text
+    }
+    
+    public func makeUIView(context: Context) -> TextView {
+        TextView()
+    }
+    
+    public func updateUIView(_ uiView: TextView, context: Context) {
+        uiView.attributedText = text
+    }
+}
 
 public final class TextView: UITextView {
     

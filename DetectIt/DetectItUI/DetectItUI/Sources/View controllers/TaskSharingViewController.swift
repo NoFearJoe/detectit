@@ -6,8 +6,26 @@
 //  Copyright © 2021 Mesterra. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 import DetectItCore
+
+public struct TaskSharingComponentSUI: UIViewControllerRepresentable {
+    let task: Task
+    let onShare: ((Task) -> Void)?
+    
+    public init(task: Task, onShare: ((Task) -> Void)?) {
+        self.task = task
+        self.onShare = onShare
+    }
+    
+    public func makeUIViewController(context: Context) -> TaskSharingViewController {
+        TaskSharingViewController(task: task)
+    }
+    
+    public func updateUIViewController(_ uiViewController: TaskSharingViewController, context: Context) {
+        uiViewController.onShare = onShare
+    }
+}
 
 public final class TaskSharingViewController: UIViewController {
     

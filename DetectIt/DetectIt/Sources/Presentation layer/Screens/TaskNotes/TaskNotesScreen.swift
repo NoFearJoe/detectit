@@ -1,15 +1,18 @@
-
-//
-//  TaskNotesScreen.swift
-//  DetectIt
-//
-//  Created by Илья Харабет on 20.08.2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import DetectItUI
 import DetectItCore
+
+struct TaskNotesScreenSUI: UIViewControllerRepresentable {
+    let task: Task
+    
+    func makeUIViewController(context: Context) -> TaskNotesScreen {
+        TaskNotesScreen(task: task)
+    }
+    
+    func updateUIViewController(_ uiViewController: TaskNotesScreen, context: Context) {
+        
+    }
+}
 
 final class TaskNotesScreen: Screen {
     

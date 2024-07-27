@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -82,6 +82,10 @@
 		96AAB00E243F49F500F61443 /* AutosizingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */; };
 		96B3353B25C078EA00D0814F /* UIButton+title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353A25C078EA00D0814F /* UIButton+title.swift */; };
 		96BE1626268C74B900247ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BE1625268C74B900247ECA /* Assets.xcassets */; };
+		96CE5B332C45A24700272677 /* AnswerButtonSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B322C45A24300272677 /* AnswerButtonSUI.swift */; };
+		96CE5B352C4F8EBE00272677 /* ScreenHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B342C4F8EB900272677 /* ScreenHUDView.swift */; };
+		96CE5B372C4F94E900272677 /* ActivityPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B362C4F94DF00272677 /* ActivityPopover.swift */; };
+		96CE5B392C54FBA500272677 /* EvidencePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B382C54FB9F00272677 /* EvidencePictureView.swift */; };
 		96DE6F4127AC5B2D001266DE /* ScreenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE6F4027AC5B2D001266DE /* ScreenHeaderView.swift */; };
 		96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F85C122445FCF000F5CD22 /* DetectItCore.framework */; };
 /* End PBXBuildFile section */
@@ -162,6 +166,10 @@
 		96AAB00D243F49F500F61443 /* AutosizingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutosizingCollectionView.swift; sourceTree = "<group>"; };
 		96B3353A25C078EA00D0814F /* UIButton+title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+title.swift"; sourceTree = "<group>"; };
 		96BE1625268C74B900247ECA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96CE5B322C45A24300272677 /* AnswerButtonSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButtonSUI.swift; sourceTree = "<group>"; };
+		96CE5B342C4F8EB900272677 /* ScreenHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHUDView.swift; sourceTree = "<group>"; };
+		96CE5B362C4F94DF00272677 /* ActivityPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPopover.swift; sourceTree = "<group>"; };
+		96CE5B382C54FB9F00272677 /* EvidencePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvidencePictureView.swift; sourceTree = "<group>"; };
 		96DE6F4027AC5B2D001266DE /* ScreenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeaderView.swift; sourceTree = "<group>"; };
 		96F85C122445FCF000F5CD22 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -324,6 +332,8 @@
 		965AC79124364E62003A3DC7 /* Single views */ = {
 			isa = PBXGroup;
 			children = (
+				96CE5B382C54FB9F00272677 /* EvidencePictureView.swift */,
+				96CE5B322C45A24300272677 /* AnswerButtonSUI.swift */,
 				3782ED522A602D63000C46F4 /* ActionButton.swift */,
 				965AC79324364E86003A3DC7 /* SolidButton.swift */,
 				965AC7A424387031003A3DC7 /* BlurView.swift */,
@@ -342,6 +352,8 @@
 		965AC79224364E69003A3DC7 /* Complex views */ = {
 			isa = PBXGroup;
 			children = (
+				96CE5B362C4F94DF00272677 /* ActivityPopover.swift */,
+				96CE5B342C4F8EB900272677 /* ScreenHUDView.swift */,
 				96A5C6F2275B7E990056DC09 /* AttachmentsView */,
 				96500E3D242F1151005FFC7A /* PhotoCardView.swift */,
 				965AC7E72438E611003A3DC7 /* QuestionAndAnswerView.swift */,
@@ -518,11 +530,13 @@
 				965AC7E62438E431003A3DC7 /* AnswerField.swift in Sources */,
 				96500E4A242F4F61005FFC7A /* CGFloat+Degrees.swift in Sources */,
 				9627E7D0250F9252007ACEBA /* NSObject+Extensions.m in Sources */,
+				96CE5B392C54FBA500272677 /* EvidencePictureView.swift in Sources */,
 				96054C1724599E9D0083C217 /* ScreenPlaceholderView.swift in Sources */,
 				96AAAFF1243B093600F61443 /* ScreenLoadingView.swift in Sources */,
 				96500E3E242F1151005FFC7A /* PhotoCardView.swift in Sources */,
 				965AC7DF2438C704003A3DC7 /* StackViewController.swift in Sources */,
 				9615F954245EC9E70070E2D3 /* UIImageView+ImageLoader.swift in Sources */,
+				96CE5B332C45A24700272677 /* AnswerButtonSUI.swift in Sources */,
 				96500E7D24326F21005FFC7A /* AutosizingCollectionViewCell.swift in Sources */,
 				965AC7B524388B48003A3DC7 /* ListSectionHeaderView.swift in Sources */,
 				967B54CA24E00912009EEF3E /* AudioPlayerController.swift in Sources */,
@@ -533,6 +547,7 @@
 				37420A8B2A570133001647F4 /* View+appear.swift in Sources */,
 				960543302451D38C0083C217 /* CGFloat+layoutInsets.swift in Sources */,
 				96500E46242F1C0B005FFC7A /* UIImage+Bundle.swift in Sources */,
+				96CE5B352C4F8EBE00272677 /* ScreenHUDView.swift in Sources */,
 				96500E48242F313D005FFC7A /* UIImage+Filters.swift in Sources */,
 				96AAADF324DFFDBB00388404 /* AudioPlayerView.swift in Sources */,
 				965AC7A524387031003A3DC7 /* BlurView.swift in Sources */,
@@ -566,6 +581,7 @@
 				965AC79A2436504F003A3DC7 /* UIImageView+Gradient.swift in Sources */,
 				96200CB52441F29000A3C720 /* UICollectionView+EmptyCell.swift in Sources */,
 				96B3353B25C078EA00D0814F /* UIButton+title.swift in Sources */,
+				96CE5B372C4F94E900272677 /* ActivityPopover.swift in Sources */,
 				965F256B267D0C7100106F13 /* TaskSharingViewController.swift in Sources */,
 				96A5C6F0275B7E960056DC09 /* PhotoAttachmentCell.swift in Sources */,
 				96500E40242F12A2005FFC7A /* UIColor+AppTheme.swift in Sources */,

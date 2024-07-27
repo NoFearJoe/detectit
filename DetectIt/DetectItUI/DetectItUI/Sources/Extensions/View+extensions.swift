@@ -27,3 +27,10 @@ public struct VSpacer: View {
         Spacer().frame(height: length)
     }
 }
+
+
+public extension View {
+    func inlineModifier<Content: View>(@ViewBuilder _ content: (Self) -> Content) -> some View {
+        content(self)
+    }
+}

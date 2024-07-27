@@ -8,7 +8,7 @@ extension View {
     ) -> some View {
         fullScreenCover(item: task) { task in
             if let cipher = task.cipher {
-                DecoderTaskScreenSUI(task: cipher, isTaskCompleted: false, onClose: completion)
+                CipherTaskScreen(task: cipher, isTaskCompleted: false, onClose: completion)
             } else if let profile = task.profile {
                 ProfileTaskScreenSUI(task: profile, isTaskCompleted: false, onClose: completion)
             } else if let blitz = task.blitz {

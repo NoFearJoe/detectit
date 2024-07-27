@@ -6,7 +6,25 @@
 //  Copyright © 2020 Mesterra. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
+
+public struct AudioPlayerViewSUI: UIViewRepresentable {
+    public var isPlaying: Bool = false
+    public var progress: Float = 0
+    public var onPlay: (() -> Void)?
+    public var onPause: (() -> Void)?
+    
+    public func makeUIView(context: Context) -> AudioPlayerView {
+        AudioPlayerView()
+    }
+    
+    public func updateUIView(_ uiView: AudioPlayerView, context: Context) {
+        uiView.isPlaying = isPlaying
+        uiView.progress = progress
+        uiView.onPlay = onPlay
+        uiView.onPause = onPause
+    }
+}
 
 public final class AudioPlayerView: UIView {
     

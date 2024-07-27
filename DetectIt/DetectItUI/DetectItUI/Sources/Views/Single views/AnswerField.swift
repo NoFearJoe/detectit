@@ -1,13 +1,29 @@
-//
-//  AnswerField.swift
-//  DetectItUI
-//
-//  Created by Илья Харабет on 04/04/2020.
-//  Copyright © 2020 Mesterra. All rights reserved.
-//
-
-import UIKit
+import SwiftUI
 import NextGrowingTextView
+
+public struct AnswerFieldSUI: UIViewRepresentable {
+    let kind: AnswerField.Kind
+    let keyboardType: UIKeyboardType
+    @Binding var text: String
+    
+    public init(kind: AnswerField.Kind, keyboardType: UIKeyboardType, text: Binding<String>) {
+        self.kind = kind
+        self.keyboardType = keyboardType
+        self._text = text
+    }
+    
+    public func makeUIView(context: Context) -> AnswerField {
+        AnswerField(kind: kind)
+    }
+    
+    public func updateUIView(_ uiView: AnswerField, context: Context) {
+        uiView.answer = text
+        uiView.keyboardType = keyboardType
+        uiView.onChangeText = {
+            text = $0
+        }
+    }
+}
 
 public final class AnswerField: UIView {
     
