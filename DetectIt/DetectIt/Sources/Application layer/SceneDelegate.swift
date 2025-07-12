@@ -1,5 +1,5 @@
 import SwiftUI
-import Amplitude
+//import Amplitude
 import DetectItCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         handleUniversalLink(options: connectionOptions)
         
-        Amplitude.instance().setUserId(UIDevice.current.identifierForVendor?.uuidString ?? "")
+//        Amplitude.instance().setUserId(UIDevice.current.identifierForVendor?.uuidString ?? "")
     }
     
     private func performTransition(to screen: UIViewController) {

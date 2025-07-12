@@ -1,19 +1,6 @@
 import SwiftUI
 import DetectItUI
 
-struct PhotoViewerScreenSUI: UIViewControllerRepresentable {
-    let image: UIImage
-    let title: String?
-    
-    func makeUIViewController(context: Context) -> PhotoViewerScreen {
-        PhotoViewerScreen(image: image, title: title)
-    }
-    
-    func updateUIViewController(_ uiViewController: PhotoViewerScreen, context: Context) {
-        
-    }
-}
-
 final class PhotoViewerScreen: Screen {
     
     // MARK: - Subviews

@@ -125,6 +125,8 @@ struct CipherTaskScreen: View {
     
     @FocusState private var isAnswerFocused
     
+    @Namespace var namespace
+    
     @Environment(\.dismiss) var dismiss
         
     init(task: DecoderTask, isTaskCompleted: Bool, onClose: @escaping (_: Bool, _: Int) -> Void) {
@@ -142,9 +144,13 @@ struct CipherTaskScreen: View {
             .task {
                 await model.load()
             }
-            .fullScreenCover(isPresented: $isPicturePresented) {
-                if let picture = model.picture {
-                    PhotoViewerScreenSUI(image: picture, title: nil)
+            .overlay {
+                if isPicturePresented, let picture = model.picture {
+                    PhotoViewerScreenSUI(image: picture, title: nil, namespace: namespace) {
+                        withAnimation {
+                            isPicturePresented = false
+                        }
+                    }
                 }
             }
             .sheet(isPresented: $isNotesPresented) {
@@ -262,8 +268,11 @@ struct CipherTaskScreen: View {
         
         if let picture = model.picture {
             EvidencePictureView(image: picture)
+                .matchedGeometryEffect(id: "photo", in: namespace)
                 .onTapGesture {
-                    isPicturePresented = true
+                    withAnimation {
+                        isPicturePresented = true
+                    }
                 }
             Spacer().frame(height: 20)
         }

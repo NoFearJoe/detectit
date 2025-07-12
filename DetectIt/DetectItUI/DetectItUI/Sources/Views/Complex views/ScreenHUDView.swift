@@ -68,10 +68,14 @@ public struct ScreenHUDView: View {
     }
 }
 
-struct CloseButton: View {
+public struct CloseButton: View {
     let onClose: () -> Void
     
-    var body: some View {
+    public init(onClose: @escaping () -> Void) {
+        self.onClose = onClose
+    }
+    
+    public var body: some View {
         Button(action: onClose) {
             Color.gray
                 .frame(width: 24, height: 24)

@@ -113,6 +113,8 @@ public struct FullVersionManager {
                 completion(nil)
             case let .error(error):
                 completion(error)
+            case let .deferred(purchase):
+                completion(nil)
             }
         }
     }

@@ -6,14 +6,15 @@
 //  Copyright © 2021 Mesterra. All rights reserved.
 //
 
-import Amplitude
+import Foundation
+//import Amplitude
 
 struct Analytics {
     
     static func log(_ event: String, parameters: [String: Any] = [:]) {
-        #if !DEBUG
-        Amplitude.instance().logEvent(event, withEventProperties: parameters)
-        #endif
+//        #if !DEBUG
+//        Amplitude.instance().logEvent(event, withEventProperties: parameters)
+//        #endif
     }
     
     static func logScreenShow(_ screen: Screen, parameters: [String: Any] = [:]) {
@@ -35,20 +36,20 @@ struct Analytics {
     }
     
     static func logRevenue(price: Double, productID: String) {
-        #if !DEBUG
-        let revenue = AMPRevenue()
-        revenue.setPrice(NSNumber(value: price))
-        revenue.setRevenueType("purchase")
-        revenue.setProductIdentifier(productID)
-        
-        Amplitude.instance().logRevenueV2(revenue)
-        #endif
+//        #if !DEBUG
+//        let revenue = AMPRevenue()
+//        revenue.setPrice(NSNumber(value: price))
+//        revenue.setRevenueType("purchase")
+//        revenue.setProductIdentifier(productID)
+//        
+//        Amplitude.instance().logRevenueV2(revenue)
+//        #endif
     }
     
     static func setProperty(_ name: String, value: Any) {
-        #if !DEBUG
-        Amplitude.instance().setUserProperties([name: value])
-        #endif
+//        #if !DEBUG
+//        Amplitude.instance().setUserProperties([name: value])
+//        #endif
     }
     
     // MARK: Special methods

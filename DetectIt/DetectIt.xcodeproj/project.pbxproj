@@ -10,7 +10,6 @@
 		372DFDFF2A4F13740024A32F /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DFDFE2A4F13740024A32F /* SettingsScreen.swift */; };
 		372DFE072A51F80F0024A32F /* MainScreenPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DFE062A51F80F0024A32F /* MainScreenPictureView.swift */; };
 		37420A7B2A5591FE001647F4 /* View+showTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A7A2A5591FE001647F4 /* View+showTask.swift */; };
-		37420A7E2A55B823001647F4 /* YandexMobileAdsPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 37420A7D2A55B823001647F4 /* YandexMobileAdsPackage */; };
 		37420A812A55B8F8001647F4 /* YandexMobileAdsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37420A7F2A55B8EC001647F4 /* YandexMobileAdsBundle.bundle */; };
 		37420A832A56B60C001647F4 /* DailyTaskLimitManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A822A56B60C001647F4 /* DailyTaskLimitManagerTests.swift */; };
 		37420A852A56BE92001647F4 /* DailyLimitExceededScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A842A56BE91001647F4 /* DailyLimitExceededScreen.swift */; };
@@ -50,7 +49,6 @@
 		96500E36242F0FDD005FFC7A /* DetectItUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96500E34242F0FDD005FFC7A /* DetectItUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		965AC7D32438BA19003A3DC7 /* ProfileTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D22438BA19003A3DC7 /* ProfileTaskScreen.swift */; };
 		965AC7D52438BA26003A3DC7 /* QuestTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965AC7D42438BA26003A3DC7 /* QuestTaskScreen.swift */; };
-		965F2553267A6D5C00106F13 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 965F2552267A6D5C00106F13 /* Amplitude */; };
 		965F2559267A6EC900106F13 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 965F2558267A6EC900106F13 /* SwiftyStoreKit */; };
 		965F2567267A7D2A00106F13 /* CompletedTasksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F2566267A7D2A00106F13 /* CompletedTasksScreen.swift */; };
 		969C825A25B4CA52008D9E72 /* FullVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969C825925B4CA52008D9E72 /* FullVersionManager.swift */; };
@@ -80,10 +78,13 @@
 		96B3352C25BC63F800D0814F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3352B25BC63F800D0814F /* SplashScreen.swift */; };
 		96B3353725C0770500D0814F /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353625C0770500D0814F /* Analytics.swift */; };
 		96CE5B312C445C8A00272677 /* CipherTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */; };
+		96D555A12C6BC35600A6C1AD /* PhotoViewerScreenSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D555A02C6BC34700A6C1AD /* PhotoViewerScreenSUI.swift */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
 		96F0547C2444D2EC000742E4 /* OnboardingLastPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0547B2444D2EC000742E4 /* OnboardingLastPage.swift */; };
+		96F165702E22DAC2000D4D77 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 96F1656F2E22DAC2000D4D77 /* InfoPlist.xcstrings */; };
+		96F165722E22DB9C000D4D77 /* YandexMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 96F165712E22DB9C000D4D77 /* YandexMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,10 +197,12 @@
 		96B3352B25BC63F800D0814F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		96B3353625C0770500D0814F /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CipherTaskScreen.swift; sourceTree = "<group>"; };
+		96D555A02C6BC34700A6C1AD /* PhotoViewerScreenSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerScreenSUI.swift; sourceTree = "<group>"; };
 		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
 		96F054772444C60E000742E4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		96F054792444CD77000742E4 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
 		96F0547B2444D2EC000742E4 /* OnboardingLastPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLastPage.swift; sourceTree = "<group>"; };
+		96F1656F2E22DAC2000D4D77 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,9 +210,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965F2553267A6D5C00106F13 /* Amplitude in Frameworks */,
+				96F165722E22DB9C000D4D77 /* YandexMobileAds in Frameworks */,
 				965F2559267A6EC900106F13 /* SwiftyStoreKit in Frameworks */,
-				37420A7E2A55B823001647F4 /* YandexMobileAdsPackage in Frameworks */,
 				96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */,
 				961B964B242600CF003EC992 /* DetectItCore.framework in Frameworks */,
 			);
@@ -361,6 +363,7 @@
 				961B95EC2425EE92003EC992 /* Assets.xcassets */,
 				961B95EE2425EE92003EC992 /* LaunchScreen.storyboard */,
 				96054C1C2459A20F0083C217 /* Localizable.strings */,
+				96F1656F2E22DAC2000D4D77 /* InfoPlist.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 		96200CAD244195C700A3C720 /* PhotoViewerScreen */ = {
 			isa = PBXGroup;
 			children = (
+				96D555A02C6BC34700A6C1AD /* PhotoViewerScreenSUI.swift */,
 				96200CAE244195ED00A3C720 /* PhotoViewerScreen.swift */,
 			);
 			path = PhotoViewerScreen;
@@ -585,9 +589,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		961B95DF2425EE89003EC992 /* DetectIt */ = {
+		961B95DF2425EE89003EC992 /* Sharashka */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "DetectIt" */;
+			buildConfigurationList = 961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "Sharashka" */;
 			buildPhases = (
 				961B95DC2425EE89003EC992 /* Sources */,
 				961B95DD2425EE89003EC992 /* Frameworks */,
@@ -598,11 +602,10 @@
 			);
 			dependencies = (
 			);
-			name = DetectIt;
+			name = Sharashka;
 			packageProductDependencies = (
-				965F2552267A6D5C00106F13 /* Amplitude */,
 				965F2558267A6EC900106F13 /* SwiftyStoreKit */,
-				37420A7D2A55B823001647F4 /* YandexMobileAdsPackage */,
+				96F165712E22DB9C000D4D77 /* YandexMobileAds */,
 			);
 			productName = DetectIt;
 			productReference = 961B95E02425EE89003EC992 /* Detect.app */;
@@ -679,7 +682,6 @@
 			);
 			mainGroup = 961B95D72425EE89003EC992;
 			packageReferences = (
-				965F2551267A6D5C00106F13 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 				965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
 			);
@@ -687,7 +689,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				961B95DF2425EE89003EC992 /* DetectIt */,
+				961B95DF2425EE89003EC992 /* Sharashka */,
 				961B95F52425EE92003EC992 /* DetectItTests */,
 				961B96002425EE92003EC992 /* DetectItUITests */,
 			);
@@ -699,6 +701,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F165702E22DAC2000D4D77 /* InfoPlist.xcstrings in Resources */,
 				96054C1A2459A20F0083C217 /* Localizable.strings in Resources */,
 				37420A812A55B8F8001647F4 /* YandexMobileAdsBundle.bundle in Resources */,
 				961B95F02425EE92003EC992 /* LaunchScreen.storyboard in Resources */,
@@ -764,6 +767,7 @@
 				969C825A25B4CA52008D9E72 /* FullVersionManager.swift in Sources */,
 				37420A872A56E0F5001647F4 /* MainAdsModel.swift in Sources */,
 				96A5C6C7274A2C9A0056DC09 /* ProfileTaskAnyAnswerCell.swift in Sources */,
+				96D555A12C6BC35600A6C1AD /* PhotoViewerScreenSUI.swift in Sources */,
 				961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */,
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
 				372DFE072A51F80F0024A32F /* MainScreenPictureView.swift in Sources */,
@@ -815,12 +819,12 @@
 /* Begin PBXTargetDependency section */
 		961B95F82425EE92003EC992 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 961B95DF2425EE89003EC992 /* DetectIt */;
+			target = 961B95DF2425EE89003EC992 /* Sharashka */;
 			targetProxy = 961B95F72425EE92003EC992 /* PBXContainerItemProxy */;
 		};
 		961B96032425EE92003EC992 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 961B95DF2425EE89003EC992 /* DetectIt */;
+			target = 961B95DF2425EE89003EC992 /* Sharashka */;
 			targetProxy = 961B96022425EE92003EC992 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -905,6 +909,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -963,6 +968,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
@@ -972,7 +978,8 @@
 		961B960B2425EE92003EC992 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DetectIt/Detect.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -997,7 +1004,8 @@
 		961B960C2425EE92003EC992 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DetectIt/Detect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1122,7 +1130,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "DetectIt" */ = {
+		961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "Sharashka" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				961B960B2425EE92003EC992 /* Debug */,
@@ -1157,42 +1165,29 @@
 			repositoryURL = "https://github.com/yandexmobile/yandex-ads-sdk-ios";
 			requirement = {
 				kind = exactVersion;
-				version = 7.1.1;
-			};
-		};
-		965F2551267A6D5C00106F13 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
-			requirement = {
-				kind = exactVersion;
-				version = 8.3.0;
+				version = 7.14.1;
 			};
 		};
 		965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit";
 			requirement = {
 				kind = exactVersion;
-				version = 0.16.3;
+				version = 0.16.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		37420A7D2A55B823001647F4 /* YandexMobileAdsPackage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
-			productName = YandexMobileAdsPackage;
-		};
-		965F2552267A6D5C00106F13 /* Amplitude */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 965F2551267A6D5C00106F13 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
-			productName = Amplitude;
-		};
 		965F2558267A6EC900106F13 /* SwiftyStoreKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
+		};
+		96F165712E22DB9C000D4D77 /* YandexMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
+			productName = YandexMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
