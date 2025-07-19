@@ -79,7 +79,6 @@
 		96CE5B312C445C8A00272677 /* CipherTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */; };
 		96D555A12C6BC35600A6C1AD /* PhotoViewerScreenSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D555A02C6BC34700A6C1AD /* PhotoViewerScreenSUI.swift */; };
 		96E67FEB2E2443CA00CD813A /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E67FEA2E2443C300CD813A /* RootScreen.swift */; };
-		96E67FEE2E26326B00CD813A /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 96E67FED2E26326B00CD813A /* BottomSheet */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
@@ -211,7 +210,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96E67FEE2E26326B00CD813A /* BottomSheet in Frameworks */,
 				96F165722E22DB9C000D4D77 /* YandexMobileAds in Frameworks */,
 				965F2559267A6EC900106F13 /* SwiftyStoreKit in Frameworks */,
 				96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */,
@@ -608,7 +606,6 @@
 			packageProductDependencies = (
 				965F2558267A6EC900106F13 /* SwiftyStoreKit */,
 				96F165712E22DB9C000D4D77 /* YandexMobileAds */,
-				96E67FED2E26326B00CD813A /* BottomSheet */,
 			);
 			productName = DetectIt;
 			productReference = 961B95E02425EE89003EC992 /* Detect.app */;
@@ -687,7 +684,6 @@
 			packageReferences = (
 				965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
-				96E67FEC2E26326B00CD813A /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 961B95E12425EE89003EC992 /* Products */;
 			projectDirPath = "";
@@ -1182,14 +1178,6 @@
 				version = 0.16.4;
 			};
 		};
-		96E67FEC2E26326B00CD813A /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lucaszischka/BottomSheet";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1197,11 +1185,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
-		};
-		96E67FED2E26326B00CD813A /* BottomSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 96E67FEC2E26326B00CD813A /* XCRemoteSwiftPackageReference "BottomSheet" */;
-			productName = BottomSheet;
 		};
 		96F165712E22DB9C000D4D77 /* YandexMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
