@@ -3,7 +3,7 @@ import DetectItUI
 
 struct DailyLimitExceededScreen: View {
     let onBuyProVersion: () -> Void
-    let onWatchAd: () -> Void
+//    let onWatchAd: () -> Void
     
     @State private var isProVersionPaywallShown = false
     
@@ -41,21 +41,21 @@ struct DailyLimitExceededScreen: View {
                 Analytics.logButtonTap(title: "buy_pro_version", screen: .dailyLimitExceeded)
             }
             
-            VSpacer(8)
-            
-            ActionButton(
-                title: "daily_limit_exceeded_watch_ad_title".localized,
-                foreground: .primaryText,
-                background: .darkBackground
-            ) {
-                dismiss()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    onWatchAd()
-                }
-                
-                Analytics.logButtonTap(title: "watch_ad", screen: .dailyLimitExceeded)
-            }
+//            VSpacer(8)
+//            
+//            ActionButton(
+//                title: "daily_limit_exceeded_watch_ad_title".localized,
+//                foreground: .primaryText,
+//                background: .darkBackground
+//            ) {
+//                dismiss()
+//                
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    onWatchAd()
+//                }
+//                
+//                Analytics.logButtonTap(title: "watch_ad", screen: .dailyLimitExceeded)
+//            }
         }
         .padding()
         .onAppear {

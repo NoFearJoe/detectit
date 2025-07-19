@@ -14,7 +14,7 @@ struct MainScreenRouter: ViewModifier {
     @ObservedObject var model: MainRoutingModel
     
     let onTaskCompleted: (_ isCompleted: Bool, _ score: Int) -> Void
-    let onWatchAd: () -> Void
+//    let onWatchAd: () -> Void
     
     func body(content: Content) -> some View {
         content
@@ -29,8 +29,8 @@ struct MainScreenRouter: ViewModifier {
                 DailyLimitExceededScreen(
                     onBuyProVersion: { [unowned model] in
                         model.isProVersionPaywallShown = true
-                    },
-                    onWatchAd: onWatchAd
+                    }
+//                    onWatchAd: onWatchAd
                 )
                 .presentationDetents([.medium])
             }

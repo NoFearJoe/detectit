@@ -91,7 +91,7 @@
 // PRO status
 
 "pro_status_title" = "PRO version";
-"pro_status_subtitle" = "🙅🏻‍♂️ No Ads\n\n🕵🏻‍♂️ Unlimited tasks per day\n\n🥷🏻 Profile and Blitz stories";
+"pro_status_subtitle" = "🕵🏻‍♂️ Unlimited tasks per day\n\n🥷🏻 Profile and Blitz stories";
 "pro_status_buy_button_title" = "Buy for %@";
 "pro_status_blocked_task_message" = "PRO version is required";
 "pro_status_restore" = "Restore";
@@ -140,7 +140,7 @@
 // Daily limit exceeded
 
 "daily_limit_exceeded_title" = "That is all for today";
-"daily_limit_exceeded_subtitle" = "Every day you can play 3 games.\nTo get more, watch an Ad or buy the full version.";
+"daily_limit_exceeded_subtitle" = "Every day you can play 3 games.\nTo get more, buy the full version.";
 "daily_limit_exceeded_buy_pro_version_title" = "Buy the full version";
 "daily_limit_exceeded_watch_ad_title" = "Watch Ad";
 

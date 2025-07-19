@@ -6,7 +6,7 @@ import DetectItCore
 struct NextTaskScreen: View {
     
     @StateObject private var feedModel = MainFeedModel()
-    @StateObject private var adsModel = MainAdsModel()
+//    @StateObject private var adsModel = MainAdsModel()
     @StateObject private var dailyTaskLimitModel = DailyTaskLimitModel()
     @StateObject private var router = MainRoutingModel()
     
@@ -46,18 +46,18 @@ struct NextTaskScreen: View {
             await feedModel.load()
             dailyTaskLimitModel.handleDayChange()
             
-            feedModel.$currentTaskIndex.publisher
-                .assign(to: &adsModel.$currentTaskIndex)
-            dailyTaskLimitModel.$isDailyLimitExceeded
-                .assign(to: &adsModel.$isDailyTaskLimitExceeded)
+//            feedModel.$currentTaskIndex.publisher
+//                .assign(to: &adsModel.$currentTaskIndex)
+//            dailyTaskLimitModel.$isDailyLimitExceeded
+//                .assign(to: &adsModel.$isDailyTaskLimitExceeded)
             
             isScreenDisabled = false
             
             Analytics.logScreenShow(.main)
         }
-        .onChange(of: feedModel.currentTask) { _, _ in
-            adsModel.loadAds()
-        }
+//        .onChange(of: feedModel.currentTask) { _, _ in
+//            adsModel.loadAds()
+//        }
         .onChange(of: hudState) { _, state in
             isScreenDisabled = state != nil
         }
@@ -70,13 +70,13 @@ struct NextTaskScreen: View {
                         await feedModel.taskCompleted(score: score)
                         dailyTaskLimitModel.commitTaskCompletion()
                     }
-                }, onWatchAd: {
-                    showAd(allowFailure: false) { rewarded in
-                        guard rewarded else { return }
-                        
-                        dailyTaskLimitModel.increaseDailyLimit(by: 1)
-                        router.selectedTask = feedModel.currentTask
-                    }
+//                }, onWatchAd: {
+//                    showAd(allowFailure: false) { rewarded in
+//                        guard rewarded else { return }
+//                        
+//                        dailyTaskLimitModel.increaseDailyLimit(by: 1)
+//                        router.selectedTask = feedModel.currentTask
+//                    }
                 }
             )
         )
@@ -117,10 +117,10 @@ struct NextTaskScreen: View {
                         
                         if dailyTaskLimitModel.isDailyLimitExceeded {
                             router.isDailyTasksLimitExceededScreenShown = true
-                        } else if adsModel.needToShowAd {
-                            showAd(allowFailure: true) { _ in
-                                router.selectedTask = task
-                            }
+//                        } else if adsModel.needToShowAd {
+//                            showAd(allowFailure: true) { _ in
+//                                router.selectedTask = task
+//                            }
                         } else {
                             router.selectedTask = task
                         }
@@ -144,30 +144,30 @@ struct NextTaskScreen: View {
         .layoutPriority(1)
     }
     
-    private func showAd(
-        allowFailure: Bool,
-        completion: @escaping (_ rewarded: Bool) -> Void
-    ) {
-        adsModel.present(allowFailure: allowFailure) { state in
-            switch state {
-            case .loading:
-                hudState = .loading
-            case .presented:
-                hudState = nil
-                
-                Analytics.logScreenShow(
-                    .ad,
-                    parameters: [
-                        "current_task_index": feedModel.currentTaskIndex
-                    ]
-                )
-            case let .completed(rewarded):
-                completion(rewarded)
-            case .failed:
-                hudState = .failure("hud_failed_to_load_ad_message".localized)
-                
-                Analytics.log("present_ad_failed")
-            }
-        }
-    }
+//    private func showAd(
+//        allowFailure: Bool,
+//        completion: @escaping (_ rewarded: Bool) -> Void
+//    ) {
+//        adsModel.present(allowFailure: allowFailure) { state in
+//            switch state {
+//            case .loading:
+//                hudState = .loading
+//            case .presented:
+//                hudState = nil
+//                
+//                Analytics.logScreenShow(
+//                    .ad,
+//                    parameters: [
+//                        "current_task_index": feedModel.currentTaskIndex
+//                    ]
+//                )
+//            case let .completed(rewarded):
+//                completion(rewarded)
+//            case .failed:
+//                hudState = .failure("hud_failed_to_load_ad_message".localized)
+//                
+//                Analytics.log("present_ad_failed")
+//            }
+//        }
+//    }
 }

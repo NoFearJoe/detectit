@@ -84,7 +84,6 @@
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
 		96F0547C2444D2EC000742E4 /* OnboardingLastPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0547B2444D2EC000742E4 /* OnboardingLastPage.swift */; };
 		96F165702E22DAC2000D4D77 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 96F1656F2E22DAC2000D4D77 /* InfoPlist.xcstrings */; };
-		96F165722E22DB9C000D4D77 /* YandexMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 96F165712E22DB9C000D4D77 /* YandexMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,7 +209,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96F165722E22DB9C000D4D77 /* YandexMobileAds in Frameworks */,
 				965F2559267A6EC900106F13 /* SwiftyStoreKit in Frameworks */,
 				96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */,
 				961B964B242600CF003EC992 /* DetectItCore.framework in Frameworks */,
@@ -605,7 +603,6 @@
 			name = Detect;
 			packageProductDependencies = (
 				965F2558267A6EC900106F13 /* SwiftyStoreKit */,
-				96F165712E22DB9C000D4D77 /* YandexMobileAds */,
 			);
 			productName = DetectIt;
 			productReference = 961B95E02425EE89003EC992 /* Detect.app */;
@@ -683,7 +680,6 @@
 			mainGroup = 961B95D72425EE89003EC992;
 			packageReferences = (
 				965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
-				37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
 			);
 			productRefGroup = 961B95E12425EE89003EC992 /* Products */;
 			projectDirPath = "";
@@ -1162,14 +1158,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yandexmobile/yandex-ads-sdk-ios";
-			requirement = {
-				kind = exactVersion;
-				version = 7.14.1;
-			};
-		};
 		965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit";
@@ -1185,11 +1173,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
-		};
-		96F165712E22DB9C000D4D77 /* YandexMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
-			productName = YandexMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,24 +1,6 @@
 {
-  "originHash" : "aa52761f77c8dace410bd2a5839b204f358c579c555db01eb51fb3668e2ac45e",
+  "originHash" : "5acd55400c23f272a79d46d44e9a598fc7ef3405462d8785c533c78261191322",
   "pins" : [
-    {
-      "identity" : "amplitude-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/amplitude/Amplitude-iOS",
-      "state" : {
-        "revision" : "68eea8100a84d26c3d81997851965ec3efbe61fc",
-        "version" : "8.3.0"
-      }
-    },
-    {
-      "identity" : "divkit-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/divkit/divkit-ios",
-      "state" : {
-        "revision" : "022da5abc5f30b02695c08084036b0a5dd060334",
-        "version" : "24.3.0"
-      }
-    },
     {
       "identity" : "jgprogresshud",
       "kind" : "remoteSourceControl",
@@ -38,15 +20,6 @@
       }
     },
     {
-      "identity" : "metrica-sdk-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/yandexmobile/metrica-sdk-ios",
-      "state" : {
-        "revision" : "13d8b11181a33938ef42759d49466a621df5e7db",
-        "version" : "4.5.2"
-      }
-    },
-    {
       "identity" : "nextgrowingtextview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/muukii/NextGrowingTextView",
@@ -60,17 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/bizz84/SwiftyStoreKit",
       "state" : {
-        "revision" : "3b54c8eac2840b0cdd576634e83d9ebeb70f847c",
-        "version" : "0.16.3"
-      }
-    },
-    {
-      "identity" : "yandex-ads-sdk-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/yandexmobile/yandex-ads-sdk-swift",
-      "state" : {
-        "revision" : "d1e35d7b197da9cdc95a0dfc1328dd7f14899924",
-        "version" : "5.8.0"
+        "revision" : "9ce911639680113dac9b554d6243e406a9758ebe",
+        "version" : "0.16.4"
       }
     }
   ],
