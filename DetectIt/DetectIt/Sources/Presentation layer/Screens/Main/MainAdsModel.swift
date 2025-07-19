@@ -111,8 +111,7 @@ final class MainAdsModel: NSObject, ObservableObject {
             onStateChange(.presented)
             cancellables.removeAll()
             
-            let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-            let vc = scene?.windows.first?.rootViewController
+            let vc = UIApplication.topViewController()
             vc.map {
                 presentAd(from: $0) { [weak self] in
                     guard let self else { return }

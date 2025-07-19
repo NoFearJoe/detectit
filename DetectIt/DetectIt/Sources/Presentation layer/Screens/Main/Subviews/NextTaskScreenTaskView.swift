@@ -2,10 +2,8 @@ import SwiftUI
 import DetectItUI
 import DetectItCore
 
-struct MainScreenTaskView: View {
+struct NextTaskScreenTaskView: View {
     let task: Feed.Item
-    let isBlocked: Bool
-    let onTap: () -> Void
         
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -21,15 +19,8 @@ struct MainScreenTaskView: View {
                             
             descriptionView
             
-            VSpacer(20)
-            
-            ActionButton(
-                icon: isBlocked ? Image(systemName: "lock.fill") : nil,
-                title: "main_screen_play_button_title".localized,
-                foreground: .darkBackground,
-                background: .headlineText,
-                action: onTap
-            )
+//            VSpacer(20)
+            Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity)

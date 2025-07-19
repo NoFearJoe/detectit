@@ -27,6 +27,19 @@ public extension CGPoint {
     
 }
 
+public extension CGSize {
+    static func - (lhs: CGSize, rhs: CGSize) -> CGSize {
+        CGSize(width: lhs.width - rhs.width, height: lhs.height - rhs.height)
+    }
+    
+    static func angle(start: CGSize, end: CGSize) -> CGFloat {
+        let diff = end - start
+        let degrees = atan2(diff.width, diff.height).degrees
+        
+        return degrees > 0 ? degrees : 360 + degrees
+    }
+}
+
 public extension CGFloat {
     
     func rotate(degrees: CGFloat) -> CGFloat {

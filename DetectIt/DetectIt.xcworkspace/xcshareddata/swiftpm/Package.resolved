@@ -1,5 +1,5 @@
 {
-  "originHash" : "a030ee45b0c6e59a8aa38baebc31f731df77525443b47e92cf89d2856b5e1ace",
+  "originHash" : "f905c4ec0860cc63af1eedbb2b219bb0efa4cd7e20294bd458dd5e05f6874221",
   "pins" : [
     {
       "identity" : "applovin-max-swift-package",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "e61ae9c4f331ae346fc12bad014e32259f239675",
         "version" : "5.11.1"
+      }
+    },
+    {
+      "identity" : "bottomsheet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lucaszischka/BottomSheet",
+      "state" : {
+        "branch" : "main",
+        "revision" : "024e9b4710d4f3e4d1783c51a3ed4ab07ef6846a"
       }
     },
     {

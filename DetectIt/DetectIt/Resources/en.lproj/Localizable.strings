@@ -99,7 +99,7 @@
 // Detective profile
 
 "detective_profile_notifications_title" = "Notify about new tasks";
-"settings_screen_title" = "Профиль";
+"settings_screen_title" = "Menu";
 "settings_screen_pro_version_action_title" = "PRO version";
 "settings_screen_completed_tasks_action_title" = "Tasks history";
 "main_screen_leaderboard_action_title" = "Leaderboard";
@@ -107,6 +107,7 @@
 "detective_profile_invite_friend_button_title" = "Recruit a friend";
 "detective_profile_logout_action_title" = "Logout";
 "detective_profile_delete_account_action_title" = "Delete account";
+"detective_profile_tasks_count_title" = "Tasks solved";
 "detective_profile_total_score_title" = "Total score";
 "detective_profile_correct_answer_percent" = "Percentage of correct answers";
 "detective_profile_solved_tasks_count" = "Number of completed tasks";

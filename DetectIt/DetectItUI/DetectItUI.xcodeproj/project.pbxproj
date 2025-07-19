@@ -87,6 +87,7 @@
 		96CE5B372C4F94E900272677 /* ActivityPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B362C4F94DF00272677 /* ActivityPopover.swift */; };
 		96CE5B392C54FBA500272677 /* EvidencePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B382C54FB9F00272677 /* EvidencePictureView.swift */; };
 		96DE6F4127AC5B2D001266DE /* ScreenHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DE6F4027AC5B2D001266DE /* ScreenHeaderView.swift */; };
+		96E67FF02E26360000CD813A /* UIApplication+topViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E67FEF2E2635FA00CD813A /* UIApplication+topViewController.swift */; };
 		96F85C132445FCF000F5CD22 /* DetectItCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F85C122445FCF000F5CD22 /* DetectItCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -171,6 +172,7 @@
 		96CE5B362C4F94DF00272677 /* ActivityPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPopover.swift; sourceTree = "<group>"; };
 		96CE5B382C54FB9F00272677 /* EvidencePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvidencePictureView.swift; sourceTree = "<group>"; };
 		96DE6F4027AC5B2D001266DE /* ScreenHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeaderView.swift; sourceTree = "<group>"; };
+		96E67FEF2E2635FA00CD813A /* UIApplication+topViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+topViewController.swift"; sourceTree = "<group>"; };
 		96F85C122445FCF000F5CD22 /* DetectItCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -263,6 +265,7 @@
 		96500E3B242F109E005FFC7A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				96E67FEF2E2635FA00CD813A /* UIApplication+topViewController.swift */,
 				96500E3F242F12A2005FFC7A /* UIColor+AppTheme.swift */,
 				96500E41242F1816005FFC7A /* UIFont+AppTheme.swift */,
 				96500E45242F1C0B005FFC7A /* UIImage+Bundle.swift */,
@@ -572,6 +575,7 @@
 				96500E7924325937005FFC7A /* CGAffineTransform+RandomLayout.swift in Sources */,
 				9615F952245EC8400070E2D3 /* UIView+Animations.swift in Sources */,
 				965AC79E243652C2003A3DC7 /* UIImage+Resize.swift in Sources */,
+				96E67FF02E26360000CD813A /* UIApplication+topViewController.swift in Sources */,
 				965AC79C24365163003A3DC7 /* UIColor+Overlay.swift in Sources */,
 				96500E42242F1816005FFC7A /* UIFont+AppTheme.swift in Sources */,
 				96AAB006243B932D00F61443 /* AnswerButton.swift in Sources */,
@@ -727,7 +731,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItUI/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -755,7 +759,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "DetectItUI/Support files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

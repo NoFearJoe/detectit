@@ -2,9 +2,11 @@ import SwiftUI
 import DetectItUI
 import DetectItCore
 
-struct MainScreenTopPanel: View {
+struct NextTaskScreenTopPanel: View {
     let accuracy: Double
     let onTap: () -> Void
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
 //        Button {
@@ -16,10 +18,13 @@ struct MainScreenTopPanel: View {
 //                    VSpacer(8)
 //                    scoreView
 //                }
+                Text("Следующее задание")
+                    .font(.heading2)
+                    .foregroundStyle(Color.gray)
                 
                 Spacer()
                 
-                settingsButton
+                closeButton
             }
 //        }
     }
@@ -50,6 +55,19 @@ struct MainScreenTopPanel: View {
                 .frame(width: 24, height: 24)
                 .foregroundColor(.primaryText)
                 .shadow(radius: 14)
+        }
+    }
+    
+    private var closeButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image("close", bundle: .ui)
+                .resizable()
+                .frame(width: 24, height: 24)
+                .background(Color(uiColor: .lightGray))
+                .foregroundColor(Color(uiColor: .darkGray))
+                .cornerRadius(12)
         }
     }
 }

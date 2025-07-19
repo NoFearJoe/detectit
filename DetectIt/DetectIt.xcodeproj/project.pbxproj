@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		372DFDFF2A4F13740024A32F /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DFDFE2A4F13740024A32F /* SettingsScreen.swift */; };
-		372DFE072A51F80F0024A32F /* MainScreenPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DFE062A51F80F0024A32F /* MainScreenPictureView.swift */; };
+		372DFE072A51F80F0024A32F /* NextTaskScreenPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DFE062A51F80F0024A32F /* NextTaskScreenPictureView.swift */; };
 		37420A7B2A5591FE001647F4 /* View+showTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A7A2A5591FE001647F4 /* View+showTask.swift */; };
 		37420A812A55B8F8001647F4 /* YandexMobileAdsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37420A7F2A55B8EC001647F4 /* YandexMobileAdsBundle.bundle */; };
 		37420A832A56B60C001647F4 /* DailyTaskLimitManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A822A56B60C001647F4 /* DailyTaskLimitManagerTests.swift */; };
@@ -16,11 +16,11 @@
 		37420A872A56E0F5001647F4 /* MainAdsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A862A56E0F5001647F4 /* MainAdsModel.swift */; };
 		37420A892A56F536001647F4 /* DailyTaskLimitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37420A882A56F536001647F4 /* DailyTaskLimitModel.swift */; };
 		3782ED572A60422F000C46F4 /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782ED562A60422F000C46F4 /* MainScreenRouter.swift */; };
-		37A8BE572A3C8CA700257D8C /* MainScreenTopPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE562A3C8CA700257D8C /* MainScreenTopPanel.swift */; };
+		37A8BE572A3C8CA700257D8C /* NextTaskScreenTopPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE562A3C8CA700257D8C /* NextTaskScreenTopPanel.swift */; };
 		37A8BE5F2A3C9DF700257D8C /* MainFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8BE5E2A3C9DF700257D8C /* MainFeedModel.swift */; };
 		37D7DD372A36254E00AFDB2B /* Tasks in Resources */ = {isa = PBXBuildFile; fileRef = 37D7DD362A36254E00AFDB2B /* Tasks */; };
-		37D7DD3F2A36291100AFDB2B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7DD3E2A36291100AFDB2B /* MainScreen.swift */; };
-		37D7DD422A38F1BF00AFDB2B /* MainScreenTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7DD412A38F1BF00AFDB2B /* MainScreenTaskView.swift */; };
+		37D7DD3F2A36291100AFDB2B /* NextTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7DD3E2A36291100AFDB2B /* NextTaskScreen.swift */; };
+		37D7DD422A38F1BF00AFDB2B /* NextTaskScreenTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7DD412A38F1BF00AFDB2B /* NextTaskScreenTaskView.swift */; };
 		9605432E244F73580083C217 /* HelpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9605432D244F73580083C217 /* HelpScreen.swift */; };
 		96054C1A2459A20F0083C217 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96054C1C2459A20F0083C217 /* Localizable.strings */; };
 		9607EBB924C467C4006CD310 /* QuestTaskScreen+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9607EBB824C467C4006CD310 /* QuestTaskScreen+Setup.swift */; };
@@ -75,10 +75,11 @@
 		96A5C6E1274A3A750056DC09 /* BlitzTaskScreen+KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5C6E0274A3A750056DC09 /* BlitzTaskScreen+KeyboardHandler.swift */; };
 		96A5C6E3274A3A9D0056DC09 /* BlitzTaskScreen+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A5C6E2274A3A9D0056DC09 /* BlitzTaskScreen+Utils.swift */; };
 		96AAB00C243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */; };
-		96B3352C25BC63F800D0814F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3352B25BC63F800D0814F /* SplashScreen.swift */; };
 		96B3353725C0770500D0814F /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3353625C0770500D0814F /* Analytics.swift */; };
 		96CE5B312C445C8A00272677 /* CipherTaskScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */; };
 		96D555A12C6BC35600A6C1AD /* PhotoViewerScreenSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D555A02C6BC34700A6C1AD /* PhotoViewerScreenSUI.swift */; };
+		96E67FEB2E2443CA00CD813A /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E67FEA2E2443C300CD813A /* RootScreen.swift */; };
+		96E67FEE2E26326B00CD813A /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 96E67FED2E26326B00CD813A /* BottomSheet */; };
 		96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054742444AB0C000742E4 /* DebugMenuScreen.swift */; };
 		96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054772444C60E000742E4 /* OnboardingScreen.swift */; };
 		96F0547A2444CD77000742E4 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F054792444CD77000742E4 /* OnboardingPage.swift */; };
@@ -121,7 +122,7 @@
 
 /* Begin PBXFileReference section */
 		372DFDFE2A4F13740024A32F /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
-		372DFE062A51F80F0024A32F /* MainScreenPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPictureView.swift; sourceTree = "<group>"; };
+		372DFE062A51F80F0024A32F /* NextTaskScreenPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTaskScreenPictureView.swift; sourceTree = "<group>"; };
 		37420A7A2A5591FE001647F4 /* View+showTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+showTask.swift"; sourceTree = "<group>"; };
 		37420A7F2A55B8EC001647F4 /* YandexMobileAdsBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YandexMobileAdsBundle.bundle; sourceTree = "<group>"; };
 		37420A822A56B60C001647F4 /* DailyTaskLimitManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskLimitManagerTests.swift; sourceTree = "<group>"; };
@@ -129,11 +130,11 @@
 		37420A862A56E0F5001647F4 /* MainAdsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdsModel.swift; sourceTree = "<group>"; };
 		37420A882A56F536001647F4 /* DailyTaskLimitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskLimitModel.swift; sourceTree = "<group>"; };
 		3782ED562A60422F000C46F4 /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
-		37A8BE562A3C8CA700257D8C /* MainScreenTopPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTopPanel.swift; sourceTree = "<group>"; };
+		37A8BE562A3C8CA700257D8C /* NextTaskScreenTopPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTaskScreenTopPanel.swift; sourceTree = "<group>"; };
 		37A8BE5E2A3C9DF700257D8C /* MainFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedModel.swift; sourceTree = "<group>"; };
 		37D7DD362A36254E00AFDB2B /* Tasks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tasks; sourceTree = "<group>"; };
-		37D7DD3E2A36291100AFDB2B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
-		37D7DD412A38F1BF00AFDB2B /* MainScreenTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTaskView.swift; sourceTree = "<group>"; };
+		37D7DD3E2A36291100AFDB2B /* NextTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTaskScreen.swift; sourceTree = "<group>"; };
+		37D7DD412A38F1BF00AFDB2B /* NextTaskScreenTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTaskScreenTaskView.swift; sourceTree = "<group>"; };
 		9605432D244F73580083C217 /* HelpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpScreen.swift; sourceTree = "<group>"; };
 		96054BF22455D2920083C217 /* DetectItAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DetectItAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96054C1B2459A20F0083C217 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -194,10 +195,10 @@
 		96A5C6E2274A3A9D0056DC09 /* BlitzTaskScreen+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlitzTaskScreen+Utils.swift"; sourceTree = "<group>"; };
 		96AAB00B243F3BC800F61443 /* ProfileTaskScreen+DataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileTaskScreen+DataLoading.swift"; sourceTree = "<group>"; };
 		96B32E5C25B4D2CF00D0814F /* Detect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Detect.entitlements; sourceTree = "<group>"; };
-		96B3352B25BC63F800D0814F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		96B3353625C0770500D0814F /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		96CE5B302C445C7C00272677 /* CipherTaskScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CipherTaskScreen.swift; sourceTree = "<group>"; };
 		96D555A02C6BC34700A6C1AD /* PhotoViewerScreenSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerScreenSUI.swift; sourceTree = "<group>"; };
+		96E67FEA2E2443C300CD813A /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		96F054742444AB0C000742E4 /* DebugMenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuScreen.swift; sourceTree = "<group>"; };
 		96F054772444C60E000742E4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		96F054792444CD77000742E4 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E67FEE2E26326B00CD813A /* BottomSheet in Frameworks */,
 				96F165722E22DB9C000D4D77 /* YandexMobileAds in Frameworks */,
 				965F2559267A6EC900106F13 /* SwiftyStoreKit in Frameworks */,
 				96500E35242F0FDD005FFC7A /* DetectItUI.framework in Frameworks */,
@@ -246,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				37D7DD402A38F1AE00AFDB2B /* Subviews */,
-				37D7DD3E2A36291100AFDB2B /* MainScreen.swift */,
+				37D7DD3E2A36291100AFDB2B /* NextTaskScreen.swift */,
 				37A8BE5E2A3C9DF700257D8C /* MainFeedModel.swift */,
 				37420A842A56BE91001647F4 /* DailyLimitExceededScreen.swift */,
 				37420A862A56E0F5001647F4 /* MainAdsModel.swift */,
@@ -259,9 +261,9 @@
 		37D7DD402A38F1AE00AFDB2B /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				37D7DD412A38F1BF00AFDB2B /* MainScreenTaskView.swift */,
-				37A8BE562A3C8CA700257D8C /* MainScreenTopPanel.swift */,
-				372DFE062A51F80F0024A32F /* MainScreenPictureView.swift */,
+				37D7DD412A38F1BF00AFDB2B /* NextTaskScreenTaskView.swift */,
+				37A8BE562A3C8CA700257D8C /* NextTaskScreenTopPanel.swift */,
+				372DFE062A51F80F0024A32F /* NextTaskScreenPictureView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -444,8 +446,8 @@
 		96500E822434FD0F005FFC7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				96F165732E22DD1E000D4D77 /* MainMap */,
 				37D7DD3D2A3628FF00AFDB2B /* Main */,
-				96B3352A25BC63DD00D0814F /* SplashScreen */,
 				96346F0E2494137700A815F2 /* FullVersionPurchase */,
 				96F054762444C374000742E4 /* Onboarding */,
 				964E2E39249E069B0027F738 /* Settings */,
@@ -559,14 +561,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		96B3352A25BC63DD00D0814F /* SplashScreen */ = {
-			isa = PBXGroup;
-			children = (
-				96B3352B25BC63F800D0814F /* SplashScreen.swift */,
-			);
-			path = SplashScreen;
-			sourceTree = "<group>";
-		};
 		96F054732444AAFA000742E4 /* DebugMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,12 +580,20 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		96F165732E22DD1E000D4D77 /* MainMap */ = {
+			isa = PBXGroup;
+			children = (
+				96E67FEA2E2443C300CD813A /* RootScreen.swift */,
+			);
+			path = MainMap;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		961B95DF2425EE89003EC992 /* Sharashka */ = {
+		961B95DF2425EE89003EC992 /* Detect */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "Sharashka" */;
+			buildConfigurationList = 961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "Detect" */;
 			buildPhases = (
 				961B95DC2425EE89003EC992 /* Sources */,
 				961B95DD2425EE89003EC992 /* Frameworks */,
@@ -602,10 +604,11 @@
 			);
 			dependencies = (
 			);
-			name = Sharashka;
+			name = Detect;
 			packageProductDependencies = (
 				965F2558267A6EC900106F13 /* SwiftyStoreKit */,
 				96F165712E22DB9C000D4D77 /* YandexMobileAds */,
+				96E67FED2E26326B00CD813A /* BottomSheet */,
 			);
 			productName = DetectIt;
 			productReference = 961B95E02425EE89003EC992 /* Detect.app */;
@@ -684,12 +687,13 @@
 			packageReferences = (
 				965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				37420A7C2A55B823001647F4 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
+				96E67FEC2E26326B00CD813A /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 961B95E12425EE89003EC992 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				961B95DF2425EE89003EC992 /* Sharashka */,
+				961B95DF2425EE89003EC992 /* Detect */,
 				961B95F52425EE92003EC992 /* DetectItTests */,
 				961B96002425EE92003EC992 /* DetectItUITests */,
 			);
@@ -734,14 +738,14 @@
 				96A5C6DA274A34900056DC09 /* BlitzTaskScreen+Setup.swift in Sources */,
 				96CE5B312C445C8A00272677 /* CipherTaskScreen.swift in Sources */,
 				96A5C6D8274A328B0056DC09 /* BlitzTaskScreen+State.swift in Sources */,
+				96E67FEB2E2443CA00CD813A /* RootScreen.swift in Sources */,
 				96A5C6D2274A2C9A0056DC09 /* ProfileHiddenCrimeDescriptionView.swift in Sources */,
 				965F2567267A7D2A00106F13 /* CompletedTasksScreen.swift in Sources */,
-				96B3352C25BC63F800D0814F /* SplashScreen.swift in Sources */,
 				9607EBBB24C4680A006CD310 /* QuestTaskScreen+DataLoading.swift in Sources */,
-				37A8BE572A3C8CA700257D8C /* MainScreenTopPanel.swift in Sources */,
+				37A8BE572A3C8CA700257D8C /* NextTaskScreenTopPanel.swift in Sources */,
 				96346F10249413A400A815F2 /* FullVersionPurchaseScreen.swift in Sources */,
 				96A5C660274A2B5E0056DC09 /* QuestTaskScreenView.swift in Sources */,
-				37D7DD3F2A36291100AFDB2B /* MainScreen.swift in Sources */,
+				37D7DD3F2A36291100AFDB2B /* NextTaskScreen.swift in Sources */,
 				963F56CC24EF04D1002B949F /* TaskNotesScreen.swift in Sources */,
 				96A5C6CF274A2C9A0056DC09 /* ProfilePrepositionCell.swift in Sources */,
 				96A5C6C9274A2C9A0056DC09 /* ProfileTaskExactAnswerQuestionCell.swift in Sources */,
@@ -750,7 +754,7 @@
 				96A5C65E274A2B5E0056DC09 /* QuestTaskChapterView.swift in Sources */,
 				96F054782444C60E000742E4 /* OnboardingScreen.swift in Sources */,
 				37420A7B2A5591FE001647F4 /* View+showTask.swift in Sources */,
-				37D7DD422A38F1BF00AFDB2B /* MainScreenTaskView.swift in Sources */,
+				37D7DD422A38F1BF00AFDB2B /* NextTaskScreenTaskView.swift in Sources */,
 				96A5C6C6274A2C9A0056DC09 /* ProfileTaskAnswerCell.swift in Sources */,
 				96A5C6D1274A2C9A0056DC09 /* ProfileReportView.swift in Sources */,
 				96A5C6C8274A2C9A0056DC09 /* ProfileTaskVariantsQuestionCell.swift in Sources */,
@@ -770,7 +774,7 @@
 				96D555A12C6BC35600A6C1AD /* PhotoViewerScreenSUI.swift in Sources */,
 				961EEDF6243F834800462CD3 /* ProfileTaskScreen+State.swift in Sources */,
 				961B95E62425EE89003EC992 /* SceneDelegate.swift in Sources */,
-				372DFE072A51F80F0024A32F /* MainScreenPictureView.swift in Sources */,
+				372DFE072A51F80F0024A32F /* NextTaskScreenPictureView.swift in Sources */,
 				9607EBB924C467C4006CD310 /* QuestTaskScreen+Setup.swift in Sources */,
 				372DFDFF2A4F13740024A32F /* SettingsScreen.swift in Sources */,
 				96F054752444AB0C000742E4 /* DebugMenuScreen.swift in Sources */,
@@ -819,12 +823,12 @@
 /* Begin PBXTargetDependency section */
 		961B95F82425EE92003EC992 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 961B95DF2425EE89003EC992 /* Sharashka */;
+			target = 961B95DF2425EE89003EC992 /* Detect */;
 			targetProxy = 961B95F72425EE92003EC992 /* PBXContainerItemProxy */;
 		};
 		961B96032425EE92003EC992 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 961B95DF2425EE89003EC992 /* Sharashka */;
+			target = 961B95DF2425EE89003EC992 /* Detect */;
 			targetProxy = 961B96022425EE92003EC992 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -978,7 +982,7 @@
 		961B960B2425EE92003EC992 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DetectIt/Detect.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -987,15 +991,16 @@
 				INFOPLIST_FILE = "DetectIt/Support files/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1004,7 +1009,7 @@
 		961B960C2425EE92003EC992 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = DetectIt/Detect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1014,16 +1019,17 @@
 				INFOPLIST_FILE = "DetectIt/Support files/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mesterra.detectit;
 				PRODUCT_NAME = Detect;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1130,7 +1136,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "Sharashka" */ = {
+		961B960A2425EE92003EC992 /* Build configuration list for PBXNativeTarget "Detect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				961B960B2425EE92003EC992 /* Debug */,
@@ -1176,6 +1182,14 @@
 				version = 0.16.4;
 			};
 		};
+		96E67FEC2E26326B00CD813A /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucaszischka/BottomSheet";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1183,6 +1197,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 965F2557267A6EC900106F13 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
+		};
+		96E67FED2E26326B00CD813A /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96E67FEC2E26326B00CD813A /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
 		};
 		96F165712E22DB9C000D4D77 /* YandexMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,7 +1,7 @@
 import SwiftUI
 import DetectItUI
 
-struct MainScreenPictureView<A: Equatable>: View {
+struct NextTaskScreenPictureView<A: Equatable>: View {
     let file: String?
     let size: CGSize
     let blurred: Bool

@@ -7,13 +7,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sharashka"
+            "value" : "Detect"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Шарашка"
+            "value" : "Detect"
           }
         }
       }
@@ -25,6 +25,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "Detect"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Detect"
           }
         }

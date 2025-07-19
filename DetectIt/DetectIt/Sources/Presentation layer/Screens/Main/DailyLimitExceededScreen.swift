@@ -12,7 +12,7 @@ struct DailyLimitExceededScreen: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("daily_limit_exceeded_title".localized)
-                .font(.heading2)
+                .font(.heading1)
                 .foregroundColor(.primaryText)
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
@@ -20,7 +20,7 @@ struct DailyLimitExceededScreen: View {
             VSpacer(12)
             
             Text("daily_limit_exceeded_subtitle".localized)
-                .font(.text3)
+                .font(.text2)
                 .foregroundColor(.primaryText)
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)

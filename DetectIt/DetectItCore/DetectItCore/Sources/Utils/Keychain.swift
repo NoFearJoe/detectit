@@ -58,4 +58,33 @@ public class Keychain {
         SecItemAdd(keychainQuery as CFDictionary, nil)
     }
     
+    public func getAllItems() -> [String: String] {
+        let query: [AnyHashable: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecReturnData as AnyHashable: kCFBooleanTrue ?? "",
+            kSecReturnAttributes as AnyHashable: kCFBooleanTrue ?? "",
+            kSecReturnRef as AnyHashable: kCFBooleanTrue ?? "",
+            kSecMatchLimit as AnyHashable: kSecMatchLimitAll
+        ]
+                    
+        var result: AnyObject?
+                    
+        let lastResultCode = withUnsafeMutablePointer(to: &result) {
+            SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))
+        }
+                    
+        var values = [String:String]()
+        if lastResultCode == noErr {
+            let array = result as? Array<Dictionary<String, Any>>
+                        
+            for item in array! {
+                if let key = item[kSecAttrAccount as String] as? String,
+                   let value = item[kSecValueData as String] as? Data {
+                       values[key] = String(data: value, encoding:.utf8)
+                 }
+             }
+        }
+                    
+        return values
+    }
 }

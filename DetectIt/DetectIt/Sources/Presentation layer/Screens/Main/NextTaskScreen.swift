@@ -3,7 +3,7 @@ import Combine
 import DetectItUI
 import DetectItCore
 
-struct MainScreen: View {
+struct NextTaskScreen: View {
     
     @StateObject private var feedModel = MainFeedModel()
     @StateObject private var adsModel = MainAdsModel()
@@ -21,19 +21,20 @@ struct MainScreen: View {
                     message: "main_screen_no_tasks_subtitle".localized
                 )
             } else {
-                pictureView
-
-                taskView
+//                pictureView
+                VStack(spacing: 0) {
+                    NextTaskScreenTopPanel(accuracy: 0) {
+                        router.isProfileShown = true
+        //                model.changeCurrentTask(shift: -1)
+                    }
+                    .padding()
+                    
+                    taskView
+                }
             }
-            
-            MainScreenTopPanel(accuracy: 0) {
-                router.isProfileShown = true
-//                model.changeCurrentTask(shift: -1)
-            }
-            .padding()
         }
         .disabled(isScreenDisabled)
-        .background(Color.black.ignoresSafeArea())
+        .background(Color.clear.ignoresSafeArea())
         .preferredColorScheme(.dark)
         .statusBarHidden()
         .accessibilityIdentifier("main_screen")
@@ -54,10 +55,10 @@ struct MainScreen: View {
             
             Analytics.logScreenShow(.main)
         }
-        .onChange(of: feedModel.currentTask) { _ in
+        .onChange(of: feedModel.currentTask) { _, _ in
             adsModel.loadAds()
         }
-        .onChange(of: hudState) { state in
+        .onChange(of: hudState) { _, state in
             isScreenDisabled = state != nil
         }
         .modifier(
@@ -83,7 +84,7 @@ struct MainScreen: View {
         
     private var pictureView: some View {
         GeometryReader { g in
-            MainScreenPictureView(
+            NextTaskScreenPictureView(
                 file: feedModel.currentTask?.picture,
                 size: CGSize(
                     width: g.size.width,
@@ -101,9 +102,15 @@ struct MainScreen: View {
             Spacer()
             
             if let task = feedModel.currentTask {
-                MainScreenTaskView(
-                    task: task,
-                    isBlocked: dailyTaskLimitModel.isDailyLimitExceeded
+                NextTaskScreenTaskView(task: task)
+                
+                VSpacer(16)
+                
+                ActionButton(
+                    icon: dailyTaskLimitModel.isDailyLimitExceeded ? Image(systemName: "lock.fill") : nil,
+                    title: "main_screen_play_button_title".localized,
+                    foreground: .darkBackground,
+                    background: .headlineText
                 ) {
 //                    _Concurrency.Task {
 //                        await feedModel.changeCurrentTask(shift: 1)
@@ -130,10 +137,10 @@ struct MainScreen: View {
                         ]
                     )
                 }
-                .animation(.default, value: feedModel.currentTask)
             }
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.bottom)
         .layoutPriority(1)
     }
     

@@ -6,37 +6,33 @@ public final class FeedService {
     
     public func obtainFeed() async -> [FeedItem] {
         await withCheckedContinuation { continuation in
-            DispatchQueue.global().async {
-                guard
-                    let path = Bundle.main.path(forResource: "Feed", ofType: "json", inDirectory: "Tasks"),
-                    let feedFile = FileManager.default.contents(atPath: path),
-                    let feed = try? JSONDecoder().decode([FeedItem].self, from: feedFile)
-                else {
-                    return continuation.resume(returning: [])
-                }
-                
-                continuation.resume(returning: feed)
+            guard
+                let path = Bundle.main.path(forResource: "Feed", ofType: "json", inDirectory: "Tasks"),
+                let feedFile = FileManager.default.contents(atPath: path),
+                let feed = try? JSONDecoder().decode([FeedItem].self, from: feedFile)
+            else {
+                return continuation.resume(returning: [])
             }
+            
+            continuation.resume(returning: feed)
         }
     }
     
     public func obtainFeedItem(meta: FeedItem) async -> Feed.Item? {
         await withCheckedContinuation { continuation in
-            DispatchQueue.global().async {
-                switch meta.kind {
-                case .cipher:
-                    let cipher = self.obtainCipher(id: meta.id)
-                    continuation.resume(returning: cipher)
-                case .blitz:
-                    let blitz = self.obtainBlitz(id: meta.id)
-                    continuation.resume(returning: blitz)
-                case .profile:
-                    let profile = self.obtainProfile(id: meta.id)
-                    continuation.resume(returning: profile)
-                case .quest:
-                    let quest = self.obtainQuest(id: meta.id)
-                    continuation.resume(returning: quest)
-                }
+            switch meta.kind {
+            case .cipher:
+                let cipher = self.obtainCipher(id: meta.id)
+                continuation.resume(returning: cipher)
+            case .blitz:
+                let blitz = self.obtainBlitz(id: meta.id)
+                continuation.resume(returning: blitz)
+            case .profile:
+                let profile = self.obtainProfile(id: meta.id)
+                continuation.resume(returning: profile)
+            case .quest:
+                let quest = self.obtainQuest(id: meta.id)
+                continuation.resume(returning: quest)
             }
         }
     }
@@ -200,7 +196,7 @@ private extension FeedService {
         guard
             let path = Bundle.main.path(forResource: "task", ofType: "json", inDirectory: dir),
             let data = FileManager.default.contents(atPath: path),
-            var task = try? JSONDecoder().decode(QuestTask.self, from: data)
+            let task = try? JSONDecoder().decode(QuestTask.self, from: data)
         else {
             return nil
         }

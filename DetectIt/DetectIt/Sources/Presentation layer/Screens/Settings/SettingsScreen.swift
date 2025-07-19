@@ -22,20 +22,10 @@ struct SettingsScreen: View {
                 HStack {
                     Text("settings_screen_title".localized)
                         .font(.heading1)
-                        .foregroundColor(.primaryText)
+                        .foregroundColor(.secondaryText)
                     Spacer()
                     closeButton
                 }
-                
-                VSpacer(44)
-                
-                title("detective_profile_total_score_title".localized)
-                score("\(User.shared.score.total)")
-                
-                VSpacer(12)
-                
-                title("detective_profile_correct_answer_percent".localized)
-                score("\(Int(User.shared.score.relative * 100))%")
                 
                 VSpacer(44)
                 

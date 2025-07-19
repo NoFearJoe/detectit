@@ -27,6 +27,10 @@ public struct TaskScore {
         )
     }
     
+    public static func count() -> Int {
+        storage.getObjectsCount(keyPrefix: keyPrefix)
+    }
+    
     // MARK: - Utils
     
     public static func clear() {

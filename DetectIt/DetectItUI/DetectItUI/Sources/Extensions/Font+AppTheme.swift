@@ -2,6 +2,9 @@ import SwiftUI
 
 public extension Font {
     
+    /// Bold 80
+    static let superHeading = Font.bold(80)
+    
     /// Bold 40
     static let heading0 = Font.bold(40)
     

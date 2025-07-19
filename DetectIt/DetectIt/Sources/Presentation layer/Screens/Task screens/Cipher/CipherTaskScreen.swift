@@ -147,7 +147,7 @@ struct CipherTaskScreen: View {
             .overlay {
                 if isPicturePresented, let picture = model.picture {
                     PhotoViewerScreenSUI(image: picture, title: nil, namespace: namespace) {
-                        withAnimation {
+                        withAnimation(.default.speed(2)) {
                             isPicturePresented = false
                         }
                     }
@@ -204,7 +204,7 @@ struct CipherTaskScreen: View {
                         $0
                     }
                 }
-                .onChange(of: model.isCompleted) { completed in
+                .onChange(of: model.isCompleted) { _, completed in
                     guard completed else { return }
                     
                     AppRateManager.shared.commitEvent()
@@ -223,7 +223,7 @@ struct CipherTaskScreen: View {
                         }
                     }
                 }
-                .onChange(of: isAnswerFocused) { isAnswerFocused in
+                .onChange(of: isAnswerFocused) { _, isAnswerFocused in
                     guard isAnswerFocused else { return }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) {
@@ -270,7 +270,7 @@ struct CipherTaskScreen: View {
             EvidencePictureView(image: picture)
                 .matchedGeometryEffect(id: "photo", in: namespace)
                 .onTapGesture {
-                    withAnimation {
+                    withAnimation(.default.speed(2)) {
                         isPicturePresented = true
                     }
                 }

@@ -10,7 +10,7 @@ final class MainFeedModel: NSObject, ObservableObject {
     
     @Published private var leaderboard: GKLeaderboard?
     
-    @MainActor private var feedItems: [FeedItem] = []
+    @MainActor private(set) var feedItems: [FeedItem] = []
     
     @PublishedAppStorage("current_task_index")
     private(set) var currentTaskIndex = 0

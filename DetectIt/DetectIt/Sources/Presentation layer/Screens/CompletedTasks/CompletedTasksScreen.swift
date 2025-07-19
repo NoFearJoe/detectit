@@ -53,7 +53,7 @@ struct CompletedTasksScreen: View {
                     let task = await feedService.obtainFeedItem(meta: item),
                     task.completed
                 else {
-                    break
+                    continue
                 }
                 
                 tasks.append(task)

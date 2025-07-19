@@ -5,6 +5,7 @@ public protocol Storage {
     func getDecodable<T: Decodable>(key: String) -> T?
     func save<T>(_ value: T?, key: String)
     func saveEncodable<T: Encodable>(_ value: T?, key: String)
+    func getObjectsCount(keyPrefix: String) -> Int
 }
 
 extension Keychain: Storage {
@@ -75,6 +76,12 @@ extension Keychain: Storage {
         
         Self.save(key, value: data)
     }
+    
+    public func getObjectsCount(keyPrefix: String) -> Int {
+        let allItems = getAllItems()
+        
+        return allItems.filter { $0.key.hasPrefix(keyPrefix) }.count
+    }
 }
 
 extension UserDefaults: Storage {
@@ -98,5 +105,9 @@ extension UserDefaults: Storage {
         }
         
         set(data, forKey: key)
+    }
+    
+    public func getObjectsCount(keyPrefix: String) -> Int {
+        dictionaryRepresentation().keys.filter { $0.starts(with: keyPrefix) }.count
     }
 }

@@ -1,5 +1,6 @@
-import Foundation
+import SwiftUI
 
+@Observable
 public final class User {
     
     public static let shared = User()
@@ -32,46 +33,61 @@ public final class User {
     private var scoreKey: String { "user_score" }
     public var score: Score {
         get {
-            storage.getDecodable(key: scoreKey) ?? .zero
+            access(keyPath: \.score)
+            return storage.getDecodable(key: scoreKey) ?? .zero
         }
         set {
-            storage.saveEncodable(newValue, key: scoreKey)
+            withMutation(keyPath: \.score) {
+                storage.saveEncodable(newValue, key: scoreKey)
+            }
         }
     }
     
     public var isDecoderHelpShown: Bool {
         get {
-            UserDefaults.standard.bool(forKey: "is_decoder_help_shown")
+            access(keyPath: \.isDecoderHelpShown)
+            return UserDefaults.standard.bool(forKey: "is_decoder_help_shown")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "is_decoder_help_shown")
+            withMutation(keyPath: \.isDecoderHelpShown) {
+                UserDefaults.standard.set(newValue, forKey: "is_decoder_help_shown")
+            }
         }
     }
     
     public var isProfileHelpShown: Bool {
         get {
-            UserDefaults.standard.bool(forKey: "is_profile_help_shown")
+            access(keyPath: \.isProfileHelpShown)
+            return UserDefaults.standard.bool(forKey: "is_profile_help_shown")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "is_profile_help_shown")
+            withMutation(keyPath: \.isProfileHelpShown) {
+                UserDefaults.standard.set(newValue, forKey: "is_profile_help_shown")
+            }
         }
     }
     
     public var isQuestHelpShown: Bool {
         get {
-            UserDefaults.standard.bool(forKey: "is_quest_help_shown")
+            access(keyPath: \.isQuestHelpShown)
+            return UserDefaults.standard.bool(forKey: "is_quest_help_shown")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "is_quest_help_shown")
+            withMutation(keyPath: \.isQuestHelpShown) {
+                UserDefaults.standard.set(newValue, forKey: "is_quest_help_shown")
+            }
         }
     }
     
     public var isOnboardingShown: Bool {
         get {
-            UserDefaults.standard.bool(forKey: "is_onboarding_shown")
+            access(keyPath: \.isOnboardingShown)
+            return UserDefaults.standard.bool(forKey: "is_onboarding_shown")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "is_onboarding_shown")
+            withMutation(keyPath: \.isOnboardingShown) {
+                UserDefaults.standard.set(newValue, forKey: "is_onboarding_shown")
+            }
         }
     }
 }

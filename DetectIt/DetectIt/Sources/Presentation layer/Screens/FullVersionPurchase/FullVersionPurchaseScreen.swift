@@ -46,7 +46,7 @@ struct FullVersionPurchaseScreen: View {
     
     private var titleView: some View {
         Text("pro_status_title".localized)
-            .font(.heading1)
+            .font(.heading0)
             .foregroundColor(.primaryText)
             .lineLimit(nil)
             .multilineTextAlignment(.leading)
@@ -54,7 +54,7 @@ struct FullVersionPurchaseScreen: View {
     
     private var subtitleView: some View {
         Text("pro_status_subtitle".localized)
-            .font(.text2)
+            .font(.text1)
             .foregroundColor(.primaryText)
             .lineLimit(nil)
             .multilineTextAlignment(.leading)
@@ -82,12 +82,12 @@ struct FullVersionPurchaseScreen: View {
     }
     
     private var background: some View {
-        Image("pro_version_background")
+        Image("main_bg")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .overlay {
                 LinearGradient(
-                    colors: [.darkBackground, .darkBackground.opacity(0.25), .darkBackground],
+                    colors: [.darkBackground, .darkBackground.opacity(0.85), .darkBackground],
                     startPoint: .bottom,
                     endPoint: .top
                 )
